@@ -1,4 +1,4 @@
-const CACHE_NAME = 'quiz-permis-v8';
+const CACHE_NAME = 'quiz-permis-v9';
 const urlsToCache = [
   './',
   './index.html',
@@ -52,43 +52,6 @@ self.addEventListener('fetch', event => {
             '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100"><text x="50%" y="50%" text-anchor="middle" fill="#999" font-size="14">Image hors-ligne</text></svg>',
             { headers: { 'Content-Type': 'image/svg+xml' } }
           );
-        }
-      })
-  );
-});
-
-// Gestion des notifications push
-self.addEventListener('push', event => {
-  if (!event.data) return;
-
-  const data = event.data.json();
-
-  const options = {
-    body: data.body || 'Nouvelle notification',
-    icon: data.icon || 'icon-192.png',
-    badge: data.badge || 'icon-192.png',
-    tag: data.tag || 'quiz-notification',
-    data: data.url || './'
-  };
-
-  event.waitUntil(
-    self.registration.showNotification(data.title || 'Permis Luxembourg', options)
-  );
-});
-
-// Clic sur notification
-self.addEventListener('notificationclick', event => {
-  event.notification.close();
-  event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true })
-      .then(clientList => {
-        for (const client of clientList) {
-          if (client.url === './' && 'focus' in client) {
-            return client.focus();
-          }
-        }
-        if (clients.openWindow) {
-          return clients.openWindow('./');
         }
       })
   );

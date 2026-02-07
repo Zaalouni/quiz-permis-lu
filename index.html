@@ -210,32 +210,6 @@ if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
 
 
 
-<!-- Après le bouton "Démarrer le quiz" -->
-<div class="notification-settings" id="notificationSettings">
-  <h4>🔔 Paramètres des notifications</h4>
-  
-  <div class="time-selector">
-    <label>Rappel quotidien à :</label>
-    <select id="reminderTime">
-      <option value="8">08:00</option>
-      <option value="12">12:00</option>
-      <option value="17">17:00</option>
-      <option value="19" selected>19:00</option>
-      <option value="20">20:00</option>
-      <option value="21">21:00</option>
-    </select>
-    <button id="saveReminderBtn" class="btn small">Enregistrer</button>
-  </div>
-  
-  <div class="notif-actions">
-    <button id="testNotifBtn" class="btn small">Tester la notification</button>
-    <button id="disableNotifBtn" class="btn small danger">Désactiver</button>
-  </div>
-</div>
-
-<button id="toggleNotifBtn" class="btn small notif-toggle-btn">
-  ⚙️ Paramètres notifications
-</button>
 
 
 
@@ -484,15 +458,6 @@ function computeScore(){
 }
 
 
-// Notification après un quiz réussi
-function sendCongratulationNotification(score, total) {
-  if (Notification.permission === 'granted' && score >= total * 0.8) {
-    showNotification(
-      '🎉 Excellent score !',
-      `Vous avez obtenu ${score}/${total} (${Math.round(score/total*100)}%). Continuez comme ça !`
-    );
-  }
-}
 
 
 function finalize(){
@@ -546,11 +511,6 @@ function finalize(){
     examResultDiv.classList.add("hidden");
   }
 
-  if (score >= picked.length * 0.8) {
-    sendCongratulationNotification(score, picked.length);
-  }
-  
-  
 
   // Flags
   let flagged=[];
@@ -631,158 +591,6 @@ function finalize(){
 
 
 
-/* ------------------------------
-   NOTIFICATIONS PUSH
---------------------------------*/
-function initNotifications() {
-  // Vérifier si les notifications sont supportées
-  if (!('Notification' in window)) {
-    console.log('Notifications non supportées');
-    return;
-  }
-  
-  // Vérifier la permission
-  if (Notification.permission === 'granted') {
-    console.log('Notifications déjà autorisées');
-    setupDailyReminder();
-  } else if (Notification.permission === 'default') {
-    // Afficher un bouton pour demander la permission
-    showNotificationPrompt();
-  }
-}
-
-// Afficher une bannière pour activer les notifications
-function showNotificationPrompt() {
-  // Ne pas montrer immédiatement, attendre quelques secondes
-  setTimeout(() => {
-    if (document.querySelector('.notification-banner')) return;
-    
-    const notificationBanner = document.createElement('div');
-    notificationBanner.className = 'notification-banner';
-
-    const bannerContent = document.createElement('div');
-    bannerContent.className = 'banner-content';
-
-    const bannerText = document.createElement('span');
-    bannerText.textContent = 'Recevez des rappels de révision gratuits';
-
-    const bannerActions = document.createElement('div');
-    bannerActions.className = 'banner-actions';
-
-    const activateBtn = document.createElement('button');
-    activateBtn.className = 'btn small primary';
-    activateBtn.textContent = 'Activer';
-    activateBtn.onclick = () => activateNotifications();
-
-    const dismissBtn = document.createElement('button');
-    dismissBtn.className = 'btn small';
-    dismissBtn.textContent = 'Non merci';
-    dismissBtn.onclick = () => notificationBanner.remove();
-
-    bannerActions.appendChild(activateBtn);
-    bannerActions.appendChild(dismissBtn);
-    bannerContent.appendChild(bannerText);
-    bannerContent.appendChild(bannerActions);
-    notificationBanner.appendChild(bannerContent);
-    
-    // Insérer après l'en-tête
-    const header = document.querySelector('.app-header');
-    if (header) {
-      header.parentNode.insertBefore(notificationBanner, header.nextSibling);
-    }
-  }, 5000); // Attendre 5 secondes
-}
-
-// Activer les notifications
-function activateNotifications() {
-  Notification.requestPermission().then(permission => {
-    if (permission === 'granted') {
-      console.log('Notifications activées !');
-      showNotification('✅ Notifications activées', 'Vous recevrez des rappels pour réviser votre code.');
-      setupDailyReminder();
-      
-      // Sauvegarder le choix de l'utilisateur
-      localStorage.setItem('notificationsEnabled', 'true');
-      
-      // Enlever la bannière
-      const banner = document.querySelector('.notification-banner');
-      if (banner) banner.remove();
-    }
-  });
-}
-
-// Afficher une notification
-function showNotification(title, body) {
-  if (Notification.permission === 'granted') {
-    const options = {
-      body: body,
-      icon: 'icon-192.png',
-      badge: 'icon-192.png',
-      tag: 'quiz-reminder'
-    };
-    
-    new Notification(title, options);
-  }
-}
-
-// Programmer un rappel quotidien
-function setupDailyReminder() {
-  // Heure par défaut : 19h
-  const reminderHour = localStorage.getItem('reminderHour') || 19;
-  const now = new Date();
-  
-  // Calculer le prochain rappel
-  const nextReminder = new Date();
-  nextReminder.setHours(reminderHour, 0, 0, 0);
-  
-  // Si l'heure est déjà passée aujourd'hui, programmer pour demain
-  if (now > nextReminder) {
-    nextReminder.setDate(nextReminder.getDate() + 1);
-  }
-  
-  const timeUntilReminder = nextReminder.getTime() - now.getTime();
-  
-  console.log('Prochain rappel de révision à:', nextReminder.toLocaleTimeString());
-  
-  // Programmer le rappel
-  setTimeout(() => {
-    showDailyReminder();
-    // Reprogrammer pour le lendemain
-    setupDailyReminder();
-  }, timeUntilReminder);
-}
-
-// Afficher le rappel quotidien
-function showDailyReminder() {
-  if (Notification.permission === 'granted') {
-    const messages = [
-      "📚 Il est temps de réviser votre code de la route !",
-      "🚗 10 minutes de quiz aujourd'hui pour progresser ?",
-      "🎯 Objectif permis : faites un quiz quotidien !",
-      "🧠 Entraînez votre mémoire avec 5 questions rapides",
-      "⏰ Votre session de révision vous attend !"
-    ];
-    
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    
-    new Notification('Permis Luxembourg', {
-      body: randomMessage,
-      icon: 'icon-192.png',
-      badge: 'icon-192.png',
-      tag: 'daily-reminder',
-      requireInteraction: false
-    });
-  }
-}
-
-// Fonction pour tester les notifications
-function testNotification() {
-  if (Notification.permission === 'granted') {
-    showNotification('Test de notification', 'Ceci est un test pour vérifier que les notifications fonctionnent !');
-  } else {
-    alert('Veuillez d\'abord activer les notifications');
-  }
-}
 
 
 
@@ -836,10 +644,6 @@ document.getElementById("startBtn").onclick=()=>{
   document.getElementById("intro").classList.add("hidden");
   document.getElementById("exam").classList.remove("hidden");
   document.getElementById("results").classList.add("hidden");
-  // Cacher éléments non pertinents pendant le quiz
-  document.getElementById("notificationSettings").classList.add("hidden");
-  document.getElementById("toggleNotifBtn").classList.add("hidden");
-
   renderQuestion(0);
   startTimer();
 };
@@ -869,9 +673,6 @@ document.getElementById("examBtn").onclick=()=>{
   document.getElementById("exam").classList.remove("hidden");
   document.getElementById("results").classList.add("hidden");
   document.getElementById("examBadge").classList.remove("hidden");
-  // Cacher éléments non pertinents pendant l'examen
-  document.getElementById("notificationSettings").classList.add("hidden");
-  document.getElementById("toggleNotifBtn").classList.add("hidden");
 
   renderQuestion(0);
   startTimer();
@@ -932,8 +733,6 @@ document.getElementById("replayBtn").onclick=()=>{
   document.getElementById("exam").classList.add("hidden");
   document.getElementById("timer").classList.remove("urgent");
   document.getElementById("examBadge").classList.add("hidden");
-  // Restaurer les éléments cachés
-  document.getElementById("toggleNotifBtn").classList.remove("hidden");
 };
 
 
@@ -942,56 +741,6 @@ document.getElementById("replayBtn").onclick=()=>{
 --------------------------------*/
 
 
-/* ------------------------------
-   FONCTIONS DE GESTION DES NOTIFICATIONS
---------------------------------*/
-
-// 1. Afficher/masquer les paramètres des notifications
-function toggleNotificationSettings() {
-  const settings = document.getElementById('notificationSettings');
-  if (settings) {
-    settings.classList.toggle('active');
-  }
-}
-
-// 2. Mettre à jour l'heure du rappel quotidien
-function updateReminderTime() {
-  const timeSelect = document.getElementById('reminderTime');
-  if (!timeSelect) return;
-  
-  const selectedHour = parseInt(timeSelect.value, 10);
-  
-  localStorage.setItem('reminderHour', selectedHour);
-  
-  // Message temporaire
-  const msg = document.createElement('div');
-  msg.textContent = `✅ Rappel programmé à ${selectedHour}h00`;
-  msg.style.cssText = 'background:#10b981;color:white;padding:8px;border-radius:5px;margin-top:10px;';
-  timeSelect.parentNode.appendChild(msg);
-  setTimeout(() => msg.remove(), 3000);
-  
-  // Redémarrer le timer avec la nouvelle heure
-  if (Notification.permission === 'granted') {
-    setupDailyReminder();
-  }
-}
-
-// 3. Désactiver les notifications
-function disableNotifications() {
-  localStorage.setItem('notificationsEnabled', 'false');
-  
-  const msg = document.createElement('div');
-  msg.textContent = '🔕 Notifications désactivées';
-  msg.style.cssText = 'background:#ef4444;color:white;padding:8px;border-radius:5px;margin-top:10px;';
-  
-  const settings = document.getElementById('notificationSettings');
-  if (settings) {
-    settings.appendChild(msg);
-    setTimeout(() => msg.remove(), 3000);
-  }
-  
-  alert('Notifications désactivées. Vous pouvez les réactiver via les paramètres de votre navigateur.');
-}
 
 
 
@@ -1000,22 +749,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("poolSizeInfo").textContent =
     "Pool chargé : " + allPool.length + " questions";
 
-  // Initialiser les notifications
-  initNotifications();
-
-  // Configurer l'heure du rappel
-  const reminderTimeSelect = document.getElementById('reminderTime');
-  if (reminderTimeSelect) {
-    const savedHour = localStorage.getItem('reminderHour') || '19';
-    reminderTimeSelect.value = savedHour;
-  }
-
-  // --- Event listeners (remplacent les onclick inline) ---
   document.getElementById("loginBtn").addEventListener("click", setUserName);
-  document.getElementById("saveReminderBtn").addEventListener("click", updateReminderTime);
-  document.getElementById("testNotifBtn").addEventListener("click", testNotification);
-  document.getElementById("disableNotifBtn").addEventListener("click", disableNotifications);
-  document.getElementById("toggleNotifBtn").addEventListener("click", toggleNotificationSettings);
 });
 </script>
 
