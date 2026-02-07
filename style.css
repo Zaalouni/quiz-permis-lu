@@ -76,28 +76,9 @@ body{background:var(--bg);color:var(--text);}
   background: #0da271;
 }
 
-/* --- BOUTON TEST NOTIFICATIONS --- */
-.test-notification-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-  z-index: 1000;
-  display: none; /* Caché par défaut */
-}
-
-.test-notification-btn:hover {
-  background: #2563eb;
-  transform: scale(1.05);
-}
+/* --- BOUTON TOGGLE NOTIFICATIONS --- */
+.notif-toggle-btn{margin-top:10px;}
+.notif-actions{margin-top:10px;}
 
 /* --- PANEL DE CONFIGURATION DES NOTIFICATIONS --- */
 .notification-settings {

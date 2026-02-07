@@ -145,7 +145,7 @@ if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
 <div id="loginSection" class="card">
   <h3>Enregistrez vos progrès</h3>
   <input type="text" id="userName" placeholder="Votre prénom (optionnel)" />
-  <button onclick="setUserName()" class="btn primary">Continuer</button>
+  <button id="loginBtn" class="btn primary">Continuer</button>
 </div>
 
 
@@ -224,16 +224,16 @@ if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
       <option value="20">20:00</option>
       <option value="21">21:00</option>
     </select>
-    <button onclick="updateReminderTime()" class="btn small">Enregistrer</button>
+    <button id="saveReminderBtn" class="btn small">Enregistrer</button>
   </div>
   
-  <div style="margin-top: 10px;">
-    <button onclick="testNotification()" class="btn small">Tester la notification</button>
-    <button onclick="disableNotifications()" class="btn small danger">Désactiver</button>
+  <div class="notif-actions">
+    <button id="testNotifBtn" class="btn small">Tester la notification</button>
+    <button id="disableNotifBtn" class="btn small danger">Désactiver</button>
   </div>
 </div>
 
-<button onclick="toggleNotificationSettings()" class="btn small" style="margin-top: 10px;">
+<button id="toggleNotifBtn" class="btn small notif-toggle-btn">
   ⚙️ Paramètres notifications
 </button>
 
@@ -836,6 +836,9 @@ document.getElementById("startBtn").onclick=()=>{
   document.getElementById("intro").classList.add("hidden");
   document.getElementById("exam").classList.remove("hidden");
   document.getElementById("results").classList.add("hidden");
+  // Cacher éléments non pertinents pendant le quiz
+  document.getElementById("notificationSettings").classList.add("hidden");
+  document.getElementById("toggleNotifBtn").classList.add("hidden");
 
   renderQuestion(0);
   startTimer();
@@ -866,13 +869,16 @@ document.getElementById("examBtn").onclick=()=>{
   document.getElementById("exam").classList.remove("hidden");
   document.getElementById("results").classList.add("hidden");
   document.getElementById("examBadge").classList.remove("hidden");
+  // Cacher éléments non pertinents pendant l'examen
+  document.getElementById("notificationSettings").classList.add("hidden");
+  document.getElementById("toggleNotifBtn").classList.add("hidden");
 
   renderQuestion(0);
   startTimer();
 };
 
-document.getElementById("prevBtn").onclick=()=>{currentIndex--;renderQuestion(currentIndex);}
-document.getElementById("nextBtn").onclick=()=>{currentIndex++;renderQuestion(currentIndex);}
+document.getElementById("prevBtn").onclick=()=>{if(currentIndex>0){currentIndex--;renderQuestion(currentIndex);}};
+document.getElementById("nextBtn").onclick=()=>{if(currentIndex<picked.length-1){currentIndex++;renderQuestion(currentIndex);}};
 document.getElementById("finishBtn").onclick=()=>{
   let answered = 0;
   for(let i=0;i<picked.length;i++){
@@ -926,6 +932,8 @@ document.getElementById("replayBtn").onclick=()=>{
   document.getElementById("exam").classList.add("hidden");
   document.getElementById("timer").classList.remove("urgent");
   document.getElementById("examBadge").classList.add("hidden");
+  // Restaurer les éléments cachés
+  document.getElementById("toggleNotifBtn").classList.remove("hidden");
 };
 
 
@@ -991,17 +999,23 @@ function disableNotifications() {
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("poolSizeInfo").textContent =
     "Pool chargé : " + allPool.length + " questions";
-  
+
   // Initialiser les notifications
   initNotifications();
-  
+
   // Configurer l'heure du rappel
   const reminderTimeSelect = document.getElementById('reminderTime');
   if (reminderTimeSelect) {
     const savedHour = localStorage.getItem('reminderHour') || '19';
     reminderTimeSelect.value = savedHour;
   }
-  
+
+  // --- Event listeners (remplacent les onclick inline) ---
+  document.getElementById("loginBtn").addEventListener("click", setUserName);
+  document.getElementById("saveReminderBtn").addEventListener("click", updateReminderTime);
+  document.getElementById("testNotifBtn").addEventListener("click", testNotification);
+  document.getElementById("disableNotifBtn").addEventListener("click", disableNotifications);
+  document.getElementById("toggleNotifBtn").addEventListener("click", toggleNotificationSettings);
 });
 </script>
 
