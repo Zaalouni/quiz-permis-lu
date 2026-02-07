@@ -254,6 +254,90 @@ input, select, textarea {
 .q-img{max-width:100%;max-height:350px;border-radius:8px;border:2px solid var(--border);margin:8px 0;}
 .ans-img{display:block;max-width:250px;max-height:150px;border-radius:6px;margin-top:6px;border:1px solid var(--border);}
 
+/* === MODE EXAMEN BLANC === */
+.start-buttons{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;
+}
+
+.exam-btn{
+  background:linear-gradient(135deg,#dc2626,#991b1b);
+  color:#fff;
+  font-weight:700;
+  border:none;
+  position:relative;
+  overflow:hidden;
+}
+.exam-btn:hover{opacity:.95;transform:translateY(-1px);box-shadow:0 4px 12px rgba(153,27,27,0.3);}
+
+.exam-badge{
+  background:linear-gradient(90deg,#dc2626,#b91c1c);
+  color:#fff;
+  text-align:center;
+  padding:8px 16px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:.85rem;
+  letter-spacing:1px;
+  margin-bottom:12px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:.8}
+}
+
+.exam-disclaimer{
+  font-size:.75rem;
+  color:var(--muted);
+  font-style:italic;
+  line-height:1.4;
+  margin-top:8px;
+  padding:8px 12px;
+  background:#f8fafc;
+  border-left:3px solid var(--border);
+  border-radius:4px;
+}
+
+/* Résultat Examen */
+.exam-result-pass,.exam-result-fail{
+  text-align:center;
+  padding:24px;
+  border-radius:12px;
+  margin-bottom:16px;
+}
+.exam-result-pass{
+  background:linear-gradient(135deg,#ecfdf5,#d1fae5);
+  border:2px solid #16a34a;
+}
+.exam-result-fail{
+  background:linear-gradient(135deg,#fff1f2,#ffe4e6);
+  border:2px solid #dc2626;
+}
+.exam-result-icon{
+  font-size:3.5rem;
+  margin-bottom:8px;
+}
+.exam-result-title{
+  font-size:2rem;
+  font-weight:900;
+  letter-spacing:2px;
+  margin-bottom:8px;
+}
+.exam-result-pass .exam-result-title{color:#16a34a;}
+.exam-result-fail .exam-result-title{color:#dc2626;}
+
+.exam-result-detail{
+  font-size:1rem;
+  color:var(--text);
+  line-height:1.5;
+  margin-bottom:12px;
+}
+
+@media(max-width:600px){
+  .start-buttons{flex-direction:column;}
+  .exam-result-title{font-size:1.5rem;}
+}
+
 /* === MODALE CONFIRMATION === */
 .modal-overlay{
   position:fixed;top:0;left:0;width:100%;height:100%;

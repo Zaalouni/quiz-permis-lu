@@ -195,7 +195,15 @@ if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
     <li>Questions : QCM (1 ou plusieurs réponses).</li>
   </ul>
 
-  <button id="startBtn" class="btn primary" aria-label="Démarrer le quiz">Démarrer le quiz</button>
+  <div class="start-buttons">
+    <button id="startBtn" class="btn primary" aria-label="Démarrer le quiz">Démarrer le quiz</button>
+    <button id="examBtn" class="btn exam-btn" aria-label="Lancer un examen blanc">Examen Blanc — 30 questions / 30 min</button>
+  </div>
+  <div class="exam-disclaimer">
+    Ce quiz est un outil d'entraînement indépendant. Il n'est ni affilié, ni approuvé, ni associé à la SNCA
+    (Société Nationale de Circulation Automobile) ou à tout organisme officiel luxembourgeois.
+    Les questions sont fournies à titre éducatif uniquement.
+  </div>
   <div class="meta"><span id="poolSizeInfo"></span></div>
 </section>
 
@@ -234,6 +242,7 @@ if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
 
 <!-- EXAM -->
 <section id="exam" class="card hidden">
+  <div id="examBadge" class="exam-badge hidden">EXAMEN BLANC — Pas de retour en arrière</div>
   <div class="question-header">
     <h2 id="questionTitle"></h2>
     <div id="questionMeta" class="question-meta"></div>
@@ -278,6 +287,8 @@ if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
 <!-- RESULTS -->
 <section id="results" class="card hidden">
   <h2>Résultats</h2>
+
+  <div id="examResult" class="hidden"></div>
 
   <div class="scoreline">
     <span id="scoreText"></span>
@@ -339,6 +350,10 @@ let currentIndex = 0;
 let timerId = null;
 let secondsLeft = EXAM_DURATION_SECONDS;
 let finished = false;
+let examMode = false;
+const EXAM_QUESTIONS = 30;
+const EXAM_DURATION = 30*60;
+const EXAM_PASS_THRESHOLD = 26;
 
 /* ------------------------------
    UTILITAIRES
@@ -438,7 +453,14 @@ function renderQuestion(idx){
     else sessionStorage.removeItem("flag_"+idx);
   };
 
-  document.getElementById("prevBtn").disabled = idx===0;
+  if(examMode){
+    document.getElementById("prevBtn").classList.add("hidden");
+    document.querySelector(".question-flag").classList.add("hidden");
+  } else {
+    document.getElementById("prevBtn").classList.remove("hidden");
+    document.getElementById("prevBtn").disabled = idx===0;
+    document.querySelector(".question-flag").classList.remove("hidden");
+  }
   document.getElementById("nextBtn").disabled = idx===picked.length-1;
   document.getElementById("progressFill").style.width = (((idx+1)/picked.length)*100)+"%";
 }
@@ -486,8 +508,45 @@ function finalize(){
 
   document.getElementById("scoreText").textContent =
     `${score} / ${picked.length} (${pct}%)`;
-	
-	if (score >= picked.length * 0.8) {
+
+  // Résultat mode examen
+  let examResultDiv = document.getElementById("examResult");
+  if(examMode){
+    examResultDiv.classList.remove("hidden");
+    examResultDiv.textContent = "";
+    let passed = score >= EXAM_PASS_THRESHOLD;
+
+    let resultBox = document.createElement("div");
+    resultBox.className = passed ? "exam-result-pass" : "exam-result-fail";
+
+    let resultIcon = document.createElement("div");
+    resultIcon.className = "exam-result-icon";
+    resultIcon.textContent = passed ? "\u2705" : "\u274C";
+
+    let resultTitle = document.createElement("div");
+    resultTitle.className = "exam-result-title";
+    resultTitle.textContent = passed ? "RÉUSSI" : "ÉCHEC";
+
+    let resultDetail = document.createElement("div");
+    resultDetail.className = "exam-result-detail";
+    resultDetail.textContent = score + " / " + EXAM_QUESTIONS + (passed
+      ? " — Félicitations, vous avez atteint le seuil de " + EXAM_PASS_THRESHOLD + "/" + EXAM_QUESTIONS + " !"
+      : " — Il faut " + EXAM_PASS_THRESHOLD + "/" + EXAM_QUESTIONS + " pour réussir. Continuez à réviser !");
+
+    let disclaimer = document.createElement("div");
+    disclaimer.className = "exam-disclaimer";
+    disclaimer.textContent = "Simulation d'entraînement — Aucune affiliation avec la SNCA ou un organisme officiel.";
+
+    resultBox.appendChild(resultIcon);
+    resultBox.appendChild(resultTitle);
+    resultBox.appendChild(resultDetail);
+    resultBox.appendChild(disclaimer);
+    examResultDiv.appendChild(resultBox);
+  } else {
+    examResultDiv.classList.add("hidden");
+  }
+
+  if (score >= picked.length * 0.8) {
     sendCongratulationNotification(score, picked.length);
   }
   
@@ -735,7 +794,7 @@ function testNotification() {
    TIMER
 --------------------------------*/
 function startTimer(){
-  secondsLeft = EXAM_DURATION_SECONDS;
+  secondsLeft = examMode ? EXAM_DURATION : EXAM_DURATION_SECONDS;
   const timer=document.getElementById("timer");
   timer.textContent = fmt(secondsLeft);
   timer.classList.remove("urgent");
@@ -757,6 +816,7 @@ function startTimer(){
    DÉMARRER / REJOUER
 --------------------------------*/
 document.getElementById("startBtn").onclick=()=>{
+  examMode = false;
   const cat=document.getElementById("categoryFilter").value;
   if(typeof trackEvent==="function") trackEvent('start_quiz',{category:cat||'all'});
   let pool = cat ? allPool.filter(q=>q.topic===cat) : allPool;
@@ -776,6 +836,36 @@ document.getElementById("startBtn").onclick=()=>{
   document.getElementById("intro").classList.add("hidden");
   document.getElementById("exam").classList.remove("hidden");
   document.getElementById("results").classList.add("hidden");
+
+  renderQuestion(0);
+  startTimer();
+};
+
+/* --- MODE EXAMEN BLANC --- */
+document.getElementById("examBtn").onclick=()=>{
+  examMode = true;
+  if(typeof trackEvent==="function") trackEvent('start_exam',{mode:'examen_blanc'});
+
+  if(allPool.length < EXAM_QUESTIONS){
+    alert("Pas assez de questions dans le pool ("+allPool.length+"/"+EXAM_QUESTIONS+").");
+    return;
+  }
+
+  // Piocher exactement 30 questions depuis tout le pool
+  picked = shuffle(allPool.slice()).slice(0, EXAM_QUESTIONS).map(q=>{
+    let qc = copy(q);
+    qc.answers = shuffle(qc.answers);
+    return qc;
+  });
+  selections = Array.from({length:picked.length},()=>new Set());
+  Object.keys(sessionStorage).forEach(k=>{ if(k.startsWith("flag_")) sessionStorage.removeItem(k); });
+  currentIndex=0;
+  finished=false;
+
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("exam").classList.remove("hidden");
+  document.getElementById("results").classList.add("hidden");
+  document.getElementById("examBadge").classList.remove("hidden");
 
   renderQuestion(0);
   startTimer();
@@ -830,10 +920,12 @@ document.getElementById("finishBtn").onclick=()=>{
 
 document.getElementById("replayBtn").onclick=()=>{
   clearInterval(timerId);
+  examMode = false;
   document.getElementById("results").classList.add("hidden");
   document.getElementById("intro").classList.remove("hidden");
   document.getElementById("exam").classList.add("hidden");
   document.getElementById("timer").classList.remove("urgent");
+  document.getElementById("examBadge").classList.add("hidden");
 };
 
 
