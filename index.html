@@ -703,7 +703,17 @@ document.getElementById("startBtn").onclick=()=>{
 document.getElementById("prevBtn").onclick=()=>{currentIndex--;renderQuestion(currentIndex);}
 document.getElementById("nextBtn").onclick=()=>{currentIndex++;renderQuestion(currentIndex);}
 document.getElementById("finishBtn").onclick=()=>{
-  if(confirm("Terminer l'examen ? Vos réponses seront corrigées.")) finalize();
+  // Compter les questions sans réponse
+  let unanswered = 0;
+  for(let i=0;i<picked.length;i++){
+    if(!selections[i] || selections[i].size===0) unanswered++;
+  }
+  if(unanswered > 0){
+    if(!confirm(`Attention : ${unanswered} question(s) sans réponse sur ${picked.length}.\n\nVoulez-vous terminer quand même ?\n\n• OK = Terminer et voir la correction\n• Annuler = Continuer le quiz`)) return;
+  } else {
+    if(!confirm("Vous avez répondu à toutes les questions.\n\nTerminer et voir la correction ?")) return;
+  }
+  finalize();
 };
 
 document.getElementById("replayBtn").onclick=()=>{
