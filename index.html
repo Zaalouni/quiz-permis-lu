@@ -204,6 +204,20 @@ if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
 </section>
 
 
+<!-- MODALE CONFIRMATION -->
+<div id="confirmModal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <div class="modal-icon" id="modalIcon"></div>
+    <h3 id="modalTitle" class="modal-title"></h3>
+    <p id="modalMessage" class="modal-message"></p>
+    <div id="modalProgress" class="modal-progress"></div>
+    <div class="modal-actions">
+      <button id="modalCancel" class="btn modal-btn-continue">Continuer le quiz</button>
+      <button id="modalConfirm" class="btn danger modal-btn-finish">Terminer maintenant</button>
+    </div>
+  </div>
+</div>
+
 <!-- RESULTS -->
 <section id="results" class="card hidden">
   <h2>Résultats</h2>
@@ -703,17 +717,48 @@ document.getElementById("startBtn").onclick=()=>{
 document.getElementById("prevBtn").onclick=()=>{currentIndex--;renderQuestion(currentIndex);}
 document.getElementById("nextBtn").onclick=()=>{currentIndex++;renderQuestion(currentIndex);}
 document.getElementById("finishBtn").onclick=()=>{
-  // Compter les questions sans réponse
-  let unanswered = 0;
+  let answered = 0;
   for(let i=0;i<picked.length;i++){
-    if(!selections[i] || selections[i].size===0) unanswered++;
+    if(selections[i] && selections[i].size>0) answered++;
   }
+  let unanswered = picked.length - answered;
+  let pct = Math.round(100*answered/picked.length);
+
+  let modal = document.getElementById("confirmModal");
+  let icon = document.getElementById("modalIcon");
+  let title = document.getElementById("modalTitle");
+  let msg = document.getElementById("modalMessage");
+  let progress = document.getElementById("modalProgress");
+
   if(unanswered > 0){
-    if(!confirm(`Attention : ${unanswered} question(s) sans réponse sur ${picked.length}.\n\nVoulez-vous terminer quand même ?\n\n• OK = Terminer et voir la correction\n• Annuler = Continuer le quiz`)) return;
+    icon.textContent = "\u26A0\uFE0F";
+    title.textContent = "Vous n'avez pas tout fini !";
+    msg.textContent = unanswered + " question" + (unanswered>1?"s":"") + " sans réponse sur " + picked.length + ".";
   } else {
-    if(!confirm("Vous avez répondu à toutes les questions.\n\nTerminer et voir la correction ?")) return;
+    icon.textContent = "\u2705";
+    title.textContent = "Toutes les questions sont complètes !";
+    msg.textContent = "Bravo, vous avez répondu à toutes les questions.";
   }
-  finalize();
+
+  // Barre de progression
+  let barClass = pct >= 80 ? "high" : pct >= 50 ? "mid" : "low";
+  progress.innerHTML = "";
+  let barContainer = document.createElement("div");
+  barContainer.className = "modal-progress-bar";
+  let barFill = document.createElement("div");
+  barFill.className = "modal-progress-fill " + barClass;
+  barFill.style.width = pct + "%";
+  barContainer.appendChild(barFill);
+  progress.appendChild(barContainer);
+  let label = document.createElement("div");
+  label.className = "modal-progress-label";
+  label.textContent = answered + " / " + picked.length + " questions répondues (" + pct + "%)";
+  progress.appendChild(label);
+
+  modal.classList.remove("hidden");
+
+  document.getElementById("modalCancel").onclick=()=>{ modal.classList.add("hidden"); };
+  document.getElementById("modalConfirm").onclick=()=>{ modal.classList.add("hidden"); finalize(); };
 };
 
 document.getElementById("replayBtn").onclick=()=>{
