@@ -1,4 +1,4 @@
-const CACHE_NAME = 'quiz-permis-v3';
+const CACHE_NAME = 'quiz-permis-v4';
 const urlsToCache = [
   './',
   './index.html',

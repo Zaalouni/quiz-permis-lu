@@ -12,6 +12,15 @@
 <meta name="theme-color" content="#1e3a8a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBWRMC8N');</script>
+  <!-- End Google Tag Manager -->
+
   <!-- Charger le pool de questions AVANT le script principal -->
   <script src="quiz-cours1.js"></script>
   <script src="quiz-cours2.js"></script>
@@ -61,19 +70,11 @@ if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
   </div>
 
   <div class="status">
-    <div class="timer" id="timer">20:00</div>
+    <div class="timer" id="timer" role="timer" aria-live="polite" aria-label="Temps restant">20:00</div>
     <div class="counter" id="counter">Question 1 / ?</div>
   </div>
   
   
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PBWRMC8N');</script>
-<!-- End Google Tag Manager -->
-
 
 </header>
 
@@ -135,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <li>Questions : QCM (1 ou plusieurs réponses).</li>
   </ul>
 
-  <button id="startBtn" class="btn primary">Démarrer le quiz</button>
+  <button id="startBtn" class="btn primary" aria-label="Démarrer le quiz">Démarrer le quiz</button>
   <div class="meta"><span id="poolSizeInfo"></span></div>
 </section>
 
@@ -183,7 +184,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="questionText" class="question-text"></div>
   <div id="questionImage" class="question-image-box hidden"></div>
 
-  <form id="answersForm" class="answers"></form>
+  <form id="answersForm" class="answers" role="group" aria-label="Réponses possibles"></form>
 
   <!-- Flag -->
   <div class="question-flag">
@@ -194,9 +195,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
   <div class="nav">
-    <button id="prevBtn" class="btn" type="button">Précédent</button>
-    <button id="nextBtn" class="btn" type="button">Suivant</button>
-    <button id="finishBtn" class="btn danger" type="button">Terminer</button>
+    <button id="prevBtn" class="btn" type="button" aria-label="Question précédente">Précédent</button>
+    <button id="nextBtn" class="btn" type="button" aria-label="Question suivante">Suivant</button>
+    <button id="finishBtn" class="btn danger" type="button" aria-label="Terminer l'examen">Terminer</button>
   </div>
 </section>
 
@@ -207,7 +208,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div class="scoreline">
     <span id="scoreText"></span>
-    <button id="replayBtn" class="btn">Rejouer</button>
+    <button id="replayBtn" class="btn" aria-label="Recommencer le quiz">Rejouer</button>
   </div>
 
   <div id="flaggedSection"></div>
@@ -260,7 +261,7 @@ let finished = false;
    UTILITAIRES
 --------------------------------*/
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function copy(o){return JSON.parse(JSON.stringify(o));}
+function copy(o){return structuredClone(o);}
 function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
 function fmt(sec){let m=(""+Math.floor(sec/60)).padStart(2,"0");let s=(""+(sec%60)).padStart(2,"0");return m+":"+s;}
 
@@ -645,6 +646,7 @@ function startTimer(){
 --------------------------------*/
 document.getElementById("startBtn").onclick=()=>{
   const cat=document.getElementById("categoryFilter").value;
+  if(typeof trackEvent==="function") trackEvent('start_quiz',{category:cat||'all'});
   let pool = cat ? allPool.filter(q=>q.topic===cat) : allPool;
 
   if(pool.length===0){
@@ -842,12 +844,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     gtag('event', eventName, params);
   }
   
-  // Exemple : tracker le démarrage d'un quiz
-  document.getElementById('startBtn').addEventListener('click', () => {
-    trackEvent('start_quiz', {
-      category: document.getElementById('categoryFilter').value || 'all'
-    });
-  });
+  // Le tracking est intégré dans le onclick de startBtn
 </script>
 
 

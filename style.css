@@ -146,30 +146,10 @@ body{background:var(--bg);color:var(--text);}
 
 
 
-/* Mobile touch */
-.answer-item {
-  min-height: 60px;
-  padding: 15px;
-}
-
-.btn {
-  min-height: 48px;
-  min-width: 100px;
-  font-size: 16px;
-}
-
 /* Empêcher le zoom sur les inputs */
 input, select, textarea {
   font-size: 16px !important;
 }
-
-/* Feedback tactile */
-.answer-item:active {
-  background-color: #e0e7ff;
-  transform: scale(0.98);
-}
-
-
 
 .hidden{display:none;}
 
@@ -179,10 +159,12 @@ input, select, textarea {
   background:#e2e8f0;
   border:1px solid #cbd5e1;
   cursor:pointer;
+  min-height:48px;
+  min-width:100px;
+  font-size:16px;
 }
 .btn.primary{background:var(--primary);color:white;}
 .btn.danger{background:#991b1b;color:white;}
-
 .btn:hover{opacity:.9;}
 
 .question-header{
@@ -194,8 +176,13 @@ input, select, textarea {
 .answers{display:flex;flex-direction:column;gap:10px;margin:15px 0;}
 .answer-item{
   background:#f8fafc;border:1px solid var(--border);
-  padding:10px;border-radius:8px;cursor:pointer;
-  display:flex;gap:10px;
+  padding:15px;border-radius:8px;cursor:pointer;
+  display:flex;gap:10px;min-height:60px;
+}
+/* Feedback tactile */
+.answer-item:active{
+  background-color:#e0e7ff;
+  transform:scale(0.98);
 }
 
 .nav{display:flex;gap:8px;justify-content:flex-end;margin-top:15px;border-top:1px dashed var(--border);padding-top:12px;}
