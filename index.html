@@ -1,52 +1,869 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Permis LU</title>
+  <meta charset="utf-8" />
+  <title>Quiz Code de la route — Tous Cours (Luxembourg)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Quiz gratuit pour préparer l'examen théorique du code de la route au Luxembourg. Cours 1 à 5, mode SNCA, correction détaillée.">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<meta name="theme-color" content="#1e3a8a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBWRMC8N');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Charger le pool de questions AVANT le script principal -->
+  <script src="quiz-cours1.js"></script>
+  <script src="quiz-cours2.js"></script>
+  <script src="quiz-cours3.js"></script>
+  <script src="quiz-data.js"></script>
+  <script src="quiz-cours5.js"></script>
+<script src="quiz-snca.js"></script>
+<script src="quiz-snca2.js"></script>
+
+<script>
+function validateQuizBank(expectedMin = 1) {
+  const q = window.QUIZ_QUESTIONS || [];
+  const errs = [];
+  if (q.length < expectedMin) errs.push("Pool trop petit: " + q.length);
+  q.forEach((it, idx) => {
+    const a = it.answers || [];
+    const n = a.filter(x => x.correct === true).length;
+    if (it.type === "single" && n !== 1) errs.push("Q" + (idx+1) + " single: " + n + " correct(s)");
+    if (it.type === "multi" && n < 2) errs.push("Q" + (idx+1) + " multi: < 2 corrects");
+    if (a.length < 2) errs.push("Q" + (idx+1) + " < 2 réponses");
+  });
+  console.log("Pool=" + q.length + " | Errors=" + errs.length);
+  if (errs.length) { alert("Banque quiz invalide. Voir console."); console.error(errs); return false; }
+  return true;
+}
+</script>
+
+<script>
+(window.QUIZ_QUESTIONS || []).forEach((q, i) => {
+  if (!q.id) q.id = (q.topic || "NA").replace(/\s+/g, "-") + "-" + (i + 1);
+});
+</script>
+
+<script>
+if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
+</script>
+
+
 </head>
+
 <body>
-    <div id="notification-banner"></div>
-    <section id="flaggedSection"></section>
-    <img id="dynamicImage" alt="Dynamic content" />
 
-    <script>
-        // Safely add an image to the DOM
-        function addImage(src) {
-            const img = document.createElement('img');
-            img.src = src;
-            document.getElementById('dynamicImage').appendChild(img);
-        }
+<header class="app-header">
+  <div class="brand">
+    <h1>Code de la Route — Luxembourg</h1>
+    <div class="subtitle">Quiz complet — Cours 1 à 5 — 2026</div>
+  </div>
 
-        // Safely set notification banner text
-        function setNotification(text) {
-            const banner = document.getElementById('notification-banner');
-            banner.textContent = text;
-        }
+  <div class="status">
+    <div class="timer" id="timer" role="timer" aria-live="polite" aria-label="Temps restant">20:00</div>
+    <div class="counter" id="counter">Question 1 / ?</div>
+  </div>
+  
+  
 
-        // Safely handle flagged section
-        function displayFlaggedContent(content) {
-            const flaggedSection = document.getElementById('flaggedSection');
-            flaggedSection.innerHTML = ''; // Clear previous content
-            const newContent = document.createElement('div');
-            newContent.textContent = content;
-            flaggedSection.appendChild(newContent);
-        }
+</header>
 
-        // Update data in sessionStorage selectively
-        function updateSessionStorage(key, value) {
-            if (sessionStorage.getItem(key)) {
-                sessionStorage.setItem(key, value);
-            }
-        }
 
-        // Use event listener for DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Your initialization code here.
-            addImage('images/q_1437.jpg');
-            setNotification('Welcome to Quiz Permis LU!');
-            displayFlaggedContent('This is flagged content.');
-        });
-    </script>
+<main class="app-main">
+
+
+
+<div id="loginSection" class="card">
+  <h3>Enregistrez vos progrès</h3>
+  <input type="text" id="userName" placeholder="Votre prénom (optionnel)" />
+  <button onclick="setUserName()" class="btn primary">Continuer</button>
+</div>
+
+
+
+<!-- INTRO -->
+<section id="intro" class="card">
+  <h2>Démarrer l'épreuve</h2>
+  <p>
+    Pool complet — Cours 1 à 5 (Chargement, Signalisation, Distances, Transport, Documents).
+    <br/>Vous disposez de <strong>20 minutes</strong>. Correction complète à la fin.
+  </p>
+
+  <!-- Filtre par catégorie -->
+  <div class="category-filter">
+    <label><strong>Mode révision (optionnel) :</strong></label>
+    <select id="categoryFilter">
+      <option value="">Aléatoire — Tous cours mélangés</option>
+      <optgroup label="Cours 1 — Chargement">
+        <option value="Chargement & Dimensions">Chargement & Dimensions</option>
+      </optgroup>
+      <optgroup label="Cours 2 — Signalisation">
+        <option value="Panneaux & Signalisation">Panneaux & Signalisation</option>
+        <option value="Alcool & Sanctions">Alcool & Sanctions</option>
+      </optgroup>
+      <optgroup label="Cours 3 — Distances">
+        <option value="Distances & Freinage">Distances & Freinage</option>
+      </optgroup>
+      <optgroup label="Cours 4 — Transport Passagers">
+        <option value="Angles morts camion">Angles morts camion/bus</option>
+        <option value="Ceintures & Enfants">Enfants & ceintures</option>
+        <option value="Éclairage">Éclairage obligatoire</option>
+        <option value="Accident & Secours">Premiers secours</option>
+        <option value="Équipements">Équipements véhicule / CT</option>
+        <option value="Permis & Documents">Permis & Documents</option>
+      </optgroup>
+      <optgroup label="Cours 5 — Administratif">
+        <option value="Permis & Catégories">Permis, Catégories & Équipements</option>
+      </optgroup>
+	  <optgroup label="SNCA Demo">
+      <option value="SNCA Demo">SNCA – Examen théorique demo</option>
+     </optgroup>
+    </select>
+  </div>
+
+  <ul class="bullets">
+    <li>Navigation : <strong>Précédent</strong> / <strong>Suivant</strong> — <strong>Terminer</strong> pour corriger.</li>
+    <li>Questions : QCM (1 ou plusieurs réponses).</li>
+  </ul>
+
+  <button id="startBtn" class="btn primary" aria-label="Démarrer le quiz">Démarrer le quiz</button>
+  <div class="meta"><span id="poolSizeInfo"></span></div>
+</section>
+
+
+
+
+<!-- Après le bouton "Démarrer le quiz" -->
+<div class="notification-settings" id="notificationSettings">
+  <h4>🔔 Paramètres des notifications</h4>
+  
+  <div class="time-selector">
+    <label>Rappel quotidien à :</label>
+    <select id="reminderTime">
+      <option value="8">08:00</option>
+      <option value="12">12:00</option>
+      <option value="17">17:00</option>
+      <option value="19" selected>19:00</option>
+      <option value="20">20:00</option>
+      <option value="21">21:00</option>
+    </select>
+    <button onclick="updateReminderTime()" class="btn small">Enregistrer</button>
+  </div>
+  
+  <div style="margin-top: 10px;">
+    <button onclick="testNotification()" class="btn small">Tester la notification</button>
+    <button onclick="disableNotifications()" class="btn small danger">Désactiver</button>
+  </div>
+</div>
+
+<button onclick="toggleNotificationSettings()" class="btn small" style="margin-top: 10px;">
+  ⚙️ Paramètres notifications
+</button>
+
+
+
+
+<!-- EXAM -->
+<section id="exam" class="card hidden">
+  <div class="question-header">
+    <h2 id="questionTitle"></h2>
+    <div id="questionMeta" class="question-meta"></div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div id="questionText" class="question-text"></div>
+  <div id="questionImage" class="question-image-box hidden"></div>
+
+  <form id="answersForm" class="answers" role="group" aria-label="Réponses possibles"></form>
+
+  <!-- Flag -->
+  <div class="question-flag">
+    <label>
+      <input type="checkbox" id="flagBtn"/>
+      Marquer pour révision
+    </label>
+  </div>
+
+  <div class="nav">
+    <button id="prevBtn" class="btn" type="button" aria-label="Question précédente">Précédent</button>
+    <button id="nextBtn" class="btn" type="button" aria-label="Question suivante">Suivant</button>
+    <button id="finishBtn" class="btn danger" type="button" aria-label="Terminer l'examen">Terminer</button>
+  </div>
+</section>
+
+
+<!-- RESULTS -->
+<section id="results" class="card hidden">
+  <h2>Résultats</h2>
+
+  <div class="scoreline">
+    <span id="scoreText"></span>
+    <button id="replayBtn" class="btn" aria-label="Recommencer le quiz">Rejouer</button>
+  </div>
+
+  <div id="flaggedSection"></div>
+  <div id="breakdown" class="breakdown"></div>
+</section>
+
+</main>
+
+<footer class="app-footer">
+  <small>© Quiz Code LU — Hors-ligne — 2026</small>
+</footer>
+
+
+<script>
+/* ------------------------------
+   LOGIN
+--------------------------------*/
+function setUserName(){
+  const name = document.getElementById("userName").value.trim();
+  if(name) localStorage.setItem("quizUserName", name);
+  document.getElementById("loginSection").classList.add("hidden");
+}
+// Auto-skip si déjà enregistré
+if(localStorage.getItem("quizUserName")){
+  document.addEventListener("DOMContentLoaded",()=>{
+    const ls=document.getElementById("loginSection");
+    if(ls) ls.classList.add("hidden");
+  });
+}
+
+/* ------------------------------
+   PARAMÈTRES
+--------------------------------*/
+const EXAM_DURATION_SECONDS = 20*60;
+const MIN_QUESTIONS = 20;
+const MAX_QUESTIONS = 50;
+
+/* ------------------------------
+   ÉTAT GLOBAL
+--------------------------------*/
+let allPool = Array.isArray(window.QUIZ_QUESTIONS) ? window.QUIZ_QUESTIONS.slice() : [];
+let picked = [];
+let selections = [];
+let currentIndex = 0;
+let timerId = null;
+let secondsLeft = EXAM_DURATION_SECONDS;
+let finished = false;
+
+/* ------------------------------
+   UTILITAIRES
+--------------------------------*/
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function copy(o){return structuredClone(o);}
+function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+function fmt(sec){let m=(""+Math.floor(sec/60)).padStart(2,"0");let s=(""+(sec%60)).padStart(2,"0");return m+":"+s;}
+
+function pickRandomQuestions(pool){
+  const count = rand(MIN_QUESTIONS, Math.min(MAX_QUESTIONS,pool.length));
+  return shuffle(pool.slice()).slice(0,count).map(q=>{
+    let qc = copy(q);
+    qc.answers = shuffle(qc.answers);
+    return qc;
+  });
+}
+
+/* ------------------------------
+   AFFICHAGE QUESTION
+--------------------------------*/
+function renderQuestion(idx){
+  let q = picked[idx];
+  document.getElementById("counter").textContent = "Question "+(idx+1)+" / "+picked.length;
+  document.getElementById("questionTitle").textContent = q.topic ?? ("Question "+(idx+1));
+  document.getElementById("questionMeta").textContent = q.type==="multi" ? "(plusieurs réponses)" : "(une seule réponse)";
+  document.getElementById("questionText").textContent = q.question;
+
+  // Image question (SNCA)
+  let imgContainer = document.getElementById("questionImage");
+  if(imgContainer){
+    if(q.image){
+      imgContainer.textContent = "";
+      let qImg = document.createElement("img");
+      qImg.src = q.image;
+      qImg.alt = "Image question";
+      qImg.className = "q-img";
+      imgContainer.appendChild(qImg);
+      imgContainer.classList.remove("hidden");
+    } else {
+      imgContainer.textContent = "";
+      imgContainer.classList.add("hidden");
+    }
+  }
+
+  let form = document.getElementById("answersForm");
+  form.innerHTML = "";
+  let isMulti = q.type==="multi";
+
+  let selected = selections[idx] || new Set();
+
+  q.answers.forEach((ans,i)=>{
+    let label = document.createElement("label");
+    label.className="answer-item";
+
+    let input = document.createElement("input");
+    input.type = isMulti ? "checkbox" : "radio";
+    input.name = "q"+idx;
+    input.value = i;
+    input.checked = selected.has(i);
+
+    input.onchange = (e)=>{
+      if(!selections[idx]) selections[idx] = new Set();
+      if(isMulti){
+        if(e.target.checked) selections[idx].add(i);
+        else selections[idx].delete(i);
+      } else {
+        selections[idx].clear();
+        selections[idx].add(i);
+      }
+    };
+
+    let span = document.createElement("span");
+    span.className="answer-text";
+    span.textContent = ans.text;
+
+    // Image réponse (SNCA)
+    if(ans.image){
+      let aImg = document.createElement("img");
+      aImg.src = ans.image;
+      aImg.alt = "Image réponse";
+      aImg.className = "ans-img";
+      span.appendChild(aImg);
+    }
+
+    label.appendChild(input);
+    label.appendChild(span);
+    form.appendChild(label);
+  });
+
+  // Flag
+  let flagged = sessionStorage.getItem("flag_"+idx)==="1";
+  const flagBtn=document.getElementById("flagBtn");
+  flagBtn.checked = flagged;
+  flagBtn.onchange = (e)=>{
+    if(e.target.checked) sessionStorage.setItem("flag_"+idx,"1");
+    else sessionStorage.removeItem("flag_"+idx);
+  };
+
+  document.getElementById("prevBtn").disabled = idx===0;
+  document.getElementById("nextBtn").disabled = idx===picked.length-1;
+  document.getElementById("progressFill").style.width = (((idx+1)/picked.length)*100)+"%";
+}
+
+/* ------------------------------
+   SCORE + CORRECTION
+--------------------------------*/
+function computeScore(){
+  let score=0;
+  let details=[];
+  picked.forEach((q,qi)=>{
+    let user = selections[qi] ? [...selections[qi]] : [];
+    let corr = q.answers.map((a,i)=>a.correct?i:-1).filter(i=>i>=0);
+
+    let ok = user.length===corr.length && user.every(v=>corr.includes(v));
+    if(ok) score++;
+
+    details.push({ok,userSel:user, correctIdx:corr});
+  });
+  return {score,details};
+}
+
+
+// Notification après un quiz réussi
+function sendCongratulationNotification(score, total) {
+  if (Notification.permission === 'granted' && score >= total * 0.8) {
+    showNotification(
+      '🎉 Excellent score !',
+      `Vous avez obtenu ${score}/${total} (${Math.round(score/total*100)}%). Continuez comme ça !`
+    );
+  }
+}
+
+
+function finalize(){
+  finished = true;
+
+  clearInterval(timerId);
+
+  document.getElementById("exam").classList.add("hidden");
+  document.getElementById("results").classList.remove("hidden");
+
+  let {score,details}=computeScore();
+  let pct = Math.round(100*score/picked.length);
+
+  document.getElementById("scoreText").textContent =
+    `${score} / ${picked.length} (${pct}%)`;
+	
+	if (score >= picked.length * 0.8) {
+    sendCongratulationNotification(score, picked.length);
+  }
+  
+  
+
+  // Flags
+  let flagged=[];
+  for(let i=0;i<picked.length;i++){
+    if(sessionStorage.getItem("flag_"+i)==="1") flagged.push(i+1);
+  }
+  let flagSec=document.getElementById("flaggedSection");
+  flagSec.textContent = "";
+  if(flagged.length>0){
+    let flagBox = document.createElement("div");
+    flagBox.className = "flagged-box";
+    let strong = document.createElement("strong");
+    strong.textContent = "Questions à revoir: ";
+    flagBox.appendChild(strong);
+    flagBox.appendChild(document.createTextNode("Q"+flagged.join(", Q")));
+    flagSec.appendChild(flagBox);
+  }
+
+  // Correction
+  let breakdown=document.getElementById("breakdown");
+  breakdown.innerHTML="";
+  picked.forEach((q,qi)=>{
+    let det = details[qi];
+
+    let div=document.createElement("div");
+    div.className="q-review";
+
+    let h=document.createElement("div");
+    h.className="q-title";
+    h.textContent="Q"+(qi+1)+". "+q.question;
+    div.appendChild(h);
+
+    // Image question dans correction
+    if(q.image){
+      let qImg=document.createElement("img");
+      qImg.src=q.image;
+      qImg.alt="Image question";
+      qImg.className="q-img";
+      div.appendChild(qImg);
+    }
+
+    let ul=document.createElement("ul");
+    ul.className="q-answers";
+
+    q.answers.forEach((a,i)=>{
+      let li=document.createElement("li");
+      li.className="ans ";
+
+      let yes = det.userSel.includes(i);
+      if(a.correct && yes) li.className+="correct";
+      else if(!a.correct && yes) li.className+="wrong";
+      else if(a.correct && !yes) li.className+="missed";
+      else li.className+="neutral";
+
+      li.textContent = a.text;
+      ul.appendChild(li);
+    });
+
+    div.appendChild(ul);
+
+    if(q.piege){
+      let p=document.createElement("div");
+      p.className="q-piege";
+      p.textContent="⚠️ Piège : "+q.piege;
+      div.appendChild(p);
+    }
+
+    if(q.explication){
+      let e=document.createElement("div");
+      e.className="q-expl";
+      e.textContent="Pourquoi : "+q.explication;
+      div.appendChild(e);
+    }
+
+    breakdown.appendChild(div);
+  });
+}
+
+
+
+/* ------------------------------
+   NOTIFICATIONS PUSH
+--------------------------------*/
+function initNotifications() {
+  // Vérifier si les notifications sont supportées
+  if (!('Notification' in window)) {
+    console.log('Notifications non supportées');
+    return;
+  }
+  
+  // Vérifier la permission
+  if (Notification.permission === 'granted') {
+    console.log('Notifications déjà autorisées');
+    setupDailyReminder();
+  } else if (Notification.permission === 'default') {
+    // Afficher un bouton pour demander la permission
+    showNotificationPrompt();
+  }
+}
+
+// Afficher une bannière pour activer les notifications
+function showNotificationPrompt() {
+  // Ne pas montrer immédiatement, attendre quelques secondes
+  setTimeout(() => {
+    if (document.querySelector('.notification-banner')) return;
+    
+    const notificationBanner = document.createElement('div');
+    notificationBanner.className = 'notification-banner';
+
+    const bannerContent = document.createElement('div');
+    bannerContent.className = 'banner-content';
+
+    const bannerText = document.createElement('span');
+    bannerText.textContent = 'Recevez des rappels de révision gratuits';
+
+    const bannerActions = document.createElement('div');
+    bannerActions.className = 'banner-actions';
+
+    const activateBtn = document.createElement('button');
+    activateBtn.className = 'btn small primary';
+    activateBtn.textContent = 'Activer';
+    activateBtn.onclick = () => activateNotifications();
+
+    const dismissBtn = document.createElement('button');
+    dismissBtn.className = 'btn small';
+    dismissBtn.textContent = 'Non merci';
+    dismissBtn.onclick = () => notificationBanner.remove();
+
+    bannerActions.appendChild(activateBtn);
+    bannerActions.appendChild(dismissBtn);
+    bannerContent.appendChild(bannerText);
+    bannerContent.appendChild(bannerActions);
+    notificationBanner.appendChild(bannerContent);
+    
+    // Insérer après l'en-tête
+    const header = document.querySelector('.app-header');
+    if (header) {
+      header.parentNode.insertBefore(notificationBanner, header.nextSibling);
+    }
+  }, 5000); // Attendre 5 secondes
+}
+
+// Activer les notifications
+function activateNotifications() {
+  Notification.requestPermission().then(permission => {
+    if (permission === 'granted') {
+      console.log('Notifications activées !');
+      showNotification('✅ Notifications activées', 'Vous recevrez des rappels pour réviser votre code.');
+      setupDailyReminder();
+      
+      // Sauvegarder le choix de l'utilisateur
+      localStorage.setItem('notificationsEnabled', 'true');
+      
+      // Enlever la bannière
+      const banner = document.querySelector('.notification-banner');
+      if (banner) banner.remove();
+    }
+  });
+}
+
+// Afficher une notification
+function showNotification(title, body) {
+  if (Notification.permission === 'granted') {
+    const options = {
+      body: body,
+      icon: 'icon-192.png',
+      badge: 'icon-192.png',
+      tag: 'quiz-reminder'
+    };
+    
+    new Notification(title, options);
+  }
+}
+
+// Programmer un rappel quotidien
+function setupDailyReminder() {
+  // Heure par défaut : 19h
+  const reminderHour = localStorage.getItem('reminderHour') || 19;
+  const now = new Date();
+  
+  // Calculer le prochain rappel
+  const nextReminder = new Date();
+  nextReminder.setHours(reminderHour, 0, 0, 0);
+  
+  // Si l'heure est déjà passée aujourd'hui, programmer pour demain
+  if (now > nextReminder) {
+    nextReminder.setDate(nextReminder.getDate() + 1);
+  }
+  
+  const timeUntilReminder = nextReminder.getTime() - now.getTime();
+  
+  console.log('Prochain rappel de révision à:', nextReminder.toLocaleTimeString());
+  
+  // Programmer le rappel
+  setTimeout(() => {
+    showDailyReminder();
+    // Reprogrammer pour le lendemain
+    setupDailyReminder();
+  }, timeUntilReminder);
+}
+
+// Afficher le rappel quotidien
+function showDailyReminder() {
+  if (Notification.permission === 'granted') {
+    const messages = [
+      "📚 Il est temps de réviser votre code de la route !",
+      "🚗 10 minutes de quiz aujourd'hui pour progresser ?",
+      "🎯 Objectif permis : faites un quiz quotidien !",
+      "🧠 Entraînez votre mémoire avec 5 questions rapides",
+      "⏰ Votre session de révision vous attend !"
+    ];
+    
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    
+    new Notification('Permis Luxembourg', {
+      body: randomMessage,
+      icon: 'icon-192.png',
+      badge: 'icon-192.png',
+      tag: 'daily-reminder',
+      requireInteraction: false
+    });
+  }
+}
+
+// Fonction pour tester les notifications
+function testNotification() {
+  if (Notification.permission === 'granted') {
+    showNotification('Test de notification', 'Ceci est un test pour vérifier que les notifications fonctionnent !');
+  } else {
+    alert('Veuillez d\'abord activer les notifications');
+  }
+}
+
+
+
+
+
+
+
+/* ------------------------------
+   TIMER
+--------------------------------*/
+function startTimer(){
+  secondsLeft = EXAM_DURATION_SECONDS;
+  const timer=document.getElementById("timer");
+  timer.textContent = fmt(secondsLeft);
+  timer.classList.remove("urgent");
+
+  timerId=setInterval(()=>{
+    secondsLeft--;
+    if(secondsLeft<=60) timer.classList.add("urgent");
+    if(secondsLeft<=0){
+      clearInterval(timerId);
+      timer.textContent="00:00";
+      finalize();
+      return;
+    }
+    timer.textContent = fmt(secondsLeft);
+  },1000);
+}
+
+/* ------------------------------
+   DÉMARRER / REJOUER
+--------------------------------*/
+document.getElementById("startBtn").onclick=()=>{
+  const cat=document.getElementById("categoryFilter").value;
+  if(typeof trackEvent==="function") trackEvent('start_quiz',{category:cat||'all'});
+  let pool = cat ? allPool.filter(q=>q.topic===cat) : allPool;
+
+  if(pool.length===0){
+    alert("Aucune question dans cette catégorie.");
+    return;
+  }
+
+  picked = pickRandomQuestions(pool);
+  selections = Array.from({length:picked.length},()=>new Set());
+  // Nettoyer uniquement les flags du quiz précédent
+  Object.keys(sessionStorage).forEach(k=>{ if(k.startsWith("flag_")) sessionStorage.removeItem(k); });
+  currentIndex=0;
+  finished=false;
+
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("exam").classList.remove("hidden");
+  document.getElementById("results").classList.add("hidden");
+
+  renderQuestion(0);
+  startTimer();
+};
+
+document.getElementById("prevBtn").onclick=()=>{currentIndex--;renderQuestion(currentIndex);}
+document.getElementById("nextBtn").onclick=()=>{currentIndex++;renderQuestion(currentIndex);}
+document.getElementById("finishBtn").onclick=()=>{
+  if(confirm("Terminer l'examen ? Vos réponses seront corrigées.")) finalize();
+};
+
+document.getElementById("replayBtn").onclick=()=>{
+  clearInterval(timerId);
+  document.getElementById("results").classList.add("hidden");
+  document.getElementById("intro").classList.remove("hidden");
+  document.getElementById("exam").classList.add("hidden");
+  document.getElementById("timer").classList.remove("urgent");
+};
+
+
+/* ------------------------------
+   INIT
+--------------------------------*/
+
+
+/* ------------------------------
+   FONCTIONS DE GESTION DES NOTIFICATIONS
+--------------------------------*/
+
+// 1. Afficher/masquer les paramètres des notifications
+function toggleNotificationSettings() {
+  const settings = document.getElementById('notificationSettings');
+  if (settings) {
+    settings.classList.toggle('active');
+  }
+}
+
+// 2. Mettre à jour l'heure du rappel quotidien
+function updateReminderTime() {
+  const timeSelect = document.getElementById('reminderTime');
+  if (!timeSelect) return;
+  
+  const selectedHour = parseInt(timeSelect.value, 10);
+  
+  localStorage.setItem('reminderHour', selectedHour);
+  
+  // Message temporaire
+  const msg = document.createElement('div');
+  msg.textContent = `✅ Rappel programmé à ${selectedHour}h00`;
+  msg.style.cssText = 'background:#10b981;color:white;padding:8px;border-radius:5px;margin-top:10px;';
+  timeSelect.parentNode.appendChild(msg);
+  setTimeout(() => msg.remove(), 3000);
+  
+  // Redémarrer le timer avec la nouvelle heure
+  if (Notification.permission === 'granted') {
+    setupDailyReminder();
+  }
+}
+
+// 3. Désactiver les notifications
+function disableNotifications() {
+  localStorage.setItem('notificationsEnabled', 'false');
+  
+  const msg = document.createElement('div');
+  msg.textContent = '🔕 Notifications désactivées';
+  msg.style.cssText = 'background:#ef4444;color:white;padding:8px;border-radius:5px;margin-top:10px;';
+  
+  const settings = document.getElementById('notificationSettings');
+  if (settings) {
+    settings.appendChild(msg);
+    setTimeout(() => msg.remove(), 3000);
+  }
+  
+  alert('Notifications désactivées. Vous pouvez les réactiver via les paramètres de votre navigateur.');
+}
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("poolSizeInfo").textContent =
+    "Pool chargé : " + allPool.length + " questions";
+  
+  // Initialiser les notifications
+  initNotifications();
+  
+  // Configurer l'heure du rappel
+  const reminderTimeSelect = document.getElementById('reminderTime');
+  if (reminderTimeSelect) {
+    const savedHour = localStorage.getItem('reminderHour') || '19';
+    reminderTimeSelect.value = savedHour;
+  }
+  
+});
+</script>
+
+
+
+
+<script>
+// Enregistrer le Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(registration => {
+        console.log('Service Worker enregistré avec succès:', registration);
+      })
+      .catch(error => {
+        console.log('Échec enregistrement Service Worker:', error);
+      });
+  });
+}
+
+// Détecter si l'app est installée
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  window.deferredPrompt = e;
+  
+  // Optionnel : montrer un bouton "Installer l'app"
+  const installBtn = document.createElement('button');
+  installBtn.textContent = '📱 Installer l\'app';
+  installBtn.className = 'btn primary';
+  installBtn.style.margin = '10px auto';
+  installBtn.onclick = () => {
+    e.prompt();
+    e.userChoice.then(() => {
+      window.deferredPrompt = null;
+      installBtn.remove();
+    });
+  };
+  
+  const introCard = document.querySelector('#intro .meta');
+  if (introCard) {
+    introCard.parentNode.insertBefore(installBtn, introCard);
+  }
+});
+</script>
+
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBWRMC8N"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+
+
+
+
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PBWRMC8N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GTM-PBWRMC8N');
+  
+  // Track des événements
+  function trackEvent(eventName, params) {
+    gtag('event', eventName, params);
+  }
+  
+  // Le tracking est intégré dans le onclick de startBtn
+</script>
+
+
+
 </body>
 </html>
