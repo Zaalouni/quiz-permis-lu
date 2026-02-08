@@ -1,5 +1,5 @@
-const CACHE_NAME = 'quiz-permis-v15';
-const APP_VERSION = '2.0';
+const CACHE_NAME = 'quiz-permis-v16';
+const APP_VERSION = '2.1';
 const urlsToCache = [
   './',
   './index.html',
@@ -7,7 +7,11 @@ const urlsToCache = [
   './quiz-free.js',
   './icon-192.png',
   './manifest.json',
-  './conseils.html'
+  './conseils.html',
+  './signalisation.html',
+  './distances-freinage.html',
+  './alcool-permis.html',
+  './examen-snca.html'
 ];
 
 // Installation — cache fichiers statiques
@@ -33,7 +37,7 @@ self.addEventListener('fetch', event => {
       .then(response => {
         if (response) return response;
         return fetch(event.request).then(fetchResponse => {
-          // Cacher dynamiquement les images SNCA au premier chargement
+          // Cacher dynamiquement les images au premier chargement
           if (event.request.url.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
             const clone = fetchResponse.clone();
             caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));

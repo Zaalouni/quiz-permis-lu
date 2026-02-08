@@ -282,6 +282,51 @@ input, select, textarea {
 }
 .back-btn:hover{background:rgba(255,255,255,0.25);}
 
+/* === FOOTER ENRICHI === */
+.footer-links{
+  display:flex;gap:12px;flex-wrap:wrap;
+  justify-content:center;margin-bottom:10px;
+}
+.footer-links a{
+  color:rgba(255,255,255,0.7);text-decoration:none;font-size:.8rem;
+}
+.footer-links a:hover{color:#fff;}
+.app-footer small a{color:rgba(255,255,255,0.8);text-decoration:none;}
+.app-footer small a:hover{color:#fff;}
+.footer-social{margin-top:10px;display:flex;justify-content:center;gap:10px;}
+.social-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;
+  text-decoration:none;font-weight:800;font-size:.75rem;
+  transition:transform .15s;
+}
+.social-icon:hover{transform:scale(1.1);}
+.social-icon.yt{background:#ff0000;color:#fff;}
+.footer-disclaimer{
+  margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.15);
+  font-size:.7rem;color:rgba(255,255,255,0.45);line-height:1.4;
+  max-width:600px;margin-left:auto;margin-right:auto;text-align:center;
+  font-style:italic;
+}
+
+/* === PAGES SEO === */
+.seo-content{margin-top:16px;line-height:1.7;}
+.seo-content h3{color:var(--primary);margin:16px 0 8px;font-size:1.05rem;}
+.seo-content ul{margin:8px 0 8px 20px;color:var(--text);}
+.seo-content ul li{margin-bottom:6px;font-size:.9rem;}
+.seo-content p{font-size:.9rem;color:var(--text);margin-bottom:8px;}
+.seo-cta{display:inline-block;margin:12px 0 6px;font-size:1.05rem;padding:14px 28px;}
+.seo-sub{font-size:.85rem;color:var(--muted);margin-top:4px;}
+.seo-table{overflow-x:auto;margin:12px 0;}
+.seo-table table{
+  width:100%;border-collapse:collapse;font-size:.85rem;
+}
+.seo-table th,.seo-table td{
+  padding:10px 12px;border:1px solid var(--border);text-align:left;
+}
+.seo-table th{background:var(--primary);color:#fff;font-weight:600;}
+.seo-table tr:nth-child(even) td{background:#f8fafc;}
+
 /* === STATISTIQUES === */
 .stats-grid{
   display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0;
@@ -318,6 +363,12 @@ input, select, textarea {
   border-bottom:1px solid var(--border);
 }
 .history-item:last-child{border-bottom:none;}
+.stats-empty{
+  text-align:center;padding:24px 16px;color:var(--muted);
+  font-size:.9rem;line-height:1.6;
+  background:linear-gradient(135deg,#f0f4ff,#e8f5e9);
+  border-radius:8px;margin-top:8px;
+}
 @media(max-width:600px){
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .weak-cat-name{min-width:100px;font-size:.8rem;}

@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>Quiz Code de la Route Luxembourg — Préparation Examen Théorique SNCA 2026</title>
+  <title>Quiz Code de la Route Luxembourg — Préparation Examen Théorique 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Quiz gratuit pour préparer l'examen théorique du code de la route au Luxembourg. +500 questions, cours 1 à 5, mode SNCA, correction détaillée, fonctionne hors-ligne.">
-  <meta name="keywords" content="code de la route, Luxembourg, quiz, examen théorique, SNCA, permis de conduire, permis B, Colmar-Berg, auto-école, révision, QCM">
+  <meta name="description" content="Quiz gratuit pour préparer l'examen théorique du code de la route au Luxembourg. +760 questions, cours 1 à 5, correction détaillée, fonctionne hors-ligne.">
+  <meta name="keywords" content="code de la route, Luxembourg, quiz, examen théorique, permis de conduire, permis B, Colmar-Berg, auto-école, révision, QCM">
   <meta name="author" content="Quiz Permis LU">
   <meta name="robots" content="index, follow">
   <meta name="google-site-verification" content="AxwdAqrSEliCKZYPpNZvdJXNKFU9PtUUt38hfv0PNWA" />
@@ -122,7 +122,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <div class="brand">
     <h1>Quiz Code de la Route — Luxembourg</h1>
     <div class="subtitle">+760 questions QCM — Réussissez votre permis du premier coup</div>
-    <div class="app-version" id="appVersion">v2.0 — 08 fév. 2026</div>
+    <div class="app-version" id="appVersion">v2.1 — 08 fév. 2026</div>
   </div>
 
   <div class="status">
@@ -221,8 +221,8 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
       <optgroup label="Cours 5 — Administratif">
         <option value="Permis & Catégories">Permis, Catégories & Équipements</option>
       </optgroup>
-	  <optgroup label="SNCA Demo">
-      <option value="SNCA Demo">SNCA – Examen théorique demo</option>
+	  <optgroup label="Examen Demo">
+      <option value="Examen Demo">Examen théorique — Démo</option>
      </optgroup>
     </select>
   </div>
@@ -362,8 +362,21 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
 </main>
 
 <footer class="app-footer">
-  <nav aria-label="Informations">
-    <small>© 2026 Quiz Code de la Route Luxembourg — Application gratuite de préparation au permis de conduire — Fonctionne hors-ligne</small>
+  <nav aria-label="Navigation">
+    <div class="footer-links">
+      <a href="conseils.html">Conseils examen</a>
+      <a href="signalisation.html">Signalisation</a>
+      <a href="distances-freinage.html">Distances & Freinage</a>
+      <a href="alcool-permis.html">Alcool & Sanctions</a>
+      <a href="examen-snca.html">Examen théorique</a>
+    </div>
+    <small>© 2026 <a href="https://zaalouni.github.io/quiz-permis-lu/">Quiz Code de la Route Luxembourg</a> — Application gratuite de préparation au permis de conduire</small>
+    <div class="footer-social">
+      <a href="https://www.youtube.com/@tigretunisietigretunisie1995" target="_blank" rel="noopener" class="social-icon yt" aria-label="YouTube">YT</a>
+    </div>
+    <div class="footer-disclaimer">
+      Ce quiz est un outil d'entraînement indépendant. Il n'est ni affilié, ni approuvé, ni associé à la SNCA (Société Nationale de Circulation Automobile) ou à tout organisme officiel luxembourgeois. Les questions sont fournies à titre éducatif uniquement.
+    </div>
   </nav>
 </footer>
 
@@ -420,11 +433,22 @@ function renderStats() {
   let history = getHistory();
   let section = document.getElementById("statsSection");
 
+  section.classList.remove("hidden");
   if (history.length === 0) {
-    section.classList.add("hidden");
+    // État vide engageant
+    document.getElementById("statQuizCount").textContent = "0";
+    document.getElementById("statAvgScore").textContent = "—";
+    document.getElementById("statBestScore").textContent = "—";
+    document.getElementById("statTotalQuestions").textContent = "0";
+    document.getElementById("statsWeakCategories").classList.add("hidden");
+    let histList = document.getElementById("historyList");
+    histList.textContent = "";
+    let emptyMsg = document.createElement("div");
+    emptyMsg.className = "stats-empty";
+    emptyMsg.innerHTML = "<strong>Aucun quiz pour le moment</strong><br>Lancez votre premier quiz pour commencer à suivre vos progrès !";
+    histList.appendChild(emptyMsg);
     return;
   }
-  section.classList.remove("hidden");
 
   // Compteurs
   document.getElementById("statQuizCount").textContent = history.length;
@@ -514,9 +538,9 @@ function getCategoryScores(pickedQuestions, details) {
 /* ------------------------------
    VERSION
 --------------------------------*/
-const APP_VERSION = "2.0";
+const APP_VERSION = "2.1";
 const APP_BUILD = "2026-02-08";
-const CACHE_VERSION = 15; // doit correspondre au SW
+const CACHE_VERSION = 16; // doit correspondre au SW
 
 /* ------------------------------
    VÉRIFICATION DE MISE À JOUR
@@ -698,7 +722,7 @@ function renderQuestion(idx){
   document.getElementById("questionMeta").textContent = q.type==="multi" ? "(plusieurs réponses)" : "(une seule réponse)";
   document.getElementById("questionText").textContent = q.question;
 
-  // Image question (SNCA)
+  // Image question
   let imgContainer = document.getElementById("questionImage");
   if(imgContainer){
     if(q.image){
@@ -746,7 +770,7 @@ function renderQuestion(idx){
     span.className="answer-text";
     span.textContent = ans.text;
 
-    // Image réponse (SNCA)
+    // Image réponse
     if(ans.image){
       let aImg = document.createElement("img");
       aImg.src = ans.image;
@@ -978,7 +1002,7 @@ function finalize(){
 
     let disclaimer = document.createElement("div");
     disclaimer.className = "exam-disclaimer";
-    disclaimer.textContent = "Simulation d'entraînement — Aucune affiliation avec la SNCA ou un organisme officiel.";
+    disclaimer.textContent = "Simulation d'entraînement — Aucune affiliation avec un organisme officiel.";
 
     resultBox.appendChild(resultIcon);
     resultBox.appendChild(resultTitle);
@@ -1279,7 +1303,17 @@ document.addEventListener("DOMContentLoaded", () => {
   checkForUpdate();
 
   // Restaurer licence sauvegardée
-  restoreLicense();
+  restoreLicense().then(() => {
+    // Double vérification : cacher le formulaire si premium
+    if (isPremium) {
+      let f = document.getElementById("licenseForm");
+      let c = document.getElementById("licenseContact");
+      let e = document.getElementById("licenseError");
+      if (f) f.classList.add("hidden");
+      if (c) c.classList.add("hidden");
+      if (e) e.classList.add("hidden");
+    }
+  });
 });
 </script>
 

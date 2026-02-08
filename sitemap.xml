@@ -11,15 +11,35 @@
       <image:title>Quiz Code de la Route Luxembourg</image:title>
       <image:caption>Application gratuite de préparation à l'examen théorique du permis de conduire au Luxembourg — +760 questions QCM</image:caption>
     </image:image>
-    <image:image>
-      <image:loc>https://zaalouni.github.io/quiz-permis-lu/icon-192.png</image:loc>
-      <image:title>Quiz Permis Luxembourg — Logo</image:title>
-    </image:image>
   </url>
   <url>
     <loc>https://zaalouni.github.io/quiz-permis-lu/conseils.html</loc>
     <lastmod>2026-02-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zaalouni.github.io/quiz-permis-lu/signalisation.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zaalouni.github.io/quiz-permis-lu/distances-freinage.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zaalouni.github.io/quiz-permis-lu/alcool-permis.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zaalouni.github.io/quiz-permis-lu/examen-snca.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
