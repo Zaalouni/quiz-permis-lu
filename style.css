@@ -81,6 +81,23 @@ input, select, textarea {
   background:#fff1f2;border:1px solid #fecaca;
   border-radius:6px;color:#dc2626;font-size:.9rem;
 }
+.license-contact{
+  margin-top:12px;padding-top:12px;
+  border-top:1px dashed var(--border);
+  text-align:center;
+}
+.license-contact p{
+  color:var(--muted);font-size:.9rem;margin-bottom:8px;
+}
+.license-email-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#3b82f6,#1e40af);
+  color:#fff;text-decoration:none;
+  padding:10px 20px;border-radius:8px;
+  font-size:.95rem;font-weight:600;
+  border:none;min-height:44px;
+}
+.license-email-btn:hover{opacity:.9;transform:translateY(-1px);}
 @media(max-width:600px){
   .license-form{flex-direction:column;}
   .license-form input{width:100%;}

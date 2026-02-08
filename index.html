@@ -202,13 +202,17 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <div id="licenseSection" class="license-box">
     <div id="licenseStatus" class="license-status free">
       <span class="license-icon">🔒</span>
-      <span>Version gratuite — <strong>50 questions</strong></span>
+      <span>Version gratuite — <strong>30 questions</strong></span>
     </div>
     <div id="licenseForm" class="license-form">
       <input type="text" id="licenseInput" placeholder="Entrez votre code de licence" maxlength="20" autocomplete="off" />
       <button id="licenseBtn" class="btn primary">Activer</button>
     </div>
     <div id="licenseError" class="license-error hidden"></div>
+    <div id="licenseContact" class="license-contact">
+      <p>Vous n'avez pas de code ? Demandez votre licence par email :</p>
+      <a href="mailto:tigretunisie@gmail.com?subject=Demande%20de%20licence%20Quiz%20Permis%20Luxembourg&body=Bonjour%2C%0A%0AJe%20souhaite%20obtenir%20une%20licence%20pour%20le%20Quiz%20Code%20de%20la%20Route%20Luxembourg.%0A%0AMerci." class="btn license-email-btn">Demander une licence</a>
+    </div>
   </div>
 
   <div class="meta"><span id="poolSizeInfo"></span></div>
@@ -370,16 +374,23 @@ async function activateLicense(code) {
 
       // Mettre à jour l'UI
       statusDiv.className = "license-status premium";
-      statusDiv.innerHTML = "";
+      statusDiv.textContent = "";
       let icon = document.createElement("span");
       icon.className = "license-icon";
       icon.textContent = "\uD83D\uDD13";
       let text = document.createElement("span");
-      text.innerHTML = "Version complète — <strong>" + data.total + " questions</strong>";
+      let strong = document.createElement("strong");
+      strong.textContent = data.total + " questions";
+      text.textContent = "Version complète — ";
+      text.appendChild(strong);
       statusDiv.appendChild(icon);
       statusDiv.appendChild(text);
 
       formDiv.classList.add("hidden");
+      errorDiv.classList.add("hidden");
+      // Cacher aussi le bouton contact
+      let contactDiv = document.getElementById("licenseContact");
+      if (contactDiv) contactDiv.classList.add("hidden");
 
       // Mettre à jour le compteur
       document.getElementById("poolSizeInfo").textContent =
