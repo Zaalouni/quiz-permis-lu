@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://zaalouni.github.io/quiz-permis-lu/</loc>
     <lastmod>2026-02-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://zaalouni.github.io/quiz-permis-lu/icon-512.png</image:loc>
+      <image:title>Quiz Code de la Route Luxembourg</image:title>
+      <image:caption>Application gratuite de préparation à l'examen théorique du permis de conduire au Luxembourg — +760 questions QCM</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zaalouni.github.io/quiz-permis-lu/icon-192.png</image:loc>
+      <image:title>Quiz Permis Luxembourg — Logo</image:title>
+    </image:image>
   </url>
 </urlset>
