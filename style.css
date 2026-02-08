@@ -176,6 +176,53 @@ input, select, textarea {
   padding:12px 0;border-bottom:1px solid var(--border);margin-bottom:14px;
 }
 
+/* === LEADERBOARD === */
+.leaderboard-list{margin-top:12px;}
+.leaderboard-row{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-bottom:1px solid var(--border);
+  font-size:.9rem;
+}
+.leaderboard-row.top3{background:#fefce8;font-weight:600;}
+.leaderboard-row:last-child{border-bottom:none;}
+.lb-rank{min-width:32px;font-size:1.1rem;text-align:center;}
+.lb-name{flex:1;color:var(--text);}
+.lb-score{font-weight:600;color:var(--primary);min-width:100px;text-align:right;}
+.lb-badge{
+  font-size:.7rem;padding:2px 6px;border-radius:4px;
+  background:#fef2f2;color:#dc2626;min-width:50px;text-align:center;
+}
+.lb-date{font-size:.75rem;color:var(--muted);min-width:70px;text-align:right;}
+.leaderboard-empty,.leaderboard-loading{
+  text-align:center;color:var(--muted);padding:20px;font-size:.9rem;
+}
+.submit-score-section{
+  padding:14px 0;margin-bottom:14px;
+  border-bottom:1px solid var(--border);
+}
+.submit-score-title{font-size:.95rem;color:var(--muted);margin-bottom:10px;}
+.submit-score-form{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.submit-score-form input{
+  flex:1;min-width:150px;padding:10px 14px;
+  border-radius:8px;border:1px solid var(--border);
+}
+.submit-score-success{
+  margin-top:8px;padding:8px 12px;
+  background:#ecfdf5;border:1px solid #86efac;
+  border-radius:6px;color:#166534;font-size:.9rem;
+}
+.submit-score-error{
+  margin-top:8px;padding:8px 12px;
+  background:#fff1f2;border:1px solid #fecaca;
+  border-radius:6px;color:#dc2626;font-size:.9rem;
+}
+@media(max-width:600px){
+  .leaderboard-row{flex-wrap:wrap;gap:6px;}
+  .lb-date{display:none;}
+  .submit-score-form{flex-direction:column;}
+  .submit-score-form input,.submit-score-form .btn{width:100%;}
+}
+
 /* === CONSEILS JOUR J === */
 .tips-grid{
   display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px;

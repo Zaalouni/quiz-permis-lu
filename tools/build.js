@@ -136,10 +136,12 @@ console.log(`Generated: tools/license-codes.txt (${NUM_CODES} codes)`);
 
 // --- 5. Generate Cloudflare Worker ---
 const workerJS = `/**
- * Cloudflare Worker — Quiz Permis Luxembourg (Premium API)
+ * Cloudflare Worker — Quiz Permis Luxembourg (Premium API + Leaderboard)
  *
  * Deploy: wrangler deploy
  * Or paste in Cloudflare Dashboard > Workers > Create
+ *
+ * KV Binding required: LEADERBOARD (namespace QUIZ_LEADERBOARD)
  */
 
 // --- License codes (SHA-256 hashes) ---
@@ -158,7 +160,7 @@ const CORS_ORIGIN = "https://zaalouni.github.io";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": CORS_ORIGIN,
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type",
   "Content-Type": "application/json",
 };
@@ -172,6 +174,34 @@ async function sha256(text) {
     .join("");
 }
 
+// --- Leaderboard helpers ---
+const MAX_LEADERBOARD = 20;
+
+async function getLeaderboard(env) {
+  try {
+    const data = await env.LEADERBOARD.get("top_scores", "json");
+    return data || [];
+  } catch(e) { return []; }
+}
+
+async function addScore(env, name, score, total, exam) {
+  let board = await getLeaderboard(env);
+  const pct = Math.round(100 * score / total);
+  const entry = {
+    name: (name || "Anonyme").substring(0, 20),
+    score: score,
+    total: total,
+    pct: pct,
+    exam: !!exam,
+    date: new Date().toISOString().split("T")[0]
+  };
+  board.push(entry);
+  board.sort((a, b) => b.pct - a.pct || b.score - a.score);
+  board = board.slice(0, MAX_LEADERBOARD);
+  await env.LEADERBOARD.put("top_scores", JSON.stringify(board));
+  return board;
+}
+
 // --- Handler ---
 export default {
   async fetch(request, env) {
@@ -180,47 +210,78 @@ export default {
       return new Response(null, { headers: corsHeaders });
     }
 
-    // Only POST /activate
     const url = new URL(request.url);
-    if (request.method !== "POST" || url.pathname !== "/activate") {
+
+    // --- GET /leaderboard ---
+    if (request.method === "GET" && url.pathname === "/leaderboard") {
+      const board = await getLeaderboard(env);
       return new Response(
-        JSON.stringify({ error: "Not found" }),
-        { status: 404, headers: corsHeaders }
+        JSON.stringify({ leaderboard: board }),
+        { headers: corsHeaders }
       );
     }
 
-    try {
-      const { code } = await request.json();
-      if (!code) {
+    // --- POST /score ---
+    if (request.method === "POST" && url.pathname === "/score") {
+      try {
+        const { name, score, total, exam } = await request.json();
+        if (typeof score !== "number" || typeof total !== "number" || total < 1) {
+          return new Response(
+            JSON.stringify({ error: "Données invalides" }),
+            { status: 400, headers: corsHeaders }
+          );
+        }
+        const board = await addScore(env, name, score, total, exam);
         return new Response(
-          JSON.stringify({ valid: false, error: "Code manquant" }),
+          JSON.stringify({ success: true, leaderboard: board }),
+          { headers: corsHeaders }
+        );
+      } catch(e) {
+        return new Response(
+          JSON.stringify({ error: "Requête invalide" }),
           { status: 400, headers: corsHeaders }
         );
       }
+    }
 
-      const hash = await sha256(code);
-
-      if (VALID_HASHES.has(hash)) {
+    // --- POST /activate ---
+    if (request.method === "POST" && url.pathname === "/activate") {
+      try {
+        const { code } = await request.json();
+        if (!code) {
+          return new Response(
+            JSON.stringify({ valid: false, error: "Code manquant" }),
+            { status: 400, headers: corsHeaders }
+          );
+        }
+        const hash = await sha256(code);
+        if (VALID_HASHES.has(hash)) {
+          return new Response(
+            JSON.stringify({
+              valid: true,
+              questions: ALL_QUESTIONS,
+              total: ALL_QUESTIONS.length,
+            }),
+            { headers: corsHeaders }
+          );
+        } else {
+          return new Response(
+            JSON.stringify({ valid: false, error: "Code de licence invalide" }),
+            { status: 403, headers: corsHeaders }
+          );
+        }
+      } catch (e) {
         return new Response(
-          JSON.stringify({
-            valid: true,
-            questions: ALL_QUESTIONS,
-            total: ALL_QUESTIONS.length,
-          }),
-          { headers: corsHeaders }
-        );
-      } else {
-        return new Response(
-          JSON.stringify({ valid: false, error: "Code de licence invalide" }),
-          { status: 403, headers: corsHeaders }
+          JSON.stringify({ valid: false, error: "Requête invalide" }),
+          { status: 400, headers: corsHeaders }
         );
       }
-    } catch (e) {
-      return new Response(
-        JSON.stringify({ valid: false, error: "Requête invalide" }),
-        { status: 400, headers: corsHeaders }
-      );
     }
+
+    return new Response(
+      JSON.stringify({ error: "Not found" }),
+      { status: 404, headers: corsHeaders }
+    );
   },
 };
 `;

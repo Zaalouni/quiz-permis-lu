@@ -178,6 +178,14 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <button id="clearStatsBtn" class="btn" style="margin-top:12px;font-size:.85rem;">Réinitialiser les statistiques</button>
 </section>
 
+<!-- LEADERBOARD -->
+<section id="leaderboardSection" class="card">
+  <h2>Classement des meilleurs scores</h2>
+  <div id="leaderboardList" class="leaderboard-list">
+    <p class="leaderboard-loading">Chargement...</p>
+  </div>
+</section>
+
 <!-- INTRO -->
 <section id="intro" class="card">
   <h2>Démarrer l'épreuve</h2>
@@ -360,6 +368,16 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
       <button id="shareCopy" class="share-btn copy">Copier le lien</button>
     </div>
     <div id="shareCopied" class="share-copied hidden">Lien copié !</div>
+  </div>
+
+  <!-- Soumettre au classement -->
+  <div id="submitScoreSection" class="submit-score-section">
+    <p class="submit-score-title">Publiez votre score dans le classement :</p>
+    <div class="submit-score-form">
+      <input type="text" id="leaderboardName" placeholder="Votre prénom" maxlength="20" />
+      <button id="submitScoreBtn" class="btn primary">Publier</button>
+    </div>
+    <div id="submitScoreMsg" class="hidden"></div>
   </div>
 
   <div id="flaggedSection"></div>
@@ -759,6 +777,112 @@ function computeScore(){
 
 
 /* ------------------------------
+   LEADERBOARD
+--------------------------------*/
+async function loadLeaderboard() {
+  let list = document.getElementById("leaderboardList");
+  try {
+    const resp = await fetch(WORKER_URL + "/leaderboard");
+    const data = await resp.json();
+    const board = data.leaderboard || [];
+
+    list.textContent = "";
+    if (board.length === 0) {
+      let p = document.createElement("p");
+      p.className = "leaderboard-empty";
+      p.textContent = "Aucun score pour le moment. Soyez le premier !";
+      list.appendChild(p);
+      return;
+    }
+
+    board.forEach((entry, i) => {
+      let row = document.createElement("div");
+      row.className = "leaderboard-row" + (i < 3 ? " top3" : "");
+
+      let rank = document.createElement("span");
+      rank.className = "lb-rank";
+      rank.textContent = i === 0 ? "\uD83E\uDD47" : i === 1 ? "\uD83E\uDD48" : i === 2 ? "\uD83E\uDD49" : (i + 1) + ".";
+
+      let name = document.createElement("span");
+      name.className = "lb-name";
+      name.textContent = entry.name;
+
+      let score = document.createElement("span");
+      score.className = "lb-score";
+      score.textContent = entry.score + "/" + entry.total + " (" + entry.pct + "%)";
+
+      let badge = document.createElement("span");
+      badge.className = "lb-badge";
+      badge.textContent = entry.exam ? "Examen" : "";
+
+      let date = document.createElement("span");
+      date.className = "lb-date";
+      date.textContent = entry.date;
+
+      row.appendChild(rank);
+      row.appendChild(name);
+      row.appendChild(score);
+      row.appendChild(badge);
+      row.appendChild(date);
+      list.appendChild(row);
+    });
+  } catch(e) {
+    list.textContent = "";
+    let p = document.createElement("p");
+    p.textContent = "Classement indisponible.";
+    p.className = "leaderboard-empty";
+    list.appendChild(p);
+  }
+}
+
+let lastScore = 0;
+let lastTotal = 0;
+
+async function submitScore() {
+  let name = document.getElementById("leaderboardName").value.trim();
+  let btn = document.getElementById("submitScoreBtn");
+  let msg = document.getElementById("submitScoreMsg");
+
+  if (!name) { name = "Anonyme"; }
+
+  btn.disabled = true;
+  btn.textContent = "Envoi...";
+
+  try {
+    const resp = await fetch(WORKER_URL + "/score", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        score: lastScore,
+        total: lastTotal,
+        exam: examMode
+      })
+    });
+    const data = await resp.json();
+
+    if (data.success) {
+      msg.textContent = "Score publié !";
+      msg.className = "submit-score-success";
+      msg.classList.remove("hidden");
+      document.getElementById("submitScoreSection").querySelector(".submit-score-form").classList.add("hidden");
+      loadLeaderboard();
+    } else {
+      msg.textContent = data.error || "Erreur";
+      msg.className = "submit-score-error";
+      msg.classList.remove("hidden");
+    }
+  } catch(e) {
+    msg.textContent = "Erreur de connexion.";
+    msg.className = "submit-score-error";
+    msg.classList.remove("hidden");
+  }
+
+  btn.disabled = false;
+  btn.textContent = "Publier";
+}
+
+/* ------------------------------
    PARTAGE DE SCORE
 --------------------------------*/
 function getShareText(score, total) {
@@ -918,6 +1042,15 @@ function finalize(){
 
   // Activer les boutons de partage
   setupShareButtons(score, picked.length);
+
+  // Préparer soumission leaderboard
+  lastScore = score;
+  lastTotal = picked.length;
+  let submitForm = document.getElementById("submitScoreSection").querySelector(".submit-score-form");
+  submitForm.classList.remove("hidden");
+  document.getElementById("submitScoreMsg").classList.add("hidden");
+  let savedName = localStorage.getItem("quizUserName");
+  if (savedName) document.getElementById("leaderboardName").value = savedName;
 
   // Sauvegarder dans l'historique
   let catScores = getCategoryScores(picked, details);
@@ -1111,6 +1244,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (code.trim()) activateLicense(code);
     }
   });
+
+  // Leaderboard
+  loadLeaderboard();
+  document.getElementById("submitScoreBtn").addEventListener("click", submitScore);
 
   // Restaurer licence sauvegardée
   restoreLicense();
