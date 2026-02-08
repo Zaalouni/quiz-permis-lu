@@ -15,7 +15,7 @@
   <!-- Open Graph (Facebook, LinkedIn) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Quiz Code de la Route — Luxembourg">
-  <meta property="og:description" content="Préparez votre examen théorique du permis luxembourgeois. +500 questions QCM avec correction détaillée.">
+  <meta property="og:description" content="Préparez votre examen théorique du permis luxembourgeois. +760 questions QCM avec correction détaillée.">
   <meta property="og:url" content="https://zaalouni.github.io/quiz-permis-lu/">
   <meta property="og:image" content="https://zaalouni.github.io/quiz-permis-lu/icon-512.png">
   <meta property="og:locale" content="fr_LU">
@@ -24,7 +24,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Quiz Code de la Route — Luxembourg">
-  <meta name="twitter:description" content="Préparez votre examen théorique du permis luxembourgeois. +500 questions QCM.">
+  <meta name="twitter:description" content="Préparez votre examen théorique du permis luxembourgeois. +760 questions QCM.">
   <meta name="twitter:image" content="https://zaalouni.github.io/quiz-permis-lu/icon-512.png">
 
   <!-- Favicons -->
@@ -52,7 +52,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Quiz Code de la Route Luxembourg",
-    "description": "Application gratuite de préparation à l'examen théorique du code de la route au Luxembourg. Plus de 500 questions QCM avec correction détaillée.",
+    "description": "Application gratuite de préparation à l'examen théorique du code de la route au Luxembourg. Plus de 760 questions QCM avec correction détaillée.",
     "url": "https://zaalouni.github.io/quiz-permis-lu/",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Web",
@@ -141,6 +141,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
 
 <div id="loginSection" class="card">
   <h3>Enregistrez vos progrès</h3>
+  <label for="userName" class="sr-only">Votre prénom</label>
   <input type="text" id="userName" placeholder="Votre prénom (optionnel)" />
   <button id="loginBtn" class="btn primary">Continuer</button>
 </div>
@@ -197,7 +198,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
 
   <!-- Filtre par catégorie -->
   <div class="category-filter">
-    <label><strong>Mode révision (optionnel) :</strong></label>
+    <label for="categoryFilter"><strong>Mode révision (optionnel) :</strong></label>
     <select id="categoryFilter">
       <option value="">Aléatoire — Tous cours mélangés</option>
       <optgroup label="Cours 1 — Chargement">
@@ -248,6 +249,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
       <span>Version gratuite — <strong>30 questions</strong></span>
     </div>
     <div id="licenseForm" class="license-form">
+      <label for="licenseInput" class="sr-only">Code de licence</label>
       <input type="text" id="licenseInput" placeholder="Entrez votre code de licence" maxlength="20" autocomplete="off" />
       <button id="licenseBtn" class="btn primary">Activer</button>
     </div>
@@ -349,6 +351,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <div id="submitScoreSection" class="submit-score-section">
     <p class="submit-score-title">Publiez votre score dans le classement :</p>
     <div class="submit-score-form">
+      <label for="leaderboardName" class="sr-only">Votre prénom</label>
       <input type="text" id="leaderboardName" placeholder="Votre prénom" maxlength="20" />
       <button id="submitScoreBtn" class="btn primary">Publier</button>
     </div>
@@ -382,7 +385,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <div style="padding:40px;text-align:center;font-family:Arial,sans-serif;">
     <h2>Quiz Code de la Route — Luxembourg</h2>
     <p>Cette application nécessite JavaScript pour fonctionner.</p>
-    <p>Activez JavaScript dans les paramètres de votre navigateur pour accéder aux +500 questions de préparation à l'examen théorique du permis de conduire luxembourgeois.</p>
+    <p>Activez JavaScript dans les paramètres de votre navigateur pour accéder aux +760 questions de préparation à l'examen théorique du permis de conduire luxembourgeois.</p>
   </div>
 </noscript>
 
@@ -738,7 +741,7 @@ function renderQuestion(idx){
   }
 
   let form = document.getElementById("answersForm");
-  form.innerHTML = "";
+  form.textContent = "";
   let isMulti = q.type==="multi";
 
   let selected = selections[idx] || new Set();
@@ -956,7 +959,7 @@ function setupShareButtons(score, total) {
       let copied = document.getElementById("shareCopied");
       copied.classList.remove("hidden");
       setTimeout(() => copied.classList.add("hidden"), 2000);
-    });
+    }).catch(() => {});
   };
 }
 
@@ -1031,7 +1034,7 @@ function finalize(){
 
   // Correction
   let breakdown=document.getElementById("breakdown");
-  breakdown.innerHTML="";
+  breakdown.textContent="";
   picked.forEach((q,qi)=>{
     let det = details[qi];
 

@@ -1532,17 +1532,7 @@ window.QUIZ_QUESTIONS.push(
       { text: 'Non', correct: true },
     ]
   },
-  {
-    id: 706,
-    question: 'Avez-vous le droit de dépasser un tracteur?',
-    type: 'single',
-    topic: 'Examen Demo',
-    image: 'images/q_924_a0.jpg',
-    answers: [
-      { text: 'Oui', correct: false, image: 'images/q_924_a0.jpg' },
-      { text: 'Non', correct: true },
-    ]
-  },
+  /* ID 706 supprimé — doublon exact de ID 181 */
   {
     id: 707,
     question: 'Avez-vous le droit de dépasser un motocycle sans<br>side-car?',

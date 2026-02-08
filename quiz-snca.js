@@ -799,7 +799,7 @@ window.QUIZ_QUESTIONS.push(
     answers: [
       { text: 'stationnement interdit du 1<sup>er</sup> au 15 du mois.', correct: true },
       { text: 'stationnement autorisé du 1<sup>er</sup> au 15 du mois.', correct: false },
-      { text: 'stationnement interdit sur une distance de 1 à 15&nbspm.', correct: false },
+      { text: 'stationnement interdit sur une distance de 1 à 15 m.', correct: false },
     ]
   },
   {
