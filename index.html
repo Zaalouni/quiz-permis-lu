@@ -122,6 +122,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <div class="brand">
     <h1>Quiz Code de la Route — Luxembourg</h1>
     <div class="subtitle">+760 questions QCM — Réussissez votre permis du premier coup</div>
+    <div class="app-version" id="appVersion">v2.0 — 08 fév. 2026</div>
   </div>
 
   <div class="status">
@@ -267,42 +268,16 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
 
 
 
-<!-- CONSEILS JOUR J -->
-<section id="tipsSection" class="card">
-  <h2>Conseils pour le jour de l'examen</h2>
-  <div class="tips-grid">
-    <div class="tip-card">
-      <div class="tip-icon">1</div>
-      <h3>Documents obligatoires</h3>
-      <p>Carte d'identité ou passeport valide, convocation à l'examen, certificat médical si requis. Sans ces documents, vous ne pourrez pas passer l'examen.</p>
+<!-- LIEN CONSEILS -->
+<div class="card tips-link-card">
+  <a href="conseils.html" class="tips-link">
+    <span class="tips-link-icon">i</span>
+    <div>
+      <strong>Conseils pour le jour de l'examen</strong>
+      <span class="tips-link-sub">Documents, pièges classiques, informations pratiques</span>
     </div>
-    <div class="tip-card">
-      <div class="tip-icon">2</div>
-      <h3>Arrivez en avance</h3>
-      <p>Présentez-vous 15 à 20 minutes avant l'heure. Cela vous laisse le temps de vous installer et de vous concentrer sans stress.</p>
-    </div>
-    <div class="tip-card">
-      <div class="tip-icon">3</div>
-      <h3>Lisez bien chaque question</h3>
-      <p>Attention aux formulations "toujours", "jamais", "obligatoire". Ces mots changent le sens de la question. Lisez 2 fois avant de répondre.</p>
-    </div>
-    <div class="tip-card">
-      <div class="tip-icon">4</div>
-      <h3>Gérez votre temps</h3>
-      <p>30 questions en 30 minutes = 1 minute par question. Si vous hésitez, passez à la suivante et revenez plus tard.</p>
-    </div>
-    <div class="tip-card">
-      <div class="tip-icon">5</div>
-      <h3>Erreurs fréquentes</h3>
-      <p>Les pièges les plus courants : distances de freinage, priorités aux ronds-points, taux d'alcoolémie, poids et chargement. Révisez ces thèmes en priorité.</p>
-    </div>
-    <div class="tip-card">
-      <div class="tip-icon">6</div>
-      <h3>Seuil de réussite</h3>
-      <p>Il faut obtenir au minimum <strong>26/30</strong> pour réussir l'examen théorique à la SNCA (Colmar-Berg). Soyez régulier dans vos révisions.</p>
-    </div>
-  </div>
-</section>
+  </a>
+</div>
 
 <!-- EXAM -->
 <section id="exam" class="card hidden">
@@ -534,6 +509,57 @@ function getCategoryScores(pickedQuestions, details) {
     if (details[i].ok) cats[cat].correct++;
   });
   return cats;
+}
+
+/* ------------------------------
+   VERSION
+--------------------------------*/
+const APP_VERSION = "2.0";
+const APP_BUILD = "2026-02-08";
+const CACHE_VERSION = 15; // doit correspondre au SW
+
+/* ------------------------------
+   VÉRIFICATION DE MISE À JOUR
+--------------------------------*/
+function checkForUpdate() {
+  if (!('serviceWorker' in navigator)) return;
+  navigator.serviceWorker.ready.then(reg => {
+    reg.addEventListener('updatefound', () => {
+      const newWorker = reg.installing;
+      newWorker.addEventListener('statechange', () => {
+        if (newWorker.state === 'activated') {
+          showUpdateBanner();
+        }
+      });
+    });
+  });
+  // Vérifier toutes les 30 min
+  setInterval(() => {
+    if (navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({ type: 'CHECK_VERSION' });
+    }
+  }, 30 * 60 * 1000);
+}
+
+function showUpdateBanner() {
+  if (document.getElementById("updateBanner")) return;
+  let banner = document.createElement("div");
+  banner.id = "updateBanner";
+  banner.className = "update-banner";
+
+  let text = document.createElement("span");
+  text.textContent = "Une nouvelle version est disponible !";
+
+  let btn = document.createElement("button");
+  btn.className = "btn update-btn";
+  btn.textContent = "Mettre à jour";
+  btn.onclick = () => { window.location.reload(true); };
+
+  banner.appendChild(text);
+  banner.appendChild(btn);
+
+  let header = document.querySelector(".app-header");
+  header.parentNode.insertBefore(banner, header.nextSibling);
 }
 
 /* ------------------------------
@@ -1248,6 +1274,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Leaderboard
   loadLeaderboard();
   document.getElementById("submitScoreBtn").addEventListener("click", submitScore);
+
+  // Vérification de mise à jour
+  checkForUpdate();
 
   // Restaurer licence sauvegardée
   restoreLicense();

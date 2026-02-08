@@ -16,4 +16,10 @@
       <image:title>Quiz Permis Luxembourg — Logo</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://zaalouni.github.io/quiz-permis-lu/conseils.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

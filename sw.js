@@ -1,11 +1,13 @@
-const CACHE_NAME = 'quiz-permis-v14';
+const CACHE_NAME = 'quiz-permis-v15';
+const APP_VERSION = '2.0';
 const urlsToCache = [
   './',
   './index.html',
   './style.css',
   './quiz-free.js',
   './icon-192.png',
-  './manifest.json'
+  './manifest.json',
+  './conseils.html'
 ];
 
 // Installation — cache fichiers statiques
@@ -49,6 +51,13 @@ self.addEventListener('fetch', event => {
         }
       })
   );
+});
+
+// Message handler — version check
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'CHECK_VERSION') {
+    event.source.postMessage({ type: 'VERSION', version: APP_VERSION, cache: CACHE_NAME });
+  }
 });
 
 // Activation — nettoyer anciens caches
