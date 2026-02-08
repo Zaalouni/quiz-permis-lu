@@ -1,6 +1,6 @@
 // quiz-snca.js - Questions Examen Demo (examen théorique Luxembourg)
 // Source: examen-theorique-demo
-// Total: 109 questions FR uniques
+// Total: 107 questions FR uniques
 
 window.QUIZ_QUESTIONS = window.QUIZ_QUESTIONS || [];
 window.QUIZ_QUESTIONS.push(
@@ -45,7 +45,6 @@ window.QUIZ_QUESTIONS.push(
   {"id":881,"question":"Quel signal autorise l'accès aux riverains?","type":"single","topic":"Examen Demo","answers":[{"text":"Le signal A.","correct":false,"image":"images/q_881_a0.jpg"},{"text":"Le signal B.","correct":true,"image":"images/q_881_a0.jpg"},{"text":"Les deux signaux.","correct":false}],"image":"images/q_881_a0.jpg"},
   {"id":884,"question":"En tant que riverain, avez-vous le droit d'accéder à cette rue?","type":"single","topic":"Examen Demo","answers":[{"text":"Oui","correct":false},{"text":"Non","correct":true}],"image":"images/q_885_a0.jpg"},
   {"id":886,"question":"Ce signal indique:","type":"single","topic":"Examen Demo","answers":[{"text":"interdiction de tourner à gauche.","correct":true,"image":"images/q_886_a0.jpg"},{"text":"direction obligatoire à gauche.","correct":false},{"text":"virage dangereux à gauche.","correct":false}],"image":"images/q_886_a0.jpg"},
-  {"id":891,"question":"Lequel de ces signaux vous oblige à céder la priorité à la circulation venant de droite?","type":"single","topic":"Examen Demo","answers":[{"text":"Le signal A.","correct":true},{"text":"Le signal B.","correct":false}]},
   {"id":892,"question":"Est-ce que ce signal vous oblige à céder la priorité à la circulation venant de droite?","type":"single","topic":"Examen Demo","answers":[{"text":"Oui","correct":true},{"text":"Non","correct":false}],"image":"images/q_877_a0.jpg"},
   {"id":897,"question":"Est-ce que ce signal vous indique que vous devez céder la priorité à la circulation venant de droite et à la circulation venant de gauche?","type":"single","topic":"Examen Demo","answers":[{"text":"Oui","correct":false},{"text":"Non","correct":true}],"image":"images/q_877_a0.jpg"},
   {"id":903,"question":"Ce signal vous indique que vous circulez sur une route prioritaire:","type":"single","topic":"Examen Demo","answers":[{"text":"Non","correct":false},{"text":"Oui","correct":true}],"image":"images/q_924_a1.jpg"},
@@ -61,7 +60,6 @@ window.QUIZ_QUESTIONS.push(
   {"id":990,"question":"Le dépassement est:","type":"single","topic":"Examen Demo","answers":[{"text":"interdit sur une distance de 200 m.","correct":false,"image":"images/q_990_a0.jpg"},{"text":"interdit après une distance de 200 m.","correct":true},{"text":"autorisé après une distance de 200 m.","correct":false}],"image":"images/q_990_a0.jpg"},
   {"id":1000,"question":"Lequel de ces signaux signifie « Accès interdit aux cyclistes »?","type":"single","topic":"Examen Demo","answers":[{"text":"Signal A.","correct":true,"image":"images/q_1000_a0.jpg"},{"text":"Signal B.","correct":false,"image":"images/q_1000_a1.jpg"},{"text":"Signal C.","correct":false,"image":"images/q_1000_a2.jpg"}],"image":"images/q_1000_a0.jpg"},
   {"id":1003,"question":"Lequel de ces signaux signifie « Interdiction de tourner à droite »?","type":"single","topic":"Examen Demo","answers":[{"text":"Signal A.","correct":false,"image":"images/q_1003_a0.jpg"},{"text":"Signal B.","correct":true,"image":"images/q_1003_a1.jpg"},{"text":"Signal C.","correct":false,"image":"images/q_1003_a2.jpg"}],"image":"images/q_1003_a0.jpg"},
-  {"id":1004,"question":"Lequel de ces signaux signifie « Direction obligatoire à droite »?","type":"single","topic":"Examen Demo","answers":[{"text":"Signal A.","correct":false},{"text":"Signal B.","correct":false},{"text":"Signal C.","correct":true}]},
   {"id":1007,"question":"Lequel de ces signaux vous indique qu'il n'y a pas de circulation en sens opposé?","type":"single","topic":"Examen Demo","answers":[{"text":"Signal A.","correct":true,"image":"images/q_1007_a0.jpg"},{"text":"Signal B.","correct":false,"image":"images/q_1007_a1.jpg"}],"image":"images/q_1007_a0.jpg"},
   {"id":1012,"question":"Dans quel cas avez-vous le droit de franchir une ligne continue (de sécurité)?","type":"single","topic":"Examen Demo","answers":[{"text":"Pour dépasser un tracteur.","correct":false},{"text":"Pour contourner un véhicule immobilisé.","correct":true},{"text":"Pour faire demi-tour.","correct":false}]},
   {"id":1018,"question":"Cette ligne interdit l'arrêt:","type":"single","topic":"Examen Demo","answers":[{"text":"Oui","correct":false,"image":"images/q_1018_a0.jpg"},{"text":"Non","correct":true}],"image":"images/q_1018_a0.jpg"},
