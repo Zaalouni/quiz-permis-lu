@@ -176,6 +176,39 @@ input, select, textarea {
   padding:12px 0;border-bottom:1px solid var(--border);margin-bottom:14px;
 }
 
+/* === PARTAGE DE SCORE === */
+.share-section{
+  padding:14px 0;margin-bottom:14px;
+  border-bottom:1px solid var(--border);
+}
+.share-title{
+  font-size:.95rem;color:var(--muted);margin-bottom:10px;
+}
+.share-buttons{
+  display:flex;gap:8px;flex-wrap:wrap;
+}
+.share-btn{
+  padding:10px 18px;border-radius:8px;
+  border:none;cursor:pointer;
+  font-size:.9rem;font-weight:600;
+  color:#fff;min-height:44px;
+  transition:transform .1s,opacity .1s;
+}
+.share-btn:hover{opacity:.9;transform:translateY(-1px);}
+.share-btn.whatsapp{background:#25d366;}
+.share-btn.facebook{background:#1877f2;}
+.share-btn.copy{background:#64748b;}
+.share-copied{
+  margin-top:8px;padding:6px 12px;
+  background:#ecfdf5;border:1px solid #86efac;
+  border-radius:6px;color:#166534;
+  font-size:.85rem;display:inline-block;
+}
+@media(max-width:600px){
+  .share-buttons{flex-direction:column;}
+  .share-btn{width:100%;text-align:center;}
+}
+
 .breakdown{display:flex;flex-direction:column;gap:12px;margin-top:14px;}
 
 .q-piege{font-size:.9rem;font-style:italic;}

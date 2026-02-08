@@ -9,6 +9,7 @@
   <meta name="author" content="Quiz Permis LU">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
 
   <!-- Open Graph (Facebook, LinkedIn) -->
   <meta property="og:type" content="website">
@@ -278,6 +279,17 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <div class="scoreline">
     <span id="scoreText"></span>
     <button id="replayBtn" class="btn" aria-label="Recommencer le quiz">Rejouer</button>
+  </div>
+
+  <!-- Partage de score -->
+  <div id="shareSection" class="share-section">
+    <p class="share-title">Partagez votre score :</p>
+    <div class="share-buttons">
+      <button id="shareWhatsApp" class="share-btn whatsapp">WhatsApp</button>
+      <button id="shareFacebook" class="share-btn facebook">Facebook</button>
+      <button id="shareCopy" class="share-btn copy">Copier le lien</button>
+    </div>
+    <div id="shareCopied" class="share-copied hidden">Lien copié !</div>
   </div>
 
   <div id="flaggedSection"></div>
@@ -558,6 +570,36 @@ function computeScore(){
 
 
 
+/* ------------------------------
+   PARTAGE DE SCORE
+--------------------------------*/
+function getShareText(score, total) {
+  const pct = Math.round(100 * score / total);
+  const emoji = pct >= 80 ? "\uD83C\uDF1F" : pct >= 50 ? "\uD83D\uDCAA" : "\uD83D\uDCDA";
+  return emoji + " J'ai obtenu " + score + "/" + total + " (" + pct + "%) au Quiz Code de la Route Luxembourg ! Testez-vous gratuitement : https://zaalouni.github.io/quiz-permis-lu/";
+}
+
+function setupShareButtons(score, total) {
+  const text = getShareText(score, total);
+  const url = "https://zaalouni.github.io/quiz-permis-lu/";
+
+  document.getElementById("shareWhatsApp").onclick = () => {
+    window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+  };
+
+  document.getElementById("shareFacebook").onclick = () => {
+    window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) + "&quote=" + encodeURIComponent(text), "_blank");
+  };
+
+  document.getElementById("shareCopy").onclick = () => {
+    navigator.clipboard.writeText(text).then(() => {
+      let copied = document.getElementById("shareCopied");
+      copied.classList.remove("hidden");
+      setTimeout(() => copied.classList.add("hidden"), 2000);
+    });
+  };
+}
+
 function finalize(){
   finished = true;
 
@@ -685,6 +727,9 @@ function finalize(){
 
     breakdown.appendChild(div);
   });
+
+  // Activer les boutons de partage
+  setupShareButtons(score, picked.length);
 }
 
 
