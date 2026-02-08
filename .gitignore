@@ -1,0 +1,23 @@
+# Fichiers de licence (PRIVÉS — ne jamais publier)
+tools/license-codes.txt
+tools/cloudflare-worker.js
+
+# Quiz files complets (protégés par licence)
+quiz-cours1.js
+quiz-cours2.js
+quiz-cours3.js
+quiz-data.js
+quiz-cours5.js
+quiz-snca.js
+quiz-snca2.js
+Quiz snca2.js
+
+# Archives
+*.7z
+*.zip
+
+# Sous-dossier clone
+quiz-permis-lu/
+
+# Claude
+.claude/

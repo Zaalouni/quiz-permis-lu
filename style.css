@@ -42,6 +42,51 @@ input, select, textarea {
 
 .hidden{display:none;}
 
+/* === LICENCE === */
+.license-box{
+  margin:16px 0;
+  padding:16px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#f8fafc;
+}
+.license-status{
+  display:flex;align-items:center;gap:10px;
+  font-size:1rem;margin-bottom:12px;
+  padding:10px 14px;border-radius:8px;
+}
+.license-status.free{
+  background:#fff8e1;border:1px solid #fde68a;color:#92400e;
+}
+.license-status.premium{
+  background:#ecfdf5;border:1px solid #86efac;color:#166534;
+}
+.license-icon{font-size:1.3rem;}
+.license-form{
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+}
+.license-form input{
+  flex:1;min-width:200px;
+  padding:10px 14px;border-radius:8px;
+  border:1px solid var(--border);
+  font-family:monospace;letter-spacing:2px;
+  text-transform:uppercase;
+}
+.license-form input:focus{
+  outline:none;border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(30,58,138,0.1);
+}
+.license-error{
+  margin-top:8px;padding:8px 12px;
+  background:#fff1f2;border:1px solid #fecaca;
+  border-radius:6px;color:#dc2626;font-size:.9rem;
+}
+@media(max-width:600px){
+  .license-form{flex-direction:column;}
+  .license-form input{width:100%;}
+  .license-form .btn{width:100%;}
+}
+
 .btn{
   padding:10px 14px;
   border-radius:8px;

@@ -80,14 +80,8 @@
   })(window,document,'script','dataLayer','GTM-PBWRMC8N');</script>
   <!-- End Google Tag Manager -->
 
-  <!-- Charger le pool de questions AVANT le script principal -->
-  <script src="quiz-cours1.js"></script>
-  <script src="quiz-cours2.js"></script>
-  <script src="quiz-cours3.js"></script>
-  <script src="quiz-data.js"></script>
-  <script src="quiz-cours5.js"></script>
-<script src="quiz-snca.js"></script>
-<script src="quiz-snca2.js"></script>
+  <!-- Questions gratuites (50) — les questions premium sont servies par l'API -->
+  <script src="quiz-free.js"></script>
 
 <script>
 function validateQuizBank(expectedMin = 1) {
@@ -114,7 +108,7 @@ function validateQuizBank(expectedMin = 1) {
 </script>
 
 <script>
-if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
+if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
 </script>
 
 
@@ -204,6 +198,19 @@ if (!validateQuizBank(200)) throw new Error("Quiz bank invalid");
     (Société Nationale de Circulation Automobile) ou à tout organisme officiel luxembourgeois.
     Les questions sont fournies à titre éducatif uniquement.
   </div>
+  <!-- Licence -->
+  <div id="licenseSection" class="license-box">
+    <div id="licenseStatus" class="license-status free">
+      <span class="license-icon">🔒</span>
+      <span>Version gratuite — <strong>50 questions</strong></span>
+    </div>
+    <div id="licenseForm" class="license-form">
+      <input type="text" id="licenseInput" placeholder="Entrez votre code de licence" maxlength="20" autocomplete="off" />
+      <button id="licenseBtn" class="btn primary">Activer</button>
+    </div>
+    <div id="licenseError" class="license-error hidden"></div>
+  </div>
+
   <div class="meta"><span id="poolSizeInfo"></span></div>
 </section>
 
@@ -314,10 +321,14 @@ const EXAM_DURATION_SECONDS = 20*60;
 const MIN_QUESTIONS = 20;
 const MAX_QUESTIONS = 50;
 
+// URL du Cloudflare Worker — À METTRE À JOUR après déploiement
+const WORKER_URL = "https://quiz-permis-api.YOUR_SUBDOMAIN.workers.dev";
+
 /* ------------------------------
    ÉTAT GLOBAL
 --------------------------------*/
 let allPool = Array.isArray(window.QUIZ_QUESTIONS) ? window.QUIZ_QUESTIONS.slice() : [];
+let isPremium = false;
 let picked = [];
 let selections = [];
 let currentIndex = 0;
@@ -328,6 +339,82 @@ let examMode = false;
 const EXAM_QUESTIONS = 30;
 const EXAM_DURATION = 30*60;
 const EXAM_PASS_THRESHOLD = 26;
+
+/* ------------------------------
+   SYSTÈME DE LICENCE
+--------------------------------*/
+async function activateLicense(code) {
+  const errorDiv = document.getElementById("licenseError");
+  const statusDiv = document.getElementById("licenseStatus");
+  const formDiv = document.getElementById("licenseForm");
+  const btn = document.getElementById("licenseBtn");
+
+  errorDiv.classList.add("hidden");
+  btn.disabled = true;
+  btn.textContent = "Vérification...";
+
+  try {
+    const resp = await fetch(WORKER_URL + "/activate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code: code.trim().toUpperCase() })
+    });
+
+    const data = await resp.json();
+
+    if (data.valid && data.questions) {
+      // Licence valide — charger les questions premium
+      allPool = data.questions;
+      isPremium = true;
+      localStorage.setItem("quizLicense", code.trim().toUpperCase());
+
+      // Mettre à jour l'UI
+      statusDiv.className = "license-status premium";
+      statusDiv.innerHTML = "";
+      let icon = document.createElement("span");
+      icon.className = "license-icon";
+      icon.textContent = "\uD83D\uDD13";
+      let text = document.createElement("span");
+      text.innerHTML = "Version complète — <strong>" + data.total + " questions</strong>";
+      statusDiv.appendChild(icon);
+      statusDiv.appendChild(text);
+
+      formDiv.classList.add("hidden");
+
+      // Mettre à jour le compteur
+      document.getElementById("poolSizeInfo").textContent =
+        "Pool chargé : " + allPool.length + " questions (premium)";
+
+      // Re-assigner les IDs
+      allPool.forEach((q, i) => {
+        if (!q.id) q.id = (q.topic || "NA").replace(/\s+/g, "-") + "-" + (i + 1);
+      });
+
+    } else {
+      errorDiv.textContent = data.error || "Code invalide";
+      errorDiv.classList.remove("hidden");
+    }
+  } catch (e) {
+    errorDiv.textContent = "Erreur de connexion. Vérifiez votre internet.";
+    errorDiv.classList.remove("hidden");
+    console.error("License activation error:", e);
+  }
+
+  btn.disabled = false;
+  btn.textContent = "Activer";
+}
+
+// Restaurer licence au chargement
+async function restoreLicense() {
+  const savedCode = localStorage.getItem("quizLicense");
+  if (!savedCode) return;
+
+  try {
+    await activateLicense(savedCode);
+  } catch (e) {
+    console.warn("Impossible de restaurer la licence:", e);
+  }
+}
 
 /* ------------------------------
    UTILITAIRES
@@ -747,9 +834,26 @@ document.getElementById("replayBtn").onclick=()=>{
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("poolSizeInfo").textContent =
-    "Pool chargé : " + allPool.length + " questions";
+    "Pool chargé : " + allPool.length + " questions (gratuit)";
 
   document.getElementById("loginBtn").addEventListener("click", setUserName);
+
+  // Licence — bouton activer
+  document.getElementById("licenseBtn").addEventListener("click", () => {
+    const code = document.getElementById("licenseInput").value;
+    if (code.trim()) activateLicense(code);
+  });
+
+  // Licence — touche Entrée
+  document.getElementById("licenseInput").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const code = e.target.value;
+      if (code.trim()) activateLicense(code);
+    }
+  });
+
+  // Restaurer licence sauvegardée
+  restoreLicense();
 });
 </script>
 

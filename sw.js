@@ -1,15 +1,9 @@
-const CACHE_NAME = 'quiz-permis-v9';
+const CACHE_NAME = 'quiz-permis-v10';
 const urlsToCache = [
   './',
   './index.html',
   './style.css',
-  './quiz-data.js',
-  './quiz-cours1.js',
-  './quiz-cours2.js',
-  './quiz-cours3.js',
-  './quiz-cours5.js',
-  './quiz-snca.js',
-  './quiz-snca2.js',
+  './quiz-free.js',
   './icon-192.png',
   './manifest.json'
 ];
