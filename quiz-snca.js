@@ -1,6 +1,6 @@
 // quiz-snca.js - Questions Examen Demo (examen théorique Luxembourg)
 // Source: examen-theorique-demo
-// Total: 112 questions FR uniques
+// Total: 109 questions FR uniques
 
 window.QUIZ_QUESTIONS = window.QUIZ_QUESTIONS || [];
 window.QUIZ_QUESTIONS.push(
@@ -15,9 +15,6 @@ window.QUIZ_QUESTIONS.push(
   {"id":59,"question":"Dans les virages, vous évitez de passer sur des couvercles de canalisation:","type":"single","topic":"Examen Demo","answers":[{"text":"Oui","correct":true},{"text":"Non","correct":false}]},
   {"id":69,"question":"Les vêtements de protection:","type":"single","topic":"Examen Demo","answers":[{"text":"Permettent une sensible augmentation de la vitesse.","correct":false},{"text":"Doivent être de couleur noire.","correct":false},{"text":"Peuvent amoindrir les blessures en cas de chute.","correct":true}]},
   {"id":73,"question":"Ce signal signifie:","type":"single","topic":"Examen Demo","answers":[{"text":"Commencement d'une montée à forte inclinaison.","correct":false},{"text":"La distance de freinage pourrait devenir plus longue.","correct":true},{"text":"Je ne dois utiliser que le frein arrière.","correct":false}],"image":"images/q_1252.jpg"},
-  {"id":76,"question":"En cas de bouchon, le motocycliste a le droit de circuler sur la bande d'arrêt d'urgence de cette route:","type":"single","topic":"Examen Demo","answers":[{"text":"Oui","correct":false},{"text":"Non","correct":true}]},
-  {"id":77,"question":"Vous conduisez un motocycle. Avez-vous le droit de dépasser un tracteur à cet endroit?","type":"single","topic":"Examen Demo","answers":[{"text":"Oui","correct":false},{"text":"Non","correct":true}]},
-  {"id":80,"question":"Avez-vous le droit d'utiliser ce parking avec votre motocycle?","type":"single","topic":"Examen Demo","answers":[{"text":"Oui","correct":true},{"text":"Non","correct":false}]},
   {"id":96,"question":"La vitesse maximale pour cyclomoteurs est limitée à 45 km/h:","type":"single","topic":"Examen Demo","answers":[{"text":"Oui","correct":true},{"text":"Non","correct":false}]},
   {"id":133,"question":"Le chargement:","type":"single","topic":"Examen Demo","answers":[{"text":"Peut toujours dépasser l'avant du véhicule de plus de 1 m.","correct":false},{"text":"Peut traîner sur la voie publique.","correct":false},{"text":"Ne doit pas entraver le champ de visibilité du conducteur.","correct":true}]},
   {"id":150,"question":"Est-ce que vous avez le droit de faire tourner le moteur sans nécessité technique?","type":"single","topic":"Examen Demo","answers":[{"text":"Oui","correct":false},{"text":"Non","correct":true}]},

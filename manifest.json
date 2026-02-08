@@ -1,7 +1,7 @@
 {
   "name": "Quiz Code de la Route Luxembourg",
   "short_name": "Quiz Permis LU",
-  "description": "Préparation gratuite à l'examen théorique du code de la route au Luxembourg. +760 questions QCM.",
+  "description": "Préparation gratuite à l'examen théorique du code de la route au Luxembourg. +750 questions QCM.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
