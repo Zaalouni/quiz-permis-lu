@@ -11,6 +11,7 @@ https://zaalouni.github.io/quiz-permis-lu/
 - **Marquer pour révision** — Flaguer les questions difficiles
 - **Fonctionne hors-ligne** — Progressive Web App (PWA) installable
 - **Responsive** — Optimisé mobile, tablette et desktop
+- https://zaalouni.github.io/quiz-permis-lu/
 
 ## Catégories couvertes
 
