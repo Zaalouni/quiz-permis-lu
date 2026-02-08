@@ -1,5 +1,5 @@
-const CACHE_NAME = 'quiz-permis-v18';
-const APP_VERSION = '2.2';
+const CACHE_NAME = 'quiz-permis-v19';
+const APP_VERSION = '2.3';
 const urlsToCache = [
   './',
   './index.html',

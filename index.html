@@ -122,7 +122,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <div class="brand">
     <h1>Quiz Code de la Route — Luxembourg</h1>
     <div class="subtitle">+750 questions QCM — Réussissez votre permis du premier coup</div>
-    <div class="app-version" id="appVersion">v2.2 — 08 fév. 2026</div>
+    <div class="app-version" id="appVersion">v2.3 — 08 fév. 2026</div>
   </div>
 
   <div class="status">
@@ -539,9 +539,9 @@ function getCategoryScores(pickedQuestions, details) {
 /* ------------------------------
    VERSION
 --------------------------------*/
-const APP_VERSION = "2.2";
+const APP_VERSION = "2.3";
 const APP_BUILD = "2026-02-08";
-const CACHE_VERSION = 18; // doit correspondre au SW
+const CACHE_VERSION = 19; // doit correspondre au SW
 
 /* ------------------------------
    VÉRIFICATION DE MISE À JOUR
@@ -835,7 +835,7 @@ async function loadLeaderboard() {
   try {
     const resp = await fetch(WORKER_URL + "/leaderboard");
     const data = await resp.json();
-    const board = data.leaderboard || [];
+    const board = (data.leaderboard || []).slice(0, 5);
 
     list.textContent = "";
     if (board.length === 0) {

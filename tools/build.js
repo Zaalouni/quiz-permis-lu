@@ -175,7 +175,7 @@ async function sha256(text) {
 }
 
 // --- Leaderboard helpers ---
-const MAX_LEADERBOARD = 20;
+const MAX_LEADERBOARD = 5;
 
 async function getLeaderboard(env) {
   try {
