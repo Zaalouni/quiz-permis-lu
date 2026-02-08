@@ -146,6 +146,38 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
 
 
 
+<!-- STATISTIQUES -->
+<section id="statsSection" class="card hidden">
+  <h2>Vos statistiques</h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="statQuizCount">0</div>
+      <div class="stat-label">Quiz effectués</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statAvgScore">—</div>
+      <div class="stat-label">Score moyen</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statBestScore">—</div>
+      <div class="stat-label">Meilleur score</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="statTotalQuestions">0</div>
+      <div class="stat-label">Questions répondues</div>
+    </div>
+  </div>
+  <div id="statsWeakCategories" class="stats-weak hidden">
+    <h3>Catégories à réviser</h3>
+    <div id="weakList"></div>
+  </div>
+  <div id="statsHistory" class="stats-history">
+    <h3>Derniers résultats</h3>
+    <div id="historyList"></div>
+  </div>
+  <button id="clearStatsBtn" class="btn" style="margin-top:12px;font-size:.85rem;">Réinitialiser les statistiques</button>
+</section>
+
 <!-- INTRO -->
 <section id="intro" class="card">
   <h2>Démarrer l'épreuve</h2>
@@ -226,6 +258,43 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
 
 
 
+
+<!-- CONSEILS JOUR J -->
+<section id="tipsSection" class="card">
+  <h2>Conseils pour le jour de l'examen</h2>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">1</div>
+      <h3>Documents obligatoires</h3>
+      <p>Carte d'identité ou passeport valide, convocation à l'examen, certificat médical si requis. Sans ces documents, vous ne pourrez pas passer l'examen.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">2</div>
+      <h3>Arrivez en avance</h3>
+      <p>Présentez-vous 15 à 20 minutes avant l'heure. Cela vous laisse le temps de vous installer et de vous concentrer sans stress.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">3</div>
+      <h3>Lisez bien chaque question</h3>
+      <p>Attention aux formulations "toujours", "jamais", "obligatoire". Ces mots changent le sens de la question. Lisez 2 fois avant de répondre.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">4</div>
+      <h3>Gérez votre temps</h3>
+      <p>30 questions en 30 minutes = 1 minute par question. Si vous hésitez, passez à la suivante et revenez plus tard.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">5</div>
+      <h3>Erreurs fréquentes</h3>
+      <p>Les pièges les plus courants : distances de freinage, priorités aux ronds-points, taux d'alcoolémie, poids et chargement. Révisez ces thèmes en priorité.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">6</div>
+      <h3>Seuil de réussite</h3>
+      <p>Il faut obtenir au minimum <strong>26/30</strong> pour réussir l'examen théorique à la SNCA (Colmar-Berg). Soyez régulier dans vos révisions.</p>
+    </div>
+  </div>
+</section>
 
 <!-- EXAM -->
 <section id="exam" class="card hidden">
@@ -329,6 +398,124 @@ if(localStorage.getItem("quizUserName")){
     const ls=document.getElementById("loginSection");
     if(ls) ls.classList.add("hidden");
   });
+}
+
+/* ------------------------------
+   HISTORIQUE & STATISTIQUES
+--------------------------------*/
+function getHistory() {
+  try { return JSON.parse(localStorage.getItem("quizHistory") || "[]"); }
+  catch(e) { return []; }
+}
+
+function saveQuizResult(score, total, categories) {
+  let history = getHistory();
+  history.push({
+    date: new Date().toISOString(),
+    score: score,
+    total: total,
+    pct: Math.round(100 * score / total),
+    categories: categories,
+    exam: examMode
+  });
+  // Garder les 50 derniers
+  if (history.length > 50) history = history.slice(-50);
+  localStorage.setItem("quizHistory", JSON.stringify(history));
+}
+
+function renderStats() {
+  let history = getHistory();
+  let section = document.getElementById("statsSection");
+
+  if (history.length === 0) {
+    section.classList.add("hidden");
+    return;
+  }
+  section.classList.remove("hidden");
+
+  // Compteurs
+  document.getElementById("statQuizCount").textContent = history.length;
+  let totalQ = history.reduce((s, h) => s + h.total, 0);
+  document.getElementById("statTotalQuestions").textContent = totalQ;
+
+  let avgPct = Math.round(history.reduce((s, h) => s + h.pct, 0) / history.length);
+  document.getElementById("statAvgScore").textContent = avgPct + "%";
+
+  let bestPct = Math.max(...history.map(h => h.pct));
+  document.getElementById("statBestScore").textContent = bestPct + "%";
+
+  // Catégories faibles
+  let catScores = {};
+  history.forEach(h => {
+    if (h.categories) {
+      Object.keys(h.categories).forEach(cat => {
+        if (!catScores[cat]) catScores[cat] = { correct: 0, total: 0 };
+        catScores[cat].correct += h.categories[cat].correct;
+        catScores[cat].total += h.categories[cat].total;
+      });
+    }
+  });
+
+  let weakDiv = document.getElementById("statsWeakCategories");
+  let weakList = document.getElementById("weakList");
+  weakList.textContent = "";
+  let weakCats = Object.keys(catScores)
+    .map(cat => ({ cat, pct: Math.round(100 * catScores[cat].correct / catScores[cat].total) }))
+    .filter(c => c.pct < 70)
+    .sort((a, b) => a.pct - b.pct);
+
+  if (weakCats.length > 0) {
+    weakDiv.classList.remove("hidden");
+    weakCats.forEach(c => {
+      let div = document.createElement("div");
+      div.className = "weak-cat";
+      let name = document.createElement("span");
+      name.className = "weak-cat-name";
+      name.textContent = c.cat;
+      let bar = document.createElement("div");
+      bar.className = "weak-cat-bar";
+      let fill = document.createElement("div");
+      fill.className = "weak-cat-fill";
+      fill.style.width = c.pct + "%";
+      fill.style.background = c.pct < 40 ? "var(--ko)" : "var(--miss)";
+      bar.appendChild(fill);
+      let pctSpan = document.createElement("span");
+      pctSpan.className = "weak-cat-pct";
+      pctSpan.textContent = c.pct + "%";
+      div.appendChild(name);
+      div.appendChild(bar);
+      div.appendChild(pctSpan);
+      weakList.appendChild(div);
+    });
+  } else {
+    weakDiv.classList.add("hidden");
+  }
+
+  // Historique des 10 derniers
+  let histList = document.getElementById("historyList");
+  histList.textContent = "";
+  let recent = history.slice(-10).reverse();
+  recent.forEach(h => {
+    let div = document.createElement("div");
+    div.className = "history-item";
+    let date = new Date(h.date);
+    let dateStr = date.toLocaleDateString("fr-LU", { day: "2-digit", month: "short" });
+    let badge = h.exam ? " [Examen]" : "";
+    let icon = h.pct >= 80 ? "\u2705" : h.pct >= 50 ? "\uD83D\uDFE1" : "\uD83D\uDD34";
+    div.textContent = icon + " " + dateStr + badge + " — " + h.score + "/" + h.total + " (" + h.pct + "%)";
+    histList.appendChild(div);
+  });
+}
+
+function getCategoryScores(pickedQuestions, details) {
+  let cats = {};
+  pickedQuestions.forEach((q, i) => {
+    let cat = q.topic || "Autre";
+    if (!cats[cat]) cats[cat] = { correct: 0, total: 0 };
+    cats[cat].total++;
+    if (details[i].ok) cats[cat].correct++;
+  });
+  return cats;
 }
 
 /* ------------------------------
@@ -731,6 +918,10 @@ function finalize(){
 
   // Activer les boutons de partage
   setupShareButtons(score, picked.length);
+
+  // Sauvegarder dans l'historique
+  let catScores = getCategoryScores(picked, details);
+  saveQuizResult(score, picked.length, catScores);
 }
 
 
@@ -877,6 +1068,7 @@ document.getElementById("replayBtn").onclick=()=>{
   document.getElementById("exam").classList.add("hidden");
   document.getElementById("timer").classList.remove("urgent");
   document.getElementById("examBadge").classList.add("hidden");
+  renderStats();
 };
 
 
@@ -894,6 +1086,17 @@ document.addEventListener("DOMContentLoaded", () => {
     "Pool chargé : " + allPool.length + " questions (gratuit)";
 
   document.getElementById("loginBtn").addEventListener("click", setUserName);
+
+  // Afficher les statistiques
+  renderStats();
+
+  // Réinitialiser les stats
+  document.getElementById("clearStatsBtn").addEventListener("click", () => {
+    if (confirm("Supprimer tout l'historique ?")) {
+      localStorage.removeItem("quizHistory");
+      renderStats();
+    }
+  });
 
   // Licence — bouton activer
   document.getElementById("licenseBtn").addEventListener("click", () => {
