@@ -91,13 +91,14 @@ input, select, textarea {
 }
 .license-email-btn{
   display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,#3b82f6,#1e40af);
+  background:linear-gradient(135deg,#10b981,#059669);
   color:#fff;text-decoration:none;
-  padding:10px 20px;border-radius:8px;
-  font-size:.95rem;font-weight:600;
-  border:none;min-height:44px;
+  padding:12px 24px;border-radius:8px;
+  font-size:1rem;font-weight:700;
+  border:none;min-height:48px;
+  box-shadow:0 4px 12px rgba(16,185,129,0.3);
 }
-.license-email-btn:hover{opacity:.9;transform:translateY(-1px);}
+.license-email-btn:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 6px 16px rgba(16,185,129,0.4);}
 @media(max-width:600px){
   .license-form{flex-direction:column;}
   .license-form input{width:100%;}
