@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>Quiz Code de la Route Luxembourg — Préparation Examen Théorique 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Quiz gratuit pour préparer l'examen théorique du code de la route au Luxembourg. +750 questions, cours 1 à 5, correction détaillée, fonctionne hors-ligne.">
+  <meta name="description" content="Quiz gratuit pour préparer l'examen théorique du code de la route au Luxembourg. +1200 questions, cours 1 à 5, correction détaillée, fonctionne hors-ligne.">
   <meta name="keywords" content="code de la route, Luxembourg, quiz, examen théorique, permis de conduire, permis B, Colmar-Berg, auto-école, révision, QCM">
   <meta name="author" content="Quiz Permis LU">
   <meta name="robots" content="index, follow">
@@ -15,7 +15,7 @@
   <!-- Open Graph (Facebook, LinkedIn) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Quiz Code de la Route — Luxembourg">
-  <meta property="og:description" content="Préparez votre examen théorique du permis luxembourgeois. +750 questions QCM avec correction détaillée.">
+  <meta property="og:description" content="Préparez votre examen théorique du permis luxembourgeois. +1200 questions QCM avec correction détaillée.">
   <meta property="og:url" content="https://zaalouni.github.io/quiz-permis-lu/">
   <meta property="og:image" content="https://zaalouni.github.io/quiz-permis-lu/icon-512.png">
   <meta property="og:locale" content="fr_LU">
@@ -24,7 +24,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Quiz Code de la Route — Luxembourg">
-  <meta name="twitter:description" content="Préparez votre examen théorique du permis luxembourgeois. +750 questions QCM.">
+  <meta name="twitter:description" content="Préparez votre examen théorique du permis luxembourgeois. +1200 questions QCM.">
   <meta name="twitter:image" content="https://zaalouni.github.io/quiz-permis-lu/icon-512.png">
 
   <!-- Favicons -->
@@ -52,7 +52,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Quiz Code de la Route Luxembourg",
-    "description": "Application gratuite de préparation à l'examen théorique du code de la route au Luxembourg. Plus de 750 questions QCM avec correction détaillée.",
+    "description": "Application gratuite de préparation à l'examen théorique du code de la route au Luxembourg. Plus de 1200 questions QCM avec correction détaillée.",
     "url": "https://zaalouni.github.io/quiz-permis-lu/",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Web",
@@ -135,7 +135,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
 <header class="app-header">
   <div class="brand">
     <h1>Quiz Code de la Route — Luxembourg</h1>
-    <div class="subtitle">+750 questions QCM — Réussissez votre permis du premier coup</div>
+    <div class="subtitle">+1200 questions QCM — Réussissez votre permis du premier coup</div>
     <div class="app-version" id="appVersion">v2.4 — 08 fév. 2026</div>
   </div>
 
@@ -162,57 +162,44 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
 
 
 
-<!-- STATISTIQUES -->
+<!-- STATS + LEADERBOARD combinés -->
 <section id="statsSection" class="card hidden">
-  <h2>Vos statistiques</h2>
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-value" id="statQuizCount">0</div>
-      <div class="stat-label">Quiz effectués</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-value" id="statAvgScore">—</div>
-      <div class="stat-label">Score moyen</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-value" id="statBestScore">—</div>
-      <div class="stat-label">Meilleur score</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-value" id="statTotalQuestions">0</div>
-      <div class="stat-label">Questions répondues</div>
-    </div>
+  <div class="dashboard-tabs">
+    <button class="dash-tab active" data-tab="tabStats">Mes stats</button>
+    <button class="dash-tab" data-tab="tabLeaderboard">Top 5</button>
   </div>
-  <div id="statsWeakCategories" class="stats-weak hidden">
-    <h3>Catégories à réviser</h3>
-    <div id="weakList"></div>
+  <div id="tabStats" class="dash-panel active">
+    <div class="stats-row">
+      <span class="stat-mini"><strong id="statQuizCount">0</strong> quiz</span>
+      <span class="stat-mini"><strong id="statAvgScore">—</strong> moy.</span>
+      <span class="stat-mini"><strong id="statBestScore">—</strong> best</span>
+      <span class="stat-mini"><strong id="statTotalQuestions">0</strong> Q</span>
+    </div>
+    <div id="statsWeakCategories" class="stats-weak hidden">
+      <h3>À réviser</h3>
+      <div id="weakList"></div>
+    </div>
+    <div id="statsHistory" class="stats-history">
+      <h3>Derniers résultats</h3>
+      <div id="historyList"></div>
+    </div>
+    <button id="clearStatsBtn" class="btn btn-sm" style="margin-top:8px;">Réinitialiser</button>
   </div>
-  <div id="statsHistory" class="stats-history">
-    <h3>Derniers résultats</h3>
-    <div id="historyList"></div>
-  </div>
-  <button id="clearStatsBtn" class="btn" style="margin-top:12px;font-size:.85rem;">Réinitialiser les statistiques</button>
-</section>
-
-<!-- LEADERBOARD -->
-<section id="leaderboardSection" class="card">
-  <h2>Classement des meilleurs scores</h2>
-  <div id="leaderboardList" class="leaderboard-list">
-    <p class="leaderboard-loading">Chargement...</p>
+  <div id="tabLeaderboard" class="dash-panel">
+    <div id="leaderboardList" class="leaderboard-list">
+      <p class="leaderboard-loading">Chargement...</p>
+    </div>
   </div>
 </section>
+<section id="leaderboardSection" class="hidden"></section>
 
 <!-- INTRO -->
 <section id="intro" class="card">
-  <h2>Démarrer l'épreuve</h2>
-  <p>
-    Pool complet — Cours 1 à 5 (Chargement, Signalisation, Distances, Transport, Documents).
-    <br/>Vous disposez de <strong>20 minutes</strong>. Correction complète à la fin.
-  </p>
+  <h2>Démarrer</h2>
+  <p>Cours 1 à 5 — <strong>20 min</strong>, correction complète à la fin.</p>
 
-  <!-- Filtre par catégorie -->
   <div class="category-filter">
-    <label for="categoryFilter"><strong>Mode révision (optionnel) :</strong></label>
+    <label for="categoryFilter"><strong>Catégorie :</strong></label>
     <select id="categoryFilter">
       <option value="">Aléatoire — Tous cours mélangés</option>
       <optgroup label="Cours 1 — Chargement">
@@ -242,25 +229,18 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
     </select>
   </div>
 
-  <ul class="bullets">
-    <li>Navigation : <strong>Précédent</strong> / <strong>Suivant</strong> — <strong>Terminer</strong> pour corriger.</li>
-    <li>Questions : QCM (1 ou plusieurs réponses).</li>
-  </ul>
-
   <div class="start-buttons">
     <button id="startBtn" class="btn primary" aria-label="Démarrer le quiz">Démarrer le quiz</button>
     <button id="examBtn" class="btn exam-btn" aria-label="Lancer un examen blanc">Examen Blanc — 30 questions / 30 min</button>
   </div>
   <div class="exam-disclaimer">
-    Ce quiz est un outil d'entraînement indépendant. Il n'est ni affilié, ni approuvé, ni associé à la SNCA
-    (Société Nationale de Circulation Automobile) ou à tout organisme officiel luxembourgeois.
-    Les questions sont fournies à titre éducatif uniquement.
+    Quiz d'entraînement indépendant, non affilié à la SNCA ou à tout organisme officiel. Questions à titre éducatif uniquement.
   </div>
   <!-- Licence -->
   <div id="licenseSection" class="license-box">
     <div id="licenseStatus" class="license-status free">
       <span class="license-icon">🔒</span>
-      <span>Version gratuite — <strong>30 questions</strong></span>
+      <span>Version gratuite — <strong>50 questions</strong></span>
     </div>
     <div id="licenseForm" class="license-form">
       <label for="licenseInput" class="sr-only">Code de licence</label>
@@ -401,7 +381,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <div style="padding:40px;text-align:center;font-family:Arial,sans-serif;">
     <h2>Quiz Code de la Route — Luxembourg</h2>
     <p>Cette application nécessite JavaScript pour fonctionner.</p>
-    <p>Activez JavaScript dans les paramètres de votre navigateur pour accéder aux +750 questions de préparation à l'examen théorique du permis de conduire luxembourgeois.</p>
+    <p>Activez JavaScript dans les paramètres de votre navigateur pour accéder aux +1200 questions de préparation à l'examen théorique du permis de conduire luxembourgeois.</p>
   </div>
 </noscript>
 
@@ -555,9 +535,9 @@ function getCategoryScores(pickedQuestions, details) {
 /* ------------------------------
    VERSION
 --------------------------------*/
-const APP_VERSION = "2.4";
-const APP_BUILD = "2026-02-08";
-const CACHE_VERSION = 20; // doit correspondre au SW
+const APP_VERSION = "3.0";
+const APP_BUILD = "2026-02-09";
+const CACHE_VERSION = 25; // doit correspondre au SW
 
 /* ------------------------------
    VÉRIFICATION DE MISE À JOUR
@@ -1316,6 +1296,16 @@ document.addEventListener("DOMContentLoaded", () => {
   loadLeaderboard();
   document.getElementById("submitScoreBtn").addEventListener("click", submitScore);
 
+  // Dashboard tabs
+  document.querySelectorAll(".dash-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".dash-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".dash-panel").forEach(p => p.classList.remove("active"));
+      tab.classList.add("active");
+      document.getElementById(tab.dataset.tab).classList.add("active");
+    });
+  });
+
   // Vérification de mise à jour
   checkForUpdate();
 
@@ -1338,16 +1328,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <script>
-// Enregistrer le Service Worker
+// Enregistrer le Service Worker + forcer mise à jour
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js')
+    navigator.serviceWorker.register('sw.js?v=25', { updateViaCache: 'none' })
       .then(registration => {
-        console.log('Service Worker enregistré avec succès:', registration);
+        registration.update();
+        registration.addEventListener('updatefound', () => {
+          const nw = registration.installing;
+          nw.addEventListener('statechange', () => {
+            if (nw.state === 'activated') location.reload();
+          });
+        });
       })
-      .catch(error => {
-        console.log('Échec enregistrement Service Worker:', error);
-      });
+      .catch(() => {});
   });
 }
 

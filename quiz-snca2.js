@@ -1,6 +1,6 @@
 // quiz-snca2.js - Questions Examen Demo (complément)
 // Source: examen-theorique-demo
-// Total: 438 questions FR (dédupliquées vs quiz-snca.js)
+// Total: 444 questions FR (dédupliquées vs quiz-snca.js)
 
 window.QUIZ_QUESTIONS = window.QUIZ_QUESTIONS || [];
 window.QUIZ_QUESTIONS.push(
@@ -4866,6 +4866,72 @@ window.QUIZ_QUESTIONS.push(
       { text: 'vous devez allumer les feux de détresse.', correct: false },
       { text: 'vous devez allumer le clignotant droit.', correct: false },
       { text: 'vous devez utiliser la voie lente (si existante).', correct: true },
+    ]
+  },
+  {
+    id: 3,
+    question: 'Est-ce qu\'il faut se servir du frein avant et arrière du cyclomoteur en même temps?',
+    type: 'single',
+    topic: 'Examen Demo',
+    answers: [
+      { text: 'Oui', correct: true },
+      { text: 'Non', correct: false },
+    ]
+  },
+  {
+    id: 22,
+    question: 'Le dépassement est autorisé:',
+    type: 'single',
+    topic: 'Examen Demo',
+    answers: [
+      { text: 'A l\'approche du sommet d\'une côte.', correct: false },
+      { text: 'Dans un tunnel d\'autoroute.', correct: true },
+      { text: 'Sur un passage à niveau.', correct: false },
+    ]
+  },
+  {
+    id: 85,
+    question: 'Ce signal interdit l\'accès aux:',
+    type: 'single',
+    topic: 'Examen Demo',
+    image: 'images/q_85_a0.jpg',
+    answers: [
+      { text: 'Motocycles sans side-car.', correct: false },
+      { text: 'Motocycles avec side-car.', correct: false },
+      { text: 'Cyclomoteurs.', correct: true },
+    ]
+  },
+  {
+    id: 724,
+    question: 'Avez-vous le droit d\'accéder à cette rue si vous conduisez une camionnette?',
+    type: 'single',
+    topic: 'Examen Demo',
+    image: 'images/q_724_a0.jpg',
+    answers: [
+      { text: 'Oui', correct: false },
+      { text: 'Non', correct: true },
+    ]
+  },
+  {
+    id: 735,
+    question: 'Avez-vous le droit d\'accéder à cette rue si la masse en charge de votre voiture dépasse 2 t?',
+    type: 'single',
+    topic: 'Examen Demo',
+    image: 'images/q_735_a0.jpg',
+    answers: [
+      { text: 'Oui', correct: false },
+      { text: 'Non', correct: true },
+    ]
+  },
+  {
+    id: 738,
+    question: 'Lequel de ces signaux vous interdit l\'accès?',
+    type: 'single',
+    topic: 'Examen Demo',
+    image: 'images/q_738_a0.jpg',
+    answers: [
+      { text: 'Le signal A.', correct: true },
+      { text: 'Le signal B.', correct: false },
     ]
   }
 ); // ===== FIN quiz-snca2.js =====

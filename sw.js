@@ -1,5 +1,5 @@
-const CACHE_NAME = 'quiz-permis-v20';
-const APP_VERSION = '2.4';
+const CACHE_NAME = 'quiz-permis-v25';
+const APP_VERSION = '3.0';
 const urlsToCache = [
   './',
   './index.html',
@@ -25,38 +25,49 @@ self.addEventListener('install', event => {
   self.skipWaiting();
 });
 
-// Fetch — cache-first + mise en cache dynamique des images
+// Fetch — network-first pour HTML/JS/CSS, cache-first pour images
 self.addEventListener('fetch', event => {
-  // Ignorer GTM/Analytics (évite erreurs offline)
   if (event.request.url.includes('googletagmanager') ||
       event.request.url.includes('google-analytics') ||
       event.request.url.includes('gtag')) {
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
+  const url = event.request.url;
+  const isPage = event.request.mode === 'navigate' ||
+                 url.endsWith('.html') || url.endsWith('.js') || url.endsWith('.css');
+
+  if (isPage) {
+    // Network-first : essayer le réseau, fallback cache
+    event.respondWith(
+      fetch(event.request).then(resp => {
+        const clone = resp.clone();
+        caches.open(CACHE_NAME).then(c => c.put(event.request, clone));
+        return resp;
+      }).catch(() => caches.match(event.request))
+    );
+  } else {
+    // Cache-first pour images et assets
+    event.respondWith(
+      caches.match(event.request).then(response => {
         if (response) return response;
-        return fetch(event.request).then(fetchResponse => {
-          // Cacher dynamiquement les images au premier chargement
-          if (event.request.url.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
-            const clone = fetchResponse.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+        return fetch(event.request).then(resp => {
+          if (url.match(/\.(jpg|jpeg|png|gif|webp|ico)$/i)) {
+            const clone = resp.clone();
+            caches.open(CACHE_NAME).then(c => c.put(event.request, clone));
           }
-          return fetchResponse;
+          return resp;
         });
-      })
-      .catch(() => {
-        // Fallback offline pour images non cachées
-        if (event.request.url.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+      }).catch(() => {
+        if (url.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
           return new Response(
             '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100"><text x="50%" y="50%" text-anchor="middle" fill="#999" font-size="14">Image hors-ligne</text></svg>',
             { headers: { 'Content-Type': 'image/svg+xml' } }
           );
         }
       })
-  );
+    );
+  }
 });
 
 // Message handler — version check
