@@ -264,17 +264,7 @@
         body { padding-top: 70px; }
         
         .jump-to {
-            position: fixed;
-            right: 20px;
-            top: 90px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            max-height: 80vh;
-            overflow-y: auto;
-            width: 220px;
-            border: 2px solid #4CAF50;
+            display: none;
         }
         
         .jump-to strong {
@@ -15827,28 +15817,6 @@
             });
         });
         
-        // Mettre en évidence la navigation
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('.question-container');
-            const navLinks = document.querySelectorAll('.jump-to a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                    link.style.background = '#4CAF50';
-                    link.style.color = 'white';
-                }
-            });
-        });
     </script>
 
 <footer style="background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;padding:20px 18px;margin-top:40px;">
