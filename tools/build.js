@@ -20,11 +20,13 @@ const QUIZ_FILES = [
   'quiz-cours3.js',
   'quiz-data.js',
   'quiz-cours5.js',
+  'quiz-cours6.js',
+  'quiz-cours7.js',
   'quiz-snca.js',
   'quiz-snca2.js',
 ];
 
-const FREE_COUNT = 30; // questions in free tier
+const FREE_COUNT = 50; // questions in free tier
 
 // --- 1. Load all questions ---
 const window = { QUIZ_QUESTIONS: [] };
