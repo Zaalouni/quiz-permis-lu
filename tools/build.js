@@ -121,6 +121,11 @@ function hashCode(code) {
 
 const NUM_CODES = 10;
 const codes = [];
+
+// Master code — always valid
+const MASTER_CODE = '3010-3010-3010';
+codes.push({ code: MASTER_CODE, hash: hashCode(MASTER_CODE), master: true });
+
 for (let i = 0; i < NUM_CODES; i++) {
   const code = generateCode();
   codes.push({ code, hash: hashCode(code) });
@@ -130,7 +135,8 @@ for (let i = 0; i < NUM_CODES; i++) {
 const codesFile = path.join(ROOT, 'tools', 'license-codes.txt');
 let codesContent = `# License Codes — Generated ${new Date().toISOString()}\n`;
 codesContent += `# NEVER commit this file! Keep it private.\n\n`;
-codes.forEach((c, i) => {
+codesContent += `Master: ${MASTER_CODE} (permanent)\n\n`;
+codes.filter(c => !c.master).forEach((c, i) => {
   codesContent += `Code ${i + 1}: ${c.code}\n`;
 });
 fs.writeFileSync(codesFile, codesContent, 'utf8');
