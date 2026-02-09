@@ -544,22 +544,29 @@ const CACHE_VERSION = 25; // doit correspondre au SW
 --------------------------------*/
 function checkForUpdate() {
   if (!('serviceWorker' in navigator)) return;
+  // Force clean si ancienne version détectée
+  var lastV = localStorage.getItem('appVersion');
+  if (lastV && lastV !== APP_VERSION) {
+    caches.keys().then(function(names) {
+      names.forEach(function(n) { caches.delete(n); });
+    });
+    localStorage.setItem('appVersion', APP_VERSION);
+    navigator.serviceWorker.getRegistration().then(function(reg) {
+      if (reg) reg.unregister().then(function() { location.reload(); });
+      else location.reload();
+    });
+    return;
+  }
+  localStorage.setItem('appVersion', APP_VERSION);
   navigator.serviceWorker.ready.then(reg => {
+    reg.update();
     reg.addEventListener('updatefound', () => {
-      const newWorker = reg.installing;
-      newWorker.addEventListener('statechange', () => {
-        if (newWorker.state === 'activated') {
-          showUpdateBanner();
-        }
+      const nw = reg.installing;
+      nw.addEventListener('statechange', () => {
+        if (nw.state === 'activated') showUpdateBanner();
       });
     });
   });
-  // Vérifier toutes les 30 min
-  setInterval(() => {
-    if (navigator.serviceWorker.controller) {
-      navigator.serviceWorker.controller.postMessage({ type: 'CHECK_VERSION' });
-    }
-  }, 30 * 60 * 1000);
 }
 
 function showUpdateBanner() {
@@ -1328,19 +1335,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <script>
-// Enregistrer le Service Worker + forcer mise à jour
+// Enregistrer le Service Worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js?v=25', { updateViaCache: 'none' })
-      .then(registration => {
-        registration.update();
-        registration.addEventListener('updatefound', () => {
-          const nw = registration.installing;
-          nw.addEventListener('statechange', () => {
-            if (nw.state === 'activated') location.reload();
-          });
-        });
-      })
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
+      .then(() => {})
       .catch(() => {});
   });
 }
