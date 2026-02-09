@@ -310,6 +310,23 @@ input, select, textarea {
 .social-icon:hover{transform:scale(1.1);}
 .social-icon.yt{background:#ff0000;color:#fff;}
 
+/* === COOKIE BANNER === */
+.cookie-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:#1e293b;color:#e2e8f0;
+  padding:16px 20px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;
+  box-shadow:0 -2px 12px rgba(0,0,0,0.3);
+  font-size:.9rem;
+}
+.cookie-text{flex:1 1 300px;text-align:center;}
+.cookie-text a{color:#93c5fd;text-decoration:underline;}
+.cookie-btns{display:flex;gap:8px;}
+.cookie-accept{background:#16a34a;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-weight:600;}
+.cookie-refuse{background:transparent;color:#94a3b8;border:1px solid #475569;padding:8px 20px;border-radius:6px;cursor:pointer;font-weight:600;}
+.cookie-accept:hover{background:#15803d;}
+.cookie-refuse:hover{background:#334155;}
+
 /* === PAGES SEO === */
 .seo-content{margin-top:16px;line-height:1.7;}
 .seo-content h3{color:var(--primary);margin:16px 0 8px;font-size:1.05rem;}

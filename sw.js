@@ -1,5 +1,5 @@
-const CACHE_NAME = 'quiz-permis-v19';
-const APP_VERSION = '2.3';
+const CACHE_NAME = 'quiz-permis-v20';
+const APP_VERSION = '2.4';
 const urlsToCache = [
   './',
   './index.html',
@@ -11,7 +11,9 @@ const urlsToCache = [
   './signalisation.html',
   './distances-freinage.html',
   './alcool-permis.html',
-  './examen-snca.html'
+  './examen-snca.html',
+  './mentions-legales.html',
+  './politique-confidentialite.html'
 ];
 
 // Installation — cache fichiers statiques

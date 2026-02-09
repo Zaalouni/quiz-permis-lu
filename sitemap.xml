@@ -9,7 +9,7 @@
     <image:image>
       <image:loc>https://zaalouni.github.io/quiz-permis-lu/icon-512.png</image:loc>
       <image:title>Quiz Code de la Route Luxembourg</image:title>
-      <image:caption>Application gratuite de préparation à l'examen théorique du permis de conduire au Luxembourg — +760 questions QCM</image:caption>
+      <image:caption>Application gratuite de préparation à l'examen théorique du permis de conduire au Luxembourg — +750 questions QCM</image:caption>
     </image:image>
   </url>
   <url>
@@ -41,5 +41,17 @@
     <lastmod>2026-02-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zaalouni.github.io/quiz-permis-lu/mentions-legales.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://zaalouni.github.io/quiz-permis-lu/politique-confidentialite.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

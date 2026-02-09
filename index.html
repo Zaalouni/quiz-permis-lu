@@ -74,13 +74,27 @@
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-PBWRMC8N');</script>
-  <!-- End Google Tag Manager -->
+  <!-- Google Tag Manager — chargé uniquement après consentement cookies -->
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  function trackEvent(eventName, params) { gtag('event', eventName, params); }
+
+  function loadGTM() {
+    if (window._gtmLoaded) return;
+    window._gtmLoaded = true;
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PBWRMC8N');
+    gtag('js', new Date());
+    gtag('config', 'GTM-PBWRMC8N');
+  }
+
+  // Charger GTM seulement si consentement déjà donné
+  if (localStorage.getItem('cookieConsent') === 'accepted') loadGTM();
+  </script>
 
   <!-- Questions gratuites (50) — les questions premium sont servies par l'API -->
   <script src="quiz-free.js"></script>
@@ -122,7 +136,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <div class="brand">
     <h1>Quiz Code de la Route — Luxembourg</h1>
     <div class="subtitle">+750 questions QCM — Réussissez votre permis du premier coup</div>
-    <div class="app-version" id="appVersion">v2.3 — 08 fév. 2026</div>
+    <div class="app-version" id="appVersion">v2.4 — 08 fév. 2026</div>
   </div>
 
   <div class="status">
@@ -372,6 +386,8 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
       <a href="distances-freinage.html">Distances & Freinage</a>
       <a href="alcool-permis.html">Alcool & Sanctions</a>
       <a href="examen-snca.html">Examen théorique</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
     </div>
     <div class="footer-social">
       <span class="footer-social-label">YouTube :</span>
@@ -539,9 +555,9 @@ function getCategoryScores(pickedQuestions, details) {
 /* ------------------------------
    VERSION
 --------------------------------*/
-const APP_VERSION = "2.3";
+const APP_VERSION = "2.4";
 const APP_BUILD = "2026-02-08";
-const CACHE_VERSION = 19; // doit correspondre au SW
+const CACHE_VERSION = 20; // doit correspondre au SW
 
 /* ------------------------------
    VÉRIFICATION DE MISE À JOUR
@@ -1362,32 +1378,32 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBWRMC8N"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 
 
 
 
-
-
-
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PBWRMC8N"></script>
+<!-- Bannière cookies -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'GTM-PBWRMC8N');
-  
-  // Track des événements
-  function trackEvent(eventName, params) {
-    gtag('event', eventName, params);
-  }
-  
-  // Le tracking est intégré dans le onclick de startBtn
+(function(){
+  if (localStorage.getItem('cookieConsent')) return;
+  document.addEventListener('DOMContentLoaded', function(){
+    var b = document.createElement('div');
+    b.id = 'cookieBanner';
+    b.className = 'cookie-banner';
+    b.innerHTML = '<div class="cookie-text">Ce site utilise des cookies analytiques (Google Analytics) pour améliorer votre expérience. <a href="politique-confidentialite.html">En savoir plus</a></div><div class="cookie-btns"><button id="cookieAccept" class="btn cookie-accept">Accepter</button><button id="cookieRefuse" class="btn cookie-refuse">Refuser</button></div>';
+    document.body.appendChild(b);
+    document.getElementById('cookieAccept').onclick = function(){
+      localStorage.setItem('cookieConsent','accepted');
+      loadGTM();
+      b.remove();
+    };
+    document.getElementById('cookieRefuse').onclick = function(){
+      localStorage.setItem('cookieConsent','refused');
+      b.remove();
+    };
+  });
+})();
 </script>
 
 
