@@ -18,7 +18,8 @@ const urlsToCache = [
   './questions.html',
   './stationnement.html',
   './pietons-cyclistes.html',
-  './regles-specifiques.html'
+  './regles-specifiques.html',
+  './536.html'
 ];
 
 // Installation — cache fichiers statiques

@@ -24,6 +24,7 @@ const QUIZ_FILES = [
   'quiz-cours7.js',
   'quiz-snca.js',
   'quiz-snca2.js',
+  'quiz-cours8.js',
 ];
 
 const FREE_COUNT = 50; // questions in free tier
