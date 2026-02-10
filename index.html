@@ -231,7 +231,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
 
   <div class="start-buttons">
     <button id="startBtn" class="btn primary" aria-label="Démarrer le quiz">Démarrer le quiz</button>
-    <button id="examBtn" class="btn exam-btn" aria-label="Lancer un examen blanc">Examen Blanc — 30 questions / 30 min</button>
+    <button id="examBtn" class="btn exam-btn" aria-label="Lancer un examen blanc">Examen Blanc — 57 questions / 57 min</button>
   </div>
   <div class="exam-disclaimer">
     Quiz d'entraînement indépendant, non affilié à la SNCA ou à tout organisme officiel. Questions à titre éducatif uniquement.
@@ -611,9 +611,9 @@ let timerId = null;
 let secondsLeft = EXAM_DURATION_SECONDS;
 let finished = false;
 let examMode = false;
-const EXAM_QUESTIONS = 30;
-const EXAM_DURATION = 30*60;
-const EXAM_PASS_THRESHOLD = 26;
+const EXAM_QUESTIONS = 57;
+const EXAM_DURATION = 57*60;
+const EXAM_PASS_THRESHOLD = 52;
 
 /* ------------------------------
    SYSTÈME DE LICENCE
@@ -1179,7 +1179,7 @@ document.getElementById("examBtn").onclick=()=>{
     return;
   }
 
-  // Piocher exactement 30 questions depuis tout le pool
+  // Piocher exactement 57 questions depuis tout le pool
   picked = shuffle(allPool.slice()).slice(0, EXAM_QUESTIONS).map(q=>{
     let qc = copy(q);
     qc.answers = shuffle(qc.answers);
