@@ -1349,25 +1349,28 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Détecter si l'app est installée
+// Détecter si l'app est installable
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   window.deferredPrompt = e;
-  
-  // Optionnel : montrer un bouton "Installer l'app"
-  const installBtn = document.createElement('button');
-  installBtn.textContent = '📱 Installer l\'app';
+
+  // Ne pas dupliquer le bouton
+  if (document.getElementById('installBtn')) return;
+
+  var installBtn = document.createElement('button');
+  installBtn.id = 'installBtn';
+  installBtn.textContent = 'Installer l\'app';
   installBtn.className = 'btn primary';
   installBtn.style.margin = '10px auto';
-  installBtn.onclick = () => {
+  installBtn.onclick = function() {
     e.prompt();
-    e.userChoice.then(() => {
+    e.userChoice.then(function() {
       window.deferredPrompt = null;
       installBtn.remove();
     });
   };
-  
-  const introCard = document.querySelector('#intro .meta');
+
+  var introCard = document.querySelector('#intro .meta');
   if (introCard) {
     introCard.parentNode.insertBefore(installBtn, introCard);
   }
