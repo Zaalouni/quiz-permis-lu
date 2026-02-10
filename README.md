@@ -6,7 +6,7 @@ https://zaalouni.github.io/quiz-permis-lu/
 
 - **+500 questions QCM** — Cours 1 à 5 + mode SNCA
 - **Mode Révision** — Filtrer par catégorie (Chargement, Signalisation, Distances, Transport, Administratif)
-- **Mode Examen Blanc** — 57 questions, 57 minutes, seuil de réussite 52/57 — 90 % (simulation réaliste)
+- **Mode Examen Blanc** — 54 questions, 30 minutes, seuil de réussite 49/54 — 90 % (simulation réaliste)
 - **Correction détaillée** — Explications et pièges pour chaque question
 - **Marquer pour révision** — Flaguer les questions difficiles
 - **Fonctionne hors-ligne** — Progressive Web App (PWA) installable
