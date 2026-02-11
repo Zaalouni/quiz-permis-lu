@@ -4,14 +4,13 @@ Application web gratuite pour préparer l'examen théorique du code de la route 
 https://zaalouni.github.io/quiz-permis-lu/
 ## Fonctionnalités
 
-- **+500 questions QCM** — Cours 1 à 5 + mode SNCA
+- **+1200 questions QCM** — Cours 1 à 8 + mode SNCA
 - **Mode Révision** — Filtrer par catégorie (Chargement, Signalisation, Distances, Transport, Administratif)
 - **Mode Examen Blanc** — 54 questions, 30 minutes, seuil de réussite 49/54 — 90 % (simulation réaliste)
 - **Correction détaillée** — Explications et pièges pour chaque question
 - **Marquer pour révision** — Flaguer les questions difficiles
 - **Fonctionne hors-ligne** — Progressive Web App (PWA) installable
 - **Responsive** — Optimisé mobile, tablette et desktop
-- https://zaalouni.github.io/quiz-permis-lu/
 
 ## Catégories couvertes
 
@@ -22,6 +21,9 @@ https://zaalouni.github.io/quiz-permis-lu/
 | Cours 3 | Distances & Freinage |
 | Cours 4 | Angles morts, Enfants & ceintures, Éclairage, Premiers secours, Équipements, Permis & Documents |
 | Cours 5 | Permis, Catégories & Équipements |
+| Cours 6 | Sources officielles & Legilux |
+| Cours 7 | Questions SNCA |
+| Cours 8 | Source complète 536 questions |
 | SNCA Demo | Examen théorique demo |
 
 ## Technologies
