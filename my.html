@@ -3,51 +3,77 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <title>536 Questions — Code de la Route Luxembourg</title>
+  <title>Quiz 536 Questions Critiques — Code de la Route Luxembourg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="536 questions QCM pour préparer l'examen théorique du permis de conduire au Luxembourg. Avec images et réponses corrigées.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/536.html">
+  <meta name="description" content="Quiz interactif basé sur les 536 questions critiques pour l'examen théorique du permis de conduire au Luxembourg.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/my.html">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="theme-color" content="#1e3a8a">
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
   <style>
-    .q-card { background:#fff; border:2px solid #e8e8e8; border-left:4px solid #1e3a8a; border-radius:12px; padding:20px; margin-bottom:20px; }
+    /* === QUIZ MODE : une question à la fois === */
+    .q-card { display:none; background:#fff; border:2px solid #e8e8e8; border-left:4px solid #1e3a8a; border-radius:12px; padding:20px; }
+    .q-card.active { display:block; }
     .q-num { background:linear-gradient(135deg,#1e3a8a,#3b82f6); color:#fff; padding:5px 14px; border-radius:20px; display:inline-block; font-weight:700; font-size:.85em; margin-bottom:12px; }
     .q-text { font-size:1.05em; margin-bottom:15px; line-height:1.6; color:#222; font-weight:500; }
     .q-img { width:100%; max-width:480px; height:auto; border-radius:8px; margin:15px auto; display:block; }
     .q-answers { list-style:none; padding:0; }
-    .q-answer { padding:12px 16px; margin:8px 0; border:2px solid #e0e0e0; border-radius:8px; display:flex; align-items:center; gap:12px; }
+    .q-answer { padding:12px 16px; margin:8px 0; border:2px solid #e0e0e0; border-radius:8px; display:flex; align-items:center; gap:12px; cursor:pointer; transition:background .15s, border-color .15s; }
+    .q-answer:hover:not(.locked) { background:#f0f4ff; border-color:#3b82f6; }
     .q-answer.correct { background:#d4edda; border-color:#28a745; font-weight:600; }
+    .q-answer.wrong { background:#f8d7da; border-color:#dc3545; }
+    .q-answer.locked { cursor:default; }
     .q-answer-img { max-width:120px; height:auto; border-radius:4px; }
-    .q-toggle { background:linear-gradient(135deg,#1e3a8a,#3b82f6); color:#fff; border:none; padding:10px 20px; border-radius:20px; cursor:pointer; font-size:.9em; margin-top:10px; }
-    .q-toggle:hover { opacity:.9; }
-    .q-solution { display:none; margin-top:12px; padding:12px 16px; background:#d4edda; border-left:4px solid #28a745; border-radius:5px; font-weight:500; }
-    .q-search { width:100%; max-width:500px; padding:12px 20px; border:2px solid #1e3a8a; border-radius:25px; font-size:1em; margin:0 auto 25px; display:block; }
-    .q-search:focus { outline:none; border-color:#3b82f6; box-shadow:0 0 8px rgba(59,130,246,.3); }
-    .q-stats { text-align:center; background:linear-gradient(135deg,#1e3a8a,#3b82f6); color:#fff; padding:15px; border-radius:10px; margin-bottom:25px; }
-    .q-stats strong { font-size:1.3em; }
-    #q-container .hidden { display:none; }
+    .q-toggle { display:none; }
+    .q-solution { display:none; }
+    /* Barre de progression */
+    .quiz-progress { margin-bottom:20px; }
+    .quiz-progress-bar-wrap { background:#e0e7ff; border-radius:10px; height:10px; margin-top:6px; }
+    .quiz-progress-bar { background:linear-gradient(90deg,#1e3a8a,#3b82f6); height:10px; border-radius:10px; transition:width .3s; }
+    .quiz-progress-info { display:flex; justify-content:space-between; font-size:.9em; color:#555; margin-bottom:4px; }
+    /* Feedback + bouton suivant */
+    .quiz-feedback { margin-top:14px; padding:12px 16px; border-radius:8px; font-weight:600; font-size:.95em; display:none; }
+    .quiz-feedback.ok { background:#d4edda; border-left:4px solid #28a745; color:#155724; }
+    .quiz-feedback.ko { background:#f8d7da; border-left:4px solid #dc3545; color:#721c24; }
+    .quiz-next { margin-top:14px; display:none; background:linear-gradient(135deg,#1e3a8a,#3b82f6); color:#fff; border:none; padding:12px 28px; border-radius:22px; font-size:1em; font-weight:600; cursor:pointer; }
+    .quiz-next:hover { opacity:.9; }
+    /* Écran résultat final */
+    #quiz-result { display:none; text-align:center; padding:30px 20px; }
+    #quiz-result h2 { font-size:1.8em; color:#1e3a8a; margin-bottom:10px; }
+    #quiz-result .result-score { font-size:3em; font-weight:700; color:#1e3a8a; }
+    #quiz-result .result-label { font-size:1.1em; color:#555; margin-bottom:20px; }
+    #quiz-result .btn-restart { background:linear-gradient(135deg,#1e3a8a,#3b82f6); color:#fff; border:none; padding:14px 32px; border-radius:24px; font-size:1em; font-weight:600; cursor:pointer; margin:8px; }
+    #quiz-result .btn-restart:hover { opacity:.9; }
   </style>
 </head>
 <body>
 
 <header class="app-header">
   <div class="brand">
-    <h1>536 Questions</h1>
+    <h1>Quiz 536 Questions Critiques</h1>
     <div class="subtitle">Code de la Route — Luxembourg</div>
   </div>
-  <div>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+    <button id="pwaInstallBtn" class="btn" style="display:none;">Installer l'app</button>
     <a href="./" class="btn back-btn">Retour au quiz</a>
   </div>
 </header>
 
 <main class="app-main">
 <section class="card">
-  <div class="q-stats"><strong>536</strong> questions — <strong>102</strong> avec images — Catégorie B</div>
-  <input type="text" class="q-search" id="qSearch" placeholder="Rechercher une question..." autocomplete="off">
+  <div class="quiz-progress">
+    <div class="quiz-progress-info">
+      <span id="qProgressLabel">Question 1 / 536</span>
+      <span id="qScoreLabel">Score : 0 / 0</span>
+    </div>
+    <div class="quiz-progress-bar-wrap">
+      <div class="quiz-progress-bar" id="qProgressBar" style="width:0%"></div>
+    </div>
+  </div>
   <div id="q-container">
 <div class="q-card">
   <div class="q-num">Q1</div>
@@ -5794,13 +5820,16 @@
 </div>
 
   </div>
-</section>
 
-<div class="card" style="text-align:center;">
-  <a href="my.html" class="btn primary">Lancer le quiz 54 questions</a>
-  <a href="./" class="btn">Retour au quiz</a>
-  <a href="cours.html" class="btn">Cours complet</a>
-</div>
+  <!-- Écran résultat final -->
+  <div id="quiz-result">
+    <h2>Quiz terminé !</h2>
+    <div class="result-score" id="resultScore"></div>
+    <div class="result-label" id="resultLabel"></div>
+    <button class="btn-restart" onclick="location.reload()">Nouveau tirage aléatoire</button>
+    <a href="536.html" class="btn-restart" style="text-decoration:none;">Voir toutes les questions</a>
+  </div>
+</section>
 </main>
 
 <footer class="app-footer">
@@ -5825,37 +5854,168 @@
 </footer>
 
 <script>
-document.getElementById('qSearch').addEventListener('input', function() {
-  var s = this.value.toLowerCase().trim();
-  var cards = document.querySelectorAll('.q-card');
-  var shown = 0;
-  cards.forEach(function(c) {
-    var text = c.textContent.toLowerCase();
-    if (!s || text.includes(s)) { c.classList.remove('hidden'); shown++; }
-    else { c.classList.add('hidden'); }
-  });
-});
-document.querySelectorAll('.q-toggle').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var card = this.parentElement;
-    var sol = card.querySelector('.q-solution');
-    var answers = card.querySelectorAll('.q-answer');
-    if (sol.style.display === 'block') {
-      sol.style.display = 'none';
-      this.textContent = 'Voir la réponse';
-      answers.forEach(function(a) { a.classList.remove('correct'); });
-    } else {
-      sol.style.display = 'block';
-      this.textContent = 'Masquer';
-      var correctText = sol.textContent.replace('Réponse correcte : ', '').trim();
-      answers.forEach(function(a) {
-        var span = a.querySelector('span');
-        if (span && span.textContent.trim() === correctText) {
-          a.classList.add('correct');
-        }
-      });
+(function() {
+  var QUIZ_SIZE = 54;
+  var allCards = Array.from(document.querySelectorAll('.q-card'));
+  var score = 0;
+  var current = 0;
+  var pool = [];
+
+  /* --- Tirage aléatoire de QUIZ_SIZE questions parmi les 536 --- */
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
     }
+    return arr;
+  }
+  pool = shuffle(allCards.slice()).slice(0, QUIZ_SIZE);
+
+  /* --- Mise à jour barre de progression --- */
+  function updateProgress() {
+    var done = current;
+    document.getElementById('qProgressLabel').textContent =
+      'Question ' + (done + 1) + ' / ' + QUIZ_SIZE;
+    document.getElementById('qScoreLabel').textContent =
+      'Score : ' + score + ' / ' + done;
+    document.getElementById('qProgressBar').style.width =
+      Math.round((done / QUIZ_SIZE) * 100) + '%';
+  }
+
+  /* --- Afficher une question --- */
+  function showQuestion(idx) {
+    if (idx >= QUIZ_SIZE) { showResult(); return; }
+    updateProgress();
+
+    var card = pool[idx];
+    card.classList.add('active');
+
+    /* Extraire la bonne réponse depuis .q-solution */
+    var solEl = card.querySelector('.q-solution');
+    var correctText = solEl ? solEl.textContent.replace('Réponse correcte : ', '').trim() : '';
+
+    /* Créer feedback + bouton suivant s'ils n'existent pas encore */
+    var feedback = card.querySelector('.quiz-feedback');
+    if (!feedback) {
+      feedback = document.createElement('div');
+      feedback.className = 'quiz-feedback';
+      card.appendChild(feedback);
+    }
+    var nextBtn = card.querySelector('.quiz-next');
+    if (!nextBtn) {
+      nextBtn = document.createElement('button');
+      nextBtn.className = 'quiz-next';
+      nextBtn.textContent = idx === QUIZ_SIZE - 1 ? 'Voir le résultat' : 'Question suivante →';
+      card.appendChild(nextBtn);
+    }
+    feedback.style.display = 'none';
+    nextBtn.style.display = 'none';
+
+    /* Rendre les réponses cliquables */
+    var answers = card.querySelectorAll('.q-answer');
+    answers.forEach(function(a) {
+      a.classList.remove('correct', 'wrong', 'locked');
+      var clone = a.cloneNode(true); /* enlever anciens listeners */
+      a.parentNode.replaceChild(clone, a);
+    });
+
+    /* Mélanger l'ordre des réponses dans la liste */
+    var ul = card.querySelector('.q-answers');
+    if (ul) {
+      var items = Array.from(ul.querySelectorAll('.q-answer'));
+      shuffle(items).forEach(function(item) { ul.appendChild(item); });
+    }
+
+    /* Re-sélectionner après remplacement et mélange */
+    answers = card.querySelectorAll('.q-answer');
+    answers.forEach(function(a) {
+      a.addEventListener('click', function() {
+        /* Bloquer si déjà répondu */
+        if (answers[0].classList.contains('locked')) return;
+        answers.forEach(function(x) { x.classList.add('locked'); });
+
+        var span = a.querySelector('span');
+        var chosen = span ? span.textContent.trim() : '';
+        var isCorrect = (chosen === correctText);
+
+        /* Colorier toutes les réponses */
+        answers.forEach(function(x) {
+          var xSpan = x.querySelector('span');
+          var xText = xSpan ? xSpan.textContent.trim() : '';
+          if (xText === correctText) x.classList.add('correct');
+          else if (x === a && !isCorrect) x.classList.add('wrong');
+        });
+
+        if (isCorrect) {
+          score++;
+          feedback.className = 'quiz-feedback ok';
+          feedback.textContent = '✓ Bonne réponse !';
+        } else {
+          feedback.className = 'quiz-feedback ko';
+          feedback.textContent = '✗ Mauvaise réponse. Correcte : ' + correctText;
+        }
+        feedback.style.display = 'block';
+        nextBtn.style.display = 'inline-block';
+        document.getElementById('qScoreLabel').textContent =
+          'Score : ' + score + ' / ' + (current + 1);
+      });
+    });
+
+    nextBtn.onclick = function() {
+      card.classList.remove('active');
+      current++;
+      showQuestion(current);
+    };
+  }
+
+  /* --- Résultat final --- */
+  function showResult() {
+    document.getElementById('qProgressBar').style.width = '100%';
+    document.getElementById('qProgressLabel').textContent = 'Quiz terminé';
+    document.getElementById('qScoreLabel').textContent = 'Score final : ' + score + ' / ' + QUIZ_SIZE;
+    document.getElementById('quiz-result').style.display = 'block';
+    var pct = Math.round((score / QUIZ_SIZE) * 100);
+    document.getElementById('resultScore').textContent = score + ' / ' + QUIZ_SIZE + ' (' + pct + '%)';
+    var label = pct >= 80 ? '🎉 Excellent ! Vous êtes prêt pour l\'examen.'
+               : pct >= 60 ? '👍 Bien ! Continuez à vous entraîner.'
+               : '📚 Encore un peu de révision nécessaire.';
+    document.getElementById('resultLabel').textContent = label;
+  }
+
+  /* --- Démarrage --- */
+  showQuestion(0);
+})();
+</script>
+
+<script>
+/* === PWA : Service Worker + Install prompt === */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(function() {});
+}
+
+var deferredInstallPrompt = null;
+var installBtn = document.getElementById('pwaInstallBtn');
+
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  if (installBtn) installBtn.style.display = 'inline-block';
+});
+
+if (installBtn) {
+  installBtn.addEventListener('click', function() {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    deferredInstallPrompt.userChoice.then(function() {
+      deferredInstallPrompt = null;
+      installBtn.style.display = 'none';
+    });
   });
+}
+
+window.addEventListener('appinstalled', function() {
+  if (installBtn) installBtn.style.display = 'none';
+  deferredInstallPrompt = null;
 });
 </script>
 

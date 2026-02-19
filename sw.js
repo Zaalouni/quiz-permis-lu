@@ -1,5 +1,5 @@
-const CACHE_NAME = 'quiz-permis-v28';
-const APP_VERSION = '3.3';
+const CACHE_NAME = 'quiz-permis-v29';
+const APP_VERSION = '3.4';
 const urlsToCache = [
   './',
   './index.html',
@@ -20,6 +20,7 @@ const urlsToCache = [
   './pietons-cyclistes.html',
   './regles-specifiques.html',
   './536.html',
+  './my.html',
   './erreurs-examen-snca.html',
   './lire-panneau-priorite.html'
 ];
