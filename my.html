@@ -45,6 +45,9 @@
     #quiz-result { display:none; text-align:center; padding:30px 20px; }
     #quiz-result h2 { font-size:1.8em; color:#1e3a8a; margin-bottom:10px; }
     #quiz-result .result-score { font-size:3em; font-weight:700; color:#1e3a8a; }
+    #quiz-result .result-verdict { font-size:1.6em; font-weight:700; padding:10px 24px; border-radius:12px; display:inline-block; margin:12px 0; }
+    #quiz-result .result-verdict.reussi { background:#d4edda; color:#155724; border:2px solid #28a745; }
+    #quiz-result .result-verdict.echoue { background:#f8d7da; color:#721c24; border:2px solid #dc3545; }
     #quiz-result .result-label { font-size:1.1em; color:#555; margin-bottom:20px; }
     #quiz-result .btn-restart { background:linear-gradient(135deg,#1e3a8a,#3b82f6); color:#fff; border:none; padding:14px 32px; border-radius:24px; font-size:1em; font-weight:600; cursor:pointer; margin:8px; }
     #quiz-result .btn-restart:hover { opacity:.9; }
@@ -5825,6 +5828,7 @@
   <div id="quiz-result">
     <h2>Quiz terminé !</h2>
     <div class="result-score" id="resultScore"></div>
+    <div class="result-verdict" id="resultVerdict"></div>
     <div class="result-label" id="resultLabel"></div>
     <button class="btn-restart" onclick="location.reload()">Nouveau tirage aléatoire</button>
     <a href="536.html" class="btn-restart" style="text-decoration:none;">Voir toutes les questions</a>
@@ -5976,9 +5980,17 @@
     document.getElementById('quiz-result').style.display = 'block';
     var pct = Math.round((score / QUIZ_SIZE) * 100);
     document.getElementById('resultScore').textContent = score + ' / ' + QUIZ_SIZE + ' (' + pct + '%)';
-    var label = pct >= 80 ? '🎉 Excellent ! Vous êtes prêt pour l\'examen.'
-               : pct >= 60 ? '👍 Bien ! Continuez à vous entraîner.'
-               : '📚 Encore un peu de révision nécessaire.';
+    var verdictEl = document.getElementById('resultVerdict');
+    var label;
+    if (pct >= 90) {
+      verdictEl.textContent = 'RÉUSSI';
+      verdictEl.className = 'result-verdict reussi';
+      label = 'Félicitations ! Vous avez atteint 90% ou plus. Vous êtes prêt pour l\'examen.';
+    } else {
+      verdictEl.textContent = 'ÉCHOUÉ';
+      verdictEl.className = 'result-verdict echoue';
+      label = 'Il faut au moins 90% de bonnes réponses pour réussir. Continuez à vous entraîner !';
+    }
     document.getElementById('resultLabel').textContent = label;
   }
 
