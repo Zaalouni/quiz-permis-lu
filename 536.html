@@ -5836,9 +5836,24 @@ document.getElementById('qSearch').addEventListener('input', function() {
 });
 document.querySelectorAll('.q-toggle').forEach(function(btn) {
   btn.addEventListener('click', function() {
-    var sol = this.parentElement.querySelector('.q-solution');
-    if (sol.style.display === 'block') { sol.style.display = 'none'; this.textContent = 'Voir la réponse'; }
-    else { sol.style.display = 'block'; this.textContent = 'Masquer'; }
+    var card = this.parentElement;
+    var sol = card.querySelector('.q-solution');
+    var answers = card.querySelectorAll('.q-answer');
+    if (sol.style.display === 'block') {
+      sol.style.display = 'none';
+      this.textContent = 'Voir la réponse';
+      answers.forEach(function(a) { a.classList.remove('correct'); });
+    } else {
+      sol.style.display = 'block';
+      this.textContent = 'Masquer';
+      var correctText = sol.textContent.replace('Réponse correcte : ', '').trim();
+      answers.forEach(function(a) {
+        var span = a.querySelector('span');
+        if (span && span.textContent.trim() === correctText) {
+          a.classList.add('correct');
+        }
+      });
+    }
   });
 });
 </script>
