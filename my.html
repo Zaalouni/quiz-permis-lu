@@ -7,11 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Quiz interactif basé sur les 536 questions critiques pour l'examen théorique du permis de conduire au Luxembourg.">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/quiz-536-prive.html">
+  <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/my.html">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <meta name="theme-color" content="#1e3a8a">
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
   <style>
     /* === QUIZ MODE : une question à la fois === */
@@ -56,7 +57,8 @@
     <h1>Quiz 536 Questions Critiques</h1>
     <div class="subtitle">Code de la Route — Luxembourg</div>
   </div>
-  <div>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+    <button id="pwaInstallBtn" class="btn" style="display:none;">Installer l'app</button>
     <a href="./" class="btn back-btn">Retour au quiz</a>
   </div>
 </header>
@@ -5976,6 +5978,38 @@
   /* --- Démarrage --- */
   showQuestion(0);
 })();
+</script>
+
+<script>
+/* === PWA : Service Worker + Install prompt === */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(function() {});
+}
+
+var deferredInstallPrompt = null;
+var installBtn = document.getElementById('pwaInstallBtn');
+
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  if (installBtn) installBtn.style.display = 'inline-block';
+});
+
+if (installBtn) {
+  installBtn.addEventListener('click', function() {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    deferredInstallPrompt.userChoice.then(function() {
+      deferredInstallPrompt = null;
+      installBtn.style.display = 'none';
+    });
+  });
+}
+
+window.addEventListener('appinstalled', function() {
+  if (installBtn) installBtn.style.display = 'none';
+  deferredInstallPrompt = null;
+});
 </script>
 
 </body>
