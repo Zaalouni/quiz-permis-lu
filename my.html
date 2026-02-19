@@ -5919,7 +5919,14 @@
       a.parentNode.replaceChild(clone, a);
     });
 
-    /* Re-sélectionner après remplacement */
+    /* Mélanger l'ordre des réponses dans la liste */
+    var ul = card.querySelector('.q-answers');
+    if (ul) {
+      var items = Array.from(ul.querySelectorAll('.q-answer'));
+      shuffle(items).forEach(function(item) { ul.appendChild(item); });
+    }
+
+    /* Re-sélectionner après remplacement et mélange */
     answers = card.querySelectorAll('.q-answer');
     answers.forEach(function(a) {
       a.addEventListener('click', function() {
