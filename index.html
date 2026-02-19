@@ -141,7 +141,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   <div class="brand">
     <h1>Quiz Code de la Route — Luxembourg</h1>
     <div class="subtitle">+1200 questions QCM — Réussissez votre permis du premier coup</div>
-    <div class="app-version" id="appVersion">v3.2 — 10 fév. 2026</div>
+    <div class="app-version" id="appVersion">v3.3 — 19 fév. 2026</div>
   </div>
 
   <div class="status">
@@ -174,6 +174,11 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
     <button class="dash-tab" data-tab="tabLeaderboard">Top 5</button>
   </div>
   <div id="tabStats" class="dash-panel active">
+    <div id="streakRow" class="streak-row hidden" title="Jours consécutifs de révision">
+      <span class="streak-fire">🔥</span>
+      <strong id="streakDays">1</strong>
+      <span class="streak-label">jour(s) de révision d'affilée !</span>
+    </div>
     <div class="stats-row">
       <span class="stat-mini"><strong id="statQuizCount">0</strong> quiz</span>
       <span class="stat-mini"><strong id="statAvgScore">—</strong> moy.</span>
@@ -281,6 +286,9 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
   </div>
 
   <div class="meta"><span id="poolSizeInfo"></span></div>
+  <div id="notifSection" class="notif-optin hidden">
+    <button id="notifBtn" class="btn btn-notif-off">🔔 Activer les rappels quotidiens</button>
+  </div>
 </section>
 
 
@@ -363,9 +371,11 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
       <button id="shareWhatsApp" class="share-btn whatsapp">WhatsApp</button>
       <button id="shareFacebook" class="share-btn facebook">Facebook</button>
       <button id="shareCopy" class="share-btn copy">Copier le lien</button>
+      <button id="shareImage" class="share-btn image-share">📸 Image</button>
     </div>
     <div id="shareCopied" class="share-copied hidden">Lien copié !</div>
   </div>
+  <canvas id="scoreCanvas" style="display:none;" aria-hidden="true" width="600" height="400"></canvas>
 
   <!-- Soumettre au classement -->
   <div id="submitScoreSection" class="submit-score-section">
@@ -398,6 +408,8 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
       <a href="pietons-cyclistes.html">Piétons & Cyclistes</a>
       <a href="regles-specifiques.html">Règles spécifiques</a>
       <a href="circulation-avancee.html">Circulation &amp; Chargement</a>
+      <a href="erreurs-examen-snca.html">10 erreurs examen SNCA</a>
+      <a href="lire-panneau-priorite.html">Lire un panneau priorité</a>
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
     </div>
@@ -459,6 +471,7 @@ function saveQuizResult(score, total, categories) {
 }
 
 function renderStats() {
+  renderStreak();
   let history = getHistory();
   let section = document.getElementById("statsSection");
 
@@ -567,9 +580,9 @@ function getCategoryScores(pickedQuestions, details) {
 /* ------------------------------
    VERSION
 --------------------------------*/
-const APP_VERSION = "3.2";
-const APP_BUILD = "2026-02-09";
-const CACHE_VERSION = 27; // doit correspondre au SW
+const APP_VERSION = "3.3";
+const APP_BUILD = "2026-02-19";
+const CACHE_VERSION = 28; // doit correspondre au SW
 
 /* ------------------------------
    VÉRIFICATION DE MISE À JOUR
@@ -1003,6 +1016,10 @@ function setupShareButtons(score, total) {
       setTimeout(() => copied.classList.add("hidden"), 2000);
     }).catch(() => {});
   };
+
+  document.getElementById("shareImage").onclick = () => {
+    shareScoreImage(score, total);
+  };
 }
 
 function finalize(){
@@ -1368,11 +1385,230 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e) e.classList.add("hidden");
     }
   });
+
+  // Streak
+  updateStreak();
+
+  // Notification opt-in
+  if ('Notification' in window) {
+    document.getElementById('notifSection').classList.remove('hidden');
+    updateNotifButton();
+    checkDailyReminder();
+  }
+
+  // Event notification button
+  document.getElementById('notifBtn').addEventListener('click', function() {
+    const enabled = localStorage.getItem('notificationsEnabled') === '1' && Notification.permission === 'granted';
+    if (enabled) {
+      disableNotifications();
+    } else {
+      requestNotifications();
+    }
+  });
 });
 </script>
 
 
 
+
+<script>
+/* ------------------------------
+   STREAK — jours consécutifs
+------------------------------ */
+function updateStreak() {
+  var today = new Date().toISOString().split('T')[0];
+  var lastDate = localStorage.getItem('streakLastDate');
+  var streak = parseInt(localStorage.getItem('streakCount') || '0', 10);
+
+  if (!lastDate) {
+    streak = 1;
+  } else if (lastDate === today) {
+    // Déjà compté aujourd'hui
+  } else {
+    var yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    var yesterdayStr = yesterday.toISOString().split('T')[0];
+    streak = (lastDate === yesterdayStr) ? streak + 1 : 1;
+  }
+
+  localStorage.setItem('streakLastDate', today);
+  localStorage.setItem('streakCount', String(streak));
+  return streak;
+}
+
+function renderStreak() {
+  var streak = parseInt(localStorage.getItem('streakCount') || '0', 10);
+  var row = document.getElementById('streakRow');
+  var days = document.getElementById('streakDays');
+  if (!row || !days) return;
+  if (streak >= 1) {
+    days.textContent = streak;
+    row.classList.remove('hidden');
+  } else {
+    row.classList.add('hidden');
+  }
+}
+
+/* ------------------------------
+   CANVAS SHARE — image score
+------------------------------ */
+function generateScoreImage(score, total) {
+  var canvas = document.getElementById('scoreCanvas');
+  canvas.width = 600;
+  canvas.height = 400;
+  var ctx = canvas.getContext('2d');
+  var pct = Math.round(100 * score / total);
+
+  // Fond dégradé
+  var grad = ctx.createLinearGradient(0, 0, 600, 400);
+  grad.addColorStop(0, '#0f172a');
+  grad.addColorStop(1, '#1e3a8a');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 600, 400);
+
+  // En-tête
+  ctx.fillStyle = '#93c5fd';
+  ctx.font = 'bold 22px system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Quiz Code de la Route', 300, 58);
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.font = '16px system-ui, sans-serif';
+  ctx.fillText('Luxembourg — zaalouni.github.io/quiz-permis-lu', 300, 86);
+
+  // Ligne décorative
+  var lineColor = pct >= 80 ? '#22c55e' : pct >= 50 ? '#f59e0b' : '#ef4444';
+  ctx.strokeStyle = lineColor;
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(60, 108);
+  ctx.lineTo(540, 108);
+  ctx.stroke();
+
+  // Pourcentage (grand)
+  ctx.fillStyle = lineColor;
+  ctx.font = 'bold 88px system-ui, sans-serif';
+  ctx.fillText(pct + '%', 300, 218);
+
+  // Score détaillé
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 28px system-ui, sans-serif';
+  ctx.fillText(score + ' / ' + total + ' questions', 300, 268);
+
+  // Message
+  ctx.font = '22px system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(255,255,255,0.75)';
+  var msg = pct >= 90 ? '🌟 Excellent ! Prêt pour le permis !' :
+            pct >= 80 ? '💪 Très bien ! Continue !' :
+            pct >= 50 ? '📚 Bon début ! Encore un effort !' :
+                        '🔄 Il faut réviser — tu vas y arriver !';
+  ctx.fillText(msg, 300, 318);
+
+  // Date
+  var now = new Date();
+  var dateStr = now.toLocaleDateString('fr-LU', { day: '2-digit', month: 'short', year: 'numeric' });
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.font = '14px system-ui, sans-serif';
+  ctx.fillText(dateStr, 300, 378);
+
+  return canvas;
+}
+
+function shareScoreImage(score, total) {
+  var canvas = generateScoreImage(score, total);
+
+  if (navigator.share && typeof navigator.canShare === 'function') {
+    canvas.toBlob(function(blob) {
+      var file = new File([blob], 'mon-score-permis-lu.png', { type: 'image/png' });
+      if (navigator.canShare({ files: [file] })) {
+        navigator.share({
+          files: [file],
+          title: 'Mon score — Quiz Permis Luxembourg',
+          text: getShareText(score, total)
+        }).catch(function() { downloadCanvas(canvas); });
+      } else {
+        downloadCanvas(canvas);
+      }
+    }, 'image/png');
+  } else {
+    downloadCanvas(canvas);
+  }
+}
+
+function downloadCanvas(canvas) {
+  var link = document.createElement('a');
+  link.download = 'mon-score-permis-lu.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+/* ------------------------------
+   NOTIFICATIONS PUSH
+------------------------------ */
+function requestNotifications() {
+  if (!('Notification' in window)) { return; }
+  Notification.requestPermission().then(function(perm) {
+    if (perm === 'granted') {
+      localStorage.setItem('notificationsEnabled', '1');
+      updateNotifButton();
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then(function(reg) {
+          reg.showNotification('Rappels activés ! \uD83C\uDF89', {
+            body: 'Tu recevras un rappel si tu oublies de réviser.',
+            icon: 'icon-192.png',
+            badge: 'favicon-32x32.png',
+            tag: 'notif-confirm'
+          });
+        });
+      }
+    } else {
+      alert('Permission refusée. Tu peux l\'activer dans les paramètres de ton navigateur.');
+    }
+  });
+}
+
+function disableNotifications() {
+  localStorage.setItem('notificationsEnabled', '0');
+  updateNotifButton();
+}
+
+function updateNotifButton() {
+  var btn = document.getElementById('notifBtn');
+  if (!btn) return;
+  var granted = typeof Notification !== 'undefined' && Notification.permission === 'granted';
+  var enabled = granted && localStorage.getItem('notificationsEnabled') === '1';
+  if (enabled) {
+    btn.textContent = '\uD83D\uDD14 Rappels activés — cliquer pour désactiver';
+    btn.className = 'btn btn-notif-on';
+  } else {
+    btn.textContent = '\uD83D\uDD14 Activer les rappels quotidiens';
+    btn.className = 'btn btn-notif-off';
+  }
+}
+
+function checkDailyReminder() {
+  if (!('Notification' in window)) return;
+  if (Notification.permission !== 'granted') return;
+  if (localStorage.getItem('notificationsEnabled') !== '1') return;
+  var history = getHistory();
+  if (history.length === 0) return;
+  var lastQuizDate = history[history.length - 1].date.split('T')[0];
+  var today = new Date().toISOString().split('T')[0];
+  var lastNotifDate = localStorage.getItem('lastNotifDate');
+  if (lastQuizDate !== today && lastNotifDate !== today) {
+    localStorage.setItem('lastNotifDate', today);
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.ready.then(function(reg) {
+        reg.showNotification('Tu n\'as pas révisé aujourd\'hui ! \uD83D\uDCDA', {
+          body: 'Quelques minutes de quiz suffisent. Lance ta révision maintenant !',
+          icon: 'icon-192.png',
+          badge: 'favicon-32x32.png',
+          tag: 'daily-reminder'
+        });
+      });
+    }
+  }
+}
+</script>
 
 <script>
 // Enregistrer le Service Worker
