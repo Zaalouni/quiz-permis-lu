@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://quiz-permis-lu.zaalouni2013.workers.dev https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'">
   <title>Quiz Code de la Route Luxembourg — Préparation Examen Théorique 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Quiz gratuit pour préparer l'examen théorique du code de la route au Luxembourg. +1200 questions, cours 1 à 8, correction détaillée, fonctionne hors-ligne.">
@@ -45,6 +46,10 @@
   <!-- Preconnect pour performance -->
   <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://quiz-permis-lu.zaalouni2013.workers.dev" crossorigin>
+  <link rel="dns-prefetch" href="https://quiz-permis-lu.zaalouni2013.workers.dev">
+  <!-- Preload ressources critiques -->
+  <link rel="preload" href="quiz-free.js" as="script">
 
   <!-- Schema.org structured data -->
   <script type="application/ld+json">
@@ -267,6 +272,7 @@ if (!validateQuizBank(10)) throw new Error("Quiz bank invalid");
       <input type="text" id="licenseInput" placeholder="Entrez votre code de licence" maxlength="20" autocomplete="off" />
       <button id="licenseBtn" class="btn primary">Activer</button>
     </div>
+    <p style="font-size:0.78rem;color:#94a3b8;margin-top:4px;">Votre code est personnel — ne le partagez pas.</p>
     <div id="licenseError" class="license-error hidden"></div>
     <div id="licenseContact" class="license-contact">
       <p>Vous n'avez pas de code ? La licence est <strong>100% gratuite</strong> :</p>
@@ -668,7 +674,7 @@ async function activateLicense(code) {
       // Licence valide — charger les questions premium
       allPool = data.questions;
       isPremium = true;
-      localStorage.setItem("quizLicense", code.trim().toUpperCase());
+      localStorage.setItem("quizLicense", btoa(code.trim().toUpperCase()));
 
       // Mettre à jour l'UI
       statusDiv.className = "license-status premium";
@@ -702,11 +708,15 @@ async function activateLicense(code) {
     } else {
       errorDiv.textContent = data.error || "Code invalide";
       errorDiv.classList.remove("hidden");
+      setTimeout(() => { btn.disabled = false; btn.textContent = "Activer"; }, 3000);
+      return;
     }
   } catch (e) {
     errorDiv.textContent = "Erreur de connexion. Vérifiez votre internet.";
     errorDiv.classList.remove("hidden");
     console.error("License activation error:", e);
+    setTimeout(() => { btn.disabled = false; btn.textContent = "Activer"; }, 3000);
+    return;
   }
 
   btn.disabled = false;
@@ -719,7 +729,8 @@ async function restoreLicense() {
   if (!savedCode) return;
 
   try {
-    await activateLicense(savedCode);
+    const decoded = atob(savedCode);
+    await activateLicense(decoded);
   } catch (e) {
     console.warn("Impossible de restaurer la licence:", e);
   }
@@ -761,6 +772,7 @@ function renderQuestion(idx){
       qImg.src = q.image;
       qImg.alt = "Image question";
       qImg.className = "q-img";
+      qImg.loading = "lazy";
       imgContainer.appendChild(qImg);
       imgContainer.classList.remove("hidden");
     } else {
@@ -806,6 +818,7 @@ function renderQuestion(idx){
       aImg.src = ans.image;
       aImg.alt = "Image réponse";
       aImg.className = "ans-img";
+      aImg.loading = "lazy";
       span.appendChild(aImg);
     }
 
@@ -1081,6 +1094,7 @@ function finalize(){
       qImg.src=q.image;
       qImg.alt="Image question";
       qImg.className="q-img";
+      qImg.loading="lazy";
       div.appendChild(qImg);
     }
 

@@ -1,11 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <title>Page non trouvée - Quiz Permis</title>
-    <meta http-equiv="refresh" content="0; url=https://zaalouni.github.io/quiz-permis-lu/">
+  <meta charset="utf-8" />
+  <title>Page non trouvée — Quiz Permis Luxembourg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Cette page n'existe pas ou a été déplacée. Retrouvez le quiz code de la route Luxembourg et tous nos cours de préparation à l'examen théorique.">
+  <meta name="robots" content="noindex, follow">
+  <meta http-equiv="refresh" content="3; url=https://zaalouni.github.io/quiz-permis-lu/">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/">
+  <meta name="theme-color" content="#1e3a8a">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f0f4f8;
+      color: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 580px;
+      width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      padding: 48px 36px;
+      box-shadow: 0 8px 40px rgba(30,58,138,0.12);
+      text-align: center;
+    }
+    .error-code {
+      font-size: 5.5rem;
+      font-weight: 800;
+      color: #1e3a8a;
+      line-height: 1;
+      margin-bottom: 12px;
+      letter-spacing: -2px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      color: #1e3a8a;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .countdown {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      margin-bottom: 28px;
+    }
+    .countdown strong {
+      color: #1e3a8a;
+      font-weight: 700;
+    }
+    .btn-home {
+      display: inline-block;
+      background: #1e3a8a;
+      color: #fff;
+      padding: 13px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 32px;
+      transition: background 0.2s;
+    }
+    .btn-home:hover { background: #1d4ed8; }
+    .nav-links {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 24px;
+    }
+    .nav-links p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 14px;
+    }
+    .nav-links a {
+      display: inline-block;
+      color: #3b82f6;
+      text-decoration: none;
+      margin: 4px 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .nav-links a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
-    <p>Redirection vers la page d'accueil......</p>
+  <div class="container">
+    <div class="error-code">404</div>
+    <h1>Page non trouvée</h1>
+    <p class="subtitle">Cette page n'existe pas ou a été déplacée.<br>Vous allez être redirigé vers l'accueil automatiquement.</p>
+    <p class="countdown">Redirection dans <strong id="sec">3</strong> seconde(s)&hellip;</p>
+    <a href="https://zaalouni.github.io/quiz-permis-lu/" class="btn-home">Retour à l'accueil</a>
+    <div class="nav-links">
+      <p>Accès direct à nos pages :</p>
+      <a href="https://zaalouni.github.io/quiz-permis-lu/cours.html">Cours complet</a>
+      <a href="https://zaalouni.github.io/quiz-permis-lu/conseils.html">Conseils examen</a>
+      <a href="https://zaalouni.github.io/quiz-permis-lu/536.html">536 Questions</a>
+      <a href="https://zaalouni.github.io/quiz-permis-lu/examen-snca.html">Examen SNCA</a>
+      <a href="https://zaalouni.github.io/quiz-permis-lu/signalisation.html">Signalisation</a>
+    </div>
+  </div>
+  <script>
+    var n = 3;
+    var el = document.getElementById('sec');
+    var t = setInterval(function() {
+      n--;
+      if (el) el.textContent = n;
+      if (n <= 0) {
+        clearInterval(t);
+        window.location.href = 'https://zaalouni.github.io/quiz-permis-lu/';
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
