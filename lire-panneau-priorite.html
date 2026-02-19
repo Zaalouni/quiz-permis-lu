@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Comment lire un panneau de priorité en 5 secondes — Quiz Permis Luxembourg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Apprenez à identifier et comprendre les panneaux de priorité du code de la route luxembourgeois en 5 secondes. Priorité à droite, cédez le passage, stop, route prioritaire — guide visuel complet.">
+  <meta name="keywords" content="panneau priorité, code de la route Luxembourg, priorité à droite, cédez le passage, panneau stop, route prioritaire, signalisation Luxembourg">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/lire-panneau-priorite.html">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#1e3a8a">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Comment lire un panneau de priorité en 5 secondes">
+  <meta property="og:description" content="Guide visuel pour comprendre instantanément les panneaux de priorité au Luxembourg : route prioritaire, cédez le passage, stop et priorité à droite.">
+  <meta property="og:url" content="https://zaalouni.github.io/quiz-permis-lu/lire-panneau-priorite.html">
+  <meta property="og:image" content="https://zaalouni.github.io/quiz-permis-lu/icon-512.png">
+  <meta property="og:locale" content="fr_LU">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Comment lire un panneau de priorité en 5 secondes",
+    "description": "Méthode rapide pour identifier et interpréter les panneaux de priorité du code de la route luxembourgeois.",
+    "url": "https://zaalouni.github.io/quiz-permis-lu/lire-panneau-priorite.html",
+    "datePublished": "2026-02-19",
+    "dateModified": "2026-02-19",
+    "inLanguage": "fr",
+    "totalTime": "PT5M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Identifier la forme du panneau",
+        "text": "Carré jaune = route prioritaire. Triangle rouge = danger / cédez le passage. Octogone rouge = stop."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Lire la couleur de fond",
+        "text": "Fond jaune = vous avez la priorité. Fond blanc avec liseré rouge = attention, cédez. Fond rouge = arrêt obligatoire."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Vérifier la signalisation complémentaire",
+        "text": "Un panonceau sous le panneau peut modifier la règle (distance, direction, exceptions)."
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .priority-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px;}
+    .priority-card{
+      background:#f8fafc;border:1px solid var(--border);
+      border-radius:12px;padding:20px;
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .priority-symbol{
+      font-size:3rem;text-align:center;margin-bottom:4px;line-height:1.2;
+    }
+    .priority-card h3{font-size:1rem;font-weight:700;color:var(--primary);margin:0;}
+    .priority-card p{font-size:.88rem;color:var(--muted);line-height:1.6;margin:0;}
+    .priority-card .rule-tag{
+      display:inline-block;font-size:.75rem;font-weight:700;
+      padding:3px 10px;border-radius:20px;
+      width:fit-content;
+    }
+    .tag-priority{background:#dcfce7;color:#166534;}
+    .tag-yield{background:#fef9c3;color:#854d0e;}
+    .tag-stop{background:#fee2e2;color:#991b1b;}
+    .tag-default{background:#eff6ff;color:#1e40af;}
+    .method-steps{counter-reset:steps;}
+    .method-step{
+      display:flex;gap:14px;align-items:flex-start;
+      padding:14px 0;border-bottom:1px solid var(--border);
+    }
+    .method-step:last-child{border-bottom:none;}
+    .step-num{
+      min-width:32px;height:32px;
+      background:var(--primary);color:#fff;
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-size:.9rem;flex-shrink:0;
+    }
+    .step-content h3{font-size:.95rem;font-weight:700;margin-bottom:4px;}
+    .step-content p{font-size:.88rem;color:var(--muted);line-height:1.6;margin:0;}
+    .tip-box{
+      background:linear-gradient(135deg,#eff6ff,#dbeafe);
+      border:1px solid #bfdbfe;border-left:4px solid var(--primary);
+      border-radius:8px;padding:14px 16px;margin-top:8px;
+    }
+    .tip-box strong{color:var(--primary);}
+    .tip-box p{font-size:.88rem;line-height:1.6;margin:0;color:var(--text);}
+    @media(max-width:600px){.priority-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <h1>Lire un panneau de priorité en 5 secondes</h1>
+    <div class="subtitle">Quiz Code de la Route — Luxembourg</div>
+  </div>
+  <div>
+    <a href="./" class="btn back-btn">Retour au quiz</a>
+  </div>
+</header>
+
+<main class="app-main">
+
+  <section class="card">
+    <h2>La méthode en 3 étapes</h2>
+    <p style="color:var(--muted);margin-bottom:16px;line-height:1.7;">
+      Face à un panneau de priorité inconnu, posez-vous ces 3 questions dans l'ordre.
+      En 5 secondes vous saurez exactement qui passe en premier.
+    </p>
+
+    <div class="method-steps">
+      <div class="method-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Quelle est la forme ?</h3>
+          <p>
+            <strong>Carré jaune</strong> (losange) → route prioritaire ou fin de priorité.<br>
+            <strong>Triangle pointant vers le haut</strong> → danger (souvent avec cédez le passage).<br>
+            <strong>Octogone rouge</strong> → STOP absolu.<br>
+            <strong>Rond blanc/rouge</strong> → interdiction (vitesse max, sens interdit…)
+          </p>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Quelle est la couleur de fond ?</h3>
+          <p>
+            <strong>Fond jaune</strong> = vous avez la priorité sur tous les carrefours suivants.<br>
+            <strong>Fond blanc + triangle rouge</strong> = attention, cédez le passage.<br>
+            <strong>Fond rouge</strong> (STOP) = arrêt complet obligatoire, même sans visibilité réduite.<br>
+            <strong>Fond blanc avec croix rouge</strong> = fin de route prioritaire.
+          </p>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Y a-t-il un panonceau complémentaire ?</h3>
+          <p>
+            Un petit panneau sous le principal peut préciser une distance ("dans 100 m"), une direction
+            (flèche), ou une exception (catégorie de véhicules). Lisez-le — il change parfois tout.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Les 7 panneaux de priorité à connaître</h2>
+    <div class="priority-grid">
+
+      <div class="priority-card">
+        <div class="priority-symbol">🔶</div>
+        <span class="rule-tag tag-priority">Vous avez la priorité</span>
+        <h3>Route à priorité (B3a)</h3>
+        <p>Losange jaune à fond jaune. Vous avez la priorité sur <em>toutes</em> les routes qui croisent votre chemin, jusqu'au prochain panneau de fin de priorité.</p>
+      </div>
+
+      <div class="priority-card">
+        <div class="priority-symbol">◇</div>
+        <span class="rule-tag tag-default">Fin de priorité</span>
+        <h3>Fin de route prioritaire (B3b)</h3>
+        <p>Losange jaune barré d'une croix noire. Votre priorité cesse ici. Reprenez la règle de la priorité à droite sauf signalisation contraire.</p>
+      </div>
+
+      <div class="priority-card">
+        <div class="priority-symbol">🔺</div>
+        <span class="rule-tag tag-yield">Cédez le passage</span>
+        <h3>Cédez le passage (B1)</h3>
+        <p>Triangle rouge pointant vers le bas. Vous devez laisser passer les véhicules sur la route que vous croisez. Vous pouvez ralentir sans vous arrêter si la voie est libre.</p>
+      </div>
+
+      <div class="priority-card">
+        <div class="priority-symbol">🛑</div>
+        <span class="rule-tag tag-stop">Arrêt absolu</span>
+        <h3>Stop (B2a)</h3>
+        <p>Octogone rouge. Arrêt <strong>complet et obligatoire</strong>, même si vous voyez que la voie est libre. L'arrêt doit être effectif (vitesse = 0). Cédez le passage ensuite.</p>
+      </div>
+
+      <div class="priority-card">
+        <div class="priority-symbol">➡️</div>
+        <span class="rule-tag tag-priority">Vous avez la priorité</span>
+        <h3>Passage prioritaire (B4)</h3>
+        <p>Carré bleu avec flèche blanche et flèche noire écrasée. Indique que vous êtes sur une voie prioritaire dans un rétrécissement ou un passage alterné.</p>
+      </div>
+
+      <div class="priority-card">
+        <div class="priority-symbol">⬛</div>
+        <span class="rule-tag tag-yield">Cédez</span>
+        <h3>Cédez aux véhicules en sens inverse (B5)</h3>
+        <p>Carré bleu avec flèche rouge. Dans un rétrécissement, vous devez laisser passer les véhicules venant en sens inverse avant de vous engager.</p>
+      </div>
+
+      <div class="priority-card">
+        <div class="priority-symbol">↗️</div>
+        <span class="rule-tag tag-default">Règle générale</span>
+        <h3>Priorité à droite (règle par défaut)</h3>
+        <p>Pas de panneau spécifique — c'est la règle générale en l'absence de signalisation. Tout véhicule arrivant par votre droite a la priorité, sauf sur route prioritaire ou à sens unique.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Les 4 pièges classiques à l'examen</h2>
+
+    <div class="tip-box" style="margin-bottom:12px;">
+      <strong>⚠️ Piège 1 — Rond-point au Luxembourg</strong>
+      <p>Les véhicules déjà engagés dans le rond-point ont la priorité. L'entrée est signalée par un "Cédez le passage". Ce n'est pas la priorité à droite, même si une voiture arrive depuis votre droite depuis l'intérieur.</p>
+    </div>
+
+    <div class="tip-box" style="margin-bottom:12px;">
+      <strong>⚠️ Piège 2 — STOP vs Cédez</strong>
+      <p>Au STOP, l'arrêt est obligatoire même si la route semble dégagée. Au Cédez le passage, vous pouvez passer sans vous arrêter si la voie est libre. L'examen teste souvent cette distinction.</p>
+    </div>
+
+    <div class="tip-box" style="margin-bottom:12px;">
+      <strong>⚠️ Piège 3 — Fin de route prioritaire</strong>
+      <p>Après le losange jaune barré, vous repassez sous la règle de la priorité à droite. Beaucoup de candidats continuent à rouler comme s'ils avaient encore la priorité — erreur fréquente.</p>
+    </div>
+
+    <div class="tip-box">
+      <strong>⚠️ Piège 4 — Priorité à droite sur les voies sans panneau</strong>
+      <p>Sur une route sans panneau de priorité ni STOP/cédez, la priorité à droite s'applique à tous les carrefours. Cela inclut les rues secondaires, parkings et voies privées débouchant sur la route.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Astuce mémorisation en 10 secondes</h2>
+    <p style="line-height:1.7;margin-bottom:10px;">Utilisez l'acrostiche <strong>J-T-O</strong> :</p>
+    <ul style="line-height:2.2;padding-left:18px;">
+      <li><strong>J</strong>aune (losange) → <strong>J</strong>'ai la priorité</li>
+      <li><strong>T</strong>riangle (rouge) → <strong>T</strong>u cèdes le passage</li>
+      <li><strong>O</strong>ctogone (STOP) → <strong>O</strong>bligatoire de s'arrêter</li>
+    </ul>
+    <p style="margin-top:10px;color:var(--muted);font-size:.9rem;">
+      Tout le reste (bleu, carré) concerne les passages prioritaires dans les rétrécissements.
+    </p>
+  </section>
+
+  <div class="card" style="text-align:center;">
+    <p style="margin-bottom:14px;color:var(--muted);">Testez vos connaissances sur les panneaux maintenant !</p>
+    <a href="./" class="btn primary">Lancer un quiz — Signalisation</a>
+  </div>
+
+</main>
+
+<footer class="app-footer">
+  <nav aria-label="Navigation">
+    <div class="footer-links">
+      <a href="./">Quiz principal</a>
+      <a href="cours.html">Cours complet</a>
+      <a href="conseils.html">Conseils examen</a>
+      <a href="erreurs-examen-snca.html">10 erreurs examen SNCA</a>
+      <a href="signalisation.html">Signalisation</a>
+      <a href="distances-freinage.html">Distances & Freinage</a>
+      <a href="alcool-permis.html">Alcool & Sanctions</a>
+      <a href="examen-snca.html">Examen théorique</a>
+      <a href="stationnement.html">Stationnement</a>
+      <a href="pietons-cyclistes.html">Piétons & Cyclistes</a>
+      <a href="regles-specifiques.html">Règles spécifiques</a>
+      <a href="circulation-avancee.html">Circulation &amp; Chargement</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+    </div>
+    <div class="footer-social">
+      <span class="footer-social-label">YouTube :</span>
+      <a href="https://www.youtube.com/@tigretunisietigretunisie1995" target="_blank" rel="noopener" class="social-icon yt" aria-label="YouTube">YT</a>
+    </div>
+    <small>© 2026 <a href="https://zaalouni.github.io/quiz-permis-lu/">Quiz Code de la Route Luxembourg</a> — Quiz d'entraînement indépendant, non affilié à un organisme officiel.</small>
+  </nav>
+</footer>
+
+</body>
+</html>

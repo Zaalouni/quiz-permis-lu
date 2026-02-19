@@ -1,5 +1,5 @@
-const CACHE_NAME = 'quiz-permis-v27';
-const APP_VERSION = '3.2';
+const CACHE_NAME = 'quiz-permis-v28';
+const APP_VERSION = '3.3';
 const urlsToCache = [
   './',
   './index.html',
@@ -19,7 +19,9 @@ const urlsToCache = [
   './stationnement.html',
   './pietons-cyclistes.html',
   './regles-specifiques.html',
-  './536.html'
+  './536.html',
+  './erreurs-examen-snca.html',
+  './lire-panneau-priorite.html'
 ];
 
 // Installation — cache fichiers statiques
@@ -81,6 +83,23 @@ self.addEventListener('message', event => {
   if (event.data && event.data.type === 'CHECK_VERSION') {
     event.source.postMessage({ type: 'VERSION', version: APP_VERSION, cache: CACHE_NAME });
   }
+});
+
+// Clic sur notification — ouvrir l'app
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
+      for (const client of clientList) {
+        if (client.url.includes('quiz-permis-lu') && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      if (clients.openWindow) {
+        return clients.openWindow('./');
+      }
+    })
+  );
 });
 
 // Activation — nettoyer anciens caches

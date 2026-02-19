@@ -431,6 +431,39 @@ input, select, textarea{font-size:16px !important;}
   .weak-cat-name{min-width:90px;font-size:.78rem;}
 }
 
+/* === STREAK === */
+.streak-row{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 14px;margin-bottom:10px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#fff7ed,#ffedd5);
+  border:1px solid #fed7aa;
+  font-size:.9rem;color:#9a3412;
+  animation:fadeIn .4s ease;
+}
+.streak-fire{font-size:1.4rem;line-height:1;}
+.streak-row strong{font-size:1.5rem;font-weight:900;color:#ea580c;}
+.streak-label{color:#c2410c;font-weight:500;}
+
+/* === NOTIFICATION OPT-IN === */
+.notif-optin{margin-top:14px;text-align:center;}
+.btn-notif-off{
+  background:linear-gradient(135deg,#6366f1,#4f46e5);
+  color:#fff;font-weight:600;font-size:.85rem;
+  border:none;padding:10px 18px;border-radius:10px;
+  cursor:pointer;min-height:44px;
+  transition:transform .15s,box-shadow .15s;
+}
+.btn-notif-off:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(99,102,241,.35);}
+.btn-notif-on{
+  background:linear-gradient(135deg,#16a34a,#15803d);
+  color:#fff;font-weight:600;font-size:.85rem;
+  border:none;padding:10px 18px;border-radius:10px;
+  cursor:pointer;min-height:44px;
+  transition:transform .15s,box-shadow .15s;
+}
+.btn-notif-on:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(22,163,74,.35);}
+
 /* === PARTAGE === */
 .share-section{padding:14px 0;margin-bottom:14px;border-bottom:1px solid var(--border);}
 .share-title{font-size:.95rem;color:var(--muted);margin-bottom:10px;}
@@ -446,6 +479,7 @@ input, select, textarea{font-size:16px !important;}
 .share-btn.whatsapp{background:linear-gradient(135deg,#25d366,#128c7e);}
 .share-btn.facebook{background:linear-gradient(135deg,#1877f2,#0d65d9);}
 .share-btn.copy{background:linear-gradient(135deg,#64748b,#475569);}
+.share-btn.image-share{background:linear-gradient(135deg,#e1306c,#833ab4);}
 .share-copied{
   margin-top:8px;padding:8px 14px;
   background:#ecfdf5;border:1px solid #86efac;
