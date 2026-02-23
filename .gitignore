@@ -19,5 +19,5 @@ Quiz snca2.js
 # Sous-dossier clone
 quiz-permis-lu/
 
-# Claude
-.claude/
+# Claude (settings versionnés — ne pas ignorer)
+# .claude/
