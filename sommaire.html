@@ -173,6 +173,81 @@
       color: #64748b;
       margin-top: 0.5rem;
     }
+
+    .ressources-section {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border-radius: 8px;
+      border: 2px solid #0284c7;
+    }
+
+    .ressources-section h2 {
+      text-align: center;
+      color: #0c4a6e;
+      margin-top: 0;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .ressources-subtitle {
+      text-align: center;
+      color: #0369a1;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .ressources-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .ressource-card {
+      background: white;
+      border: 2px solid #e0f2fe;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(6, 182, 212, 0.1);
+      position: relative;
+    }
+
+    .ressource-card:hover {
+      border-color: #0284c7;
+      box-shadow: 0 6px 16px rgba(6, 182, 212, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .ressource-card h3 {
+      margin: 0 0 0.75rem 0;
+      color: #0c4a6e;
+      font-size: 1.15rem;
+    }
+
+    .ressource-card p {
+      margin: 0 0 1rem 0;
+      font-size: 0.9rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .ressource-card a {
+      display: inline-block;
+      background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      color: white;
+      padding: 0.65rem 1.3rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .ressource-card a:hover {
+      background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
+    }
   </style>
 </head>
 <body>
@@ -273,34 +348,37 @@
 
 </div>
 
-<h2 style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e5e7eb;">Autres ressources utiles</h2>
+<div class="ressources-section">
+  <h2>⭐ Ressources & Outils Complémentaires</h2>
+  <p class="ressources-subtitle">Complétez votre préparation avec ces ressources essentielles</p>
 
-<div class="sommaire-container">
+  <div class="ressources-container">
 
-  <div class="cours-card">
-    <h3>📊 Quiz & Questions</h3>
-    <p>+1200 questions QCM pour vous entraîner. Corrections détaillées et explications.</p>
-    <a href="./">Accéder au quiz →</a>
+    <div class="ressource-card">
+      <h3>📊 Quiz & Questions</h3>
+      <p>+1200 questions QCM pour vous entraîner. Corrections détaillées et explications personnalisées pour chaque réponse.</p>
+      <a href="./">Accéder au quiz →</a>
+    </div>
+
+    <div class="ressource-card">
+      <h3>🎓 Examen théorique SNCA</h3>
+      <p>Informations complètes sur l'examen officiel : centres d'examen, conditions, langues disponibles, frais actualisés 2026.</p>
+      <a href="examen-snca.html">En savoir plus →</a>
+    </div>
+
+    <div class="ressource-card">
+      <h3>🚦 Signalisation Routière</h3>
+      <p>Guide détaillé des panneaux, feux et signalisation routière luxembourgeoise. Tous les pièges d'examen.</p>
+      <a href="signalisation.html">Consulter →</a>
+    </div>
+
+    <div class="ressource-card">
+      <h3>💡 Conseils pour l'Examen</h3>
+      <p>Stratégie de révision, pièges courants, préparation du jour J. Augmentez significativement vos chances de réussite.</p>
+      <a href="conseils.html">Lire les conseils →</a>
+    </div>
+
   </div>
-
-  <div class="cours-card">
-    <h3>🎓 Examen théorique SNCA</h3>
-    <p>Informations complètes sur l'examen officiel : centres, conditions, langues, frais.</p>
-    <a href="examen-snca.html">En savoir plus →</a>
-  </div>
-
-  <div class="cours-card">
-    <h3>🚦 Signalisation</h3>
-    <p>Guide détaillé des panneaux et signalisation routière luxembourgeoise.</p>
-    <a href="signalisation.html">Consulter →</a>
-  </div>
-
-  <div class="cours-card">
-    <h3>💡 Conseils pour l'examen</h3>
-    <p>Stratégie, pièges courants, préparation, jour J. Augmentez vos chances de réussite.</p>
-    <a href="conseils.html">Lire les conseils →</a>
-  </div>
-
 </div>
 
 <h2 style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e5e7eb;">Toutes les pages HTML du projet</h2>
