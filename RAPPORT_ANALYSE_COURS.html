@@ -1,403 +1,376 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rapport d'Analyse des Fichiers HTML - Quiz Permis LU</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Sommaire — Tous les Cours — Code de la Route Luxembourg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Index complet de tous les cours du code de la route au Luxembourg. Vitesses, alcool, priorités, dépassement, autoroutes, signalisation, stationnement, équipements.">
+  <meta name="keywords" content="sommaire, cours code route, index, table des matières, Luxembourg, SNCA">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/sommaire.html">
+  <meta property="og:title" content="Sommaire — Tous les Cours">
+  <meta property="og:description" content="Index complet de tous les cours du code de la route Luxembourg.">
+  <meta property="og:url" content="https://zaalouni.github.io/quiz-permis-lu/sommaire.html">
+  <meta property="og:image" content="https://zaalouni.github.io/quiz-permis-lu/icon-512.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#1e3a8a">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Sommaire — Tous les Cours du Code de la Route Luxembourg",
+    "description": "Index complet de tous les cours du code de la route au Luxembourg.",
+    "url": "https://zaalouni.github.io/quiz-permis-lu/sommaire.html",
+    "inLanguage": "fr",
+    "hasPart": [
+      {
+        "@type": "Course",
+        "name": "Vitesses & Distances",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/vitesses-distances.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Alcool, Stupéfiants & Permis à Points",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/alcool-points.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Priorités & Circulation",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/priorites-circulation.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Dépassement, Cyclistes & Remorques",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/depassement-cyclistes.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Autoroutes, Tunnels & Couloir de Secours",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/autoroutes-tunnels.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Arrêt & Stationnement",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/stationnement-arret.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Signalisation Routière Complète",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/signalisation-complete.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Équipements, Enfants & Sécurité",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/equipements-securite.html"
+      }
+    ],
+    "provider": {
+      "@type": "Organization",
+      "name": "Quiz Permis Luxembourg",
+      "url": "https://zaalouni.github.io/quiz-permis-lu/"
+    }
+  }
+  </script>
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; padding: 20px; }
-    .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    h1 { color: #1e3a8a; margin-bottom: 30px; border-bottom: 3px solid #1e3a8a; padding-bottom: 10px; }
-    h2 { color: #1e3a8a; margin-top: 30px; margin-bottom: 15px; }
-    h3 { color: #2563eb; margin-top: 15px; margin-bottom: 10px; }
-    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.95rem; }
-    thead { background: #1e3a8a; color: white; }
-    th, td { padding: 12px 15px; text-align: left; border: 1px solid #ddd; }
-    tbody tr:nth-child(even) { background: #f9f9f9; }
-    tbody tr:hover { background: #f0f7ff; }
-    .status-ok { background: #dcfce7; color: #166534; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
-    .status-warning { background: #fef9c3; color: #854d0e; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
-    .status-error { background: #fee2e2; color: #991b1b; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
-    .status-info { background: #dbeafe; color: #1e40af; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
-    .section-summary { background: #eff6ff; border-left: 4px solid #1e3a8a; padding: 15px; margin-bottom: 20px; border-radius: 4px; }
-    .highlight { background: #ffffcc; padding: 2px 4px; }
-    code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
-    .date { color: #666; font-size: 0.9rem; }
+    .sommaire-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .cours-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .cours-card:hover {
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+      border-color: #1e3a8a;
+      transform: translateY(-2px);
+    }
+
+    .cours-card h3 {
+      margin: 0 0 0.75rem 0;
+      color: #1e3a8a;
+      font-size: 1.1rem;
+    }
+
+    .cours-card p {
+      margin: 0 0 1rem 0;
+      font-size: 0.9rem;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .cours-card a {
+      display: inline-block;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .cours-card a:hover {
+      background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    .sommaire-intro {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-left: 4px solid #1e3a8a;
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+    }
+
+    .sommaire-intro h2 {
+      margin-top: 0;
+      color: #1e3a8a;
+    }
+
+    .sommaire-intro p {
+      margin: 0.5rem 0;
+      color: #334155;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 6px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-top: 0.5rem;
+    }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>📋 Rapport d'Analyse - Fichiers HTML des Cours</h1>
-  <p class="date">Généré le 26 février 2026 | Branche: claude/review-course-html-sources-PGGta</p>
-
-  <div class="section-summary">
-    <h3>📊 Résumé Exécutif</h3>
-    <ul>
-      <li><strong>9 fichiers HTML</strong> analysés (cours, signalisation, distances, etc.)</li>
-      <li><strong>Sources vérifiées:</strong> 7/9 fichiers ont des sources citées ✅</li>
-      <li><strong>Compatibilité PWA:</strong> ✅ Complète (manifest.json + service worker)</li>
-      <li><strong>Bugs identifiés:</strong> 3 problèmes mineurs à corriger</li>
-      <li><strong>Corrections recommandées:</strong> 5 actions prioritaires</li>
-    </ul>
+<header class="app-header">
+  <div class="brand">
+    <h1>Sommaire Complet</h1>
+    <div class="subtitle">Tous les cours — Index</div>
   </div>
-
-  <!-- ============================================================ -->
-  <!-- 1. TABLEAU DES SOURCES ET VERIFICATIONS -->
-  <!-- ============================================================ -->
-  <h2>1️⃣ Tableau des Sources et Vérifications</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Fichier HTML</th>
-        <th>Sources Citées</th>
-        <th>Fiabilité</th>
-        <th>Vérification</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>cours.html</strong></td>
-        <td>✅ Legilux 2025<br>✅ transports.public.lu<br>✅ police.public.lu</td>
-        <td><span class="status-ok">FIABLE</span></td>
-        <td>✅ Sources officielles luxembourgeoises</td>
-        <td>Ajouter lien actif vers Legilux</td>
-      </tr>
-      <tr>
-        <td><strong>circulation-avancee.html</strong></td>
-        <td>✅ Legilux<br>✅ gouvernement.lu<br>✅ Auto-école</td>
-        <td><span class="status-ok">FIABLE</span></td>
-        <td>✅ Articles explicitement référencés (art. 67, 126, 164, 166)</td>
-        <td>Format des sources ✅ Bon</td>
-      </tr>
-      <tr>
-        <td><strong>distances-freinage.html</strong></td>
-        <td>❌ Pas de sources</td>
-        <td><span class="status-warning">À VÉRIFIER</span></td>
-        <td>⚠️ Formules standards correctes : (V/10)x3 pour réaction, (V/10)² pour freinage</td>
-        <td>Ajouter sources: codes route international + recherche</td>
-      </tr>
-      <tr>
-        <td><strong>signalisation.html</strong></td>
-        <td>❌ Pas de sources</td>
-        <td><span class="status-warning">À VÉRIFIER</span></td>
-        <td>✅ Informations standard (Convention Vienne)</td>
-        <td>Ajouter références à Convention Vienne + police.public.lu</td>
-      </tr>
-      <tr>
-        <td><strong>alcool-permis.html</strong></td>
-        <td>❌ Pas de sources</td>
-        <td><span class="status-warning">À VÉRIFIER</span></td>
-        <td>⚠️ Taux alcool cohérents avec cours.html, mais amendes à valider</td>
-        <td>Ajouter sources: police.public.lu + barème infractions</td>
-      </tr>
-      <tr>
-        <td><strong>pietons-cyclistes.html</strong></td>
-        <td>✅ police.public.lu<br>✅ transports.public.lu<br>✅ Legilux</td>
-        <td><span class="status-ok">FIABLE</span></td>
-        <td>✅ Distance cycliste (1,5m) confirmée</td>
-        <td>Format ✅ Bon</td>
-      </tr>
-      <tr>
-        <td><strong>stationnement.html</strong></td>
-        <td>✅ police.public.lu<br>✅ Legilux art. 107</td>
-        <td><span class="status-ok">FIABLE</span></td>
-        <td>✅ Amendes vérifiées (24€, 49€, 145€)</td>
-        <td>Format ✅ Bon</td>
-      </tr>
-      <tr>
-        <td><strong>regles-specifiques.html</strong></td>
-        <td>✅ police.public.lu<br>✅ transports.public.lu<br>✅ Legilux 2025</td>
-        <td><span class="status-ok">FIABLE</span></td>
-        <td>✅ Règles luxembourgeoises (dashcam, croisement) confirmées</td>
-        <td>Format ✅ Bon</td>
-      </tr>
-      <tr>
-        <td><strong>lire-panneau-priorite.html</strong></td>
-        <td>❌ Pas de sources</td>
-        <td><span class="status-info">STANDARD</span></td>
-        <td>✅ Contenu pédagogique, schema.org bien structuré</td>
-        <td>Ajouter références Convention Vienne</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- ============================================================ -->
-  <!-- 2. TABLEAU DES CORRECTIONS A FAIRE -->
-  <!-- ============================================================ -->
-  <h2>2️⃣ Tableau des Corrections Nécessaires</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Fichier</th>
-        <th>Problème Identifié</th>
-        <th>Sévérité</th>
-        <th>Détail</th>
-        <th>Solution</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>distances-freinage.html</strong></td>
-        <td>Sources manquantes</td>
-        <td><span class="status-warning">MOYEN</span></td>
-        <td>Pas de sources citées pour les formules et tableaux</td>
-        <td>Ajouter: <code>&lt;small&gt;Sources: formules standards code route international&lt;/small&gt;</code></td>
-      </tr>
-      <tr>
-        <td><strong>signalisation.html</strong></td>
-        <td>Sources manquantes</td>
-        <td><span class="status-warning">MOYEN</span></td>
-        <td>Pas de sources pour les catégories de panneaux</td>
-        <td>Ajouter références Convention Vienne 1968</td>
-      </tr>
-      <tr>
-        <td><strong>alcool-permis.html</strong></td>
-        <td>Incohérence amendes</td>
-        <td><span class="status-warning">MOYEN</span></td>
-        <td>Tableau alcool ne cite pas les sources (comparé à cours.html)</td>
-        <td>Harmoniser avec cours.html + ajouter lien police.public.lu</td>
-      </tr>
-      <tr>
-        <td><strong>lire-panneau-priorite.html</strong></td>
-        <td>Pas de sources</td>
-        <td><span class="status-info">FAIBLE</span></td>
-        <td>Contenu pédagogique sans sources officielles</td>
-        <td>Ajouter note: "Basé sur Convention Vienne"</td>
-      </tr>
-      <tr>
-        <td><strong>cours.html + circulation-avancee.html</strong></td>
-        <td>Date Legilux future (9 août 2025)</td>
-        <td><span class="status-info">FAIBLE</span></td>
-        <td>Références à "consolidé 9 août 2025" alors qu'on est en 2026</td>
-        <td>Vérifier date actuelle de consolidation Legilux et mettre à jour</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- ============================================================ -->
-  <!-- 3. VERIFICATION PWA -->
-  <!-- ============================================================ -->
-  <h2>3️⃣ Vérification Compatibilité PWA</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Élément PWA</th>
-        <th>Statut</th>
-        <th>Fichier/Localisation</th>
-        <th>Détails</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>manifest.json</strong></td>
-        <td><span class="status-ok">✅ PRÉSENT</span></td>
-        <td>manifest.json</td>
-        <td>Bien configuré avec icônes 16x16, 32x32, 192x192, 512x512</td>
-      </tr>
-      <tr>
-        <td><strong>Service Worker</strong></td>
-        <td><span class="status-ok">✅ PRÉSENT</span></td>
-        <td>sw.js (v29)</td>
-        <td>Stratégie network-first pour HTML/JS/CSS, cache-first pour images</td>
-      </tr>
-      <tr>
-        <td><strong>Meta PWA (index.html)</strong></td>
-        <td><span class="status-ok">✅ PRÉSENT</span></td>
-        <td>index.html lignes 38-44</td>
-        <td>apple-mobile-web-app-capable, theme-color, apple-mobile-web-app-title</td>
-      </tr>
-      <tr>
-        <td><strong>Manifest dans HTML</strong></td>
-        <td><span class="status-ok">✅ PRÉSENT</span></td>
-        <td>index.html ligne 39</td>
-        <td><code>&lt;link rel="manifest" href="manifest.json"&gt;</code></td>
-      </tr>
-      <tr>
-        <td><strong>Service Worker Enregistrement</strong></td>
-        <td><span class="status-warning">À VÉRIFIER</span></td>
-        <td>quiz-free.js</td>
-        <td>Vérifier que sw.js est bien enregistré au chargement</td>
-      </tr>
-      <tr>
-        <td><strong>Icônes PWA</strong></td>
-        <td><span class="status-ok">✅ PRÉSENT</span></td>
-        <td>icon-192.png, icon-512.png</td>
-        <td>Fichiers présents, déclarés dans manifest.json</td>
-      </tr>
-      <tr>
-        <td><strong>HTTPS</strong></td>
-        <td><span class="status-ok">✅ OUI</span></td>
-        <td>zaalouni.github.io</td>
-        <td>GitHub Pages force HTTPS — ✅ Obligatoire pour PWA</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="section-summary">
-    <strong>✅ Conclusion PWA:</strong> L'application est correctement configurée comme PWA.
-    Tous les éléments essentiels sont présents (manifest, service worker, icônes, HTTPS).
-    <br><br>
-    <strong>⚠️ À vérifier:</strong> Tester sur vrai appareil mobile l'enregistrement du service worker dans les fichiers HTML des cours.
+  <div>
+    <a href="./" class="btn back-btn">Retour au quiz</a>
   </div>
+</header>
 
-  <!-- ============================================================ -->
-  <!-- 4. BUGS IDENTIFIES -->
-  <!-- ============================================================ -->
-  <h2>4️⃣ Bugs Identifiés</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Fichier</th>
-        <th>Bug</th>
-        <th>Sévérité</th>
-        <th>Description</th>
-        <th>Correction</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>distances-freinage.html</strong></td>
-        <td>Ligne 56 calcul de réaction</td>
-        <td><span class="status-info">MINEUR</span></td>
-        <td>Tableau: 30 km/h → Réaction 9m. Formule: 30/10 x 3 = 9m ✅ Correct mathématiquement</td>
-        <td>✅ Aucun problème</td>
-      </tr>
-      <tr>
-        <td><strong>index.html</strong></td>
-        <td>CSP 'unsafe-inline'</td>
-        <td><span class="status-warning">SÉCURITÉ</span></td>
-        <td>Content-Security-Policy permet 'unsafe-inline' pour scripts (justifié pour app, mais non-idéal)</td>
-        <td>Documentation: pourquoi c'est nécessaire. Considérer nonces pour inline scripts</td>
-      </tr>
-      <tr>
-        <td><strong>Tous les fichiers</strong></td>
-        <td>Liens YouTube @tigretunisietigretunisie1995</td>
-        <td><span class="status-warning">MINEURE</span></td>
-        <td>Présent dans plusieurs footers - Account peut être non-actif ou hors sujet</td>
-        <td>Vérifier si lien valide et pertinent. Sinon supprimer.</td>
-      </tr>
-      <tr>
-        <td><strong>cours.html</strong></td>
-        <td>Dates Legilux</td>
-        <td><span class="status-info">MINEUR</span></td>
-        <td>Référence à "consolidé 9 août 2025" — à mettre à jour pour 2026</td>
-        <td>Vérifier date actuelle sur Legilux.public.lu et mettre à jour</td>
-      </tr>
-      <tr>
-        <td><strong>alcool-permis.html</strong></td>
-        <td>Barème amendes flou</td>
-        <td><span class="status-warning">MOYEN</span></td>
-        <td>Ligne 58: "500 €" sans source — comparé à cours.html qui est plus précis</td>
-        <td>Harmoniser avec cours.html et ajouter source police.public.lu</td>
-      </tr>
-    </tbody>
-  </table>
+<main class="app-main">
+<section class="card seo-content">
 
-  <!-- ============================================================ -->
-  <!-- 5. TABLEAU DES ACTIONS A FAIRE -->
-  <!-- ============================================================ -->
-  <h2>5️⃣ Tableau Détaillé des Actions à Faire</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Priorité</th>
-        <th>Action</th>
-        <th>Fichier(s)</th>
-        <th>Statut</th>
-        <th>Estimé</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="status-error">🔴 P0</span></td>
-        <td>Ajouter sources manquantes (distances-freinage.html)</td>
-        <td>distances-freinage.html</td>
-        <td>À FAIRE</td>
-        <td>5 min</td>
-      </tr>
-      <tr>
-        <td><span class="status-error">🔴 P0</span></td>
-        <td>Ajouter sources manquantes (signalisation.html)</td>
-        <td>signalisation.html</td>
-        <td>À FAIRE</td>
-        <td>5 min</td>
-      </tr>
-      <tr>
-        <td><span class="status-warning">🟡 P1</span></td>
-        <td>Harmoniser sources alcool (alcool-permis.html vs cours.html)</td>
-        <td>alcool-permis.html</td>
-        <td>À FAIRE</td>
-        <td>10 min</td>
-      </tr>
-      <tr>
-        <td><span class="status-warning">🟡 P1</span></td>
-        <td>Ajouter sources pédagogiques (lire-panneau-priorite.html)</td>
-        <td>lire-panneau-priorite.html</td>
-        <td>À FAIRE</td>
-        <td>5 min</td>
-      </tr>
-      <tr>
-        <td><span class="status-warning">🟡 P1</span></td>
-        <td>Mettre à jour dates Legilux (9 août 2025 → 2026)</td>
-        <td>cours.html, circulation-avancee.html, regles-specifiques.html</td>
-        <td>À FAIRE</td>
-        <td>10 min</td>
-      </tr>
-      <tr>
-        <td><span class="status-info">🔵 P2</span></td>
-        <td>Vérifier et valider compte YouTube fourni</td>
-        <td>Tous les fichiers</td>
-        <td>À FAIRE</td>
-        <td>5 min</td>
-      </tr>
-      <tr>
-        <td><span class="status-info">🔵 P2</span></td>
-        <td>Tester service worker sur device mobile réel</td>
-        <td>sw.js, tous les pages</td>
-        <td>À FAIRE</td>
-        <td>15 min</td>
-      </tr>
-      <tr>
-        <td><span class="status-info">🔵 P2</span></td>
-        <td>Documenter pourquoi 'unsafe-inline' est nécessaire</td>
-        <td>index.html, claude.md</td>
-        <td>À FAIRE</td>
-        <td>5 min</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- ============================================================ -->
-  <!-- CONCLUSION -->
-  <!-- ============================================================ -->
-  <h2>✅ Conclusion Générale</h2>
-  <div class="section-summary">
-    <h3>État Général: 🟢 BON</h3>
-    <ul>
-      <li><strong>✅ Contenu pédagogique:</strong> De qualité, bien structuré avec tableaux et listes</li>
-      <li><strong>✅ Sources:</strong> 7/9 fichiers ont des sources fiables. 2/9 nécessitent ajouts mineurs.</li>
-      <li><strong>✅ PWA:</strong> Complètement conforme. Peut fonctionner hors-ligne sans problème.</li>
-      <li><strong>✅ Bugs:</strong> Aucun bug critique. 3-5 problèmes mineurs de maintenance.</li>
-      <li><strong>⚠️ SEO:</strong> Bon (schema.org, meta tags, canonical URLs)</li>
-      <li><strong>⚠️ Sécurité:</strong> Acceptable (CSP avec unsafe-inline justifié pour cette app)</li>
-    </ul>
-  </div>
-
-  <h3>Recommandations Prioritaires:</h3>
-  <ol>
-    <li><strong>P0 (Urgent):</strong> Ajouter sources aux fichiers sans citations (distances, signalisation)</li>
-    <li><strong>P1 (Important):</strong> Harmoniser et mettre à jour les dates Legilux</li>
-    <li><strong>P2 (Optionnel):</strong> Tester PWA sur appareils réels, documenter la sécurité</li>
-  </ol>
-
-  <hr style="margin-top: 30px; border: none; border-top: 2px solid #ddd;">
-  <p style="text-align: center; color: #666; margin-top: 20px; font-size: 0.9rem;">
-    Rapport généré automatiquement | Quiz Permis Luxembourg | février 2026
-  </p>
+<div class="sommaire-intro">
+  <h2>📚 Index complet des cours</h2>
+  <p>Retrouvez ci-dessous tous les cours du code de la route au Luxembourg, organisés par thème.</p>
+  <p>Chaque cours contient des explications détaillées, des tableaux récapitulatifs et les pièges courants de l'examen SNCA.</p>
 </div>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-number">8</div>
+    <div class="stat-label">Cours complets</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">Expert</div>
+    <div class="stat-label">Niveau SNCA 2025</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">+1200</div>
+    <div class="stat-label">Questions QCM</div>
+  </div>
+</div>
+
+<h2>Cours disponibles</h2>
+
+<div class="sommaire-container">
+
+  <!-- Cours 1 -->
+  <div class="cours-card">
+    <h3>1️⃣ Vitesses & Distances</h3>
+    <p>Limitations de vitesse par zone, distances de sécurité (2 secondes), distance latérale cycliste (1,5m légal), zones spéciales.</p>
+    <a href="vitesses-distances.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 2 -->
+  <div class="cours-card">
+    <h3>2️⃣ Alcool, Stupéfiants & Permis à Points</h3>
+    <p>Seuils légaux alcool (0,5g/L), permis à points (12 points), système infractions points, téléphone au volant (4 points).</p>
+    <a href="alcool-points.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 3 -->
+  <div class="cours-card">
+    <h3>3️⃣ Priorités & Circulation</h3>
+    <p>Hiérarchie priorités, priorité à droite, STOP, piétons, tram, giratoires, croisement indonésien, feux tricolores.</p>
+    <a href="priorites-circulation.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 4 -->
+  <div class="cours-card">
+    <h3>4️⃣ Dépassement, Cyclistes & Remorques</h3>
+    <p>Dépassement par la gauche, distance 1,5m cycliste (loi), remorques, vitesses réduites, train routier.</p>
+    <a href="depassement-cyclistes.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 5 -->
+  <div class="cours-card">
+    <h3>5️⃣ Autoroutes, Tunnels & Couloir de Secours</h3>
+    <p>Vitesses autoroute (130/110 pluie), couloir de secours (Rettungsgasse), tunnels, BAU, passages à niveau.</p>
+    <a href="autoroutes-tunnels.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 6 -->
+  <div class="cours-card">
+    <h3>6️⃣ Arrêt & Stationnement</h3>
+    <p>Interdictions absolues, distances (5m piéton, 15m bus), lignes jaunes, zone bleue, disque, alterné.</p>
+    <a href="stationnement-arret.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 7 -->
+  <div class="cours-card">
+    <h3>7️⃣ Signalisation Routière Complète</h3>
+    <p>Classification panneaux (danger, interdiction, obligation), lignes au sol, feux tricolores, balises.</p>
+    <a href="signalisation-complete.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 8 -->
+  <div class="cours-card">
+    <h3>8️⃣ Équipements, Enfants & Sécurité</h3>
+    <p>Ceinture obligatoire, siège auto enfants, pneus (1,6mm), chargement (2,55m, 4m), triangle, gilet.</p>
+    <a href="equipements-securite.html">Consulter le cours →</a>
+  </div>
+
+</div>
+
+<h2 style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e5e7eb;">Autres ressources utiles</h2>
+
+<div class="sommaire-container">
+
+  <div class="cours-card">
+    <h3>📊 Quiz & Questions</h3>
+    <p>+1200 questions QCM pour vous entraîner. Corrections détaillées et explications.</p>
+    <a href="./">Accéder au quiz →</a>
+  </div>
+
+  <div class="cours-card">
+    <h3>🎓 Examen théorique SNCA</h3>
+    <p>Informations complètes sur l'examen officiel : centres, conditions, langues, frais.</p>
+    <a href="examen-snca.html">En savoir plus →</a>
+  </div>
+
+  <div class="cours-card">
+    <h3>🚦 Signalisation</h3>
+    <p>Guide détaillé des panneaux et signalisation routière luxembourgeoise.</p>
+    <a href="signalisation.html">Consulter →</a>
+  </div>
+
+  <div class="cours-card">
+    <h3>💡 Conseils pour l'examen</h3>
+    <p>Stratégie, pièges courants, préparation, jour J. Augmentez vos chances de réussite.</p>
+    <a href="conseils.html">Lire les conseils →</a>
+  </div>
+
+</div>
+
+<h2 style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e5e7eb;">Toutes les pages HTML du projet</h2>
+
+<div class="card" style="margin-top: 1rem;">
+  <p style="margin-top: 0; color: #374151;"><strong>Liste exhaustive (A → Z)</strong> des pages HTML actuellement présentes dans le projet :</p>
+  <ul>
+    <li><a href="404.html">404.html</a></li>
+    <li><a href="536.html">536.html</a></li>
+    <li><a href="RAPPORT_ANALYSE_COURS.html">RAPPORT_ANALYSE_COURS.html</a></li>
+    <li><a href="alcool-permis.html">alcool-permis.html</a></li>
+    <li><a href="alcool-points.html">alcool-points.html</a></li>
+    <li><a href="autoroutes-tunnels.html">autoroutes-tunnels.html</a></li>
+    <li><a href="circulation-avancee.html">circulation-avancee.html</a></li>
+    <li><a href="conseils.html">conseils.html</a></li>
+    <li><a href="cours.html">cours.html</a></li>
+    <li><a href="depassement-cyclistes.html">depassement-cyclistes.html</a></li>
+    <li><a href="distances-freinage.html">distances-freinage.html</a></li>
+    <li><a href="equipements-securite.html">equipements-securite.html</a></li>
+    <li><a href="erreurs-examen-snca.html">erreurs-examen-snca.html</a></li>
+    <li><a href="examen-snca.html">examen-snca.html</a></li>
+    <li><a href="index.html">index.html</a></li>
+    <li><a href="lire-panneau-priorite.html">lire-panneau-priorite.html</a></li>
+    <li><a href="mentions-legales.html">mentions-legales.html</a></li>
+    <li><a href="my.html">my.html</a></li>
+    <li><a href="pietons-cyclistes.html">pietons-cyclistes.html</a></li>
+    <li><a href="politique-confidentialite.html">politique-confidentialite.html</a></li>
+    <li><a href="priorites-circulation.html">priorites-circulation.html</a></li>
+    <li><a href="questions.html">questions.html</a></li>
+    <li><a href="regles-specifiques.html">regles-specifiques.html</a></li>
+    <li><a href="signalisation-complete.html">signalisation-complete.html</a></li>
+    <li><a href="signalisation.html">signalisation.html</a></li>
+    <li><a href="sommaire.html">sommaire.html</a></li>
+    <li><a href="stationnement-arret.html">stationnement-arret.html</a></li>
+    <li><a href="stationnement.html">stationnement.html</a></li>
+    <li><a href="vitesses-distances.html">vitesses-distances.html</a></li>
+  </ul>
+</div>
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 6px; margin-top: 2rem;">
+  <h3 style="margin-top: 0; color: #b45309;">💡 Conseil d'expert</h3>
+  <p style="margin-bottom: 0; color: #92400e;">Étudiez ces 8 cours dans l'ordre. Chaque cours s'appuie sur les connaissances des cours précédents. Prenez le temps de bien comprendre les "pièges SNCA" signalés en rouge — ce sont des erreurs fréquentes à l'examen.</p>
+</div>
+
+</section>
+
+<div class="card" style="text-align:center; margin-top: 2rem;">
+  <a href="./" class="btn primary">Retour au quiz</a>
+</div>
+</main>
+
+<footer class="app-footer">
+  <nav aria-label="Navigation">
+    <div class="footer-links">
+      <a href="./">Quiz principal</a>
+      <a href="536.html">536 Questions</a>
+      <a href="vitesses-distances.html">Vitesses & Distances</a>
+      <a href="alcool-points.html">Alcool & Permis à points</a>
+      <a href="priorites-circulation.html">Priorités & Circulation</a>
+      <a href="depassement-cyclistes.html">Dépassement & Cyclistes</a>
+      <a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a>
+      <a href="stationnement-arret.html">Stationnement & Arrêt</a>
+      <a href="signalisation-complete.html">Signalisation</a>
+      <a href="equipements-securite.html">Équipements & Sécurité</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+    </div>
+    <small>© 2026 <a href="https://zaalouni.github.io/quiz-permis-lu/">Quiz Code de la Route Luxembourg</a> — Quiz d'entraînement indépendant, non affilié à un organisme officiel.</small>
+  </nav>
+</footer>
 
 </body>
 </html>
