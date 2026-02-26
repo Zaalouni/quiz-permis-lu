@@ -248,6 +248,96 @@
       background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
       box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
     }
+
+    .footer-nav {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 2.5rem 0;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .footer-title {
+      text-align: center;
+      color: #fff;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .footer-sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section {
+      color: #fff;
+    }
+
+    .footer-section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #93c5fd;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-section a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-section a:hover {
+      color: #fff;
+      transform: translateX(4px);
+    }
+
+    .footer-section a::before {
+      content: '▸';
+      color: #3b82f6;
+      font-weight: bold;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.85rem;
+    }
+
+    .footer-bottom a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-bottom a:hover {
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -430,24 +520,53 @@
 </div>
 </main>
 
-<footer class="app-footer">
-  <nav aria-label="Navigation">
-    <div class="footer-links">
-      <a href="./">Quiz principal</a>
-      <a href="536.html">536 Questions</a>
-      <a href="vitesses-distances.html">Vitesses & Distances</a>
-      <a href="alcool-points.html">Alcool & Permis à points</a>
-      <a href="priorites-circulation.html">Priorités & Circulation</a>
-      <a href="depassement-cyclistes.html">Dépassement & Cyclistes</a>
-      <a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a>
-      <a href="stationnement-arret.html">Stationnement & Arrêt</a>
-      <a href="signalisation-complete.html">Signalisation</a>
-      <a href="equipements-securite.html">Équipements & Sécurité</a>
-      <a href="mentions-legales.html">Mentions légales</a>
-      <a href="politique-confidentialite.html">Confidentialité</a>
+<footer class="footer-nav">
+  <div class="footer-content">
+    <h2 class="footer-title">🗺️ Navigation & Ressources Complètes</h2>
+
+    <div class="footer-sections">
+      <!-- Section Quiz -->
+      <div class="footer-section">
+        <h3 class="footer-section-title">📚 Quiz & Questions</h3>
+        <ul>
+          <li><a href="./">Quiz principal</a></li>
+          <li><a href="536.html">536 Questions - Tous les thèmes</a></li>
+        </ul>
+      </div>
+
+      <!-- Section Cours -->
+      <div class="footer-section">
+        <h3 class="footer-section-title">🎓 Les 8 Cours</h3>
+        <ul>
+          <li><a href="vitesses-distances.html">Vitesses & Distances</a></li>
+          <li><a href="alcool-points.html">Alcool & Permis à points</a></li>
+          <li><a href="priorites-circulation.html">Priorités & Circulation</a></li>
+          <li><a href="depassement-cyclistes.html">Dépassement & Cyclistes</a></li>
+          <li><a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a></li>
+          <li><a href="stationnement-arret.html">Stationnement & Arrêt</a></li>
+          <li><a href="signalisation-complete.html">Signalisation Routière</a></li>
+          <li><a href="equipements-securite.html">Équipements & Sécurité</a></li>
+        </ul>
+      </div>
+
+      <!-- Section Ressources & Légal -->
+      <div class="footer-section">
+        <h3 class="footer-section-title">📖 Ressources & Légal</h3>
+        <ul>
+          <li><a href="examen-snca.html">Examen théorique SNCA</a></li>
+          <li><a href="conseils.html">Conseils pour l'examen</a></li>
+          <li><a href="signalisation.html">Guide Signalisation</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+        </ul>
+      </div>
     </div>
-    <small>© 2026 <a href="https://zaalouni.github.io/quiz-permis-lu/">Quiz Code de la Route Luxembourg</a> — Quiz d'entraînement indépendant, non affilié à un organisme officiel.</small>
-  </nav>
+
+    <div class="footer-bottom">
+      <p>© 2026 <a href="https://zaalouni.github.io/quiz-permis-lu/">Quiz Code de la Route Luxembourg</a></p>
+      <p>Quiz d'entraînement indépendant, non affilié à un organisme officiel. Préparation pour l'examen SNCA.</p>
+    </div>
+  </div>
 </footer>
 
 </body>
