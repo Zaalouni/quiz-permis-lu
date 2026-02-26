@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Sommaire — Tous les Cours — Code de la Route Luxembourg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Index complet de tous les cours du code de la route au Luxembourg. Vitesses, alcool, priorités, dépassement, autoroutes, signalisation, stationnement, équipements.">
+  <meta name="keywords" content="sommaire, cours code route, index, table des matières, Luxembourg, SNCA">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/sommaire.html">
+  <meta property="og:title" content="Sommaire — Tous les Cours">
+  <meta property="og:description" content="Index complet de tous les cours du code de la route Luxembourg.">
+  <meta property="og:url" content="https://zaalouni.github.io/quiz-permis-lu/sommaire.html">
+  <meta property="og:image" content="https://zaalouni.github.io/quiz-permis-lu/icon-512.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#1e3a8a">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Sommaire — Tous les Cours du Code de la Route Luxembourg",
+    "description": "Index complet de tous les cours du code de la route au Luxembourg.",
+    "url": "https://zaalouni.github.io/quiz-permis-lu/sommaire.html",
+    "inLanguage": "fr",
+    "hasPart": [
+      {
+        "@type": "Course",
+        "name": "Vitesses & Distances",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/vitesses-distances.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Alcool, Stupéfiants & Permis à Points",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/alcool-points.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Priorités & Circulation",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/priorites-circulation.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Dépassement, Cyclistes & Remorques",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/depassement-cyclistes.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Autoroutes, Tunnels & Couloir de Secours",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/autoroutes-tunnels.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Arrêt & Stationnement",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/stationnement-arret.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Signalisation Routière Complète",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/signalisation-complete.html"
+      },
+      {
+        "@type": "Course",
+        "name": "Équipements, Enfants & Sécurité",
+        "url": "https://zaalouni.github.io/quiz-permis-lu/equipements-securite.html"
+      }
+    ],
+    "provider": {
+      "@type": "Organization",
+      "name": "Quiz Permis Luxembourg",
+      "url": "https://zaalouni.github.io/quiz-permis-lu/"
+    }
+  }
+  </script>
+
+  <style>
+    .sommaire-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .cours-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .cours-card:hover {
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+      border-color: #1e3a8a;
+      transform: translateY(-2px);
+    }
+
+    .cours-card h3 {
+      margin: 0 0 0.75rem 0;
+      color: #1e3a8a;
+      font-size: 1.1rem;
+    }
+
+    .cours-card p {
+      margin: 0 0 1rem 0;
+      font-size: 0.9rem;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .cours-card a {
+      display: inline-block;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .cours-card a:hover {
+      background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+    }
+
+    .sommaire-intro {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-left: 4px solid #1e3a8a;
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+    }
+
+    .sommaire-intro h2 {
+      margin-top: 0;
+      color: #1e3a8a;
+    }
+
+    .sommaire-intro p {
+      margin: 0.5rem 0;
+      color: #334155;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 6px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <h1>Sommaire Complet</h1>
+    <div class="subtitle">Tous les cours — Index</div>
+  </div>
+  <div>
+    <a href="./" class="btn back-btn">Retour au quiz</a>
+  </div>
+</header>
+
+<main class="app-main">
+<section class="card seo-content">
+
+<div class="sommaire-intro">
+  <h2>📚 Index complet des cours</h2>
+  <p>Retrouvez ci-dessous tous les cours du code de la route au Luxembourg, organisés par thème.</p>
+  <p>Chaque cours contient des explications détaillées, des tableaux récapitulatifs et les pièges courants de l'examen SNCA.</p>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-number">8</div>
+    <div class="stat-label">Cours complets</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">Expert</div>
+    <div class="stat-label">Niveau SNCA 2025</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">+1200</div>
+    <div class="stat-label">Questions QCM</div>
+  </div>
+</div>
+
+<h2>Cours disponibles</h2>
+
+<div class="sommaire-container">
+
+  <!-- Cours 1 -->
+  <div class="cours-card">
+    <h3>1️⃣ Vitesses & Distances</h3>
+    <p>Limitations de vitesse par zone, distances de sécurité (2 secondes), distance latérale cycliste (1,5m légal), zones spéciales.</p>
+    <a href="vitesses-distances.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 2 -->
+  <div class="cours-card">
+    <h3>2️⃣ Alcool, Stupéfiants & Permis à Points</h3>
+    <p>Seuils légaux alcool (0,5g/L), permis à points (12 points), système infractions points, téléphone au volant (4 points).</p>
+    <a href="alcool-points.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 3 -->
+  <div class="cours-card">
+    <h3>3️⃣ Priorités & Circulation</h3>
+    <p>Hiérarchie priorités, priorité à droite, STOP, piétons, tram, giratoires, croisement indonésien, feux tricolores.</p>
+    <a href="priorites-circulation.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 4 -->
+  <div class="cours-card">
+    <h3>4️⃣ Dépassement, Cyclistes & Remorques</h3>
+    <p>Dépassement par la gauche, distance 1,5m cycliste (loi), remorques, vitesses réduites, train routier.</p>
+    <a href="depassement-cyclistes.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 5 -->
+  <div class="cours-card">
+    <h3>5️⃣ Autoroutes, Tunnels & Couloir de Secours</h3>
+    <p>Vitesses autoroute (130/110 pluie), couloir de secours (Rettungsgasse), tunnels, BAU, passages à niveau.</p>
+    <a href="autoroutes-tunnels.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 6 -->
+  <div class="cours-card">
+    <h3>6️⃣ Arrêt & Stationnement</h3>
+    <p>Interdictions absolues, distances (5m piéton, 15m bus), lignes jaunes, zone bleue, disque, alterné.</p>
+    <a href="stationnement-arret.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 7 -->
+  <div class="cours-card">
+    <h3>7️⃣ Signalisation Routière Complète</h3>
+    <p>Classification panneaux (danger, interdiction, obligation), lignes au sol, feux tricolores, balises.</p>
+    <a href="signalisation-complete.html">Consulter le cours →</a>
+  </div>
+
+  <!-- Cours 8 -->
+  <div class="cours-card">
+    <h3>8️⃣ Équipements, Enfants & Sécurité</h3>
+    <p>Ceinture obligatoire, siège auto enfants, pneus (1,6mm), chargement (2,55m, 4m), triangle, gilet.</p>
+    <a href="equipements-securite.html">Consulter le cours →</a>
+  </div>
+
+</div>
+
+<h2 style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e5e7eb;">Autres ressources utiles</h2>
+
+<div class="sommaire-container">
+
+  <div class="cours-card">
+    <h3>📊 Quiz & Questions</h3>
+    <p>+1200 questions QCM pour vous entraîner. Corrections détaillées et explications.</p>
+    <a href="./">Accéder au quiz →</a>
+  </div>
+
+  <div class="cours-card">
+    <h3>🎓 Examen théorique SNCA</h3>
+    <p>Informations complètes sur l'examen officiel : centres, conditions, langues, frais.</p>
+    <a href="examen-snca.html">En savoir plus →</a>
+  </div>
+
+  <div class="cours-card">
+    <h3>🚦 Signalisation</h3>
+    <p>Guide détaillé des panneaux et signalisation routière luxembourgeoise.</p>
+    <a href="signalisation.html">Consulter →</a>
+  </div>
+
+  <div class="cours-card">
+    <h3>💡 Conseils pour l'examen</h3>
+    <p>Stratégie, pièges courants, préparation, jour J. Augmentez vos chances de réussite.</p>
+    <a href="conseils.html">Lire les conseils →</a>
+  </div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 6px; margin-top: 2rem;">
+  <h3 style="margin-top: 0; color: #b45309;">💡 Conseil d'expert</h3>
+  <p style="margin-bottom: 0; color: #92400e;">Étudiez ces 8 cours dans l'ordre. Chaque cours s'appuie sur les connaissances des cours précédents. Prenez le temps de bien comprendre les "pièges SNCA" signalés en rouge — ce sont des erreurs fréquentes à l'examen.</p>
+</div>
+
+</section>
+
+<div class="card" style="text-align:center; margin-top: 2rem;">
+  <a href="./" class="btn primary">Retour au quiz</a>
+</div>
+</main>
+
+<footer class="app-footer">
+  <nav aria-label="Navigation">
+    <div class="footer-links">
+      <a href="./">Quiz principal</a>
+      <a href="536.html">536 Questions</a>
+      <a href="vitesses-distances.html">Vitesses & Distances</a>
+      <a href="alcool-points.html">Alcool & Permis à points</a>
+      <a href="priorites-circulation.html">Priorités & Circulation</a>
+      <a href="depassement-cyclistes.html">Dépassement & Cyclistes</a>
+      <a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a>
+      <a href="stationnement-arret.html">Stationnement & Arrêt</a>
+      <a href="signalisation-complete.html">Signalisation</a>
+      <a href="equipements-securite.html">Équipements & Sécurité</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+    </div>
+    <small>© 2026 <a href="https://zaalouni.github.io/quiz-permis-lu/">Quiz Code de la Route Luxembourg</a> — Quiz d'entraînement indépendant, non affilié à un organisme officiel.</small>
+  </nav>
+</footer>
+
+</body>
+</html>
