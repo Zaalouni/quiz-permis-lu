@@ -19,7 +19,6 @@
   <meta name="theme-color" content="#1e3a8a">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,24 +31,293 @@
     "educationalLevel": "Beginner",
     "educationalUse": "self-study",
     "teaches": "Signalisation, panneaux, feux — Préparation examen SNCA",
-    "about": {
-      "@type": "Thing",
-      "name": "Permis de conduire Luxembourg"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "Quiz Permis Luxembourg",
-      "url": "https://zaalouni.github.io/quiz-permis-lu/"
-    }
+    "about": { "@type": "Thing", "name": "Permis de conduire Luxembourg" },
+    "provider": { "@type": "Organization", "name": "Quiz Permis Luxembourg", "url": "https://zaalouni.github.io/quiz-permis-lu/" }
   }
   </script>
+
+  <style>
+    /* ── Navigation rapide ── */
+    .section-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .section-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+    }
+    .section-nav a:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .nav-danger   { background: #fff1f2; color: #be123c; border-color: #fecdd3; }
+    .nav-danger:hover { background: #be123c; color: #fff; }
+    .nav-interdit { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+    .nav-interdit:hover { background: #c2410c; color: #fff; }
+    .nav-oblig    { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+    .nav-oblig:hover { background: #1d4ed8; color: #fff; }
+    .nav-info     { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+    .nav-info:hover { background: #15803d; color: #fff; }
+    .nav-prio     { background: #fefce8; color: #a16207; border-color: #fef08a; }
+    .nav-prio:hover { background: #a16207; color: #fff; }
+    .nav-sol      { background: #faf5ff; color: #7e22ce; border-color: #e9d5ff; }
+    .nav-sol:hover { background: #7e22ce; color: #fff; }
+    .nav-feux     { background: #ecfeff; color: #0e7490; border-color: #a5f3fc; }
+    .nav-feux:hover { background: #0e7490; color: #fff; }
+
+    /* ── En-tête de section ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      margin: 2.5rem 0 1.25rem;
+    }
+    .section-header .icon { font-size: 1.8rem; line-height: 1; }
+    .section-header h2 { margin: 0; font-size: 1.25rem; }
+    .section-header .badge {
+      margin-left: auto;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .sh-danger  { background: #fff1f2; border-left: 5px solid #e11d48; }
+    .sh-danger h2 { color: #9f1239; }
+    .sh-danger .badge { background: #e11d48; color: #fff; }
+    .sh-interdit { background: #fff7ed; border-left: 5px solid #ea580c; }
+    .sh-interdit h2 { color: #9a3412; }
+    .sh-interdit .badge { background: #ea580c; color: #fff; }
+    .sh-oblig  { background: #eff6ff; border-left: 5px solid #2563eb; }
+    .sh-oblig h2 { color: #1e40af; }
+    .sh-oblig .badge { background: #2563eb; color: #fff; }
+    .sh-info   { background: #f0fdf4; border-left: 5px solid #16a34a; }
+    .sh-info h2 { color: #14532d; }
+    .sh-info .badge { background: #16a34a; color: #fff; }
+    .sh-prio   { background: #fefce8; border-left: 5px solid #ca8a04; }
+    .sh-prio h2 { color: #713f12; }
+    .sh-prio .badge { background: #ca8a04; color: #fff; }
+    .sh-sol    { background: #faf5ff; border-left: 5px solid #9333ea; }
+    .sh-sol h2 { color: #581c87; }
+    .sh-sol .badge { background: #9333ea; color: #fff; }
+    .sh-feux   { background: #ecfeff; border-left: 5px solid #0891b2; }
+    .sh-feux h2 { color: #164e63; }
+    .sh-feux .badge { background: #0891b2; color: #fff; }
+    .sh-neutre { background: #f8fafc; border-left: 5px solid #64748b; }
+    .sh-neutre h2 { color: #1e293b; }
+
+    /* ── Grille de panneaux ── */
+    .panneau-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .panneau-card {
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1rem 0.75rem 0.85rem;
+      text-align: center;
+      transition: all 0.25s ease;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      cursor: default;
+    }
+    .panneau-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(30,58,138,0.13);
+      border-color: #1e3a8a;
+    }
+    .panneau-card img {
+      width: 100%;
+      max-width: 110px;
+      height: 110px;
+      object-fit: contain;
+      border-radius: 6px;
+      margin-bottom: 0.7rem;
+      background: #f8fafc;
+    }
+    .panneau-nom {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+    }
+    .panneau-desc {
+      font-size: 0.75rem;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* ── Grille large (situations route) ── */
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .scene-card {
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .scene-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(30,58,138,0.13);
+      border-color: #1e3a8a;
+    }
+    .scene-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      background: #f1f5f9;
+    }
+    .scene-card .scene-info {
+      padding: 0.75rem;
+    }
+    .scene-card .scene-nom {
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 0.2rem;
+    }
+    .scene-card .scene-desc {
+      font-size: 0.76rem;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* ── Règle mémo ── */
+    .regle-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      border: 1.5px solid #e5e7eb;
+      font-size: 0.9rem;
+    }
+    .regle-box .r-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .regle-box strong { color: #1e3a8a; }
+
+    /* ── Tableau feux ── */
+    .feux-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .feu-card {
+      border-radius: 12px;
+      padding: 1.1rem 0.85rem;
+      text-align: center;
+      border: 2px solid transparent;
+    }
+    .feu-rond {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      margin: 0 auto 0.7rem;
+      border: 3px solid rgba(0,0,0,0.1);
+    }
+    .feu-rouge .feu-rond { background: #dc2626; box-shadow: 0 0 14px rgba(220,38,38,0.5); }
+    .feu-rouge { background: #fff1f2; border-color: #fecdd3; }
+    .feu-orange .feu-rond { background: #f59e0b; box-shadow: 0 0 14px rgba(245,158,11,0.5); }
+    .feu-orange { background: #fffbeb; border-color: #fde68a; }
+    .feu-vert .feu-rond { background: #16a34a; box-shadow: 0 0 14px rgba(22,163,74,0.5); }
+    .feu-vert { background: #f0fdf4; border-color: #bbf7d0; }
+    .feu-special .feu-rond { background: linear-gradient(135deg, #dc2626 50%, #16a34a 50%); }
+    .feu-special { background: #f8fafc; border-color: #e2e8f0; }
+    .feu-label { font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 0.3rem; }
+    .feu-action { font-size: 0.76rem; color: #475569; line-height: 1.4; }
+
+    /* ── Ligne au sol ── */
+    .ligne-preview {
+      height: 14px;
+      border-radius: 4px;
+      margin: 0.6rem 0;
+    }
+    .ligne-continue { background: white; border: 2.5px solid #64748b; }
+    .ligne-discontinue {
+      background: repeating-linear-gradient(90deg, #64748b 0, #64748b 24px, transparent 24px, transparent 36px);
+    }
+    .ligne-jaune-c { background: #eab308; }
+    .ligne-jaune-d {
+      background: repeating-linear-gradient(90deg, #eab308 0, #eab308 24px, transparent 24px, transparent 36px);
+    }
+    .ligne-zigzag {
+      background: repeating-linear-gradient(
+        45deg, #eab308 0, #eab308 6px, transparent 6px, transparent 12px
+      );
+      height: 12px;
+    }
+
+    /* ── Mémo couleurs ── */
+    .memo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+    .memo-card {
+      border-radius: 12px;
+      padding: 1.1rem;
+      text-align: center;
+    }
+    .memo-card .m-icon { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    .memo-card .m-forme { font-size: 0.78rem; font-weight: 600; color: rgba(0,0,0,0.5); margin-bottom: 0.25rem; }
+    .memo-card .m-label { font-size: 1rem; font-weight: 700; }
+    .mc-danger  { background: #fff1f2; } .mc-danger .m-label { color: #9f1239; }
+    .mc-interdit{ background: #fff7ed; } .mc-interdit .m-label { color: #9a3412; }
+    .mc-oblig   { background: #eff6ff; } .mc-oblig .m-label { color: #1e40af; }
+    .mc-prio    { background: #fefce8; } .mc-prio .m-label { color: #713f12; }
+    .mc-info    { background: #f0fdf4; } .mc-info .m-label { color: #14532d; }
+
+    /* ── Alerte piège ── */
+    .piege {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 8px 8px 0;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+      color: #78350f;
+    }
+    .piege strong { color: #b45309; }
+
+    /* ── Séparateur de sous-section ── */
+    .sub-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #374151;
+      margin: 1.5rem 0 0.5rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #f1f5f9;
+    }
+  </style>
 </head>
 <body>
 
 <header class="app-header">
   <div class="brand">
-    <h1>Signalisation Routière Complète</h1>
-    <div class="subtitle">Guide expert — Luxembourg</div>
+    <h1>Signalisation Routière</h1>
+    <div class="subtitle">Guide visuel complet — Luxembourg</div>
   </div>
   <div>
     <a href="./" class="btn back-btn">Retour au quiz</a>
@@ -59,276 +327,590 @@
 <main class="app-main">
 <section class="card seo-content cours-page">
 
-<p><small>Sources : Legilux, Arrêté GD 23/11/1955, Convention Vienne 1968</small></p>
-
-<h2>1. Classification des panneaux</h2>
-
-<h3>1.1 Panneaux de DANGER (Série A)</h3>
-
-<p><strong>Forme :</strong> Triangle à bord rouge, pointe en haut, fond blanc</p>
-
-<p><strong>Signification :</strong> Annonce d'un danger</p>
-
-<p><strong>Exemples :</strong></p>
-<ul>
-<li>A,1 : Virage dangereux</li>
-<li>A,3 : Succession de virages</li>
-<li>A,4 : Chaussée glissante</li>
-<li>A,7 : Cassis ou dos d'âne</li>
-<li>A,13 : Passage piétons</li>
-<li>A,14 : Enfants</li>
-<li>A,15 : Passage cyclistes</li>
-<li>A,18 : Animaux</li>
-<li>A,19 : Travaux</li>
-</ul>
-
-<p>⚠️ Un panneau de danger <strong>n'impose pas</strong> une vitesse précise. Il impose une <strong>adaptation de la conduite</strong>.</p>
-
-<h3>1.2 Panneaux d'INTERDICTION (Série C)</h3>
-
-<p><strong>Forme :</strong> Cercle à bord rouge, fond blanc</p>
-
-<p><strong>Signification :</strong> Interdiction</p>
-
-<p><strong>Exemples :</strong></p>
-<ul>
-<li>C,1 : Sens interdit (toutes directions)</li>
-<li>C,1a : Sens interdit (une direction)</li>
-<li>C,2 : Accès interdit à tous véhicules</li>
-<li>C,3 : Dépassement interdit</li>
-<li>C,4 : Dépassement interdit aux PL</li>
-<li>C,5 : Vitesse maximale</li>
-<li>C,6 : Arrêt et stationnement interdits</li>
-<li>C,7 : Stationnement interdit</li>
-</ul>
-
-<p>⚠️ <strong>Rond rouge = toujours une interdiction</strong></p>
-
-<h3>1.3 Panneaux d'OBLIGATION (Série D)</h3>
-
-<p><strong>Forme :</strong> Cercle bleu, symboles blancs</p>
-
-<p><strong>Signification :</strong> Obligation</p>
-
-<p><strong>Exemples :</strong></p>
-<ul>
-<li>D,1 : Direction obligatoire (tout droit)</li>
-<li>D,2 : Direction obligatoire (droite)</li>
-<li>D,3 : Direction obligatoire (gauche)</li>
-<li>D,5 : Vitesse minimale</li>
-<li>D,7 : Piste cyclable obligatoire</li>
-<li>D,8 : Chemin piétons obligatoire</li>
-</ul>
-
-<p>⚠️ Rond bleu "30" = <strong>vitesse minimale</strong> 30 km/h, pas maximale !</p>
-
-<h3>1.4 Panneaux d'INDICATION (Série E, F)</h3>
-
-<p><strong>Forme :</strong> Carré ou rectangle (souvent bleu ou vert)</p>
-
-<p><strong>Signification :</strong> Information</p>
-
-<p><strong>Exemples :</strong></p>
-<ul>
-<li>E,1 : Autoroute</li>
-<li>E,2 : Fin d'autoroute</li>
-<li>E,5 : Agglomération</li>
-<li>E,6 : Fin d'agglomération</li>
-<li>E,9 : Hôpital</li>
-<li>E,23 : Parking</li>
-<li>F,1 : Direction</li>
-</ul>
-
-<h2>2. Priorité — Panneaux spécifiques</h2>
-
-<h3>2.1 Cédez le passage (B,1)</h3>
-
-<p><strong>Forme :</strong> Triangle <strong>pointe vers le bas</strong>, bord rouge, fond blanc</p>
-
-<p>→ Vous devez céder à <strong>tous</strong> les véhicules sur la route prioritaire, pas seulement à ceux venant de droite.</p>
-
-<h3>2.2 STOP (B,2a)</h3>
-
-<p><strong>Forme :</strong> Octogone rouge avec "STOP" blanc</p>
-
-<p>→ <strong>Arrêt complet obligatoire</strong><br>
-→ Même si la route est libre<br>
-→ Roues immobilisées</p>
-
-<h3>2.3 Route prioritaire (B,3)</h3>
-
-<p><strong>Forme :</strong> Losange jaune sur fond blanc</p>
-
-<p>Vous êtes prioritaire jusqu'au panneau de fin de priorité (B,4).</p>
-
-<h3>2.4 Priorité ponctuelle (B,5)</h3>
-
-<p><strong>Forme :</strong> Flèche noire large + flèche rouge fine</p>
-
-<p>→ Priorité à l'intersection suivante uniquement</p>
-
-<h3>2.5 Panneau de configuration</h3>
-
-<p>⚠️ La route prioritaire <strong>ne va pas toujours tout droit</strong>. → Suivre la <strong>ligne épaisse</strong> sur le panneau.</p>
-
-<h2>3. Lignes au sol</h2>
-
-<h3>3.1 Ligne continue blanche</h3>
-
-<p><strong>Interdiction</strong> de franchir.</p>
-
-<p><strong>Exceptions limitées :</strong></p>
-<ul>
-<li>Accès à une propriété</li>
-<li>Contourner un obstacle</li>
-<li>Tourner à gauche (si ligne de votre côté)</li>
-</ul>
-
-<h3>3.2 Ligne discontinue blanche</h3>
-
-<p>Franchissable si manœuvre sans danger.</p>
-
-<h3>3.3 Ligne mixte (continue + discontinue)</h3>
-
-<ul>
-<li>Côté discontinu : franchissement autorisé</li>
-<li>Côté continu : franchissement interdit</li>
-</ul>
-
-<h3>3.4 Ligne jaune continue (bordure trottoir)</h3>
-
-<p><strong>Interdiction absolue</strong> d'arrêt et de stationnement.</p>
-
-<h3>3.5 Ligne jaune discontinue (bordure trottoir)</h3>
-
-<p>Interdiction de <strong>stationnement</strong> (arrêt autorisé).</p>
-
-<h3>3.6 Ligne zigzag jaune</h3>
-
-<p><strong>Interdiction d'arrêt</strong> (zones sensibles : écoles, hôpitaux).</p>
-
-<h2>4. Panneaux tunnel</h2>
-
-<p>Le panneau tunnel :</p>
-
-<ul>
-<li>Oblige à adapter la conduite</li>
-<li>Rend <strong>feux de croisement obligatoires</strong></li>
-<li><strong>N'impose PAS</strong> de vitesse spécifique</li>
-</ul>
-
-<p>⚠️ Seuls les panneaux chiffrés (C,5) imposent la vitesse.</p>
-
-<h2>5. Signaux priorité sens inverse</h2>
-
-<p>Panneau avec deux flèches opposées (verticales) :</p>
-
-<div class="seo-table"><table>
-<tr><th>Configuration</th><th>Signification</th></tr>
-<tr><td>Flèche rouge plus grande en face</td><td><strong>Vous devez céder</strong></td></tr>
-<tr><td>Flèche blanche plus grande</td><td><strong>Vous êtes prioritaire</strong></td></tr>
-</table></div>
-
-<h2>6. Signalisation temporaire</h2>
-
-<p><strong>Couleur :</strong> Jaune/orange</p>
-
-<p>→ <strong>Prime sur la signalisation permanente</strong></p>
-
-<p>Utilisée pour travaux, déviations, accidents.</p>
-
-<h2>7. Fin de toutes interdictions</h2>
-
-<p><strong>Panneau :</strong> Cercle blanc avec 5 barres noires obliques</p>
-
-<p><strong>Signifie :</strong></p>
-<ul>
-<li>Fin de toutes limitations précédentes</li>
-<li>Fin limitation vitesse</li>
-<li>Fin interdiction dépassement</li>
-<li>Etc.</li>
-</ul>
-
-<h2>8. Passage piéton</h2>
-
-<p><strong>Panneau :</strong> Carré bleu avec triangle blanc et pictogramme</p>
-
-<p>Annonce un passage piéton marqué au sol.</p>
-
-<p><strong>Obligation :</strong> Piéton engagé ou manifestant intention = <strong>priorité obligatoire</strong></p>
-
-<h2>9. Feux tricolores</h2>
-
-<div class="seo-table"><table>
-<tr><th>Feu</th><th>Action</th></tr>
-<tr><td>Rouge</td><td>Arrêt obligatoire</td></tr>
-<tr><td>Jaune fixe</td><td>Arrêt si possible sans danger</td></tr>
-<tr><td>Vert</td><td>Passage (céder aux piétons si on tourne)</td></tr>
-<tr><td>Jaune clignotant</td><td>Prudence, règles normales s'appliquent</td></tr>
-<tr><td>Rouge + flèche verte</td><td>Passage dans direction flèche, en cédant</td></tr>
-</table></div>
-
-<h2>10. Feux spéciaux</h2>
-
-<h3>Feux de voie</h3>
-
-<ul>
-<li>Flèche verte vers le bas : voie ouverte</li>
-<li>Croix rouge : voie fermée</li>
-<li>Flèche jaune oblique : changer de voie</li>
-</ul>
-
-<h3>Feux passage à niveau</h3>
-
-<ul>
-<li>Rouge clignotant : <strong>arrêt obligatoire immédiat</strong></li>
-</ul>
-
-<h3>Feux pour transports en commun</h3>
-
-<ul>
-<li>Barre horizontale blanche : arrêt</li>
-<li>Barre verticale ou point blanc : passage</li>
-</ul>
-
-<h2>11. Panneaux additionnels</h2>
-
-<p>Placés sous le panneau principal pour :</p>
-<ul>
-<li>Préciser la distance</li>
-<li>Indiquer la direction</li>
-<li>Limiter l'application (types de véhicules)</li>
-<li>Indiquer les horaires</li>
-</ul>
-
-<h2>12. Balises et bornes</h2>
-
-<div class="seo-table"><table>
-<tr><th>Type</th><th>Signification</th></tr>
-<tr><td>Balise blanche/rouge</td><td>Obstacle à droite</td></tr>
-<tr><td>Balise blanche/bleue</td><td>Obstacle à gauche</td></tr>
-<tr><td>Balise de virage</td><td>Direction du virage</td></tr>
-<tr><td>Borne kilométrique</td><td>Distance</td></tr>
-</table></div>
-
-<h2>À retenir pour l'examen</h2>
-<ul>
-<li><strong>Triangle = danger</strong> (pointe en haut)</li>
-<li><strong>Triangle inversé = cédez le passage</strong> (pointe en bas)</li>
-<li><strong>Rond rouge = interdiction</strong></li>
-<li><strong>Rond bleu = obligation</strong></li>
-<li><strong>STOP = arrêt complet</strong> même si route libre</li>
-<li>Ligne jaune bordure = interdiction absolue</li>
-<li>Signalisation temporaire (jaune) &gt; permanente</li>
-<li>Flèche rouge plus grosse = vous cédez</li>
-<li>Tunnel ≠ limitation automatique</li>
-<li>Rond bleu 30 = vitesse <strong>minimale</strong></li>
-</ul>
+<p><small>Sources : Legilux, Arrêté GD 23/11/1955, Convention de Vienne 1968</small></p>
+
+<!-- Navigation rapide -->
+<nav class="section-nav" aria-label="Sections">
+  <a href="#danger"   class="nav-danger">🔺 Danger</a>
+  <a href="#interdit" class="nav-interdit">🔴 Interdiction</a>
+  <a href="#oblig"    class="nav-oblig">🔵 Obligation</a>
+  <a href="#info"     class="nav-info">🟩 Information</a>
+  <a href="#prio"     class="nav-prio">⭐ Priorité</a>
+  <a href="#sol"      class="nav-sol">〰️ Lignes au sol</a>
+  <a href="#feux"     class="nav-feux">🚦 Feux</a>
+  <a href="#memo"     class="nav-prio">📋 Mémo</a>
+</nav>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1. DANGER                                      -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="danger" class="section-header sh-danger">
+  <span class="icon">🔺</span>
+  <h2>Panneaux de DANGER — Série A</h2>
+  <span class="badge">Série A</span>
+</div>
+
+<div class="regle-box">
+  <span class="r-icon">📐</span>
+  <span><strong>Forme :</strong> Triangle à bord rouge, pointe en haut, fond blanc — <strong>Signification :</strong> Annonce d'un danger, impose d'adapter la conduite (pas une vitesse précise).</span>
+</div>
+
+<p class="sub-title">Exemples visuels — panneaux de danger</p>
+<div class="panneau-grid">
+  <div class="panneau-card">
+    <img src="images/q_841_a0.jpg" alt="Panneau de danger — triangle rouge" loading="lazy">
+    <div class="panneau-nom">Danger (générique)</div>
+    <div class="panneau-desc">Triangle rouge — série A</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_852_a0.jpg" alt="Chaussée en mauvais état" loading="lazy">
+    <div class="panneau-nom">Chaussée dégradée</div>
+    <div class="panneau-desc">A — Nids-de-poule, dos d'âne</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_16.jpg" alt="Chaussée glissante — brusques coups de volant à éviter" loading="lazy">
+    <div class="panneau-nom">Chaussée glissante</div>
+    <div class="panneau-desc">A,4 — Éviter manœuvres brusques</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_867_a0.jpg" alt="Vent latéral — risque de déviation de trajectoire" loading="lazy">
+    <div class="panneau-nom">Vent latéral</div>
+    <div class="panneau-desc">A — Risque de déviation</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_70.jpg" alt="Danger brouillard neige pluie — visibilité réduite" loading="lazy">
+    <div class="panneau-nom">Brouillard / Neige</div>
+    <div class="panneau-desc">A — Visibilité réduite</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_17.jpg" alt="Chaînes à neige obligatoires" loading="lazy">
+    <div class="panneau-nom">Chaînes obligatoires</div>
+    <div class="panneau-desc">A — Continuer = chaînes sur 2 roues motrices</div>
+  </div>
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Un panneau de danger <u>n'impose aucune vitesse précise</u> — il impose d'adapter la conduite. Seul un panneau C,5 (cercle rouge avec chiffre) impose une limite.
+</div>
+
+<p><strong>Principaux codes :</strong> A,1 Virage dangereux · A,3 Succession de virages · A,4 Chaussée glissante · A,7 Cassis · A,13 Passage piétons · A,14 Enfants · A,15 Passage cyclistes · A,18 Animaux · A,19 Travaux</p>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2. INTERDICTION                               -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="interdit" class="section-header sh-interdit">
+  <span class="icon">🔴</span>
+  <h2>Panneaux d'INTERDICTION — Série C</h2>
+  <span class="badge">Série C</span>
+</div>
+
+<div class="regle-box">
+  <span class="r-icon">📐</span>
+  <span><strong>Forme :</strong> Cercle à bord rouge, fond blanc — <strong>Règle absolue :</strong> <em>Rond rouge = toujours une interdiction</em></span>
+</div>
+
+<p class="sub-title">Panneaux d'accès et de circulation</p>
+<div class="panneau-grid">
+  <div class="panneau-card">
+    <img src="images/q_881_a0.jpg" alt="Sens interdit sauf riverains — deux panneaux" loading="lazy">
+    <div class="panneau-nom">Sens interdit / Sauf riverains</div>
+    <div class="panneau-desc">C,1 — Riverains autorisés malgré tout</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_886_a0.jpg" alt="Interdiction de tourner à gauche" loading="lazy">
+    <div class="panneau-nom">Interdit tourner à gauche</div>
+    <div class="panneau-desc">C — Flèche barrée</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_967_a0.jpg" alt="Accès interdit aux cyclistes" loading="lazy">
+    <div class="panneau-nom">Interdit aux cyclistes</div>
+    <div class="panneau-desc">C — Pictogramme vélo barré</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_34.jpg" alt="Accès interdit aux cyclomoteurs" loading="lazy">
+    <div class="panneau-nom">Interdit aux cyclomoteurs</div>
+    <div class="panneau-desc">C — Scooter barré</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_40.jpg" alt="Accès interdit aux cyclomoteurs route" loading="lazy">
+    <div class="panneau-nom">Route interdite cyclomoteurs</div>
+    <div class="panneau-desc">C — Accès refusé</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_54.jpg" alt="Accès réservé véhicules MMA inférieure à 3500 kg" loading="lazy">
+    <div class="panneau-nom">MMA ≤ 3 500 kg</div>
+    <div class="panneau-desc">C — Camions exclus</div>
+  </div>
+</div>
+
+<p class="sub-title">Gabarit et tonnage</p>
+<div class="panneau-grid">
+  <div class="panneau-card">
+    <img src="images/asset_44.jpg" alt="Largeur maximale 2 mètres" loading="lazy">
+    <div class="panneau-nom">Largeur max 2 m</div>
+    <div class="panneau-desc">C — Gabarit largeur</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_45.jpg" alt="Poids maximum autorisé tonnage" loading="lazy">
+    <div class="panneau-nom">Poids max (tonnage)</div>
+    <div class="panneau-desc">C — Masse max autorisée</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_46.jpg" alt="Longueur maximale véhicule" loading="lazy">
+    <div class="panneau-nom">Longueur max</div>
+    <div class="panneau-desc">C — Train routier, remorques</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_47.jpg" alt="Accès interdit tracteur" loading="lazy">
+    <div class="panneau-nom">Interdit aux tracteurs</div>
+    <div class="panneau-desc">C — Véhicule agricole exclu</div>
+  </div>
+</div>
+
+<p class="sub-title">Dépassement et arrêt</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/asset_11.jpg" alt="Dépassement interdit sur cette route — camion devant voiture" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">C,3 — Dépassement interdit</div>
+      <div class="scene-desc">Interdit de dépasser un camion à cet endroit. Motocycle sans side-car autorisé.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_32.jpg" alt="Signal arrêt interdit — ligne jaune ou panneau" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">C,6 — Arrêt et stationnement interdits</div>
+      <div class="scene-desc">Il est interdit de s'arrêter ET de stationner à cet endroit.</div>
+    </div>
+  </div>
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> C,6 = arrêt + stationnement interdits. C,7 = stationnement interdit uniquement (arrêt court autorisé pour charger/décharger).
+</div>
+
+<p><strong>Principaux codes :</strong> C,1 Sens interdit · C,2 Accès interdit tous véhicules · C,3 Dépassement interdit · C,5 Vitesse max · C,6 Arrêt + stationnement interdits · C,7 Stationnement interdit</p>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3. OBLIGATION                                 -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="oblig" class="section-header sh-oblig">
+  <span class="icon">🔵</span>
+  <h2>Panneaux d'OBLIGATION — Série D</h2>
+  <span class="badge">Série D</span>
+</div>
+
+<div class="regle-box">
+  <span class="r-icon">📐</span>
+  <span><strong>Forme :</strong> Cercle bleu avec symbole blanc — <strong>Règle :</strong> <em>Rond bleu = toujours une obligation</em></span>
+</div>
+
+<div class="panneau-grid">
+  <div class="panneau-card">
+    <img src="images/q_927_a0.jpg" alt="Panneau obligation direction — cercle bleu" loading="lazy">
+    <div class="panneau-nom">Direction obligatoire</div>
+    <div class="panneau-desc">D — Cercle bleu, symbole blanc</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_929_a0.jpg" alt="Panneau obligation direction — cercle bleu variante" loading="lazy">
+    <div class="panneau-nom">Direction obligatoire (variante)</div>
+    <div class="panneau-desc">D — Flèche sens obligatoire</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_932_a0.jpg" alt="Fin du chemin obligatoire pour piétons" loading="lazy">
+    <div class="panneau-nom">Fin chemin piétons</div>
+    <div class="panneau-desc">D barré — Fin d'obligation</div>
+  </div>
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Rond bleu avec "30" = vitesse <u>minimale</u> obligatoire de 30 km/h, pas maximale ! L'obligation se distingue de l'interdiction uniquement par la couleur (bleu vs rouge).
+</div>
+
+<p><strong>Principaux codes :</strong> D,1 Tout droit · D,2 Direction droite · D,3 Direction gauche · D,5 Vitesse minimale · D,7 Piste cyclable obligatoire · D,8 Chemin piétons obligatoire</p>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 4. INDICATION / INFORMATION                   -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="info" class="section-header sh-info">
+  <span class="icon">🟩</span>
+  <h2>Panneaux d'INDICATION — Série E & F</h2>
+  <span class="badge">Série E / F</span>
+</div>
+
+<div class="regle-box">
+  <span class="r-icon">📐</span>
+  <span><strong>Forme :</strong> Carré ou rectangle, souvent fond bleu ou vert — <strong>Signification :</strong> Information sans interdiction ni obligation</span>
+</div>
+
+<div class="panneau-grid">
+  <div class="panneau-card">
+    <img src="images/asset_299.jpg" alt="Panneau entrée autoroute vert" loading="lazy">
+    <div class="panneau-nom">Autoroute (E,1)</div>
+    <div class="panneau-desc">Panneau vert — début autoroute</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_252_a0.jpg" alt="Passage piéton et cycliste — panneau d'information" loading="lazy">
+    <div class="panneau-nom">Passage piéton/cycliste</div>
+    <div class="panneau-desc">E — Carré bleu avec pictogrammes</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_584.jpg" alt="Panneau arrêt d'autobus" loading="lazy">
+    <div class="panneau-nom">Arrêt d'autobus</div>
+    <div class="panneau-desc">F — Information transport</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_971_a0.jpg" alt="Panneau vitesse conseillée — carré bleu" loading="lazy">
+    <div class="panneau-nom">Vitesse conseillée</div>
+    <div class="panneau-desc">E — Carré bleu (non obligatoire)</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_72.jpg" alt="Zone de stationnement voitures particulières" loading="lazy">
+    <div class="panneau-nom">Parking (zone)</div>
+    <div class="panneau-desc">E,23 — Voitures autorisées</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_69.jpg" alt="Fin de zone piétonne" loading="lazy">
+    <div class="panneau-nom">Fin zone piétonne</div>
+    <div class="panneau-desc">E barré — Sortie zone</div>
+  </div>
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> La vitesse "conseillée" (carré bleu) n'est pas obligatoire. Elle ne remplace pas une limitation C,5. Si les deux sont présents, c'est la limite C,5 qui prime.
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5. PRIORITÉ                                   -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="prio" class="section-header sh-prio">
+  <span class="icon">⭐</span>
+  <h2>Panneaux de PRIORITÉ — Série B</h2>
+  <span class="badge">Série B</span>
+</div>
+
+<p class="sub-title">Les 5 panneaux de priorité à connaître parfaitement</p>
+<div class="panneau-grid">
+  <div class="panneau-card">
+    <img src="images/q_877_a0.jpg" alt="Cédez le passage — triangle inversé bord rouge" loading="lazy">
+    <div class="panneau-nom">Cédez le passage (B,1)</div>
+    <div class="panneau-desc">Triangle inversé bord rouge — céder à TOUS les usagers prioritaires</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_232_a0.jpg" alt="STOP — octogone rouge arrêt complet obligatoire" loading="lazy">
+    <div class="panneau-nom">STOP (B,2a)</div>
+    <div class="panneau-desc">Octogone rouge — arrêt complet, roues immobilisées, même si route libre</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_924_a1.jpg" alt="Route prioritaire — losange jaune fond blanc" loading="lazy">
+    <div class="panneau-nom">Route prioritaire (B,3)</div>
+    <div class="panneau-desc">Losange jaune/blanc — vous êtes prioritaire jusqu'au B,4</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_735_a0.jpg" alt="Céder priorité à la circulation venant en sens inverse" loading="lazy">
+    <div class="panneau-nom">Céder sens inverse</div>
+    <div class="panneau-desc">B,5 — Flèche rouge grande = vous cédez</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_1299.jpg" alt="Priorité par rapport à la circulation venant en sens inverse" loading="lazy">
+    <div class="panneau-nom">Prioritaire sens inverse</div>
+    <div class="panneau-desc">B,5 inversé — Flèche blanche grande = vous êtes prioritaire</div>
+  </div>
+</div>
+
+<p class="sub-title">Situations de priorité réelles (photos de route)</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/asset_85.jpg" alt="Carrefour priorité à droite — ordre de passage" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Priorité à droite — carrefour</div>
+      <div class="scene-desc">B (cyclomoteur à droite) passe avant A (voiture).</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_95.jpg" alt="Priorité cycliste à droite — je dois céder" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Cycliste prioritaire à droite</div>
+      <div class="scene-desc">Je laisse passer le cycliste (B) venant de droite.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_94.jpg" alt="Ordre de passage à un carrefour 3 véhicules C-A-B" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Ordre de passage : C → A → B</div>
+      <div class="scene-desc">Identifier qui vient de droite à chaque étape.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_1306.jpg" alt="Situation de blocage — aucun véhicule ne peut passer" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Blocage (croisement indonésien)</div>
+      <div class="scene-desc">Aucune solution sans qu'un conducteur renonce à son droit.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_916_a0.jpg" alt="Sortie de zone piétonne — priorité à la circulation des 3 directions" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Sortie zone piétonne</div>
+      <div class="scene-desc">Céder à gauche, droite ET sens opposé — pas seulement à droite.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_88.jpg" alt="Ordre de passage carrefour 3 voies — priorité à droite" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Carrefour 3 voies</div>
+      <div class="scene-desc">Je circule en dernier — appliquer la règle de la droite.</div>
+    </div>
+  </div>
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> STOP = arrêt complet <u>même si vous ne voyez aucun véhicule</u>. Un ralentissement n'est pas suffisant — les roues doivent être immobilisées.
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> La route prioritaire ne va pas toujours tout droit. Suivez la <strong>ligne épaisse</strong> sur le panneau de configuration (B,3) pour savoir où elle tourne.
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6. LIGNES AU SOL                              -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="sol" class="section-header sh-sol">
+  <span class="icon">〰️</span>
+  <h2>Lignes au sol</h2>
+  <span class="badge">Marquage</span>
+</div>
+
+<div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:1rem; margin:1rem 0 1.5rem;">
+
+  <div class="regle-box" style="flex-direction:column; align-items:stretch;">
+    <div class="sub-title" style="margin-top:0; border:none; font-size:0.9rem;">Ligne blanche continue</div>
+    <div class="ligne-preview ligne-continue"></div>
+    <span style="font-size:0.83rem; color:#374151;"><strong>Interdiction</strong> de franchir. Exceptions : accès propriété, contourner obstacle.</span>
+  </div>
+
+  <div class="regle-box" style="flex-direction:column; align-items:stretch;">
+    <div class="sub-title" style="margin-top:0; border:none; font-size:0.9rem;">Ligne blanche discontinue</div>
+    <div class="ligne-preview ligne-discontinue"></div>
+    <span style="font-size:0.83rem; color:#374151;">Franchissable si la manœuvre est <strong>sans danger</strong>.</span>
+  </div>
+
+  <div class="regle-box" style="flex-direction:column; align-items:stretch;">
+    <div class="sub-title" style="margin-top:0; border:none; font-size:0.9rem;">Ligne jaune continue (bordure)</div>
+    <div class="ligne-preview ligne-jaune-c"></div>
+    <span style="font-size:0.83rem; color:#374151;"><strong>Interdiction absolue</strong> d'arrêt et de stationnement.</span>
+  </div>
+
+  <div class="regle-box" style="flex-direction:column; align-items:stretch;">
+    <div class="sub-title" style="margin-top:0; border:none; font-size:0.9rem;">Ligne jaune discontinue (bordure)</div>
+    <div class="ligne-preview ligne-jaune-d"></div>
+    <span style="font-size:0.83rem; color:#374151;">Stationnement interdit. <strong>Arrêt autorisé</strong> (court).</span>
+  </div>
+
+  <div class="regle-box" style="flex-direction:column; align-items:stretch;">
+    <div class="sub-title" style="margin-top:0; border:none; font-size:0.9rem;">Ligne zigzag jaune</div>
+    <div class="ligne-preview ligne-zigzag"></div>
+    <span style="font-size:0.83rem; color:#374151;"><strong>Arrêt interdit</strong> — zones sensibles : écoles, hôpitaux.</span>
+  </div>
+
+  <div class="regle-box" style="flex-direction:column; align-items:stretch;">
+    <div class="sub-title" style="margin-top:0; border:none; font-size:0.9rem;">Ligne mixte (continue + discontinue)</div>
+    <div style="display:flex; gap:0;">
+      <div class="ligne-preview ligne-continue" style="width:50%; border-radius:4px 0 0 4px;"></div>
+      <div class="ligne-preview ligne-discontinue" style="width:50%; border-radius:0 4px 4px 0;"></div>
+    </div>
+    <span style="font-size:0.83rem; color:#374151;">Côté discontinu : franchissement autorisé. Côté continu : interdit.</span>
+  </div>
+
+</div>
+
+<p class="sub-title">Photos de lignes au sol en situation réelle</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/q_1018_a0.jpg" alt="Ligne jaune discontinue au bord du trottoir — arrêt autorisé" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Ligne jaune discontinue</div>
+      <div class="scene-desc">N'interdit pas l'arrêt — uniquement le stationnement prolongé.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_1205_a0.jpg" alt="Ligne blanche continue au sol — dépassement autorisé sans franchir" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Ligne continue blanche</div>
+      <div class="scene-desc">Dépassement autorisé uniquement si vous ne franchissez pas la ligne.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_1252.jpg" alt="Panneau stationnement interdit du 1er au 15 du mois" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Stationnement interdit 1er–15</div>
+      <div class="scene-desc">Panneau alterné — interdit la 1ère quinzaine du mois.</div>
+    </div>
+  </div>
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Ligne continue blanche ≠ interdiction de dépassement. Vous pouvez dépasser si vous <u>ne franchissez pas</u> la ligne (ex : véhicule assez étroit). La ligne <em>mixte</em> : regardez de quel côté vous vous trouvez.
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 7. FEUX TRICOLORES                            -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="feux" class="section-header sh-feux">
+  <span class="icon">🚦</span>
+  <h2>Feux tricolores & Feux spéciaux</h2>
+  <span class="badge">Feux</span>
+</div>
+
+<p class="sub-title">Les 5 états à connaître</p>
+<div class="feux-grid">
+  <div class="feu-card feu-rouge">
+    <div class="feu-rond"></div>
+    <div class="feu-label">Rouge fixe</div>
+    <div class="feu-action">Arrêt obligatoire avant la ligne</div>
+  </div>
+  <div class="feu-card feu-orange">
+    <div class="feu-rond"></div>
+    <div class="feu-label">Jaune fixe</div>
+    <div class="feu-action">Arrêter si possible sans danger — sinon passer</div>
+  </div>
+  <div class="feu-card feu-vert">
+    <div class="feu-rond"></div>
+    <div class="feu-label">Vert fixe</div>
+    <div class="feu-action">Passage autorisé — céder aux piétons si on tourne</div>
+  </div>
+  <div class="feu-card feu-orange" style="opacity:0.7;">
+    <div class="feu-rond" style="animation: none; opacity:0.6;"></div>
+    <div class="feu-label">Jaune clignotant</div>
+    <div class="feu-action">Prudence — règles normales de priorité s'appliquent</div>
+  </div>
+  <div class="feu-card feu-special">
+    <div class="feu-rond"></div>
+    <div class="feu-label">Rouge + flèche verte</div>
+    <div class="feu-action">Passer dans la direction de la flèche, en cédant aux piétons</div>
+  </div>
+</div>
+
+<p class="sub-title">Feux spéciaux</p>
+<div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:1rem; margin:1rem 0;">
+  <div class="regle-box">
+    <span class="r-icon">🟢</span>
+    <span><strong>Feux de voie :</strong> Flèche verte ↓ = voie ouverte · Croix rouge ✕ = voie fermée · Flèche jaune oblique = changer de voie</span>
+  </div>
+  <div class="regle-box">
+    <span class="r-icon">🚨</span>
+    <span><strong>Passage à niveau :</strong> Rouge clignotant = arrêt obligatoire immédiat. Repartir uniquement quand les feux s'éteignent ET barrières complètement ouvertes.</span>
+  </div>
+  <div class="regle-box">
+    <span class="r-icon">🚌</span>
+    <span><strong>Feux bus/tram :</strong> Barre horizontale blanche = arrêt · Barre verticale ou point blanc = passage autorisé</span>
+  </div>
+  <div class="regle-box">
+    <span class="r-icon">🌫️</span>
+    <span><strong>Tunnel :</strong> Le panneau tunnel oblige à allumer les feux de croisement — il n'impose pas de vitesse précise (seul C,5 le fait).</span>
+  </div>
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Au passage à niveau, vous pouvez repartir dès que les feux rouges s'éteignent — vous n'attendez pas la fin du passage du train ni l'ouverture complète des barrières si elles ne sont pas équipées de feux.
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 8. SIGNALISATION TEMPORAIRE                  -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="section-header sh-neutre">
+  <span class="icon">🟡</span>
+  <h2>Signalisation temporaire & Fin de restrictions</h2>
+</div>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column; align-items:flex-start;">
+    <strong style="color:#a16207;">🟡 Signalisation temporaire</strong>
+    <span style="font-size:0.86rem; margin-top:0.4rem; color:#374151;">Couleur jaune/orange · Travaux, déviations, accidents · <u>Prime sur la signalisation permanente</u></span>
+  </div>
+  <div class="regle-box" style="flex-direction:column; align-items:flex-start;">
+    <strong style="color:#15803d;">⚪ Fin de toutes restrictions</strong>
+    <span style="font-size:0.86rem; margin-top:0.4rem; color:#374151;">Cercle blanc + 5 barres noires obliques · Annule toutes les limitations précédentes (vitesse, dépassement, etc.)</span>
+  </div>
+</div>
+
+<div class="panneau-grid" style="grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));">
+  <div class="panneau-card">
+    <img src="images/q_724_a0.jpg" alt="Fin de limitation de vitesse — panneau barré" loading="lazy">
+    <div class="panneau-nom">Fin limitation de vitesse</div>
+    <div class="panneau-desc">Panneau barré — la limite précédente cesse</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/asset_19.jpg" alt="Fin limitation de vitesse — zone ne s'appliquant plus" loading="lazy">
+    <div class="panneau-nom">Fin de zone limitée</div>
+    <div class="panneau-desc">Limitation précédente ne s'applique plus</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 9. MÉMO VISUEL                               -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="memo" class="section-header sh-neutre" style="margin-top:3rem;">
+  <span class="icon">📋</span>
+  <h2>Mémo — Les règles à retenir absolument</h2>
+</div>
+
+<div class="memo-grid">
+  <div class="memo-card mc-danger">
+    <div class="m-icon">🔺</div>
+    <div class="m-forme">Triangle bord rouge, pointe ↑</div>
+    <div class="m-label">DANGER</div>
+  </div>
+  <div class="memo-card" style="background:#fef9ec;">
+    <div class="m-icon">🔻</div>
+    <div class="m-forme">Triangle inversé bord rouge, pointe ↓</div>
+    <div class="m-label" style="color:#9a3412;">CÉDEZ LE PASSAGE</div>
+  </div>
+  <div class="memo-card mc-interdit">
+    <div class="m-icon">🔴</div>
+    <div class="m-forme">Rond bord rouge, fond blanc</div>
+    <div class="m-label">INTERDICTION</div>
+  </div>
+  <div class="memo-card mc-oblig">
+    <div class="m-icon">🔵</div>
+    <div class="m-forme">Rond bleu, symbole blanc</div>
+    <div class="m-label">OBLIGATION</div>
+  </div>
+  <div class="memo-card mc-prio">
+    <div class="m-icon">🔶</div>
+    <div class="m-forme">Losange jaune/blanc</div>
+    <div class="m-label">ROUTE PRIORITAIRE</div>
+  </div>
+  <div class="memo-card mc-info">
+    <div class="m-icon">🟦</div>
+    <div class="m-forme">Carré ou rectangle bleu/vert</div>
+    <div class="m-label">INFORMATION</div>
+  </div>
+</div>
+
+<div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:0.75rem; margin-top:1.5rem;">
+  <div class="regle-box"><span class="r-icon">🛑</span><span><strong>STOP</strong> = arrêt complet, roues immobilisées, même route libre</span></div>
+  <div class="regle-box"><span class="r-icon">🟡</span><span>Signalisation temporaire (jaune) <strong>prime</strong> sur signalisation permanente</span></div>
+  <div class="regle-box"><span class="r-icon">↔️</span><span>Flèche rouge + grande = <strong>vous cédez</strong> · Flèche blanche + grande = <strong>vous êtes prioritaire</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🚇</span><span>Tunnel ≠ limitation automatique — seul un <strong>C,5</strong> impose la vitesse</span></div>
+  <div class="regle-box"><span class="r-icon">🔵</span><span>Rond bleu "30" = vitesse <strong>minimale</strong>, pas maximale !</span></div>
+  <div class="regle-box"><span class="r-icon">〰️</span><span>Ligne jaune continue = <strong>arrêt interdit</strong> · Ligne jaune discontinue = <strong>arrêt autorisé</strong>, stationnement interdit</span></div>
+</div>
 
 </section>
 
 <div class="card" style="text-align:center;">
   <a href="./" class="btn primary">Retour au quiz</a>
+  &nbsp;
+  <a href="sommaire.html" class="btn" style="background:#f1f5f9; color:#1e3a8a;">Tous les cours →</a>
 </div>
 </main>
 
