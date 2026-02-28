@@ -19,7 +19,6 @@
   <meta name="theme-color" content="#1e3a8a">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,17 +31,67 @@
     "educationalLevel": "Beginner",
     "educationalUse": "self-study",
     "teaches": "Autoroutes, tunnels, couloir secours — Préparation examen SNCA",
-    "about": {
-      "@type": "Thing",
-      "name": "Permis de conduire Luxembourg"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "Quiz Permis Luxembourg",
-      "url": "https://zaalouni.github.io/quiz-permis-lu/"
-    }
+    "about": { "@type": "Thing", "name": "Permis de conduire Luxembourg" },
+    "provider": { "@type": "Organization", "name": "Quiz Permis Luxembourg", "url": "https://zaalouni.github.io/quiz-permis-lu/" }
   }
   </script>
+
+  <style>
+    .section-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 2rem}
+    .section-nav a{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:999px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s ease;border:2px solid transparent}
+    .section-nav a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .nav-blue{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.nav-blue:hover{background:#1d4ed8;color:#fff}
+    .nav-red{background:#fff1f2;color:#be123c;border-color:#fecdd3}.nav-red:hover{background:#be123c;color:#fff}
+    .nav-orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.nav-orange:hover{background:#c2410c;color:#fff}
+    .nav-green{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}.nav-green:hover{background:#15803d;color:#fff}
+    .nav-yellow{background:#fefce8;color:#a16207;border-color:#fef08a}.nav-yellow:hover{background:#a16207;color:#fff}
+    .nav-grey{background:#f8fafc;color:#475569;border-color:#e2e8f0}.nav-grey:hover{background:#475569;color:#fff}
+    .section-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-radius:10px;margin:2.5rem 0 1.25rem}
+    .section-header .icon{font-size:1.8rem;line-height:1}
+    .section-header h2{margin:0;font-size:1.25rem}
+    .section-header .badge{margin-left:auto;font-size:.75rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    .sh-blue{background:#eff6ff;border-left:5px solid #2563eb}.sh-blue h2{color:#1e40af}.sh-blue .badge{background:#2563eb;color:#fff}
+    .sh-red{background:#fff1f2;border-left:5px solid #e11d48}.sh-red h2{color:#9f1239}.sh-red .badge{background:#e11d48;color:#fff}
+    .sh-orange{background:#fff7ed;border-left:5px solid #ea580c}.sh-orange h2{color:#9a3412}.sh-orange .badge{background:#ea580c;color:#fff}
+    .sh-green{background:#f0fdf4;border-left:5px solid #16a34a}.sh-green h2{color:#14532d}.sh-green .badge{background:#16a34a;color:#fff}
+    .sh-yellow{background:#fefce8;border-left:5px solid #ca8a04}.sh-yellow h2{color:#713f12}.sh-yellow .badge{background:#ca8a04;color:#fff}
+    .sh-grey{background:#f8fafc;border-left:5px solid #64748b}.sh-grey h2{color:#1e293b}
+    .scene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;margin:1rem 0 1.5rem}
+    .scene-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;overflow:hidden;transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .scene-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,58,138,.13);border-color:#1e3a8a}
+    .scene-card img{width:100%;height:160px;object-fit:cover;display:block;background:#f1f5f9}
+    .scene-card .scene-info{padding:.75rem}
+    .scene-card .scene-nom{font-size:.83rem;font-weight:700;color:#1e3a8a;margin-bottom:.2rem}
+    .scene-card .scene-desc{font-size:.76rem;color:#64748b;line-height:1.4}
+    .regle-box{background:#fff;border-radius:10px;padding:.9rem 1.1rem;margin:.5rem 0;display:flex;align-items:flex-start;gap:.75rem;border:1.5px solid #e5e7eb;font-size:.9rem}
+    .regle-box .r-icon{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+    .regle-box strong{color:#1e3a8a}
+    .piege{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:1rem 0;font-size:.88rem;color:#78350f}
+    .piege strong{color:#b45309}
+    .sub-title{font-size:1rem;font-weight:700;color:#374151;margin:1.5rem 0 .5rem;padding-bottom:.4rem;border-bottom:2px solid #f1f5f9}
+    .stat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .stat-card{border-radius:12px;padding:1.25rem 1rem;text-align:center}
+    .stat-card .stat-val{font-size:2rem;font-weight:800;line-height:1;margin-bottom:.35rem}
+    .stat-card .stat-label{font-size:.78rem;font-weight:600;opacity:.8}
+    .sc-blue{background:#eff6ff}.sc-blue .stat-val{color:#1d4ed8}
+    .sc-green{background:#f0fdf4}.sc-green .stat-val{color:#15803d}
+    .sc-orange{background:#fff7ed}.sc-orange .stat-val{color:#c2410c}
+    .sc-red{background:#fff1f2}.sc-red .stat-val{color:#be123c}
+    .sc-yellow{background:#fefce8}.sc-yellow .stat-val{color:#a16207}
+    .sc-grey{background:#f8fafc}.sc-grey .stat-val{color:#475569}
+    /* Couloir de secours CSS diagram */
+    .couloir-diagram{border:2px solid #e5e7eb;border-radius:12px;overflow:hidden;margin:1rem 0 1.5rem;background:#f8fafc}
+    .couloir-diagram .route-area{padding:1rem;display:flex;gap:4px;justify-content:center;align-items:stretch;min-height:80px}
+    .voie{flex:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;text-align:center;padding:0.5rem 0.25rem;min-height:60px}
+    .voie-gauche{background:#bfdbfe;color:#1e40af;border:2px solid #2563eb;}
+    .voie-gauche.couloir-actif{background:#dcfce7;color:#15803d;border-color:#16a34a;border-style:dashed;}
+    .voie-milieu{background:#fed7aa;color:#9a3412;border:2px solid #ea580c;}
+    .voie-milieu.serree{background:#fecaca;color:#9f1239;border-color:#e11d48;}
+    .voie-droite{background:#fed7aa;color:#9a3412;border:2px solid #ea580c;}
+    .voie-droite.serree{background:#fecaca;color:#9f1239;border-color:#e11d48;}
+    .couloir-fleche{font-size:2rem;color:#15803d;display:flex;align-items:center;padding:0 6px;}
+    .couloir-legend{padding:.5rem 1rem;font-size:.78rem;background:#f0fdf4;border-top:1px solid #e5e7eb;color:#374151;}
+  </style>
 </head>
 <body>
 
@@ -61,221 +110,279 @@
 
 <p><small>Sources : Legilux, RGD 23/05/2022 (grande voirie), police.public.lu</small></p>
 
-<h2>1. Autoroute — Règles générales</h2>
+<nav class="section-nav" aria-label="Sections">
+  <a href="#vitesses" class="nav-blue">🚗 Vitesses</a>
+  <a href="#regles" class="nav-orange">⛔ Règles & Accès</a>
+  <a href="#couloir" class="nav-green">🚑 Couloir de secours</a>
+  <a href="#tunnel" class="nav-yellow">🚇 Tunnels</a>
+  <a href="#passage" class="nav-red">🚂 Passage à niveau</a>
+  <a href="#equipements" class="nav-blue">🦺 Équipements</a>
+  <a href="#memo" class="nav-grey">📋 Mémo</a>
+</nav>
 
-<h3>1.1 Vitesse</h3>
 
-<div class="seo-table"><table>
-<tr><th>Condition</th><th>Voiture</th><th>Remorque/PL</th></tr>
-<tr><td>Temps sec</td><td>130 km/h</td><td>90 km/h</td></tr>
-<tr><td>Pluie / visibilité réduite</td><td>110 km/h</td><td>90 km/h</td></tr>
-</table></div>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1. VITESSES                                   -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="vitesses" class="section-header sh-blue">
+  <span class="icon">🚗</span>
+  <h2>Vitesses sur autoroute</h2>
+  <span class="badge">130 sec / 110 pluie</span>
+</div>
 
-<p>⚠️ La pluie réduit <strong>automatiquement</strong> la vitesse maximale. Ce n'est pas une recommandation, c'est la loi.</p>
+<div class="stat-cards">
+  <div class="stat-card sc-blue">
+    <div class="stat-val">130</div>
+    <div class="stat-label">km/h — Voiture, temps sec</div>
+  </div>
+  <div class="stat-card sc-yellow">
+    <div class="stat-val">110</div>
+    <div class="stat-label">km/h — Voiture, pluie / visibilité réduite</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="stat-val">90</div>
+    <div class="stat-label">km/h — Remorque / PL (toutes conditions)</div>
+  </div>
+</div>
 
-<h3>1.2 Accès autoroute</h3>
+<p class="sub-title">Situations réelles sur autoroute</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/asset_299.jpg" alt="Panneau entrée autoroute vert — début A" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Entrée autoroute (E,1)</div>
+      <div class="scene-desc">Panneau vert — régime autoroute commence : 130 km/h (sec), 110 (pluie).</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_1.jpg" alt="Voies d'autoroute — circulation à vitesse élevée" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Circulation sur autoroute</div>
+      <div class="scene-desc">Voie de gauche = dépassement uniquement. Regagner la droite après chaque dépassement.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_2.jpg" alt="Sortie d'autoroute — voie de décélération" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Sortie d'autoroute</div>
+      <div class="scene-desc">Clignotant droit, voie de décélération. Ne jamais freiner sur la voie de circulation.</div>
+    </div>
+  </div>
+</div>
 
-<p><strong>Interdit :</strong></p>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> La pluie sur autoroute = <strong>110 km/h légal</strong>, même sans panneau spécifique. Ce n'est pas une recommandation.
+</div>
 
-<ul>
-<li>Demi-tour</li>
-<li>Marche arrière</li>
-<li>Arrêt ou stationnement (sauf urgence)</li>
-<li>Piétons</li>
-<li>Vélos</li>
-<li>Cyclomoteurs (vitesse max &lt; 45 km/h)</li>
-<li>Véhicules ne pouvant atteindre 60 km/h</li>
-</ul>
 
-<h3>1.3 Bande d'arrêt d'urgence (BAU)</h3>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2. RÈGLES & ACCÈS AUTOROUTE                   -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="regles" class="section-header sh-orange">
+  <span class="icon">⛔</span>
+  <h2>Règles & Accès interdit sur autoroute</h2>
+  <span class="badge">Interdit = 2 points</span>
+</div>
 
-<p>Utilisable uniquement :</p>
+<p class="sub-title">Strictement interdit sur autoroute</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box"><span class="r-icon">🔄</span><span><strong>Demi-tour</strong></span></div>
+  <div class="regle-box"><span class="r-icon">⬅️</span><span><strong>Marche arrière</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🛑</span><span><strong>Arrêt ou stationnement</strong> (sauf urgence)</span></div>
+  <div class="regle-box"><span class="r-icon">🚶</span><span><strong>Piétons</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🚲</span><span><strong>Vélos</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🛵</span><span>Cyclomoteurs (vitesse max &lt; 45 km/h)</span></div>
+  <div class="regle-box"><span class="r-icon">🐌</span><span>Véhicules ne pouvant atteindre 60 km/h</span></div>
+</div>
 
-<ul>
-<li>En cas de <strong>panne</strong></li>
-<li>En cas d'<strong>urgence réelle</strong></li>
-</ul>
+<p class="sub-title">BAU — Bande d'Arrêt d'Urgence</p>
+<div class="regle-box">
+  <span class="r-icon">🔶</span>
+  <span>La BAU est <strong>uniquement utilisable en cas de panne ou urgence réelle</strong>. Si vous vous immobilisez sur la BAU :<br><strong>① Feux de détresse ② Triangle à 100 m ③ Gilet avant de sortir ④ Se placer derrière la glissière si possible.</strong></span>
+</div>
 
-<p><strong>Obligations en cas d'immobilisation :</strong></p>
-<ul>
-<li>Feux de détresse obligatoires</li>
-<li>Triangle de signalisation (si possible)</li>
-<li>Gilet de sécurité avant de sortir</li>
-<li>Se placer derrière la glissière si possible</li>
-</ul>
 
-<h3>1.4 Insertion sur autoroute</h3>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3. COULOIR DE SECOURS                         -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="couloir" class="section-header sh-green">
+  <span class="icon">🚑</span>
+  <h2>Couloir de secours (Rettungsgasse)</h2>
+  <span class="badge">Autoroute : 2 points</span>
+</div>
 
-<ul>
-<li>Voie d'accélération = pour atteindre la vitesse du flux</li>
-<li>Céder le passage aux véhicules sur l'autoroute</li>
-<li>Clignotant gauche obligatoire</li>
-</ul>
+<p>Former le couloir <strong>dès que le trafic ralentit fortement</strong> — ne pas attendre l'arrivée des véhicules d'urgence.</p>
 
-<h3>1.5 Sortie d'autoroute</h3>
+<p class="sub-title">Comment former le couloir — Schéma visuel</p>
 
-<ul>
-<li>Voie de décélération = pour ralentir</li>
-<li>Clignotant droit obligatoire</li>
-<li>Ne jamais freiner sur la voie de circulation</li>
-</ul>
+<div class="couloir-diagram">
+  <div style="padding:0.75rem 1rem;font-size:0.8rem;font-weight:700;color:#374151;border-bottom:1px solid #e5e7eb;">🚑 2 voies — Formation du couloir de secours</div>
+  <div class="route-area">
+    <div class="voie voie-gauche couloir-actif">⬅️ VOIE GAUCHE<br>Serrer à gauche</div>
+    <div class="couloir-fleche">🚑</div>
+    <div class="voie voie-droite serree">VOIE DROITE ➡️<br>Serrer à droite</div>
+  </div>
+  <div class="couloir-legend">Le couloir se forme <strong>entre la voie de gauche et la voie immédiatement à droite</strong>.</div>
+</div>
 
-<h2>2. Couloir de secours (Rettungsgasse)</h2>
+<div class="couloir-diagram">
+  <div style="padding:0.75rem 1rem;font-size:0.8rem;font-weight:700;color:#374151;border-bottom:1px solid #e5e7eb;">🚑 3 voies ou plus — Formation du couloir</div>
+  <div class="route-area">
+    <div class="voie voie-gauche couloir-actif">⬅️ GAUCHE<br>Tout à gauche</div>
+    <div class="couloir-fleche">🚑</div>
+    <div class="voie voie-milieu serree">MILIEU ➡️<br>Serrer à droite</div>
+    <div class="voie voie-droite serree">DROITE ➡️<br>Serrer à droite</div>
+  </div>
+  <div class="couloir-legend">Toutes les voies sauf la gauche serrent à droite — couloir entre voie de gauche et voie immédiatement à droite.</div>
+</div>
 
-<h3>2.1 Formation</h3>
+<div class="stat-cards">
+  <div class="stat-card sc-red">
+    <div class="stat-val">2 pts</div>
+    <div class="stat-label">Non-formation couloir sur autoroute + 145 €</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="stat-val">74 €</div>
+    <div class="stat-label">Non-formation couloir hors autoroute</div>
+  </div>
+</div>
 
-<p>En cas d'embouteillage ou ralentissement :</p>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Le couloir se forme <u>dès le ralentissement</u>, pas à l'arrivée des secours. Il reste ouvert jusqu'à la reprise du trafic normal.
+</div>
 
-<div class="seo-table"><table>
-<tr><th>Nombre de voies</th><th>Formation du couloir</th></tr>
-<tr><td>2 voies</td><td>Gauche → tout à gauche / Droite → tout à droite</td></tr>
-<tr><td>3+ voies</td><td>Gauche → tout à gauche / Toutes autres → à droite</td></tr>
-</table></div>
 
-<p>Le couloir se forme <strong>entre la voie de gauche et la voie immédiatement à droite</strong>.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 4. TUNNELS                                    -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="tunnel" class="section-header sh-yellow">
+  <span class="icon">🚇</span>
+  <h2>Tunnels — Règles & Incendie</h2>
+  <span class="badge">Feux croisement obligatoires</span>
+</div>
 
-<h3>2.2 Règles importantes</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#ca8a04;">
+    <strong style="color:#713f12;">Obligations dans le tunnel</strong>
+    <ul style="font-size:0.85rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li><strong>Feux de croisement obligatoires</strong> (même de jour)</li>
+      <li>Distance de sécurité augmentée</li>
+      <li>Interdit de faire demi-tour</li>
+      <li>Interdit de faire marche arrière</li>
+    </ul>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#dc2626;">
+    <strong style="color:#9f1239;">En cas d'incendie dans le tunnel</strong>
+    <ol style="font-size:0.85rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Arrêter sur le côté</li>
+      <li>Couper le moteur</li>
+      <li>Laisser les clés sur le contact</li>
+      <li>Ne pas fermer à clé</li>
+      <li>Évacuer vers les issues de secours</li>
+      <li><strong>Ne jamais revenir en arrière</strong></li>
+    </ol>
+  </div>
+</div>
 
-<ul>
-<li>Former le couloir <strong>dès que le trafic ralentit fortement</strong></li>
-<li>Ne pas attendre l'arrivée des véhicules d'urgence</li>
-<li>Autorisé de mordre sur la BAU si nécessaire</li>
-<li>Le couloir reste libre jusqu'à circulation fluide</li>
-</ul>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Panneau "Tunnel" = 90 km/h → <strong>FAUX</strong>. Le panneau tunnel n'impose <u>aucune vitesse</u> — seul un panneau chiffré (C,5) impose la limite. Le tunnel impose adaptation + <strong>feux de croisement</strong>.
+</div>
 
-<h3>2.3 Sanctions</h3>
 
-<div class="seo-table"><table>
-<tr><th>Lieu</th><th>Amende</th><th>Points</th></tr>
-<tr><td>Autoroute</td><td>145 €</td><td><strong>2 points</strong></td></tr>
-<tr><td>Hors autoroute</td><td>74 €</td><td>—</td></tr>
-</table></div>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5. PASSAGE À NIVEAU                           -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="passage" class="section-header sh-red">
+  <span class="icon">🚂</span>
+  <h2>Passage à niveau</h2>
+  <span class="badge">Arrêt obligatoire</span>
+</div>
 
-<p><strong>Piège SNCA :</strong> "Couloir central" → terme imprécis. Le couloir se forme entre voie gauche et voie suivante. Formation dès le ralentissement (pas à l'arrivée des secours).</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="border-color:#dc2626;flex-direction:column;align-items:flex-start;">
+    <strong style="color:#9f1239;">Feu rouge clignotant</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">→ Arrêt obligatoire immédiat</span>
+  </div>
+  <div class="regle-box" style="border-color:#dc2626;flex-direction:column;align-items:flex-start;">
+    <strong style="color:#9f1239;">Barrières fermées ou en mouvement</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">→ Arrêt obligatoire. Ne jamais contourner les barrières.</span>
+  </div>
+  <div class="regle-box" style="border-color:#16a34a;flex-direction:column;align-items:flex-start;">
+    <strong style="color:#14532d;">Reprendre la route quand :</strong>
+    <ul style="font-size:0.85rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Les feux rouges sont <strong>éteints</strong></li>
+      <li>Les barrières sont <strong>complètement levées</strong></li>
+    </ul>
+  </div>
+</div>
 
-<h2>3. Tunnels</h2>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Les <strong>deux conditions</strong> doivent être remplies : feux éteints ET barrières complètement levées. Ce n'est pas "l'un ou l'autre".
+</div>
 
-<h3>3.1 Obligations</h3>
 
-<ul>
-<li><strong>Feux de croisement obligatoires</strong> (même de jour)</li>
-<li>Distance de sécurité augmentée</li>
-<li>Interdiction de demi-tour</li>
-<li>Interdiction de marche arrière</li>
-</ul>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6. ÉQUIPEMENTS OBLIGATOIRES                   -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="equipements" class="section-header sh-blue">
+  <span class="icon">🦺</span>
+  <h2>Équipements obligatoires à bord</h2>
+  <span class="badge">Triangle + Gilet</span>
+</div>
 
-<h3>3.2 En cas d'embouteillage dans un tunnel</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="border-color:#dc2626;">
+    <span class="r-icon">🔺</span>
+    <div>
+      <strong>Triangle de signalisation</strong><br>
+      <span style="font-size:0.83rem;color:#374151;">• Autoroute : à 100 m minimum<br>• Agglomération / hors agglo : 30–50 m</span>
+    </div>
+  </div>
+  <div class="regle-box" style="border-color:#f59e0b;">
+    <span class="r-icon">🦺</span>
+    <div>
+      <strong>Gilet de sécurité (jaune/orange)</strong><br>
+      <span style="font-size:0.83rem;color:#374151;">• <strong>Avant</strong> de sortir du véhicule<br>• Valable jour et nuit<br>• Accessible (pas dans le coffre)</span>
+    </div>
+  </div>
+</div>
 
-<ul>
-<li>Garder distance suffisante</li>
-<li>Ne pas couper moteur (sauf immobilisation prolongée)</li>
-<li>Ne pas quitter véhicule sauf danger imminent</li>
-<li>Écouter les instructions (panneaux, radio)</li>
-</ul>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/asset_17.jpg" alt="Chaînes à neige obligatoires — panneau de signalisation" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Chaînes à neige obligatoires</div>
+      <div class="scene-desc">Panneau A — continuer uniquement avec chaînes sur les 2 roues motrices.</div>
+    </div>
+  </div>
+</div>
 
-<h3>3.3 En cas d'incendie dans un tunnel</h3>
 
-<ol>
-<li>Arrêter le véhicule sur le côté</li>
-<li>Couper le moteur</li>
-<li>Laisser les clés sur le contact</li>
-<li>Ne pas fermer à clé</li>
-<li>Évacuer vers les issues de secours</li>
-<li>Ne jamais revenir en arrière</li>
-</ol>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 7. MÉMO                                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="memo" class="section-header sh-grey" style="margin-top:3rem;">
+  <span class="icon">📋</span>
+  <h2>Mémo — À retenir absolument</h2>
+</div>
 
-<h3>3.4 Signal "Tunnel"</h3>
-
-<p>Le panneau tunnel :</p>
-
-<ul>
-<li>N'impose <strong>pas</strong> de vitesse spécifique</li>
-<li>Oblige à adapter la conduite</li>
-<li>Rend feux de croisement obligatoires</li>
-</ul>
-
-<p><strong>Piège SNCA :</strong> Panneau tunnel = 90 km/h → <strong>FAUX</strong>. Seuls les panneaux chiffrés imposent la vitesse. Le tunnel impose adaptation + feux de croisement.</p>
-
-<h2>4. Passage à niveau</h2>
-
-<h3>4.1 Feu rouge clignotant</h3>
-
-<p>→ <strong>Arrêt obligatoire immédiat</strong></p>
-
-<h3>4.2 Barrières</h3>
-
-<ul>
-<li>Barrières fermées ou en mouvement → arrêt obligatoire</li>
-<li>Ne jamais contourner les barrières</li>
-</ul>
-
-<h3>4.3 Après passage du train</h3>
-
-<p>Ne redémarrer que si :</p>
-
-<ol>
-<li>Les feux rouges sont <strong>éteints</strong></li>
-<li>Les barrières sont <strong>complètement levées</strong></li>
-</ol>
-
-<p>⚠️ Les <strong>deux conditions</strong> doivent être remplies.</p>
-
-<h2>5. Veste de sécurité</h2>
-
-<p><strong>Obligatoire :</strong></p>
-
-<ul>
-<li>En cas de panne sur autoroute ou route hors agglomération</li>
-<li><strong>Avant</strong> de sortir du véhicule</li>
-<li>Valable <strong>jour et nuit</strong></li>
-</ul>
-
-<p>Recommandation : 1 gilet par occupant, accessible (pas dans le coffre)</p>
-
-<h2>6. Triangle de signalisation</h2>
-
-<ul>
-<li>Obligatoire à bord</li>
-<li>À placer à 100 m minimum sur autoroute</li>
-<li>À 30-50 m en agglomération/hors agglomération</li>
-</ul>
-
-<h2>7. Voie lente</h2>
-
-<p>Si une voie lente existe :</p>
-
-<ul>
-<li>Les véhicules lents <strong>doivent</strong> l'utiliser</li>
-<li>Les autres véhicules continuent normalement</li>
-</ul>
-
-<h2>8. Sanctions autoroute</h2>
-
-<div class="seo-table"><table>
-<tr><th>Infraction</th><th>Points</th></tr>
-<tr><td>Infraction règles autoroutes</td><td><strong>2 points</strong></td></tr>
-</table></div>
-
-<p>(Art. 2bis §2 pt 21)</p>
-
-<h2>À retenir pour l'examen</h2>
-<ul>
-<li>130 sec / 110 pluie (voiture)</li>
-<li>90 km/h remorque (toutes conditions)</li>
-<li>Pas demi-tour autoroute</li>
-<li>Couloir entre voie gauche et suivante</li>
-<li>Couloir formé dès ralentissement</li>
-<li>Tunnel ≠ limitation automatique</li>
-<li>Tunnel = feux de croisement obligatoires</li>
-<li>Passage niveau = attendre feux éteints + barrières levées</li>
-<li>Gilet avant de sortir du véhicule</li>
-<li>Couloir secours autoroute = 2 points</li>
-</ul>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-top:1.25rem;">
+  <div class="regle-box"><span class="r-icon">🌧️</span><span>Autoroute pluie → <strong>110 km/h légal</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🚐</span><span>Remorque autoroute = <strong>90 km/h</strong> (toutes conditions)</span></div>
+  <div class="regle-box"><span class="r-icon">🔄</span><span>Pas de demi-tour sur autoroute</span></div>
+  <div class="regle-box"><span class="r-icon">🚑</span><span>Couloir entre <strong>voie gauche et suivante</strong> — dès le ralentissement</span></div>
+  <div class="regle-box"><span class="r-icon">🚇</span><span>Tunnel ≠ limitation automatique — <strong>feux de croisement obligatoires</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🚂</span><span>Passage à niveau = attendre <strong>feux éteints + barrières levées</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🦺</span><span>Gilet <strong>avant de sortir</strong> du véhicule</span></div>
+  <div class="regle-box"><span class="r-icon">⚖️</span><span>Couloir secours autoroute = <strong>2 points + 145 €</strong></span></div>
+</div>
 
 </section>
 
 <div class="card" style="text-align:center;">
   <a href="./" class="btn primary">Retour au quiz</a>
+  &nbsp;
+  <a href="sommaire.html" class="btn" style="background:#f1f5f9;color:#1e3a8a;">Tous les cours →</a>
 </div>
 </main>
 
@@ -285,10 +392,12 @@
       <a href="./">Quiz principal</a>
       <a href="sommaire.html">Tous les cours</a>
       <a href="vitesses-distances.html">Vitesses & Distances</a>
-      <a href="alcool-points.html">Alcool & Permis à points</a>
+      <a href="alcool-points.html">Alcool & Points</a>
       <a href="priorites-circulation.html">Priorités & Circulation</a>
+      <a href="signalisation-complete.html">Signalisation</a>
       <a href="depassement-cyclistes.html">Dépassement & Cyclistes</a>
-      <a href="signalisation.html">Signalisation</a>
+      <a href="stationnement-arret.html">Stationnement & Arrêt</a>
+      <a href="equipements-securite.html">Équipements & Sécurité</a>
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
     </div>

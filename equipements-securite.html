@@ -19,7 +19,6 @@
   <meta name="theme-color" content="#1e3a8a">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,24 +31,80 @@
     "educationalLevel": "Beginner",
     "educationalUse": "self-study",
     "teaches": "Équipements, enfants, sécurité — Préparation examen SNCA",
-    "about": {
-      "@type": "Thing",
-      "name": "Permis de conduire Luxembourg"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "Quiz Permis Luxembourg",
-      "url": "https://zaalouni.github.io/quiz-permis-lu/"
-    }
+    "about": { "@type": "Thing", "name": "Permis de conduire Luxembourg" },
+    "provider": { "@type": "Organization", "name": "Quiz Permis Luxembourg", "url": "https://zaalouni.github.io/quiz-permis-lu/" }
   }
   </script>
+
+  <style>
+    .section-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 2rem}
+    .section-nav a{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:999px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s ease;border:2px solid transparent}
+    .section-nav a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .nav-blue{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.nav-blue:hover{background:#1d4ed8;color:#fff}
+    .nav-red{background:#fff1f2;color:#be123c;border-color:#fecdd3}.nav-red:hover{background:#be123c;color:#fff}
+    .nav-orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.nav-orange:hover{background:#c2410c;color:#fff}
+    .nav-green{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}.nav-green:hover{background:#15803d;color:#fff}
+    .nav-yellow{background:#fefce8;color:#a16207;border-color:#fef08a}.nav-yellow:hover{background:#a16207;color:#fff}
+    .nav-purple{background:#faf5ff;color:#7e22ce;border-color:#e9d5ff}.nav-purple:hover{background:#7e22ce;color:#fff}
+    .nav-grey{background:#f8fafc;color:#475569;border-color:#e2e8f0}.nav-grey:hover{background:#475569;color:#fff}
+    .section-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-radius:10px;margin:2.5rem 0 1.25rem}
+    .section-header .icon{font-size:1.8rem;line-height:1}
+    .section-header h2{margin:0;font-size:1.25rem}
+    .section-header .badge{margin-left:auto;font-size:.75rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    .sh-blue{background:#eff6ff;border-left:5px solid #2563eb}.sh-blue h2{color:#1e40af}.sh-blue .badge{background:#2563eb;color:#fff}
+    .sh-red{background:#fff1f2;border-left:5px solid #e11d48}.sh-red h2{color:#9f1239}.sh-red .badge{background:#e11d48;color:#fff}
+    .sh-orange{background:#fff7ed;border-left:5px solid #ea580c}.sh-orange h2{color:#9a3412}.sh-orange .badge{background:#ea580c;color:#fff}
+    .sh-green{background:#f0fdf4;border-left:5px solid #16a34a}.sh-green h2{color:#14532d}.sh-green .badge{background:#16a34a;color:#fff}
+    .sh-yellow{background:#fefce8;border-left:5px solid #ca8a04}.sh-yellow h2{color:#713f12}.sh-yellow .badge{background:#ca8a04;color:#fff}
+    .sh-purple{background:#faf5ff;border-left:5px solid #9333ea}.sh-purple h2{color:#581c87}.sh-purple .badge{background:#9333ea;color:#fff}
+    .sh-grey{background:#f8fafc;border-left:5px solid #64748b}.sh-grey h2{color:#1e293b}
+    .scene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;margin:1rem 0 1.5rem}
+    .scene-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;overflow:hidden;transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .scene-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,58,138,.13);border-color:#1e3a8a}
+    .scene-card img{width:100%;height:160px;object-fit:cover;display:block;background:#f1f5f9}
+    .scene-card .scene-info{padding:.75rem}
+    .scene-card .scene-nom{font-size:.83rem;font-weight:700;color:#1e3a8a;margin-bottom:.2rem}
+    .scene-card .scene-desc{font-size:.76rem;color:#64748b;line-height:1.4}
+    .regle-box{background:#fff;border-radius:10px;padding:.9rem 1.1rem;margin:.5rem 0;display:flex;align-items:flex-start;gap:.75rem;border:1.5px solid #e5e7eb;font-size:.9rem}
+    .regle-box .r-icon{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+    .regle-box strong{color:#1e3a8a}
+    .piege{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:1rem 0;font-size:.88rem;color:#78350f}
+    .piege strong{color:#b45309}
+    .sub-title{font-size:1rem;font-weight:700;color:#374151;margin:1.5rem 0 .5rem;padding-bottom:.4rem;border-bottom:2px solid #f1f5f9}
+    .stat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .stat-card{border-radius:12px;padding:1.25rem 1rem;text-align:center}
+    .stat-card .stat-val{font-size:2rem;font-weight:800;line-height:1;margin-bottom:.35rem}
+    .stat-card .stat-label{font-size:.78rem;font-weight:600;opacity:.8}
+    .sc-blue{background:#eff6ff}.sc-blue .stat-val{color:#1d4ed8}
+    .sc-green{background:#f0fdf4}.sc-green .stat-val{color:#15803d}
+    .sc-orange{background:#fff7ed}.sc-orange .stat-val{color:#c2410c}
+    .sc-red{background:#fff1f2}.sc-red .stat-val{color:#be123c}
+    .sc-yellow{background:#fefce8}.sc-yellow .stat-val{color:#a16207}
+    .sc-grey{background:#f8fafc}.sc-grey .stat-val{color:#475569}
+    /* Siège enfant cards */
+    .siege-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .siege-card{border-radius:12px;padding:1.1rem;text-align:center;border:2px solid transparent}
+    .siege-card .s-emoji{font-size:2rem;margin-bottom:.5rem}
+    .siege-card .s-poids{font-size:1.1rem;font-weight:800;margin-bottom:.25rem}
+    .siege-card .s-groupe{font-size:.75rem;font-weight:700;margin-bottom:.35rem;opacity:.8}
+    .siege-card .s-type{font-size:.78rem;line-height:1.4}
+    .sg-0{background:#f0fdf4;border-color:#bbf7d0}.sg-0 .s-poids{color:#15803d}
+    .sg-1{background:#eff6ff;border-color:#bfdbfe}.sg-1 .s-poids{color:#1d4ed8}
+    .sg-2{background:#fff7ed;border-color:#fed7aa}.sg-2 .s-poids{color:#c2410c}
+    .sg-3{background:#faf5ff;border-color:#e9d5ff}.sg-3 .s-poids{color:#7e22ce}
+    /* Pneu jauge */
+    .pneu-gauge{background:#f8fafc;border:1.5px solid #e5e7eb;border-radius:12px;padding:1.25rem;margin:1rem 0;display:flex;align-items:center;gap:1.5rem}
+    .pneu-bar{flex:1;height:24px;border-radius:8px;position:relative;background:linear-gradient(90deg,#dc2626 0%,#dc2626 20%,#f59e0b 20%,#f59e0b 40%,#16a34a 40%,#16a34a 100%)}
+    .pneu-marker{position:absolute;top:-8px;left:20%;width:3px;height:40px;background:#1e293b;border-radius:2px}
+    .pneu-marker::after{content:"1,6 mm MIN";position:absolute;top:-22px;left:6px;font-size:.65rem;font-weight:700;color:#1e293b;white-space:nowrap}
+  </style>
 </head>
 <body>
 
 <header class="app-header">
   <div class="brand">
     <h1>Équipements, Enfants & Sécurité</h1>
-    <div class="subtitle">Guide complet — Luxembourg</div>
+    <div class="subtitle">Guide visuel complet — Luxembourg</div>
   </div>
   <div>
     <a href="./" class="btn back-btn">Retour au quiz</a>
@@ -61,298 +116,346 @@
 
 <p><small>Sources : Legilux Art. 2bis, Art. 7, Arrêté GD 23/11/1955</small></p>
 
-<h2>1. Ceinture de sécurité</h2>
-
-<h3>1.1 Obligation générale</h3>
-
-<p>La ceinture est <strong>obligatoire</strong> :</p>
-
-<ul>
-<li>À l'avant</li>
-<li>À l'arrière</li>
-<li>Pour <strong>tous les occupants</strong></li>
-</ul>
-
-<h3>1.2 Responsabilité</h3>
-
-<p>Le conducteur est responsable :</p>
-
-<ul>
-<li>De lui-même</li>
-<li>De <strong>tous les mineurs</strong> à bord</li>
-<li>De l'utilisation correcte des dispositifs de retenue</li>
-</ul>
-
-<h3>1.3 Sanctions (Art. 2bis §2 pt 26)</h3>
-
-<div class="seo-table"><table>
-<tr><th>Infraction</th><th>Points</th></tr>
-<tr><td>Conducteur sans ceinture</td><td><strong>2 points</strong></td></tr>
-<tr><td>Mineur sans ceinture ou dispositif</td><td><strong>2 points</strong></td></tr>
-</table></div>
-
-<p>Amende : 145 € (contravention grave)</p>
-
-<h2>2. Enfants à bord</h2>
-
-<h3>2.1 Moins de 3 ans</h3>
-
-<p><strong>Obligation absolue :</strong> Dispositif de retenue homologué adapté au poids et à la taille.</p>
-
-<p><strong>Aucune exception.</strong></p>
-
-<h3>2.2 Enfants &lt; 150 cm (ou &lt; 12 ans selon pays)</h3>
-
-<p>Doivent utiliser :</p>
-
-<ul>
-<li>Siège enfant adapté, ou</li>
-<li>Rehausseur adapté</li>
-</ul>
-
-<p>Même à l'arrière.</p>
-
-<h3>2.3 Siège dos à la route à l'avant</h3>
-
-<p>Si siège enfant <strong>dos à la route</strong> à l'avant :</p>
-
-<p>→ <strong>Airbag frontal doit être désactivé</strong></p>
-
-<p>⚠️ Risque mortel si airbag actif.</p>
-
-<h3>2.4 Nombre de places</h3>
-
-<p>Le nombre de passagers ne peut <strong>jamais</strong> dépasser le nombre de places inscrit sur le certificat d'immatriculation.</p>
-
-<p>⚠️ L'âge des enfants ne change rien.<br>
-⚠️ 2 enfants ≠ 1 adulte en termes de places.</p>
-
-<h3>2.5 Choix du siège</h3>
-
-<div class="seo-table"><table>
-<tr><th>Poids enfant</th><th>Type de siège</th><th>Position</th></tr>
-<tr><td>0-13 kg</td><td>Groupe 0/0+</td><td>Dos à la route</td></tr>
-<tr><td>9-18 kg</td><td>Groupe 1</td><td>Face ou dos à la route</td></tr>
-<tr><td>15-25 kg</td><td>Groupe 2</td><td>Face à la route avec rehausseur</td></tr>
-<tr><td>22-36 kg</td><td>Groupe 3</td><td>Rehausseur</td></tr>
-</table></div>
-
-<h2>3. Casque moto</h2>
-
-<h3>3.1 Obligation</h3>
-
-<p>Casque homologué obligatoire pour :</p>
-<ul>
-<li>Conducteur de motocycle/cyclomoteur</li>
-<li>Passager de motocycle/cyclomoteur</li>
-</ul>
-
-<h3>3.2 Sanctions (Art. 2bis §2 pt 27)</h3>
-
-<div class="seo-table"><table>
-<tr><th>Infraction</th><th>Points</th></tr>
-<tr><td>Conducteur sans casque homologué</td><td><strong>2 points</strong></td></tr>
-<tr><td>Mineur sans casque homologué</td><td><strong>2 points</strong></td></tr>
-</table></div>
-
-<h3>3.3 Équipement de communication (Art. 2bis §2 pt 13)</h3>
-
-<p>L'équipement de communication dans le casque doit être :</p>
-<ul>
-<li><strong>Intégré</strong> au casque, ou</li>
-<li><strong>Fixé conformément aux prescriptions du fabricant</strong></li>
-</ul>
-
-<p>Non-respect : <strong>4 points</strong></p>
-
-<h2>4. Chargement</h2>
-
-<h3>4.1 Largeur maximale</h3>
-
-<p>Largeur totale (véhicule + chargement) :</p>
-<p>→ <strong>2,55 m maximum</strong> (véhicules standards)<br>
-→ 2,60 m pour véhicules frigorifiques</p>
-
-<h3>4.2 Hauteur maximale</h3>
-
-<p>→ <strong>4,00 m maximum</strong> (véhicule + chargement)</p>
-
-<h3>4.3 Dépassement vers l'avant</h3>
-
-<p>Chargement dépassant vers l'avant :</p>
-
-<p>→ <strong>Interdit</strong> (au-delà de l'aplomb avant du véhicule)</p>
-
-<h3>4.4 Dépassement vers l'arrière</h3>
-
-<p>Autorisé sous conditions :</p>
-<ul>
-<li>Max 3 m pour véhicules &gt; 3,5 m de long</li>
-<li>Signalisation obligatoire si &gt; 1 m :
-<ul>
-<li>Panneau carré rouge/blanc</li>
-<li>Éclairage de nuit (feu rouge + catadioptre)</li>
-</ul>
-</li>
-</ul>
-
-<h3>4.5 Dépassement latéral</h3>
-
-<ul>
-<li>Max 40 cm de chaque côté</li>
-<li>Signalisation obligatoire</li>
-</ul>
-
-<h3>4.6 Arrimage</h3>
-
-<p>Le chargement doit être :</p>
-<ul>
-<li>Solidement arrimé</li>
-<li>Ne pas gêner la conduite</li>
-<li>Ne pas masquer les feux/plaques</li>
-<li>Ne pas constituer un danger</li>
-</ul>
-
-<h2>5. Pneus</h2>
-
-<h3>5.1 Profondeur minimale des sculptures</h3>
-
-<p>→ <strong>1,6 mm minimum</strong> (véhicule + remorque)</p>
-
-<h3>5.2 Conditions hivernales</h3>
-
-<p>En cas de <strong>neige, verglas, givre, neige fondante</strong> :</p>
-
-<p>→ <strong>Pneus hiver obligatoires</strong> (marquage 3PMSF ou M+S)</p>
-
-<p>⚠️ Ce n'est pas lié à une période fixe. C'est lié aux <strong>conditions météo</strong>.</p>
-
-<p>Amende : 74 €</p>
-
-<h3>5.3 Sous-gonflage</h3>
-
-<p><strong>Risques :</strong></p>
-<ul>
-<li>Échauffement excessif</li>
-<li>Éclatement</li>
-<li>Distance de freinage augmentée</li>
-<li>Usure anormale sur les bords</li>
-<li>Surconsommation</li>
-</ul>
-
-<h3>5.4 Surgonflage</h3>
-
-<p><strong>Conséquences :</strong></p>
-<ul>
-<li>Usure centrale excessive</li>
-<li>Adhérence réduite</li>
-<li>Confort diminué</li>
-<li>Risque d'éclatement sur choc</li>
-</ul>
-
-<h3>5.5 Sanctions pneus (Art. 2bis §2 pt 17)</h3>
-
-<p>Pneus défectueux ou incompatibles : <strong>2 points</strong></p>
-
-<h2>6. Éclairage</h2>
-
-<h3>6.1 Feux de croisement obligatoires</h3>
-
-<ul>
-<li>De nuit</li>
-<li>Dans les tunnels (même de jour)</li>
-<li>En cas de visibilité réduite (pluie, brouillard, neige)</li>
-</ul>
-
-<h3>6.2 Feux de route (pleins phares)</h3>
-
-<ul>
-<li>Uniquement hors agglomération de nuit</li>
-<li>Passer en croisement à l'approche d'un autre véhicule</li>
-<li>Passer en croisement si éblouissement possible</li>
-</ul>
-
-<h3>6.3 Feux de brouillard arrière</h3>
-
-<p>Uniquement si visibilité &lt; <strong>100 mètres</strong></p>
-
-<p>⚠️ Éteindre dès que visibilité s'améliore (éblouissement véhicule suiveur)</p>
-
-<h3>6.4 Feux de jour (DRL)</h3>
-
-<ul>
-<li>Recommandés mais pas obligatoires au Luxembourg</li>
-<li>Allumage automatique sur véhicules récents</li>
-</ul>
-
-<h2>7. Équipements obligatoires à bord</h2>
-
-<div class="seo-table"><table>
-<tr><th>Équipement</th><th>Obligation</th></tr>
-<tr><td>Triangle de signalisation</td><td><strong>Obligatoire</strong></td></tr>
-<tr><td>Gilet de sécurité (jaune/orange)</td><td><strong>Obligatoire</strong></td></tr>
-<tr><td>Trousse de secours</td><td>Recommandé</td></tr>
-<tr><td>Extincteur</td><td>Recommandé</td></tr>
-<tr><td>Roue de secours ou kit réparation</td><td>Recommandé</td></tr>
-</table></div>
-
-<h2>8. Conduite défensive</h2>
-
-<p><strong>Définition :</strong> Anticiper les erreurs des autres usagers. Ne pas supposer qu'ils respecteront toujours les règles.</p>
-
-<p><strong>Principes :</strong></p>
-<ul>
-<li>Observer constamment</li>
-<li>Prévoir les comportements dangereux</li>
-<li>Garder des marges de sécurité</li>
-<li>Adapter sa conduite aux conditions</li>
-</ul>
-
-<h2>9. Passage à niveau</h2>
-
-<p><strong>Règles :</strong></p>
-<ul>
-<li>Ne <strong>jamais</strong> s'immobiliser sur les rails</li>
-<li>Feu rouge clignotant = <strong>arrêt obligatoire</strong></li>
-<li>Barrières fermées = <strong>arrêt obligatoire</strong></li>
-<li>Ne jamais contourner les barrières</li>
-</ul>
-
-<h2>10. Contrôle technique</h2>
-
-<h3>Périodicité</h3>
-
+<nav class="section-nav" aria-label="Sections">
+  <a href="#ceinture" class="nav-green">🔒 Ceinture</a>
+  <a href="#enfants" class="nav-blue">👶 Enfants</a>
+  <a href="#casque" class="nav-orange">🏍️ Casque moto</a>
+  <a href="#chargement" class="nav-yellow">📦 Chargement</a>
+  <a href="#pneus" class="nav-red">🔧 Pneus</a>
+  <a href="#eclairage" class="nav-purple">💡 Éclairage</a>
+  <a href="#equipements" class="nav-blue">🦺 Équipements</a>
+  <a href="#memo" class="nav-grey">📋 Mémo</a>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1. CEINTURE DE SÉCURITÉ                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="ceinture" class="section-header sh-green">
+  <span class="icon">🔒</span>
+  <h2>Ceinture de sécurité</h2>
+  <span class="badge">2 points si non-respect</span>
+</div>
+
+<div style="background:#f0fdf4;border:3px solid #16a34a;border-radius:16px;padding:1.5rem;text-align:center;margin:1rem 0 1.5rem;">
+  <div style="font-size:2.5rem;font-weight:900;color:#15803d;line-height:1;">100 %</div>
+  <div style="font-size:1rem;font-weight:700;color:#14532d;margin-top:0.5rem;">Tous les passagers, à l'avant ET à l'arrière</div>
+  <div style="font-size:0.85rem;color:#15803d;margin-top:0.4rem;">Aucune exception pour les adultes à bord</div>
+</div>
+
+<div class="regle-box">
+  <span class="r-icon">👨‍✈️</span>
+  <span><strong>Responsabilité du conducteur :</strong> Il est responsable du port de la ceinture par <strong>tous les mineurs</strong> à bord, ainsi que de l'utilisation correcte des dispositifs de retenue enfants.</span>
+</div>
+
+<div class="stat-cards">
+  <div class="stat-card sc-red">
+    <div class="stat-val">2 pts</div>
+    <div class="stat-label">Conducteur sans ceinture (Art. 2bis §2 pt 26)</div>
+  </div>
+  <div class="stat-card sc-red">
+    <div class="stat-val">2 pts</div>
+    <div class="stat-label">Mineur sans ceinture ou dispositif</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="stat-val">145 €</div>
+    <div class="stat-label">Amende — contravention grave</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2. ENFANTS À BORD                             -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="enfants" class="section-header sh-blue">
+  <span class="icon">👶</span>
+  <h2>Enfants à bord — Sièges par groupe de poids</h2>
+  <span class="badge">Groupe 0 à 3</span>
+</div>
+
+<p class="sub-title">Choisir le bon siège selon le poids de l'enfant</p>
+<div class="siege-grid">
+  <div class="siege-card sg-0">
+    <div class="s-emoji">👶</div>
+    <div class="s-poids">0 – 13 kg</div>
+    <div class="s-groupe">Groupe 0 / 0+</div>
+    <div class="s-type">Siège <strong>dos à la route</strong><br>Nacelle / coques bébé</div>
+  </div>
+  <div class="siege-card sg-1">
+    <div class="s-emoji">🧒</div>
+    <div class="s-poids">9 – 18 kg</div>
+    <div class="s-groupe">Groupe 1</div>
+    <div class="s-type">Siège face <strong>ou dos</strong> à la route<br>Harnais 5 points</div>
+  </div>
+  <div class="siege-card sg-2">
+    <div class="s-emoji">🧒‍♀️</div>
+    <div class="s-poids">15 – 25 kg</div>
+    <div class="s-groupe">Groupe 2</div>
+    <div class="s-type">Face à la route avec <strong>rehausseur</strong><br>+ dossier</div>
+  </div>
+  <div class="siege-card sg-3">
+    <div class="s-emoji">👦</div>
+    <div class="s-poids">22 – 36 kg</div>
+    <div class="s-groupe">Groupe 3</div>
+    <div class="s-type"><strong>Rehausseur</strong> seul<br>Ceinture du véhicule</div>
+  </div>
+</div>
+
+<p class="sub-title">Règles essentielles pour les enfants</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.75rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="border-color:#dc2626;">
+    <span class="r-icon">🚫</span>
+    <div><strong>Moins de 3 ans :</strong><br><span style="font-size:0.85rem;">Dispositif homologué obligatoire — <strong>aucune exception</strong>.</span></div>
+  </div>
+  <div class="regle-box" style="border-color:#ca8a04;">
+    <span class="r-icon">📏</span>
+    <div><strong>Moins de 150 cm (ou &lt; 12 ans) :</strong><br><span style="font-size:0.85rem;">Siège enfant ou rehausseur adapté, même à l'arrière.</span></div>
+  </div>
+  <div class="regle-box" style="border-color:#dc2626;">
+    <span class="r-icon">💥</span>
+    <div><strong>Siège dos-à-route à l'avant :</strong><br><span style="font-size:0.85rem;color:#9f1239;"><strong>Airbag frontal DOIT être désactivé</strong> — risque mortel.</span></div>
+  </div>
+  <div class="regle-box" style="border-color:#2563eb;">
+    <span class="r-icon">🪑</span>
+    <div><strong>Nombre de places :</strong><br><span style="font-size:0.85rem;">Ne jamais dépasser le nombre inscrit sur le certificat. 2 enfants ≠ 1 adulte.</span></div>
+  </div>
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> L'airbag frontal doit être <u>désactivé</u> si un siège dos à la route est placé à l'avant. Si l'airbag se déclencherait : impact mortel pour le bébé.
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3. CASQUE MOTO                                -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="casque" class="section-header sh-orange">
+  <span class="icon">🏍️</span>
+  <h2>Casque moto — Obligations</h2>
+  <span class="badge">Homologué obligatoire</span>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="border-color:#dc2626;">
+    <span class="r-icon">⛑️</span>
+    <div><strong>Casque homologué obligatoire</strong><br><span style="font-size:0.84rem;">Conducteur ET passager de motocycle / cyclomoteur.</span></div>
+  </div>
+  <div class="regle-box" style="border-color:#dc2626;">
+    <span class="r-icon">📻</span>
+    <div><strong>Équipement de communication dans le casque</strong><br><span style="font-size:0.84rem;">Doit être <strong>intégré</strong> ou fixé selon prescriptions fabricant.<br><strong>Non-respect = 4 points</strong> (Art. 2bis §2 pt 13).</span></div>
+  </div>
+</div>
+
+<div class="stat-cards">
+  <div class="stat-card sc-red">
+    <div class="stat-val">2 pts</div>
+    <div class="stat-label">Conducteur / mineur sans casque homologué</div>
+  </div>
+  <div class="stat-card sc-orange" style="border:2px solid #ea580c;">
+    <div class="stat-val">4 pts</div>
+    <div class="stat-label">Équipement de communication non conforme dans le casque</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 4. CHARGEMENT                                 -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="chargement" class="section-header sh-yellow">
+  <span class="icon">📦</span>
+  <h2>Chargement — Dimensions & Arrimage</h2>
+  <span class="badge">2,55 m × 4,00 m</span>
+</div>
+
+<div class="stat-cards">
+  <div class="stat-card sc-blue">
+    <div class="stat-val">2,55 m</div>
+    <div class="stat-label">Largeur max (véhicule + chargement)</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="stat-val">4,00 m</div>
+    <div class="stat-label">Hauteur max (véhicule + chargement)</div>
+  </div>
+  <div class="stat-card sc-red">
+    <div class="stat-val">⛔</div>
+    <div class="stat-label">Dépassement vers l'avant — toujours interdit</div>
+  </div>
+</div>
+
+<p class="sub-title">Dépassement vers l'arrière</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.75rem;margin:1rem 0;">
+  <div class="regle-box"><span class="r-icon">📐</span><span>Max <strong>3 m</strong> pour véhicules &gt; 3,5 m de long</span></div>
+  <div class="regle-box"><span class="r-icon">🚩</span><span>Signalisation obligatoire si dépassement &gt; <strong>1 m</strong> (panneau rouge/blanc + feu rouge de nuit)</span></div>
+</div>
+
+<p class="sub-title">Dépassement latéral</p>
+<div class="regle-box"><span class="r-icon">↔️</span><span>Max <strong>40 cm</strong> de chaque côté · Signalisation obligatoire</span></div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Largeur max = <strong>2,55 m</strong> (pas 2,50 m). Les véhicules frigorifiques bénéficient de 2,60 m. Dépassement vers l'avant = <strong>toujours interdit</strong>.
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5. PNEUS                                      -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="pneus" class="section-header sh-red">
+  <span class="icon">🔧</span>
+  <h2>Pneus — Profondeur & Conditions hivernales</h2>
+  <span class="badge">1,6 mm minimum</span>
+</div>
+
+<p class="sub-title">Profondeur minimale légale des sculptures</p>
+<div style="background:#fff1f2;border:3px solid #dc2626;border-radius:16px;padding:1.5rem;text-align:center;margin:1rem 0 1.5rem;">
+  <div style="font-size:3.5rem;font-weight:900;color:#be123c;line-height:1;">1,6 mm</div>
+  <div style="font-size:1rem;font-weight:700;color:#9f1239;margin-top:0.5rem;">Profondeur minimale légale des sculptures</div>
+  <div style="font-size:0.85rem;color:#dc2626;margin-top:0.4rem;">Valable pour voiture et remorque — en-dessous = 2 points (Art. 2bis §2 pt 17)</div>
+</div>
+
+<p class="sub-title">Pneus hiver — Obligation selon conditions météo</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/asset_17.jpg" alt="Panneau chaînes à neige obligatoires — conditions hivernales" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Chaînes / Pneus hiver obligatoires</div>
+      <div class="scene-desc">En cas de neige, verglas, givre ou neige fondante → pneus marqués 3PMSF ou M+S obligatoires.</div>
+    </div>
+  </div>
+</div>
+
+<div class="regle-box" style="border-color:#ca8a04;">
+  <span class="r-icon">❄️</span>
+  <span><strong>Conditions hivernales (neige, verglas, givre, neige fondante) :</strong> Pneus hiver <strong>obligatoires</strong> (marquage 3PMSF ou M+S). Ce n'est pas lié à une période calendaire fixe, mais aux <strong>conditions météo réelles</strong>. Amende : 74 €.</span>
+</div>
+
+<p class="sub-title">Risques de mauvais gonflage</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#3b82f6;">
+    <strong style="color:#1d4ed8;">Sous-gonflage</strong>
+    <ul style="font-size:0.82rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Échauffement excessif</li>
+      <li>Risque d'éclatement</li>
+      <li>Distance de freinage augmentée</li>
+      <li>Usure anormale sur les bords</li>
+    </ul>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#ef4444;">
+    <strong style="color:#dc2626;">Surgonflage</strong>
+    <ul style="font-size:0.82rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Usure centrale excessive</li>
+      <li>Adhérence réduite</li>
+      <li>Risque d'éclatement sur choc</li>
+      <li>Confort diminué</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6. ÉCLAIRAGE                                  -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="eclairage" class="section-header sh-purple">
+  <span class="icon">💡</span>
+  <h2>Éclairage — Règles d'utilisation</h2>
+  <span class="badge">Feux croisement obligatoires</span>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#2563eb;">
+    <strong style="color:#1e40af;">Feux de croisement — quand ?</strong>
+    <ul style="font-size:0.84rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>De nuit</li>
+      <li>Dans les tunnels (même de jour)</li>
+      <li>Visibilité réduite (pluie, brouillard, neige)</li>
+    </ul>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#7e22ce;">
+    <strong style="color:#581c87;">Feux de route (pleins phares)</strong>
+    <ul style="font-size:0.84rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Uniquement hors agglomération de nuit</li>
+      <li>Passer en croisement à l'approche d'un véhicule</li>
+      <li>Passer en croisement si éblouissement possible</li>
+    </ul>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#f59e0b;">
+    <strong style="color:#b45309;">Feux de brouillard arrière</strong>
+    <ul style="font-size:0.84rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Uniquement si visibilité &lt; <strong>100 m</strong></li>
+      <li>Éteindre dès amélioration (risque d'éblouissement)</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 7. ÉQUIPEMENTS OBLIGATOIRES                   -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="equipements" class="section-header sh-blue">
+  <span class="icon">🦺</span>
+  <h2>Équipements obligatoires à bord</h2>
+  <span class="badge">Triangle + Gilet</span>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="border-color:#dc2626;">
+    <span class="r-icon">🔺</span>
+    <div><strong style="color:#dc2626;">Triangle de signalisation — OBLIGATOIRE</strong><br><span style="font-size:0.84rem;">À placer à 100 m sur autoroute · 30–50 m en agglomération</span></div>
+  </div>
+  <div class="regle-box" style="border-color:#f59e0b;">
+    <span class="r-icon">🦺</span>
+    <div><strong style="color:#b45309;">Gilet de sécurité — OBLIGATOIRE</strong><br><span style="font-size:0.84rem;">Porter <strong>avant</strong> de sortir du véhicule · Accessible (pas dans le coffre)</span></div>
+  </div>
+  <div class="regle-box">
+    <span class="r-icon">🧰</span>
+    <div><strong>Trousse de secours</strong><br><span style="font-size:0.84rem;color:#64748b;">Recommandé</span></div>
+  </div>
+  <div class="regle-box">
+    <span class="r-icon">🧯</span>
+    <div><strong>Extincteur</strong><br><span style="font-size:0.84rem;color:#64748b;">Recommandé</span></div>
+  </div>
+</div>
+
+<p class="sub-title">Contrôle technique — Périodicité</p>
 <div class="seo-table"><table>
 <tr><th>Véhicule</th><th>1er contrôle</th><th>Ensuite</th></tr>
 <tr><td>Voiture particulière</td><td>4 ans</td><td>Tous les 2 ans, puis tous les ans après 6 ans</td></tr>
 <tr><td>Camionnette</td><td>1 an</td><td>Tous les ans</td></tr>
-<tr><td>Taxi, ambulance</td><td>1 an</td><td>Tous les ans</td></tr>
+<tr><td>Taxi / Ambulance</td><td>1 an</td><td>Tous les ans</td></tr>
 </table></div>
 
-<h3>Sanctions (Art. 2bis §2 pt 24)</h3>
+<div class="regle-box">
+  <span class="r-icon">⚖️</span>
+  <span>Sans CT valable : <strong>2 points + 145 €</strong> (Art. 2bis §2 pt 24)</span>
+</div>
 
-<p>Sans CT valable : <strong>2 points</strong> + 145 €</p>
 
-<h2>À retenir pour l'examen</h2>
-<ul>
-<li>Ceinture obligatoire <strong>partout</strong> (avant + arrière)</li>
-<li>&lt; 3 ans = siège obligatoire (aucune exception)</li>
-<li>&lt; 150 cm = rehausseur/siège adapté</li>
-<li>Nombre de places jamais dépassable</li>
-<li><strong>2,55 m</strong> largeur max</li>
-<li><strong>4,00 m</strong> hauteur max</li>
-<li><strong>1,6 mm</strong> profondeur pneus</li>
-<li>Pneus hiver selon conditions météo (pas dates)</li>
-<li>Chargement avant = <strong>interdit</strong></li>
-<li>Airbag désactivé si siège dos à la route à l'avant</li>
-<li>Triangle + gilet = <strong>obligatoires</strong></li>
-<li>Casque communication non conforme = <strong>4 points</strong></li>
-</ul>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 8. MÉMO                                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="memo" class="section-header sh-grey" style="margin-top:3rem;">
+  <span class="icon">📋</span>
+  <h2>Mémo — À retenir absolument</h2>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-top:1.25rem;">
+  <div class="regle-box"><span class="r-icon">🔒</span><span>Ceinture obligatoire <strong>partout</strong> (avant + arrière)</span></div>
+  <div class="regle-box"><span class="r-icon">👶</span><span>&lt; 3 ans = siège obligatoire (<strong>aucune exception</strong>)</span></div>
+  <div class="regle-box"><span class="r-icon">💥</span><span>Siège dos-à-route à l'avant → <strong>airbag frontal désactivé</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🪑</span><span>Nombre de places = ne jamais dépasser (2 enfants ≠ 1 adulte)</span></div>
+  <div class="regle-box"><span class="r-icon">↔️</span><span>Chargement : <strong>2,55 m</strong> large · <strong>4 m</strong> haut · jamais avant</span></div>
+  <div class="regle-box"><span class="r-icon">🔧</span><span>Sculptures pneus : <strong>1,6 mm minimum</strong></span></div>
+  <div class="regle-box"><span class="r-icon">❄️</span><span>Pneus hiver selon <strong>conditions météo</strong> (pas dates)</span></div>
+  <div class="regle-box"><span class="r-icon">🏍️</span><span>Casque communication non conforme = <strong>4 points</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🔺</span><span>Triangle + Gilet = <strong>équipements obligatoires à bord</strong></span></div>
+  <div class="regle-box"><span class="r-icon">💡</span><span>Brouillard arrière uniquement si visibilité &lt; <strong>100 m</strong></span></div>
+</div>
 
 </section>
 
 <div class="card" style="text-align:center;">
   <a href="./" class="btn primary">Retour au quiz</a>
+  &nbsp;
+  <a href="sommaire.html" class="btn" style="background:#f1f5f9;color:#1e3a8a;">Tous les cours →</a>
 </div>
 </main>
 
@@ -362,12 +465,12 @@
       <a href="./">Quiz principal</a>
       <a href="sommaire.html">Tous les cours</a>
       <a href="vitesses-distances.html">Vitesses & Distances</a>
-      <a href="alcool-points.html">Alcool & Permis à points</a>
+      <a href="alcool-points.html">Alcool & Points</a>
       <a href="priorites-circulation.html">Priorités & Circulation</a>
+      <a href="signalisation-complete.html">Signalisation</a>
       <a href="depassement-cyclistes.html">Dépassement & Cyclistes</a>
       <a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a>
       <a href="stationnement-arret.html">Stationnement & Arrêt</a>
-      <a href="signalisation-complete.html">Signalisation</a>
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
     </div>

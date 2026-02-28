@@ -19,7 +19,6 @@
   <meta name="theme-color" content="#1e3a8a">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,24 +31,76 @@
     "educationalLevel": "Beginner",
     "educationalUse": "self-study",
     "teaches": "Arrêt, stationnement, zones — Préparation examen SNCA",
-    "about": {
-      "@type": "Thing",
-      "name": "Permis de conduire Luxembourg"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "Quiz Permis Luxembourg",
-      "url": "https://zaalouni.github.io/quiz-permis-lu/"
-    }
+    "about": { "@type": "Thing", "name": "Permis de conduire Luxembourg" },
+    "provider": { "@type": "Organization", "name": "Quiz Permis Luxembourg", "url": "https://zaalouni.github.io/quiz-permis-lu/" }
   }
   </script>
+
+  <style>
+    .section-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 2rem}
+    .section-nav a{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:999px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s ease;border:2px solid transparent}
+    .section-nav a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .nav-blue{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.nav-blue:hover{background:#1d4ed8;color:#fff}
+    .nav-red{background:#fff1f2;color:#be123c;border-color:#fecdd3}.nav-red:hover{background:#be123c;color:#fff}
+    .nav-orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.nav-orange:hover{background:#c2410c;color:#fff}
+    .nav-green{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}.nav-green:hover{background:#15803d;color:#fff}
+    .nav-yellow{background:#fefce8;color:#a16207;border-color:#fef08a}.nav-yellow:hover{background:#a16207;color:#fff}
+    .nav-purple{background:#faf5ff;color:#7e22ce;border-color:#e9d5ff}.nav-purple:hover{background:#7e22ce;color:#fff}
+    .nav-grey{background:#f8fafc;color:#475569;border-color:#e2e8f0}.nav-grey:hover{background:#475569;color:#fff}
+    .section-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-radius:10px;margin:2.5rem 0 1.25rem}
+    .section-header .icon{font-size:1.8rem;line-height:1}
+    .section-header h2{margin:0;font-size:1.25rem}
+    .section-header .badge{margin-left:auto;font-size:.75rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    .sh-blue{background:#eff6ff;border-left:5px solid #2563eb}.sh-blue h2{color:#1e40af}.sh-blue .badge{background:#2563eb;color:#fff}
+    .sh-red{background:#fff1f2;border-left:5px solid #e11d48}.sh-red h2{color:#9f1239}.sh-red .badge{background:#e11d48;color:#fff}
+    .sh-orange{background:#fff7ed;border-left:5px solid #ea580c}.sh-orange h2{color:#9a3412}.sh-orange .badge{background:#ea580c;color:#fff}
+    .sh-green{background:#f0fdf4;border-left:5px solid #16a34a}.sh-green h2{color:#14532d}.sh-green .badge{background:#16a34a;color:#fff}
+    .sh-yellow{background:#fefce8;border-left:5px solid #ca8a04}.sh-yellow h2{color:#713f12}.sh-yellow .badge{background:#ca8a04;color:#fff}
+    .sh-purple{background:#faf5ff;border-left:5px solid #9333ea}.sh-purple h2{color:#581c87}.sh-purple .badge{background:#9333ea;color:#fff}
+    .sh-grey{background:#f8fafc;border-left:5px solid #64748b}.sh-grey h2{color:#1e293b}
+    .panneau-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .panneau-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;padding:1rem .75rem .85rem;text-align:center;transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:default}
+    .panneau-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,58,138,.13);border-color:#1e3a8a}
+    .panneau-card img{width:100%;max-width:110px;height:110px;object-fit:contain;border-radius:6px;margin-bottom:.7rem;background:#f8fafc}
+    .panneau-nom{font-size:.82rem;font-weight:700;color:#1e3a8a;margin-bottom:.3rem}
+    .panneau-desc{font-size:.75rem;color:#64748b;line-height:1.4}
+    .scene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;margin:1rem 0 1.5rem}
+    .scene-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;overflow:hidden;transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .scene-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,58,138,.13);border-color:#1e3a8a}
+    .scene-card img{width:100%;height:160px;object-fit:cover;display:block;background:#f1f5f9}
+    .scene-card .scene-info{padding:.75rem}
+    .scene-card .scene-nom{font-size:.83rem;font-weight:700;color:#1e3a8a;margin-bottom:.2rem}
+    .scene-card .scene-desc{font-size:.76rem;color:#64748b;line-height:1.4}
+    .regle-box{background:#fff;border-radius:10px;padding:.9rem 1.1rem;margin:.5rem 0;display:flex;align-items:flex-start;gap:.75rem;border:1.5px solid #e5e7eb;font-size:.9rem}
+    .regle-box .r-icon{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+    .regle-box strong{color:#1e3a8a}
+    .piege{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:1rem 0;font-size:.88rem;color:#78350f}
+    .piege strong{color:#b45309}
+    .sub-title{font-size:1rem;font-weight:700;color:#374151;margin:1.5rem 0 .5rem;padding-bottom:.4rem;border-bottom:2px solid #f1f5f9}
+    .stat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .stat-card{border-radius:12px;padding:1.25rem 1rem;text-align:center}
+    .stat-card .stat-val{font-size:2rem;font-weight:800;line-height:1;margin-bottom:.35rem}
+    .stat-card .stat-label{font-size:.78rem;font-weight:600;opacity:.8}
+    .sc-blue{background:#eff6ff}.sc-blue .stat-val{color:#1d4ed8}
+    .sc-green{background:#f0fdf4}.sc-green .stat-val{color:#15803d}
+    .sc-orange{background:#fff7ed}.sc-orange .stat-val{color:#c2410c}
+    .sc-red{background:#fff1f2}.sc-red .stat-val{color:#be123c}
+    .sc-yellow{background:#fefce8}.sc-yellow .stat-val{color:#a16207}
+    .sc-grey{background:#f8fafc}.sc-grey .stat-val{color:#475569}
+    .ligne-preview{height:14px;border-radius:4px;margin:.6rem 0}
+    .ligne-continue{background:white;border:2.5px solid #64748b}
+    .ligne-discontinue{background:repeating-linear-gradient(90deg,#64748b 0,#64748b 24px,transparent 24px,transparent 36px)}
+    .ligne-jaune-c{background:#eab308}
+    .ligne-jaune-d{background:repeating-linear-gradient(90deg,#eab308 0,#eab308 24px,transparent 24px,transparent 36px)}
+    .ligne-zigzag{background:repeating-linear-gradient(45deg,#eab308 0,#eab308 6px,transparent 6px,transparent 12px);height:12px}
+  </style>
 </head>
 <body>
 
 <header class="app-header">
   <div class="brand">
     <h1>Arrêt & Stationnement</h1>
-    <div class="subtitle">Guide complet — Luxembourg</div>
+    <div class="subtitle">Guide visuel complet — Luxembourg</div>
   </div>
   <div>
     <a href="./" class="btn back-btn">Retour au quiz</a>
@@ -61,198 +112,262 @@
 
 <p><small>Sources : Legilux, Arrêté GD 23/11/1955</small></p>
 
-<h2>1. Différence arrêt / stationnement</h2>
+<nav class="section-nav" aria-label="Sections">
+  <a href="#difference" class="nav-blue">📌 Arrêt vs Stationnement</a>
+  <a href="#interdictions" class="nav-red">🚫 Interdictions absolues</a>
+  <a href="#distances" class="nav-orange">📏 Distances clés</a>
+  <a href="#lignes" class="nav-yellow">〰️ Lignes au sol</a>
+  <a href="#zones" class="nav-purple">🏘️ Zones & Alterné</a>
+  <a href="#sanctions" class="nav-grey">💶 Sanctions</a>
+  <a href="#memo" class="nav-grey">📋 Mémo</a>
+</nav>
 
-<h3>Arrêt</h3>
 
-<p>Immobilisation <strong>temporaire</strong> pour :</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1. DIFFÉRENCE ARRÊT / STATIONNEMENT           -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="difference" class="section-header sh-blue">
+  <span class="icon">📌</span>
+  <h2>Arrêt vs Stationnement — La différence fondamentale</h2>
+  <span class="badge">Définitions</span>
+</div>
 
-<ul>
-<li>Laisser monter/descendre un passager</li>
-<li>Charger/décharger rapidement</li>
-</ul>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#2563eb;">
+    <strong style="color:#1e40af;">ARRÊT</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;color:#374151;">Immobilisation <strong>temporaire</strong> pour laisser monter/descendre un passager ou charger/décharger rapidement. Le conducteur <strong>reste à proximité immédiate</strong>.</span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#9333ea;">
+    <strong style="color:#581c87;">STATIONNEMENT</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;color:#374151;">Immobilisation <strong>plus longue</strong>. Le conducteur peut quitter le véhicule.</span>
+  </div>
+</div>
 
-<p>Le conducteur <strong>reste à proximité immédiate</strong> du véhicule.</p>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Une interdiction d'<strong>arrêt</strong> interdit aussi le stationnement. Mais une interdiction de <strong>stationnement</strong> peut autoriser l'arrêt court (ex: pour faire descendre quelqu'un).
+</div>
 
-<h3>Stationnement</h3>
 
-<p>Immobilisation <strong>plus longue</strong>. Le conducteur peut quitter le véhicule.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2. INTERDICTIONS ABSOLUES                     -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="interdictions" class="section-header sh-red">
+  <span class="icon">🚫</span>
+  <h2>Interdictions absolues d'arrêt + stationnement</h2>
+  <span class="badge">Toujours interdit</span>
+</div>
 
-<p><strong>Piège SNCA :</strong> Une interdiction d'<strong>arrêt</strong> interdit aussi le stationnement. Mais une interdiction de <strong>stationnement</strong> peut autoriser l'arrêt court.</p>
+<p class="sub-title">Photos de signaux d'interdiction en situation</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/asset_32.jpg" alt="Signal arrêt interdit — ligne jaune ou panneau C,6" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Arrêt + stationnement interdits</div>
+      <div class="scene-desc">Panneau C,6 ou ligne jaune continue — interdiction totale même quelques secondes.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_977_a0.jpg" alt="Zone d'arrêt interdit — signalisation en situation réelle" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Interdiction d'arrêt en situation</div>
+      <div class="scene-desc">Le panneau interdit tout arrêt, même momentané, dans cette zone.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_72.jpg" alt="Zone de stationnement autorisé — panneau parking" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Zone de stationnement autorisé</div>
+      <div class="scene-desc">Panneau E,23 — stationnement autorisé dans cette zone (souvent avec conditions).</div>
+    </div>
+  </div>
+</div>
 
-<h2>2. Interdictions absolues (Arrêt + Stationnement)</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.75rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box"><span class="r-icon">🚶</span><span>Sur passage piétons ou à moins de <strong>5 m avant</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🚲</span><span>Sur piste cyclable</span></div>
+  <div class="regle-box"><span class="r-icon">🛑</span><span>Sur bande d'arrêt d'urgence (hors urgence)</span></div>
+  <div class="regle-box"><span class="r-icon">🚂</span><span>Sur passage à niveau</span></div>
+  <div class="regle-box"><span class="r-icon">🚗🚗</span><span>En deuxième file</span></div>
+  <div class="regle-box"><span class="r-icon">〰️</span><span>Sur ligne jaune continue au bord du trottoir</span></div>
+  <div class="regle-box"><span class="r-icon">⛰️</span><span>Dans les virages sans visibilité / au sommet des côtes</span></div>
+  <div class="regle-box"><span class="r-icon">🌉</span><span>Sur les ponts et dans les tunnels (sauf emplacements)</span></div>
+  <div class="regle-box"><span class="r-icon">🚪</span><span>Devant les entrées/sorties de véhicules</span></div>
+</div>
 
-<p>Interdit <strong>partout</strong> :</p>
 
-<ul>
-<li>Sur passage piétons</li>
-<li>À moins de <strong>5 m avant</strong> un passage piétons</li>
-<li>Sur piste cyclable</li>
-<li>Sur bande d'arrêt d'urgence (hors urgence)</li>
-<li>Sur passage à niveau</li>
-<li>En deuxième file</li>
-<li>Sur ligne jaune continue au bord du trottoir</li>
-<li>Dans les virages sans visibilité</li>
-<li>Au sommet des côtes</li>
-<li>Sur les ponts et dans les tunnels (sauf emplacements)</li>
-<li>Devant les entrées/sorties de véhicules</li>
-</ul>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3. DISTANCES MINIMALES                        -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="distances" class="section-header sh-orange">
+  <span class="icon">📏</span>
+  <h2>Distances minimales à respecter</h2>
+  <span class="badge">5 m et 15 m</span>
+</div>
 
-<h2>3. Distances minimales</h2>
+<div class="stat-cards">
+  <div class="stat-card sc-red">
+    <div class="stat-val">5 m</div>
+    <div class="stat-label">Avant un passage piétons (dans le sens de la marche)</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="stat-val">5 m</div>
+    <div class="stat-label">Avant un carrefour / intersection</div>
+  </div>
+  <div class="stat-card sc-blue">
+    <div class="stat-val">15 m</div>
+    <div class="stat-label">De part et d'autre d'un arrêt de bus</div>
+  </div>
+</div>
 
-<h3>Passage piétons</h3>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> L'arrêt de bus = <strong>15 mètres</strong> de chaque côté du panneau — pas 12 m. C'est une distance fréquemment piégée à l'examen.
+</div>
 
-<p>→ <strong>5 mètres avant</strong> (dans le sens de la marche)</p>
 
-<h3>Arrêt de bus</h3>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 4. LIGNES AU SOL                              -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="lignes" class="section-header sh-yellow">
+  <span class="icon">〰️</span>
+  <h2>Lignes au sol — Signalisation de bord de trottoir</h2>
+  <span class="badge">Marquage jaune</span>
+</div>
 
-<p>→ <strong>15 mètres</strong> de part et d'autre du panneau d'arrêt</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:stretch;border-color:#dc2626;">
+    <div style="font-size:0.9rem;font-weight:700;color:#9f1239;margin-bottom:0.5rem;">Ligne jaune CONTINUE</div>
+    <div class="ligne-preview ligne-jaune-c"></div>
+    <span style="font-size:0.83rem;color:#374151;"><strong>Interdiction absolue</strong> d'arrêt ET de stationnement.</span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:stretch;border-color:#f59e0b;">
+    <div style="font-size:0.9rem;font-weight:700;color:#92400e;margin-bottom:0.5rem;">Ligne jaune DISCONTINUE</div>
+    <div class="ligne-preview ligne-jaune-d"></div>
+    <span style="font-size:0.83rem;color:#374151;">Stationnement interdit. <strong>Arrêt court autorisé.</strong></span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:stretch;border-color:#dc2626;">
+    <div style="font-size:0.9rem;font-weight:700;color:#9f1239;margin-bottom:0.5rem;">Ligne ZIGZAG jaune</div>
+    <div class="ligne-preview ligne-zigzag"></div>
+    <span style="font-size:0.83rem;color:#374151;"><strong>Interdiction d'arrêt</strong> — zones sensibles (écoles, hôpitaux).</span>
+  </div>
+</div>
 
-<p>⚠️ <strong>15 mètres</strong>, pas 12.</p>
+<p class="sub-title">Photos de lignes au sol en situation réelle</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/q_1018_a0.jpg" alt="Ligne jaune discontinue au bord du trottoir — arrêt autorisé" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Ligne jaune discontinue</div>
+      <div class="scene-desc">N'interdit pas l'arrêt — uniquement le stationnement prolongé.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_1252.jpg" alt="Panneau stationnement alterné — interdit du 1er au 15 du mois" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Stationnement alterné — 1er au 15</div>
+      <div class="scene-desc">Interdit ce côté du 1er au 15 du mois. Changer de côté à minuit.</div>
+    </div>
+  </div>
+</div>
 
-<h3>Carrefour / Intersection</h3>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Ligne jaune <u>continue</u> = arrêt interdit. Ligne jaune <u>discontinue</u> = arrêt autorisé, stationnement interdit. Ne pas confondre les deux !
+</div>
 
-<p>→ <strong>5 mètres</strong> avant et après (sauf indication contraire)</p>
 
-<h3>Bouche d'incendie</h3>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5. ZONES SPÉCIALES & STATIONNEMENT ALTERNÉ    -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="zones" class="section-header sh-purple">
+  <span class="icon">🏘️</span>
+  <h2>Zones spéciales & Stationnement alterné</h2>
+  <span class="badge">Disque & Alterné</span>
+</div>
 
-<p>→ Ne pas gêner l'accès</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;">
+    <strong style="color:#581c87;">Zone résidentielle</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">Stationnement autorisé <strong>uniquement sur emplacements signalés</strong>.</span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;">
+    <strong style="color:#581c87;">Zone piétonne</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">Généralement interdit (sauf autorisation spéciale livraison).</span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;">
+    <strong style="color:#0e7490;">Trottoir</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;"><strong>Interdit</strong> sauf si panneau avec pictogramme autorise explicitement (position des roues indiquée).</span>
+  </div>
+</div>
 
-<h2>4. Zones spéciales</h2>
-
-<h3>4.1 Zone résidentielle</h3>
-
-<p>Stationnement autorisé <strong>uniquement sur emplacements signalés</strong>.</p>
-
-<h3>4.2 Zone de rencontre</h3>
-
-<p>Même règle : <strong>uniquement emplacements marqués</strong>.</p>
-
-<h3>4.3 Rue cyclable</h3>
-
-<p>Stationnement autorisé sauf indication contraire.</p>
-
-<h3>4.4 Zone piétonne</h3>
-
-<p>Généralement interdit (sauf autorisation spéciale livraison).</p>
-
-<h2>5. Stationnement sur trottoir</h2>
-
-<p><strong>Interdit</strong> sauf si signalisation l'autorise explicitement.</p>
-
-<p>Le panneau doit montrer le pictogramme avec position des roues autorisée :</p>
-<ul>
-<li>Stationnement total sur trottoir</li>
-<li>Stationnement partiel (2 roues)</li>
-</ul>
-
-<h2>6. Stationnement alterné</h2>
-
-<p>Panneaux avec barre verticale + dates :</p>
-
+<p class="sub-title">Stationnement alterné — Règle de la quinzaine</p>
 <div class="seo-table"><table>
 <tr><th>Panneau</th><th>Signification</th></tr>
-<tr><td>1–15</td><td>Interdit du 1er au 15 du mois</td></tr>
-<tr><td>16–31</td><td>Interdit du 16 à la fin du mois</td></tr>
+<tr><td><strong>1–15</strong></td><td>Interdit ce côté du 1er au 15 du mois</td></tr>
+<tr><td><strong>16–31</strong></td><td>Interdit ce côté du 16 à la fin du mois</td></tr>
 </table></div>
+<p>→ <strong>Changer de côté à minuit</strong> le dernier jour de la période autorisée.</p>
 
-<p>→ <strong>Changer de côté à minuit</strong> le dernier jour autorisé.</p>
+<p class="sub-title">Disque de stationnement (zone bleue)</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.75rem;margin:1rem 0;">
+  <div class="regle-box"><span class="r-icon">🕐</span><span>Afficher l'heure d'arrivée arrondie à la <strong>demi-heure suivante</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🪟</span><span>Placer <strong>visiblement derrière le pare-brise</strong></span></div>
+  <div class="regle-box"><span class="r-icon">⏱️</span><span>Respecter la durée maximale indiquée sur le panneau additionnel</span></div>
+</div>
 
-<h2>7. Disque de stationnement</h2>
 
-<p>Obligatoire si panneau l'indique (zone bleue).</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6. SANCTIONS                                  -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="sanctions" class="section-header sh-grey">
+  <span class="icon">💶</span>
+  <h2>Sanctions — Amendes principales</h2>
+  <span class="badge">Catalogue infractions</span>
+</div>
 
-<ul>
-<li>Afficher l'heure d'arrivée (arrondie à la demi-heure suivante)</li>
-<li>Durée maximale = celle indiquée sur panneau additionnel</li>
-<li>Placer visiblement derrière le pare-brise</li>
-</ul>
+<div class="stat-cards">
+  <div class="stat-card sc-green">
+    <div class="stat-val">12 €</div>
+    <div class="stat-label">Dépassement disque/parcmètre ≤ 30 min</div>
+  </div>
+  <div class="stat-card sc-yellow">
+    <div class="stat-val">24 €</div>
+    <div class="stat-label">Stationnement interdit / alterné / placement incorrect</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="stat-val">49 €</div>
+    <div class="stat-label">Arrêt+stat. interdits / passage piéton / zigzag</div>
+  </div>
+  <div class="stat-card sc-red">
+    <div class="stat-val">145 €</div>
+    <div class="stat-label">Place handicapé sans droit / stationnement dangereux</div>
+  </div>
+</div>
 
-<h2>8. Stationnement payant</h2>
 
-<ul>
-<li>Horodateur ou application mobile</li>
-<li>Respecter la durée maximale</li>
-<li>Ticket visible derrière le pare-brise</li>
-</ul>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 7. MÉMO                                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="memo" class="section-header sh-grey" style="margin-top:3rem;">
+  <span class="icon">📋</span>
+  <h2>Mémo — À retenir absolument</h2>
+</div>
 
-<h2>9. Immobilisation sur autoroute</h2>
-
-<p><strong>Strictement interdit</strong> sauf panne ou urgence. Même avec feux de détresse → interdit de s'arrêter pour autre raison.</p>
-
-<h2>10. Lignes au sol</h2>
-
-<h3>Ligne jaune continue (bordure trottoir)</h3>
-
-<p>→ <strong>Interdiction absolue</strong> d'arrêt et de stationnement</p>
-
-<h3>Ligne jaune discontinue (bordure trottoir)</h3>
-
-<p>→ Interdiction de stationnement (arrêt autorisé)</p>
-
-<h3>Ligne zigzag jaune</h3>
-
-<p>→ <strong>Interdiction d'arrêt</strong> (souvent devant écoles, hôpitaux, zones sensibles)</p>
-
-<h2>11. Places réservées</h2>
-
-<h3>Personnes handicapées</h3>
-
-<ul>
-<li>Carte de stationnement obligatoire visible</li>
-<li>Amende si utilisation abusive</li>
-</ul>
-
-<h3>Livraison</h3>
-
-<ul>
-<li>Réservées aux véhicules de livraison</li>
-<li>Horaires souvent indiqués</li>
-</ul>
-
-<h3>Véhicules électriques</h3>
-
-<ul>
-<li>Réservées aux VE en charge</li>
-<li>Ne pas bloquer si pas en charge</li>
-</ul>
-
-<h2>12. Véhicule abandonné</h2>
-
-<p>Un véhicule est considéré comme <strong>abandonné</strong> si :</p>
-
-<ul>
-<li>Stationné plus d'<strong>1 mois</strong> au même endroit</li>
-<li>Propriétaire non joignable ou n'obtempère pas</li>
-</ul>
-
-<p>Sur grande voirie / route nationale hors agglo : Délai réduit à <strong>24 heures</strong></p>
-
-<h2>13. Sanctions</h2>
-
-<div class="seo-table"><table>
-<tr><th>Infraction</th><th>Amende</th></tr>
-<tr><td>Stationnement gênant</td><td>49 €</td></tr>
-<tr><td>Stationnement dangereux</td><td>145 €</td></tr>
-<tr><td>Stationnement place handicapé</td><td>145 €</td></tr>
-</table></div>
-
-<h2>À retenir pour l'examen</h2>
-<ul>
-<li><strong>5 m</strong> avant passage piéton</li>
-<li><strong>15 m</strong> de part et d'autre arrêt bus</li>
-<li>Ligne jaune continue = interdiction absolue</li>
-<li>Ligne zigzag = interdiction d'arrêt</li>
-<li>2e file = toujours interdit</li>
-<li>Zone résidentielle = emplacements uniquement</li>
-<li>Disque = arrondir à la demi-heure suivante</li>
-<li>Stationnement alterné = changer à minuit</li>
-</ul>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-top:1.25rem;">
+  <div class="regle-box"><span class="r-icon">📏</span><span><strong>5 m</strong> avant passage piéton (dans le sens de marche)</span></div>
+  <div class="regle-box"><span class="r-icon">🚌</span><span><strong>15 m</strong> de part et d'autre d'un arrêt de bus</span></div>
+  <div class="regle-box"><span class="r-icon">〰️</span><span>Ligne jaune continue = <strong>interdiction absolue d'arrêt</strong></span></div>
+  <div class="regle-box"><span class="r-icon">〰️</span><span>Ligne zigzag = <strong>interdiction d'arrêt</strong> (écoles, hôpitaux)</span></div>
+  <div class="regle-box"><span class="r-icon">🚗🚗</span><span>2ème file = <strong>toujours interdit</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🏘️</span><span>Zone résidentielle = <strong>emplacements signalés uniquement</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🕐</span><span>Disque = arrondir à la <strong>demi-heure suivante</strong></span></div>
+  <div class="regle-box"><span class="r-icon">📅</span><span>Stationnement alterné = changer à <strong>minuit</strong></span></div>
+</div>
 
 </section>
 
 <div class="card" style="text-align:center;">
   <a href="./" class="btn primary">Retour au quiz</a>
+  &nbsp;
+  <a href="sommaire.html" class="btn" style="background:#f1f5f9;color:#1e3a8a;">Tous les cours →</a>
 </div>
 </main>
 
@@ -262,11 +377,12 @@
       <a href="./">Quiz principal</a>
       <a href="sommaire.html">Tous les cours</a>
       <a href="vitesses-distances.html">Vitesses & Distances</a>
-      <a href="alcool-points.html">Alcool & Permis à points</a>
+      <a href="alcool-points.html">Alcool & Points</a>
       <a href="priorites-circulation.html">Priorités & Circulation</a>
+      <a href="signalisation-complete.html">Signalisation</a>
       <a href="depassement-cyclistes.html">Dépassement & Cyclistes</a>
       <a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a>
-      <a href="signalisation.html">Signalisation</a>
+      <a href="equipements-securite.html">Équipements & Sécurité</a>
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
     </div>

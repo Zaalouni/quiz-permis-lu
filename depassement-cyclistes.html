@@ -19,7 +19,6 @@
   <meta name="theme-color" content="#1e3a8a">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,17 +31,64 @@
     "educationalLevel": "Beginner",
     "educationalUse": "self-study",
     "teaches": "Dépassement, cyclistes, remorques — Préparation examen SNCA",
-    "about": {
-      "@type": "Thing",
-      "name": "Permis de conduire Luxembourg"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "Quiz Permis Luxembourg",
-      "url": "https://zaalouni.github.io/quiz-permis-lu/"
-    }
+    "about": { "@type": "Thing", "name": "Permis de conduire Luxembourg" },
+    "provider": { "@type": "Organization", "name": "Quiz Permis Luxembourg", "url": "https://zaalouni.github.io/quiz-permis-lu/" }
   }
   </script>
+
+  <style>
+    .section-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 2rem}
+    .section-nav a{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:999px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s ease;border:2px solid transparent}
+    .section-nav a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .nav-blue{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.nav-blue:hover{background:#1d4ed8;color:#fff}
+    .nav-red{background:#fff1f2;color:#be123c;border-color:#fecdd3}.nav-red:hover{background:#be123c;color:#fff}
+    .nav-orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.nav-orange:hover{background:#c2410c;color:#fff}
+    .nav-green{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}.nav-green:hover{background:#15803d;color:#fff}
+    .nav-yellow{background:#fefce8;color:#a16207;border-color:#fef08a}.nav-yellow:hover{background:#a16207;color:#fff}
+    .nav-grey{background:#f8fafc;color:#475569;border-color:#e2e8f0}.nav-grey:hover{background:#475569;color:#fff}
+    .section-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-radius:10px;margin:2.5rem 0 1.25rem}
+    .section-header .icon{font-size:1.8rem;line-height:1}
+    .section-header h2{margin:0;font-size:1.25rem}
+    .section-header .badge{margin-left:auto;font-size:.75rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    .sh-blue{background:#eff6ff;border-left:5px solid #2563eb}.sh-blue h2{color:#1e40af}.sh-blue .badge{background:#2563eb;color:#fff}
+    .sh-red{background:#fff1f2;border-left:5px solid #e11d48}.sh-red h2{color:#9f1239}.sh-red .badge{background:#e11d48;color:#fff}
+    .sh-orange{background:#fff7ed;border-left:5px solid #ea580c}.sh-orange h2{color:#9a3412}.sh-orange .badge{background:#ea580c;color:#fff}
+    .sh-green{background:#f0fdf4;border-left:5px solid #16a34a}.sh-green h2{color:#14532d}.sh-green .badge{background:#16a34a;color:#fff}
+    .sh-yellow{background:#fefce8;border-left:5px solid #ca8a04}.sh-yellow h2{color:#713f12}.sh-yellow .badge{background:#ca8a04;color:#fff}
+    .sh-grey{background:#f8fafc;border-left:5px solid #64748b}.sh-grey h2{color:#1e293b}
+    .panneau-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .panneau-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;padding:1rem .75rem .85rem;text-align:center;transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:default}
+    .panneau-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,58,138,.13);border-color:#1e3a8a}
+    .panneau-card img{width:100%;max-width:110px;height:110px;object-fit:contain;border-radius:6px;margin-bottom:.7rem;background:#f8fafc}
+    .panneau-nom{font-size:.82rem;font-weight:700;color:#1e3a8a;margin-bottom:.3rem}
+    .panneau-desc{font-size:.75rem;color:#64748b;line-height:1.4}
+    .scene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;margin:1rem 0 1.5rem}
+    .scene-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;overflow:hidden;transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .scene-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,58,138,.13);border-color:#1e3a8a}
+    .scene-card img{width:100%;height:160px;object-fit:cover;display:block;background:#f1f5f9}
+    .scene-card .scene-info{padding:.75rem}
+    .scene-card .scene-nom{font-size:.83rem;font-weight:700;color:#1e3a8a;margin-bottom:.2rem}
+    .scene-card .scene-desc{font-size:.76rem;color:#64748b;line-height:1.4}
+    .regle-box{background:#fff;border-radius:10px;padding:.9rem 1.1rem;margin:.5rem 0;display:flex;align-items:flex-start;gap:.75rem;border:1.5px solid #e5e7eb;font-size:.9rem}
+    .regle-box .r-icon{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+    .regle-box strong{color:#1e3a8a}
+    .piege{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:1rem 0;font-size:.88rem;color:#78350f}
+    .piege strong{color:#b45309}
+    .sub-title{font-size:1rem;font-weight:700;color:#374151;margin:1.5rem 0 .5rem;padding-bottom:.4rem;border-bottom:2px solid #f1f5f9}
+    .stat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .stat-card{border-radius:12px;padding:1.25rem 1rem;text-align:center}
+    .stat-card .stat-val{font-size:2rem;font-weight:800;line-height:1;margin-bottom:.35rem}
+    .stat-card .stat-label{font-size:.78rem;font-weight:600;opacity:.8}
+    .sc-blue{background:#eff6ff}.sc-blue .stat-val{color:#1d4ed8}
+    .sc-green{background:#f0fdf4}.sc-green .stat-val{color:#15803d}
+    .sc-orange{background:#fff7ed}.sc-orange .stat-val{color:#c2410c}
+    .sc-red{background:#fff1f2}.sc-red .stat-val{color:#be123c}
+    .sc-yellow{background:#fefce8}.sc-yellow .stat-val{color:#a16207}
+    .sc-grey{background:#f8fafc}.sc-grey .stat-val{color:#475569}
+    .ligne-preview{height:14px;border-radius:4px;margin:.6rem 0}
+    .ligne-continue{background:white;border:2.5px solid #64748b}
+    .ligne-discontinue{background:repeating-linear-gradient(90deg,#64748b 0,#64748b 24px,transparent 24px,transparent 36px)}
+  </style>
 </head>
 <body>
 
@@ -61,166 +107,214 @@
 
 <p><small>Sources : Legilux Art. 125, police.public.lu, gouvernement.lu (28/03/2018)</small></p>
 
-<h2>1. Règles générales du dépassement</h2>
+<nav class="section-nav" aria-label="Sections">
+  <a href="#regles" class="nav-blue">📐 Règles générales</a>
+  <a href="#cycliste" class="nav-green">🚲 1,5 m cycliste</a>
+  <a href="#interdictions" class="nav-red">🚫 Interdictions</a>
+  <a href="#droite" class="nav-orange">➡️ Dépassement droite</a>
+  <a href="#remorques" class="nav-yellow">🚐 Remorques</a>
+  <a href="#memo" class="nav-grey">📋 Mémo</a>
+</nav>
 
-<h3>1.1 Principe</h3>
 
-<p>Le dépassement se fait par la <strong>gauche</strong>. Par la droite → interdit, sauf exceptions légales.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1. RÈGLES GÉNÉRALES                           -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="regles" class="section-header sh-blue">
+  <span class="icon">📐</span>
+  <h2>Règles générales du dépassement</h2>
+  <span class="badge">Par la gauche</span>
+</div>
 
-<h3>1.2 Interdictions de dépasser</h3>
+<div class="regle-box">
+  <span class="r-icon">↖️</span>
+  <span>Le dépassement se fait <strong>par la gauche</strong>. Par la droite → interdit, sauf exceptions légales.</span>
+</div>
+<div class="regle-box">
+  <span class="r-icon">📋</span>
+  <span><strong>Conditions requises :</strong> Voie dégagée, visibilité suffisante, vitesse permettant de terminer la manœuvre, clignotant activé.</span>
+</div>
 
-<p>Interdit :</p>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Même en dépassant → vous devez respecter la limitation de vitesse. Il n'existe <u>aucune exception</u> au dépassement.
+</div>
 
-<ul>
-<li>À l'approche d'un passage piétons</li>
-<li>Dans un virage sans visibilité</li>
-<li>Sur ligne continue (sauf exceptions)</li>
-<li>À une intersection non prioritaire</li>
-<li>En cas de situation dangereuse</li>
-<li>Au sommet d'une côte sans visibilité</li>
-</ul>
 
-<h3>1.3 Exceptions ligne continue</h3>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2. DISTANCE LATÉRALE CYCLISTE 1,5 M           -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="cycliste" class="section-header sh-green">
+  <span class="icon">🚲</span>
+  <h2>Distance latérale cycliste — Règle légale</h2>
+  <span class="badge">Art. 125 — depuis 01/05/2018</span>
+</div>
 
-<p>Franchissement autorisé uniquement :</p>
+<div style="background:#f0fdf4;border:3px solid #16a34a;border-radius:16px;padding:1.5rem;text-align:center;margin:1rem 0 1.5rem;">
+  <div style="font-size:3.5rem;font-weight:900;color:#15803d;line-height:1;">1,5 m</div>
+  <div style="font-size:1rem;font-weight:700;color:#14532d;margin-top:0.5rem;">Distance latérale minimale LÉGALE lors du dépassement d'un cycliste</div>
+  <div style="font-size:0.85rem;color:#15803d;margin-top:0.5rem;">En agglomération ET hors agglomération</div>
+</div>
 
-<ul>
-<li>Pour accéder à une propriété</li>
-<li>Pour contourner un obstacle</li>
-<li>Pour tourner à gauche</li>
-</ul>
+<p class="sub-title">Cette distance en situation réelle</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/q_1034_a0.jpg" alt="Distance latérale 1,5m lors du dépassement d'un cycliste" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">1,5 m — Distance légale</div>
+      <div class="scene-desc">Distance latérale minimale obligatoire lors du dépassement d'un cycliste, partout sur le réseau.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_11.jpg" alt="Dépassement interdit — camion devant voiture sur route étroite" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Dépassement impossible — 1,5 m non garantis</div>
+      <div class="scene-desc">Si la distance de 1,5 m ne peut pas être respectée → <strong>renoncer au dépassement</strong>.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_1205_a0.jpg" alt="Ligne blanche continue — dépassement autorisé sans franchir" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Ligne continue ≠ interdiction absolue</div>
+      <div class="scene-desc">Même sans franchir la ligne, si 1,5 m impossible → pas de dépassement.</div>
+    </div>
+  </div>
+</div>
 
-<p>⚠️ <strong>Jamais pour dépasser un véhicule en circulation normale.</strong></p>
+<div class="piege">
+  <strong>PIÈGE SNCA MAJEUR :</strong><br>
+  ❌ "1 mètre minimum" → <strong>FAUX</strong><br>
+  ❌ "1,5 m est une recommandation" → <strong>FAUX</strong><br>
+  ✓ <strong>1,5 mètre est la distance LÉGALE minimale (Art. 125)</strong><br>
+  ✓ Même si vous ne franchissez pas la ligne continue, le dépassement peut être interdit si 1,5 m impossible.
+</div>
 
-<h2>2. Dépassement d'un cycliste</h2>
+<div class="regle-box">
+  <span class="r-icon">🚴</span>
+  <span><strong>Obligations supplémentaires :</strong> Adapter la vitesse, s'assurer que la manœuvre ne met pas le cycliste en danger, utiliser le clignotant.</span>
+</div>
 
-<h3>2.1 Distance latérale minimale LÉGALE</h3>
 
-<h3>Règle officielle (Art. 125 - depuis 1er mai 2018)</h3>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3. INTERDICTIONS DE DÉPASSER                  -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="interdictions" class="section-header sh-red">
+  <span class="icon">🚫</span>
+  <h2>Interdictions de dépasser</h2>
+  <span class="badge">2 points</span>
+</div>
 
-<p style="font-size: 1.2em; color: #e74c3c;"><strong>1,5 mètre minimum</strong></p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.75rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box"><span class="r-icon">🚶</span><span>À l'approche d'un <strong>passage piétons</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🔀</span><span>Dans un <strong>virage sans visibilité</strong></span></div>
+  <div class="regle-box"><span class="r-icon">〰️</span><span>Sur <strong>ligne continue</strong> (sauf exceptions)</span></div>
+  <div class="regle-box"><span class="r-icon">✖️</span><span>À une <strong>intersection non prioritaire</strong></span></div>
+  <div class="regle-box"><span class="r-icon">⛰️</span><span>Au <strong>sommet d'une côte</strong> sans visibilité</span></div>
+  <div class="regle-box"><span class="r-icon">⚠️</span><span>En cas de <strong>situation dangereuse</strong></span></div>
+</div>
 
-<p>⚠️ <strong>Ce n'est PAS 1 mètre.</strong><br>
-⚠️ <strong>Ce n'est PAS une recommandation, c'est la LOI.</strong></p>
+<p class="sub-title">Exceptions à la ligne continue (franchissement autorisé)</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="border-color:#16a34a;"><span class="r-icon">🏠</span><span>Pour accéder à une <strong>propriété</strong></span></div>
+  <div class="regle-box" style="border-color:#16a34a;"><span class="r-icon">🚧</span><span>Pour <strong>contourner un obstacle</strong></span></div>
+  <div class="regle-box" style="border-color:#16a34a;"><span class="r-icon">↙️</span><span>Pour <strong>tourner à gauche</strong></span></div>
+</div>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> La ligne continue <u>n'interdit pas absolument de franchir</u> — elle interdit de la franchir pour dépasser un véhicule en circulation. Les 3 exceptions restent autorisées.
+</div>
 
-<h3>Source officielle</h3>
 
-<ul>
-<li>police.public.lu : "distance latérale d'au moins 1,5 mètre"</li>
-<li>gouvernement.lu (28/03/2018) : "distance latérale de 1,5 m lors du dépassement"</li>
-<li>transports.public.lu : "obligation Art. 125 Code de la Route"</li>
-</ul>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 4. DÉPASSEMENT PAR LA DROITE                  -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="droite" class="section-header sh-orange">
+  <span class="icon">➡️</span>
+  <h2>Dépassement par la droite — Exceptions légales</h2>
+  <span class="badge">Exceptions</span>
+</div>
 
-<h3>2.2 Application</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.75rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="border-color:#ea580c;"><span class="r-icon">↙️</span><span>Si le véhicule devant <strong>tourne à gauche</strong> (et s'est déporté à gauche)</span></div>
+  <div class="regle-box" style="border-color:#ea580c;"><span class="r-icon">🚦</span><span><strong>Circulation en files parallèles lentes</strong> (la file de droite peut avancer plus vite)</span></div>
+  <div class="regle-box" style="border-color:#ea580c;"><span class="r-icon">🏙️</span><span>En agglomération dans <strong>trafic dense</strong> avec plusieurs voies</span></div>
+</div>
 
-<p>Cette distance s'applique :</p>
-<ul>
-<li><strong>En agglomération</strong></li>
-<li><strong>Hors agglomération</strong></li>
-</ul>
 
-<p>Si la distance de 1,5 m ne peut pas être respectée : <strong>Renoncer au dépassement</strong></p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5. REMORQUES & TRAIN ROUTIER                  -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="remorques" class="section-header sh-yellow">
+  <span class="icon">🚐</span>
+  <h2>Remorques & Train routier</h2>
+  <span class="badge">Permis B</span>
+</div>
 
-<h3>2.3 Obligations supplémentaires</h3>
+<p class="sub-title">Vitesses maximales avec remorque</p>
+<div class="stat-cards">
+  <div class="stat-card sc-blue">
+    <div class="stat-val">50</div>
+    <div class="stat-label">km/h — Agglomération</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="stat-val">75</div>
+    <div class="stat-label">km/h — Hors agglo (PTAC &gt; 3,5 t)</div>
+  </div>
+  <div class="stat-card sc-yellow">
+    <div class="stat-val">90</div>
+    <div class="stat-label">km/h — Autoroute</div>
+  </div>
+</div>
 
-<ul>
-<li>Adapter la vitesse</li>
-<li>S'assurer que la manœuvre ne met pas le cycliste en danger</li>
-<li>Utiliser le clignotant</li>
-</ul>
-
-<h3>Piège SNCA MAJEUR</h3>
-
-<p>❌ "1 mètre minimum" → <strong>FAUX</strong><br>
-❌ "1,5 m est une recommandation" → <strong>FAUX</strong><br>
-✓ <strong>1,5 mètre est la distance LÉGALE minimale</strong></p>
-
-<p>Même si vous ne franchissez pas la ligne continue, le dépassement peut être interdit si la distance de 1,5 m ne peut être respectée.</p>
-
-<h2>3. Dépassement par la droite — Exceptions</h2>
-
-<p>Autorisé :</p>
-
-<ul>
-<li>Si le véhicule devant <strong>tourne à gauche</strong> (et s'est déporté)</li>
-<li>En cas de <strong>circulation en files parallèles lentes</strong></li>
-<li>En agglomération dans <strong>trafic dense</strong></li>
-</ul>
-
-<h2>4. Remorques — Règles essentielles</h2>
-
-<h3>4.1 Nombre</h3>
-
-<p>Permis B : <strong>Une seule remorque</strong> autorisée</p>
-
-<h3>4.2 Vitesse</h3>
-
+<p class="sub-title">Catégories de permis requis</p>
 <div class="seo-table"><table>
-<tr><th>Situation</th><th>Vitesse max</th></tr>
-<tr><td>Agglomération</td><td>50 km/h</td></tr>
-<tr><td>Hors agglomération (PTAC &gt; 3,5 t)</td><td>75 km/h</td></tr>
-<tr><td>Autoroute</td><td>90 km/h</td></tr>
+<tr><th>Ensemble</th><th>Permis requis</th></tr>
+<tr><td>Voiture + remorque ≤ 750 kg</td><td><strong>B</strong></td></tr>
+<tr><td>Voiture + remorque &gt; 750 kg (ensemble ≤ 3 500 kg)</td><td><strong>B</strong></td></tr>
+<tr><td>Voiture + remorque &gt; 750 kg (ensemble ≤ 4 250 kg)</td><td><strong>B + code 96</strong></td></tr>
+<tr><td>Ensemble &gt; 4 250 kg</td><td><strong>BE</strong></td></tr>
 </table></div>
 
-<p>Conditions météo défavorables → adaptation obligatoire</p>
+<div class="regle-box">
+  <span class="r-icon">🚛</span>
+  <span><strong>Train routier en virage à droite :</strong> Le conducteur doit parfois se déporter légèrement à gauche pour que la remorque ne monte pas sur le trottoir. <strong>Ne jamais se placer à côté d'un poids lourd en virage serré.</strong></span>
+</div>
 
-<h3>4.3 Freinage</h3>
+<p class="sub-title">Contournement vs Dépassement — ne pas confondre</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#2563eb;">
+    <strong style="color:#1e40af;">Contournement</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">Véhicule ou obstacle <strong>immobile</strong></span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#ea580c;">
+    <strong style="color:#9a3412;">Dépassement</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">Véhicule <strong>en mouvement</strong> (règles différentes)</span>
+  </div>
+</div>
 
-<p>Le véhicule tracteur doit pouvoir maîtriser l'ensemble. Distance de freinage augmentée.</p>
 
-<h3>4.4 Permis requis</h3>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6. MÉMO                                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="memo" class="section-header sh-grey" style="margin-top:3rem;">
+  <span class="icon">📋</span>
+  <h2>Mémo — À retenir absolument</h2>
+</div>
 
-<div class="seo-table"><table>
-<tr><th>Ensemble</th><th>Permis</th></tr>
-<tr><td>Voiture + remorque ≤ 750 kg</td><td>B</td></tr>
-<tr><td>Voiture + remorque &gt; 750 kg (ensemble ≤ 3 500 kg)</td><td>B</td></tr>
-<tr><td>Voiture + remorque &gt; 750 kg (ensemble &gt; 3 500 kg et ≤ 4 250 kg)</td><td>B + code 96</td></tr>
-<tr><td>Ensemble &gt; 4 250 kg</td><td>BE</td></tr>
-</table></div>
-
-<h2>5. Train routier (Camion + Remorque)</h2>
-
-<p>En virage à droite : Le conducteur doit parfois se déporter légèrement à gauche afin de permettre à la remorque de ne pas monter sur le trottoir.</p>
-
-<h3>Piège SNCA</h3>
-
-<p>Le train routier ne peut pas rester strictement dans sa voie en virage serré. → Ne pas se placer à côté d'un poids lourd en virage.</p>
-
-<h2>6. Contournement vs Dépassement</h2>
-
-<div class="seo-table"><table>
-<tr><th>Terme</th><th>Définition</th></tr>
-<tr><td><strong>Contournement</strong></td><td>Véhicule ou obstacle <strong>immobile</strong></td></tr>
-<tr><td><strong>Dépassement</strong></td><td>Véhicule <strong>en mouvement</strong></td></tr>
-</table></div>
-
-<p>Les règles ne sont pas identiques.</p>
-
-<h2>7. Sanctions dépassement</h2>
-
-<div class="seo-table"><table>
-<tr><th>Infraction</th><th>Points</th></tr>
-<tr><td>Dépassement interdit</td><td><strong>2 points</strong></td></tr>
-<tr><td>Tentative de dépassement interdit</td><td><strong>2 points</strong></td></tr>
-</table></div>
-
-<p>(Art. 2bis §2 pt 20)</p>
-
-<h2>À retenir pour l'examen</h2>
-<ul>
-<li>Dépassement = gauche</li>
-<li><strong>1,5 m LÉGAL pour cycliste</strong> (pas 1 m, pas recommandation)</li>
-<li>Si 1,5 m impossible → pas de dépassement</li>
-<li>Ligne continue = exceptions très limitées (jamais pour dépasser)</li>
-<li>Remorque = vitesse réduite (75-90 km/h)</li>
-<li>Train routier déborde en virage</li>
-<li>Dépassement interdit = 2 points</li>
-</ul>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-top:1.25rem;">
+  <div class="regle-box"><span class="r-icon">↖️</span><span>Dépassement = <strong>par la gauche</strong> (toujours)</span></div>
+  <div class="regle-box"><span class="r-icon">🚲</span><span><strong>1,5 m LÉGAL</strong> pour cycliste — pas 1 m, pas recommandation</span></div>
+  <div class="regle-box"><span class="r-icon">⛔</span><span>Si 1,5 m impossible → <strong>renoncer au dépassement</strong></span></div>
+  <div class="regle-box"><span class="r-icon">〰️</span><span>Ligne continue = exceptions très limitées (<strong>jamais pour dépasser</strong>)</span></div>
+  <div class="regle-box"><span class="r-icon">🚐</span><span>Remorque = vitesse réduite (<strong>75 km/h hors agglo / 90 autoroute</strong>)</span></div>
+  <div class="regle-box"><span class="r-icon">🚛</span><span>Train routier <strong>déborde en virage</strong> — ne pas se placer à côté</span></div>
+  <div class="regle-box"><span class="r-icon">⚖️</span><span>Dépassement interdit = <strong>2 points</strong> (Art. 2bis §2 pt 20)</span></div>
+</div>
 
 </section>
 
 <div class="card" style="text-align:center;">
   <a href="./" class="btn primary">Retour au quiz</a>
+  &nbsp;
+  <a href="sommaire.html" class="btn" style="background:#f1f5f9;color:#1e3a8a;">Tous les cours →</a>
 </div>
 </main>
 
@@ -230,10 +324,12 @@
       <a href="./">Quiz principal</a>
       <a href="sommaire.html">Tous les cours</a>
       <a href="vitesses-distances.html">Vitesses & Distances</a>
-      <a href="alcool-points.html">Alcool & Permis à points</a>
+      <a href="alcool-points.html">Alcool & Points</a>
       <a href="priorites-circulation.html">Priorités & Circulation</a>
-      <a href="signalisation.html">Signalisation</a>
-      <a href="examen-snca.html">Examen théorique</a>
+      <a href="signalisation-complete.html">Signalisation</a>
+      <a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a>
+      <a href="stationnement-arret.html">Stationnement & Arrêt</a>
+      <a href="equipements-securite.html">Équipements & Sécurité</a>
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
     </div>
