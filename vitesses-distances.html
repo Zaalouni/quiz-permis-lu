@@ -19,7 +19,6 @@
   <meta name="theme-color" content="#1e3a8a">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,24 +31,66 @@
     "educationalLevel": "Beginner",
     "educationalUse": "self-study",
     "teaches": "Vitesses, distances de sécurité, dépassement — Préparation examen SNCA",
-    "about": {
-      "@type": "Thing",
-      "name": "Permis de conduire Luxembourg"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "Quiz Permis Luxembourg",
-      "url": "https://zaalouni.github.io/quiz-permis-lu/"
-    }
+    "about": { "@type": "Thing", "name": "Permis de conduire Luxembourg" },
+    "provider": { "@type": "Organization", "name": "Quiz Permis Luxembourg", "url": "https://zaalouni.github.io/quiz-permis-lu/" }
   }
   </script>
+
+  <style>
+    .section-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 2rem}
+    .section-nav a{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:999px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s ease;border:2px solid transparent}
+    .section-nav a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .nav-blue{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.nav-blue:hover{background:#1d4ed8;color:#fff}
+    .nav-red{background:#fff1f2;color:#be123c;border-color:#fecdd3}.nav-red:hover{background:#be123c;color:#fff}
+    .nav-orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.nav-orange:hover{background:#c2410c;color:#fff}
+    .nav-green{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}.nav-green:hover{background:#15803d;color:#fff}
+    .nav-yellow{background:#fefce8;color:#a16207;border-color:#fef08a}.nav-yellow:hover{background:#a16207;color:#fff}
+    .nav-grey{background:#f8fafc;color:#475569;border-color:#e2e8f0}.nav-grey:hover{background:#475569;color:#fff}
+    .section-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-radius:10px;margin:2.5rem 0 1.25rem}
+    .section-header .icon{font-size:1.8rem;line-height:1}
+    .section-header h2{margin:0;font-size:1.25rem}
+    .section-header .badge{margin-left:auto;font-size:.75rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    .sh-blue{background:#eff6ff;border-left:5px solid #2563eb}.sh-blue h2{color:#1e40af}.sh-blue .badge{background:#2563eb;color:#fff}
+    .sh-red{background:#fff1f2;border-left:5px solid #e11d48}.sh-red h2{color:#9f1239}.sh-red .badge{background:#e11d48;color:#fff}
+    .sh-orange{background:#fff7ed;border-left:5px solid #ea580c}.sh-orange h2{color:#9a3412}.sh-orange .badge{background:#ea580c;color:#fff}
+    .sh-green{background:#f0fdf4;border-left:5px solid #16a34a}.sh-green h2{color:#14532d}.sh-green .badge{background:#16a34a;color:#fff}
+    .sh-yellow{background:#fefce8;border-left:5px solid #ca8a04}.sh-yellow h2{color:#713f12}.sh-yellow .badge{background:#ca8a04;color:#fff}
+    .sh-grey{background:#f8fafc;border-left:5px solid #64748b}.sh-grey h2{color:#1e293b}
+    .scene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;margin:1rem 0 1.5rem}
+    .scene-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;overflow:hidden;transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .scene-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,58,138,.13);border-color:#1e3a8a}
+    .scene-card img{width:100%;height:160px;object-fit:cover;display:block;background:#f1f5f9}
+    .scene-card .scene-info{padding:.75rem}
+    .scene-card .scene-nom{font-size:.83rem;font-weight:700;color:#1e3a8a;margin-bottom:.2rem}
+    .scene-card .scene-desc{font-size:.76rem;color:#64748b;line-height:1.4}
+    .regle-box{background:#fff;border-radius:10px;padding:.9rem 1.1rem;margin:.5rem 0;display:flex;align-items:flex-start;gap:.75rem;border:1.5px solid #e5e7eb;font-size:.9rem}
+    .regle-box .r-icon{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+    .regle-box strong{color:#1e3a8a}
+    .piege{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:1rem 0;font-size:.88rem;color:#78350f}
+    .piege strong{color:#b45309}
+    .sub-title{font-size:1rem;font-weight:700;color:#374151;margin:1.5rem 0 .5rem;padding-bottom:.4rem;border-bottom:2px solid #f1f5f9}
+    .stat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .stat-card{border-radius:12px;padding:1.25rem 1rem;text-align:center}
+    .stat-card .stat-val{font-size:2rem;font-weight:800;line-height:1;margin-bottom:.35rem}
+    .stat-card .stat-label{font-size:.78rem;font-weight:600;opacity:.8}
+    .sc-blue{background:#eff6ff}.sc-blue .stat-val{color:#1d4ed8}
+    .sc-green{background:#f0fdf4}.sc-green .stat-val{color:#15803d}
+    .sc-orange{background:#fff7ed}.sc-orange .stat-val{color:#c2410c}
+    .sc-red{background:#fff1f2}.sc-red .stat-val{color:#be123c}
+    .sc-yellow{background:#fefce8}.sc-yellow .stat-val{color:#a16207}
+    .sc-grey{background:#f8fafc}.sc-grey .stat-val{color:#475569}
+    /* Speed sign CSS */
+    .speed-sign{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;border:5px solid #dc2626;background:#fff;font-size:1.4rem;font-weight:900;color:#111;margin:0 auto .7rem;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+    .speed-sign.autoroute{border-color:#1d4ed8;background:#1d4ed8;color:#fff}
+    .speed-sign.zone{border-color:#2563eb;background:#eff6ff;color:#1d4ed8}
+  </style>
 </head>
 <body>
 
 <header class="app-header">
   <div class="brand">
     <h1>Vitesses & Distances</h1>
-    <div class="subtitle">Guide complet — Luxembourg</div>
+    <div class="subtitle">Guide visuel complet — Luxembourg</div>
   </div>
   <div>
     <a href="./" class="btn back-btn">Retour au quiz</a>
@@ -61,122 +102,262 @@
 
 <p><small>Sources : Legilux (Code de la route consolidé 2024) | police.public.lu | gouvernement.lu — Art. 125</small></p>
 
-<h2>1. Limitations de vitesse</h2>
+<nav class="section-nav" aria-label="Sections">
+  <a href="#vitesses" class="nav-blue">🚗 Limites de vitesse</a>
+  <a href="#tolerance" class="nav-orange">📡 Tolérance radar</a>
+  <a href="#distance" class="nav-green">⏱️ Distance sécurité</a>
+  <a href="#cycliste" class="nav-green">🚲 1,5 m cycliste</a>
+  <a href="#zones" class="nav-yellow">🏘️ Zones spéciales</a>
+  <a href="#memo" class="nav-grey">📋 Mémo</a>
+</nav>
 
-<h3>1.1 Voiture (catégorie B)</h3>
-<div class="seo-table"><table>
-<tr><th>Zone</th><th>Vitesse max</th></tr>
-<tr><td>Agglomération</td><td>50 km/h</td></tr>
-<tr><td>Hors agglomération</td><td>90 km/h</td></tr>
-<tr><td>Autoroute (temps sec)</td><td>130 km/h</td></tr>
-<tr><td>Autoroute (pluie/visibilité réduite)</td><td>110 km/h</td></tr>
-<tr><td>Zone résidentielle</td><td>20 km/h</td></tr>
-<tr><td>Zone de rencontre</td><td>20 km/h</td></tr>
-<tr><td>Zone piétonne</td><td>20 km/h</td></tr>
-<tr><td>Zone 30</td><td>30 km/h</td></tr>
-<tr><td>Rue cyclable</td><td>30 km/h</td></tr>
-</table></div>
 
-<p><strong>Explication simple :</strong> La limitation dépend du type de zone et des conditions météo. La pluie réduit automatiquement la vitesse maximale autorisée sur autoroute.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1. LIMITATIONS DE VITESSE                     -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="vitesses" class="section-header sh-blue">
+  <span class="icon">🚗</span>
+  <h2>Limitations de vitesse — Catégorie B</h2>
+  <span class="badge">Voiture standard</span>
+</div>
 
-<p><strong>Exemple :</strong> Vous roulez à 130 km/h sur autoroute. Il commence à pleuvoir → la limite devient 110 km/h, même sans panneau.</p>
+<p class="sub-title">Limites principales à connaître</p>
+<div class="stat-cards">
+  <div class="stat-card sc-green">
+    <div class="speed-sign">50</div>
+    <div class="stat-label">Agglomération</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="speed-sign">90</div>
+    <div class="stat-label">Hors agglomération</div>
+  </div>
+  <div class="stat-card sc-blue">
+    <div class="speed-sign autoroute">130</div>
+    <div class="stat-label">Autoroute — temps sec</div>
+  </div>
+  <div class="stat-card sc-yellow">
+    <div class="speed-sign" style="border-color:#ca8a04;color:#ca8a04;">110</div>
+    <div class="stat-label">Autoroute — pluie / visibilité réduite</div>
+  </div>
+</div>
 
-<p><strong>Piège SNCA :</strong> La pluie n'est pas une "recommandation". C'est une réduction légale.</p>
+<p class="sub-title">Zones spéciales (à mémoriser)</p>
+<div class="stat-cards">
+  <div class="stat-card" style="background:#faf5ff;">
+    <div class="speed-sign zone">20</div>
+    <div class="stat-label" style="color:#7e22ce;">Zone résidentielle</div>
+  </div>
+  <div class="stat-card" style="background:#faf5ff;">
+    <div class="speed-sign zone">20</div>
+    <div class="stat-label" style="color:#7e22ce;">Zone de rencontre</div>
+  </div>
+  <div class="stat-card" style="background:#faf5ff;">
+    <div class="speed-sign zone">20</div>
+    <div class="stat-label" style="color:#7e22ce;">Zone piétonne (si autorisé)</div>
+  </div>
+  <div class="stat-card" style="background:#ecfeff;">
+    <div class="speed-sign" style="border-color:#0891b2;color:#0891b2;">30</div>
+    <div class="stat-label" style="color:#164e63;">Rue cyclable / Zone 30</div>
+  </div>
+</div>
 
-<h3>1.2 Remorque</h3>
-<ul>
-<li>PTAC &gt; 3,5 t → 75 km/h hors agglomération</li>
-<li>Autoroute : généralement 90 km/h</li>
-<li>Conditions météo → adaptation obligatoire</li>
-</ul>
+<p class="sub-title">Photos de situations réelles</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/q_1180_a0.jpg" alt="Panneau limitation 50 km/h en agglomération" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Limite 50 km/h — Agglomération</div>
+      <div class="scene-desc">S'applique même sans panneau, dès l'entrée en agglomération.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_1.jpg" alt="Autoroute — voies de circulation, limite 130 km/h" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Autoroute — 130 km/h (sec) / 110 (pluie)</div>
+      <div class="scene-desc">La pluie réduit automatiquement la vitesse légale à 110 km/h.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_2.jpg" alt="Sortie d'autoroute — voie de décélération" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Sortie d'autoroute</div>
+      <div class="scene-desc">Ralentir dans la voie de décélération — ne pas freiner sur la voie de circulation.</div>
+    </div>
+  </div>
+</div>
 
-<p><strong>Piège SNCA :</strong> Beaucoup de quiz disent seulement "75 km/h". C'est incomplet : le PTAC détermine la limite.</p>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> La pluie sur autoroute = <strong>110 km/h légal</strong>, pas une recommandation. Si vous roulez à 130 km/h sous la pluie sans panneau spécifique, vous êtes en infraction.
+</div>
 
-<h2>2. Distance de sécurité</h2>
+<div class="regle-box">
+  <span class="r-icon">🚐</span>
+  <span><strong>Remorque (PTAC &gt; 3,5 t) :</strong> 75 km/h hors agglomération, 90 km/h autoroute. Ce n'est pas le même régime qu'une voiture seule.</span>
+</div>
 
-<h3>Règle officielle</h3>
-<p>Minimum <strong>2 secondes</strong> derrière le véhicule précédent.</p>
 
-<p><strong>Explication simple :</strong> On ne mesure pas en mètres, mais en temps.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2. TOLÉRANCE RADAR                            -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="tolerance" class="section-header sh-orange">
+  <span class="icon">📡</span>
+  <h2>Tolérance radar (marge technique)</h2>
+  <span class="badge">Après mesure</span>
+</div>
 
-<p><strong>Exemple :</strong> Le véhicule devant passe un panneau. Comptez : "mille un, mille deux". Vous devez arriver au panneau après avoir terminé le comptage.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#ea580c;">
+    <strong style="color:#9a3412;">Vitesse ≤ 100 km/h mesurée</strong>
+    <span style="font-size:1.2rem;font-weight:900;color:#ea580c;margin-top:0.4rem;">− 3 km/h</span>
+    <span style="font-size:0.8rem;color:#374151;">On soustrait 3 km/h de la vitesse mesurée par le radar.</span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#ea580c;">
+    <strong style="color:#9a3412;">Vitesse &gt; 100 km/h mesurée</strong>
+    <span style="font-size:1.2rem;font-weight:900;color:#ea580c;margin-top:0.4rem;">− 3 %</span>
+    <span style="font-size:0.8rem;color:#374151;">On soustrait 3% de la vitesse mesurée par le radar.</span>
+  </div>
+</div>
 
-<div class="seo-table"><table>
-<tr><th>Vitesse</th><th>Distance min</th></tr>
-<tr><td>50 km/h</td><td>~28 m</td></tr>
-<tr><td>90 km/h</td><td>~50 m</td></tr>
-<tr><td>130 km/h</td><td>~72 m</td></tr>
-</table></div>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> La tolérance s'applique <u>APRÈS mesure radar</u> (on soustrait 3 km/h ou 3% de la valeur mesurée). Elle ne s'ajoute pas à la limite affichée sur le panneau. Un panneau à 50 = limite à 50, point final.
+</div>
 
-<p><strong>Piège SNCA :</strong> "50 mètres" n'est pas la règle officielle. C'est une estimation selon la vitesse.</p>
 
-<h3>Distance par mauvaises conditions</h3>
-<p>En cas de pluie, brouillard ou chaussée glissante : <strong>Doubler la distance de sécurité.</strong></p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3. DISTANCE DE SÉCURITÉ                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="distance" class="section-header sh-green">
+  <span class="icon">⏱️</span>
+  <h2>Distance de sécurité — Règle des 2 secondes</h2>
+  <span class="badge">Minimum 2 secondes</span>
+</div>
 
-<h2>3. Dépassement et vitesse</h2>
-<p>Même en dépassant → Vous devez respecter la limitation de vitesse. Il n'existe aucune exception.</p>
+<div style="background:#f0fdf4;border:3px solid #16a34a;border-radius:16px;padding:1.5rem;text-align:center;margin:1rem 0 1.5rem;">
+  <div style="font-size:3.5rem;font-weight:900;color:#15803d;line-height:1;">2 sec</div>
+  <div style="font-size:1rem;font-weight:700;color:#14532d;margin-top:0.5rem;">Distance minimale derrière le véhicule précédent</div>
+  <div style="font-size:0.85rem;color:#15803d;margin-top:0.5rem;">Méthode : le véhicule devant passe un panneau → vous le passez après avoir compté "mille un, mille deux"</div>
+</div>
 
-<h2>4. Distance latérale cycliste — Règle légale (Art. 125)</h2>
+<p class="sub-title">Distance estimée en mètres selon la vitesse</p>
+<div class="stat-cards">
+  <div class="stat-card sc-green">
+    <div class="stat-val">~28 m</div>
+    <div class="stat-label">à 50 km/h</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="stat-val">~50 m</div>
+    <div class="stat-label">à 90 km/h</div>
+  </div>
+  <div class="stat-card sc-blue">
+    <div class="stat-val">~72 m</div>
+    <div class="stat-label">à 130 km/h</div>
+  </div>
+</div>
 
-<p><strong>Distance latérale minimale lors du dépassement d'un cycliste :</strong></p>
-<p style="font-size: 1.2em; color: #e74c3c;"><strong>1,5 mètre minimum</strong></p>
+<div class="regle-box">
+  <span class="r-icon">🌧️</span>
+  <span><strong>Conditions météo défavorables</strong> (pluie, brouillard, chaussée glissante) : <strong>doubler la distance de sécurité</strong>.</span>
+</div>
 
-<p>⚠️ Cette distance s'applique :</p>
-<ul>
-<li>En agglomération</li>
-<li>Hors agglomération</li>
-</ul>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> "50 mètres" n'est pas la règle officielle. La règle est <strong>2 secondes</strong> — la distance en mètres varie selon la vitesse. Hors agglomération, distance &lt; 2 sec = 2 points retirés.
+</div>
 
-<p>Si la distance de 1,5 m ne peut pas être respectée → <strong>Renoncer au dépassement</strong></p>
 
-<p><strong>Source :</strong> police.public.lu, gouvernement.lu, Art. 125 Code de la route</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 4. DISTANCE LATÉRALE CYCLISTE                 -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="cycliste" class="section-header sh-green">
+  <span class="icon">🚲</span>
+  <h2>Distance latérale cycliste — Art. 125</h2>
+  <span class="badge">LOI — pas recommandation</span>
+</div>
 
-<p><strong>Piège SNCA MAJEUR :</strong> Beaucoup pensent "1 mètre". <strong>FAUX</strong>. La règle légale est <strong>1,5 mètre</strong>.</p>
+<div style="background:#f0fdf4;border:3px solid #16a34a;border-radius:16px;padding:1.5rem;text-align:center;margin:1rem 0 1.5rem;">
+  <div style="font-size:3.5rem;font-weight:900;color:#15803d;line-height:1;">1,5 m</div>
+  <div style="font-size:1rem;font-weight:700;color:#14532d;margin-top:0.5rem;">Distance latérale minimale LÉGALE lors du dépassement d'un cycliste</div>
+  <div style="font-size:0.85rem;color:#15803d;margin-top:0.5rem;">En agglomération ET hors agglomération</div>
+</div>
 
-<h2>5. Zones spéciales</h2>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/q_1034_a0.jpg" alt="Distance 1,5m lors du dépassement d'un cycliste — obligatoire" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">1,5 m — Obligatoire légalement</div>
+      <div class="scene-desc">Si la distance de 1,5 m ne peut pas être respectée → renoncer au dépassement.</div>
+    </div>
+  </div>
+</div>
 
-<h3>Zone résidentielle</h3>
-<ul>
-<li>20 km/h</li>
-<li>Piétons prioritaires</li>
-<li>Stationnement uniquement emplacements signalés</li>
-</ul>
+<div class="piege">
+  <strong>PIÈGE SNCA MAJEUR :</strong> 1 mètre → FAUX. 1,5 m est une recommandation → FAUX. <strong>1,5 mètre = distance LÉGALE minimale imposée par l'Art. 125</strong>.
+</div>
 
-<h3>Zone de rencontre</h3>
-<ul>
-<li>20 km/h</li>
-<li>Piétons prioritaires</li>
-<li>Tous usagers cohabitent</li>
-</ul>
 
-<h3>Zone piétonne</h3>
-<ul>
-<li>20 km/h (si véhicules autorisés)</li>
-<li>Piétons totalement prioritaires</li>
-</ul>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5. ZONES SPÉCIALES                            -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="zones" class="section-header sh-yellow">
+  <span class="icon">🏘️</span>
+  <h2>Zones spéciales</h2>
+  <span class="badge">20 km/h et 30 km/h</span>
+</div>
 
-<h3>Rue cyclable</h3>
-<ul>
-<li>30 km/h</li>
-<li>Les vélos ne peuvent pas être mis en danger</li>
-<li>Cyclistes peuvent rouler côte à côte (max 2)</li>
-</ul>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#7e22ce;">
+    <strong style="color:#581c87;">Zone résidentielle — 20 km/h</strong>
+    <ul style="font-size:0.85rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Piétons prioritaires</li>
+      <li>Stationnement uniquement emplacements signalés</li>
+    </ul>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#7e22ce;">
+    <strong style="color:#581c87;">Zone de rencontre — 20 km/h</strong>
+    <ul style="font-size:0.85rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Piétons prioritaires</li>
+      <li>Tous usagers cohabitent</li>
+    </ul>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#7e22ce;">
+    <strong style="color:#581c87;">Zone piétonne — 20 km/h (si autorisé)</strong>
+    <ul style="font-size:0.85rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Piétons totalement prioritaires</li>
+    </ul>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#0891b2;">
+    <strong style="color:#164e63;">Rue cyclable — 30 km/h</strong>
+    <ul style="font-size:0.85rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Les vélos ne peuvent pas être mis en danger</li>
+      <li>Cyclistes peuvent rouler côte à côte (max 2)</li>
+    </ul>
+  </div>
+</div>
 
-<h2>À retenir pour l'examen</h2>
-<ul>
-<li>130 sec → 110 pluie (autoroute)</li>
-<li>2 secondes minimum (distance sécurité)</li>
-<li><strong>1,5 m minimum pour cycliste</strong> (pas 1 m)</li>
-<li>Remorque ≠ mêmes règles que voiture</li>
-<li>Dépassement ≠ autorisation d'excès</li>
-<li>Zone 20 : résidentielle, rencontre, piétonne</li>
-<li>Zone 30 : rue cyclable, zone 30</li>
-</ul>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6. MÉMO                                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="memo" class="section-header sh-grey" style="margin-top:3rem;">
+  <span class="icon">📋</span>
+  <h2>Mémo — À retenir absolument</h2>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-top:1.25rem;">
+  <div class="regle-box"><span class="r-icon">🌧️</span><span>Autoroute pluie → <strong>110 km/h légal</strong> (pas recommandation)</span></div>
+  <div class="regle-box"><span class="r-icon">⏱️</span><span>Distance sécurité = <strong>2 secondes minimum</strong> (pas 50 m)</span></div>
+  <div class="regle-box"><span class="r-icon">🚲</span><span><strong>1,5 m minimum légal</strong> pour cycliste (pas 1 m)</span></div>
+  <div class="regle-box"><span class="r-icon">📡</span><span>Tolérance radar = après mesure (− 3 km/h ou − 3%)</span></div>
+  <div class="regle-box"><span class="r-icon">🏘️</span><span>Zone résidentielle / rencontre / piétonne = <strong>20 km/h</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🚴</span><span>Rue cyclable = <strong>30 km/h</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🚐</span><span>Remorque (PTAC &gt; 3,5 t) = <strong>75 km/h hors agglo</strong></span></div>
+</div>
 
 </section>
 
 <div class="card" style="text-align:center;">
   <a href="./" class="btn primary">Retour au quiz</a>
+  &nbsp;
+  <a href="sommaire.html" class="btn" style="background:#f1f5f9;color:#1e3a8a;">Tous les cours →</a>
 </div>
 </main>
 
@@ -185,12 +366,13 @@
     <div class="footer-links">
       <a href="./">Quiz principal</a>
       <a href="sommaire.html">Tous les cours</a>
-      <a href="alcool-permis.html">Alcool & Permis à points</a>
-      <a href="signalisation.html">Signalisation</a>
-      <a href="distances-freinage.html">Distances & Freinage</a>
-      <a href="examen-snca.html">Examen théorique</a>
-      <a href="stationnement.html">Stationnement</a>
-      <a href="pietons-cyclistes.html">Piétons & Cyclistes</a>
+      <a href="alcool-points.html">Alcool & Points</a>
+      <a href="priorites-circulation.html">Priorités & Circulation</a>
+      <a href="signalisation-complete.html">Signalisation</a>
+      <a href="depassement-cyclistes.html">Dépassement & Cyclistes</a>
+      <a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a>
+      <a href="stationnement-arret.html">Stationnement & Arrêt</a>
+      <a href="equipements-securite.html">Équipements & Sécurité</a>
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
     </div>

@@ -19,7 +19,6 @@
   <meta name="theme-color" content="#1e3a8a">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,17 +31,72 @@
     "educationalLevel": "Beginner",
     "educationalUse": "self-study",
     "teaches": "Alcool, stupéfiants, permis à points — Préparation examen SNCA",
-    "about": {
-      "@type": "Thing",
-      "name": "Permis de conduire Luxembourg"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "Quiz Permis Luxembourg",
-      "url": "https://zaalouni.github.io/quiz-permis-lu/"
-    }
+    "about": { "@type": "Thing", "name": "Permis de conduire Luxembourg" },
+    "provider": { "@type": "Organization", "name": "Quiz Permis Luxembourg", "url": "https://zaalouni.github.io/quiz-permis-lu/" }
   }
   </script>
+
+  <style>
+    .section-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 2rem}
+    .section-nav a{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:999px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s ease;border:2px solid transparent}
+    .section-nav a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .nav-blue{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.nav-blue:hover{background:#1d4ed8;color:#fff}
+    .nav-red{background:#fff1f2;color:#be123c;border-color:#fecdd3}.nav-red:hover{background:#be123c;color:#fff}
+    .nav-orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.nav-orange:hover{background:#c2410c;color:#fff}
+    .nav-green{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}.nav-green:hover{background:#15803d;color:#fff}
+    .nav-yellow{background:#fefce8;color:#a16207;border-color:#fef08a}.nav-yellow:hover{background:#a16207;color:#fff}
+    .nav-grey{background:#f8fafc;color:#475569;border-color:#e2e8f0}.nav-grey:hover{background:#475569;color:#fff}
+    .section-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-radius:10px;margin:2.5rem 0 1.25rem}
+    .section-header .icon{font-size:1.8rem;line-height:1}
+    .section-header h2{margin:0;font-size:1.25rem}
+    .section-header .badge{margin-left:auto;font-size:.75rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    .sh-blue{background:#eff6ff;border-left:5px solid #2563eb}.sh-blue h2{color:#1e40af}.sh-blue .badge{background:#2563eb;color:#fff}
+    .sh-red{background:#fff1f2;border-left:5px solid #e11d48}.sh-red h2{color:#9f1239}.sh-red .badge{background:#e11d48;color:#fff}
+    .sh-orange{background:#fff7ed;border-left:5px solid #ea580c}.sh-orange h2{color:#9a3412}.sh-orange .badge{background:#ea580c;color:#fff}
+    .sh-green{background:#f0fdf4;border-left:5px solid #16a34a}.sh-green h2{color:#14532d}.sh-green .badge{background:#16a34a;color:#fff}
+    .sh-yellow{background:#fefce8;border-left:5px solid #ca8a04}.sh-yellow h2{color:#713f12}.sh-yellow .badge{background:#ca8a04;color:#fff}
+    .sh-grey{background:#f8fafc;border-left:5px solid #64748b}.sh-grey h2{color:#1e293b}
+    .regle-box{background:#fff;border-radius:10px;padding:.9rem 1.1rem;margin:.5rem 0;display:flex;align-items:flex-start;gap:.75rem;border:1.5px solid #e5e7eb;font-size:.9rem}
+    .regle-box .r-icon{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+    .regle-box strong{color:#1e3a8a}
+    .piege{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:1rem 0;font-size:.88rem;color:#78350f}
+    .piege strong{color:#b45309}
+    .sub-title{font-size:1rem;font-weight:700;color:#374151;margin:1.5rem 0 .5rem;padding-bottom:.4rem;border-bottom:2px solid #f1f5f9}
+    .stat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .stat-card{border-radius:12px;padding:1.25rem 1rem;text-align:center}
+    .stat-card .stat-val{font-size:2rem;font-weight:800;line-height:1;margin-bottom:.35rem}
+    .stat-card .stat-label{font-size:.78rem;font-weight:600;opacity:.8}
+    .sc-blue{background:#eff6ff}.sc-blue .stat-val{color:#1d4ed8}
+    .sc-green{background:#f0fdf4}.sc-green .stat-val{color:#15803d}
+    .sc-orange{background:#fff7ed}.sc-orange .stat-val{color:#c2410c}
+    .sc-red{background:#fff1f2}.sc-red .stat-val{color:#be123c}
+    .sc-yellow{background:#fefce8}.sc-yellow .stat-val{color:#a16207}
+    .sc-grey{background:#f8fafc}.sc-grey .stat-val{color:#475569}
+    /* Alcool level bars */
+    .alcool-bar{border-radius:12px;overflow:hidden;margin:1rem 0 1.5rem;border:1.5px solid #e5e7eb}
+    .alcool-level{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem}
+    .alcool-level .a-indicator{width:14px;height:52px;border-radius:4px;flex-shrink:0}
+    .alcool-level .a-rate{font-size:1.3rem;font-weight:900;min-width:80px}
+    .alcool-level .a-info{flex:1}
+    .alcool-level .a-title{font-size:.85rem;font-weight:700;margin-bottom:.15rem}
+    .alcool-level .a-details{font-size:.76rem;color:#64748b;line-height:1.4}
+    .al-green{background:#f0fdf4;border-left:4px solid #16a34a}
+    .al-green .a-indicator{background:#16a34a}
+    .al-green .a-rate{color:#15803d}
+    .al-orange{background:#fff7ed;border-left:4px solid #f59e0b}
+    .al-orange .a-indicator{background:#f59e0b}
+    .al-orange .a-rate{color:#c2410c}
+    .al-red{background:#fff1f2;border-left:4px solid #dc2626}
+    .al-red .a-indicator{background:#dc2626}
+    .al-red .a-rate{color:#be123c}
+    /* Points infraction cards */
+    .pts-card{border-radius:12px;padding:1.1rem;margin:.75rem 0}
+    .pts-card .pts-val{font-size:2.2rem;font-weight:900;line-height:1;margin-bottom:.5rem}
+    .pts-card ul{margin:0;padding-left:1.2rem;font-size:.84rem;line-height:1.6}
+    .pts-6{background:#fff1f2}.pts-6 .pts-val{color:#be123c}
+    .pts-4{background:#fff7ed}.pts-4 .pts-val{color:#c2410c}
+    .pts-2{background:#fefce8}.pts-2 .pts-val{color:#a16207}
+  </style>
 </head>
 <body>
 
@@ -61,156 +115,244 @@
 
 <p><small>Sources : Legilux Art. 2bis (Loi 21/09/2023), Art. 12, RGD 18/11/2011</small></p>
 
-<h2>1. Alcool au volant</h2>
+<nav class="section-nav" aria-label="Sections">
+  <a href="#alcool" class="nav-red">🍺 Alcool</a>
+  <a href="#sensibles" class="nav-orange">👶 Conducteurs sensibles</a>
+  <a href="#stupefiants" class="nav-red">💊 Stupéfiants</a>
+  <a href="#points" class="nav-blue">⭕ Permis à points</a>
+  <a href="#telephone" class="nav-orange">📱 Téléphone</a>
+  <a href="#memo" class="nav-grey">📋 Mémo</a>
+</nav>
 
-<h3>1.1 Seuils légaux standards</h3>
 
-<p><strong>Seuil légal général : 0,5 g/L de sang (0,25 mg/L air expiré)</strong></p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1. ALCOOL                                     -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="alcool" class="section-header sh-red">
+  <span class="icon">🍺</span>
+  <h2>Alcool au volant — Seuils et sanctions</h2>
+  <span class="badge">Seuil général : 0,5 g/L</span>
+</div>
 
-<p>Sanctions progressives :</p>
+<p class="sub-title">Tableau des niveaux d'alcool — Visuel progressif</p>
 
-<div class="seo-table"><table>
-<tr><th>Taux sang</th><th>Taux air</th><th>Points</th><th>Type</th></tr>
-<tr><td>0,5 – 0,8 g/L</td><td>0,25 – 0,35 mg/L</td><td>2 points</td><td>Contravention grave</td></tr>
-<tr><td>0,8 – 1,2 g/L</td><td>0,35 – 0,55 mg/L</td><td>4 points</td><td>Contravention grave</td></tr>
-<tr><td>≥ 1,2 g/L</td><td>≥ 0,55 mg/L</td><td>6 points</td><td>Délit pénal</td></tr>
-</table></div>
+<div class="alcool-bar">
+  <div class="alcool-level al-green">
+    <div class="a-indicator"></div>
+    <div class="a-rate">0,5 – 0,8 g/L<br><span style="font-size:.7rem;font-weight:400;">0,25 – 0,35 mg/L air</span></div>
+    <div class="a-info">
+      <div class="a-title">Contravention grave</div>
+      <div class="a-details"><strong>2 points</strong> · 145 € · Pas de retrait immédiat</div>
+    </div>
+  </div>
+  <div class="alcool-level al-orange">
+    <div class="a-indicator"></div>
+    <div class="a-rate">0,8 – 1,2 g/L<br><span style="font-size:.7rem;font-weight:400;">0,35 – 0,55 mg/L air</span></div>
+    <div class="a-info">
+      <div class="a-title">Contravention grave</div>
+      <div class="a-details"><strong>4 points</strong> · jusqu'à 500 € · Procès-verbal</div>
+    </div>
+  </div>
+  <div class="alcool-level al-red">
+    <div class="a-indicator"></div>
+    <div class="a-rate">≥ 1,2 g/L<br><span style="font-size:.7rem;font-weight:400;">≥ 0,55 mg/L air</span></div>
+    <div class="a-info">
+      <div class="a-title">Délit pénal</div>
+      <div class="a-details"><strong>6 points</strong> · 500–10 000 € · <strong>Retrait immédiat</strong> · 8j–3 ans prison</div>
+    </div>
+  </div>
+</div>
 
-<h3>1.2 Conducteurs novices (période probatoire)</h3>
+<div class="piege">
+  <strong>RÈGLE ABSOLUE :</strong> Refus du test d'haleine = assimilé à ≥ 1,2 g/L → <strong>retrait du permis sur place immédiatement + 6 points</strong>.
+</div>
 
-<p>Pendant les 2 premières années :</p>
 
-<p><strong>Seuil réduit : 0,2 g/L de sang (0,10 mg/L air)</strong></p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2. CONDUCTEURS SENSIBLES                      -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="sensibles" class="section-header sh-orange">
+  <span class="icon">👶</span>
+  <h2>Conducteurs à seuil réduit — 0,2 g/L</h2>
+  <span class="badge">PAS zéro, mais 0,2 g/L</span>
+</div>
 
-<p>⚠️ Ce n'est PAS 0,0 g/L. C'est une tolérance réduite, pas zéro absolu.</p>
+<div style="background:#fff7ed;border:3px solid #ea580c;border-radius:16px;padding:1.5rem;text-align:center;margin:1rem 0 1.5rem;">
+  <div style="font-size:3rem;font-weight:900;color:#c2410c;line-height:1;">0,2 g/L</div>
+  <div style="font-size:0.95rem;font-weight:700;color:#9a3412;margin-top:0.5rem;">Seuil réduit — Ce n'est PAS zéro absolu !</div>
+  <div style="font-size:0.82rem;color:#c2410c;margin-top:0.4rem;">(0,10 mg/L air expiré)</div>
+</div>
 
-<p><strong>Piège SNCA :</strong> Beaucoup pensent "tolérance zéro". <strong>FAUX</strong>. Le seuil est <strong>0,2 g/L</strong>.</p>
+<p><strong>Qui est concerné par le seuil 0,2 g/L :</strong></p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box"><span class="r-icon">📋</span><span>Candidats au permis</span></div>
+  <div class="regle-box"><span class="r-icon">🎓</span><span>Conducteurs en période de stage</span></div>
+  <div class="regle-box"><span class="r-icon">👨‍🏫</span><span>Instructeurs de conduite</span></div>
+  <div class="regle-box"><span class="r-icon">🤝</span><span>Accompagnateurs conduite accompagnée</span></div>
+  <div class="regle-box"><span class="r-icon">🚑</span><span>Conducteurs de véhicules d'urgence</span></div>
+  <div class="regle-box"><span class="r-icon">🚛</span><span>Camions, autobus, autocars</span></div>
+  <div class="regle-box"><span class="r-icon">🚕</span><span>Taxis, ambulances, dépanneuses</span></div>
+  <div class="regle-box"><span class="r-icon">☢️</span><span>Transport matières dangereuses (ADR)</span></div>
+  <div class="regle-box"><span class="r-icon">🔞</span><span>Tout conducteur &lt; 18 ans</span></div>
+</div>
 
-<h3>1.3 Conducteurs professionnels</h3>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Beaucoup pensent "tolérance zéro" pour les novices. <strong>FAUX</strong>. Le seuil est <strong>0,2 g/L</strong>, pas 0,0.
+</div>
 
-<p>Seuil réduit <strong>0,2 g/L</strong> pour :</p>
-<ul>
-<li>Candidats au permis</li>
-<li>Conducteurs en période de stage</li>
-<li>Instructeurs pendant enseignement pratique</li>
-<li>Accompagnateurs conduite accompagnée</li>
-<li>Conducteurs véhicules service urgent</li>
-<li>Conducteurs transport marchandises dangereuses (ADR)</li>
-<li>Conducteurs taxis, voitures location, ambulances, dépanneuses</li>
-<li>Conducteurs autobus, autocars, camions</li>
-<li>Conducteurs transport rémunéré de personnes</li>
-<li>Tout conducteur &lt; 18 ans</li>
-</ul>
 
-<h3>1.4 Stupéfiants</h3>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3. STUPÉFIANTS                                -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="stupefiants" class="section-header sh-red">
+  <span class="icon">💊</span>
+  <h2>Stupéfiants — Tolérance zéro</h2>
+  <span class="badge">Art. 12 — Délit pénal</span>
+</div>
 
-<p><strong>Tolérance zéro.</strong> Toute présence détectée = délit (Art. 12). Test salivaire ou analyse sanguine.</p>
+<div style="background:#fff1f2;border:3px solid #dc2626;border-radius:16px;padding:1.5rem;text-align:center;margin:1rem 0 1.5rem;">
+  <div style="font-size:2.5rem;font-weight:900;color:#be123c;line-height:1;">0 %</div>
+  <div style="font-size:1rem;font-weight:700;color:#9f1239;margin-top:0.5rem;">Toute présence détectée = délit (Art. 12)</div>
+  <div style="font-size:0.85rem;color:#dc2626;margin-top:0.4rem;">Test salivaire ou analyse sanguine</div>
+</div>
 
-<h2>2. Permis à points</h2>
+<div class="regle-box">
+  <span class="r-icon">⚖️</span>
+  <span>Stupéfiants au volant = <strong>6 points + sanctions pénales</strong> (même régime qu'alcool ≥ 1,2 g/L).</span>
+</div>
 
-<h3>2.1 Capital initial</h3>
 
-<p><strong>12 points</strong> à la délivrance. Permis étranger : 12 points virtuels lors première infraction au Luxembourg.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 4. PERMIS À POINTS                            -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="points" class="section-header sh-blue">
+  <span class="icon">⭕</span>
+  <h2>Permis à points — Système luxembourgeois</h2>
+  <span class="badge">12 points au départ</span>
+</div>
 
-<h3>2.2 Tableau complet des infractions à points</h3>
+<div style="background:#eff6ff;border:3px solid #2563eb;border-radius:16px;padding:1.5rem;text-align:center;margin:1rem 0 1.5rem;">
+  <div style="font-size:3.5rem;font-weight:900;color:#1d4ed8;line-height:1;">12 pts</div>
+  <div style="font-size:1rem;font-weight:700;color:#1e40af;margin-top:0.5rem;">Capital initial à la délivrance du permis</div>
+  <div style="font-size:0.85rem;color:#2563eb;margin-top:0.4rem;">Permis étranger : 12 points virtuels lors de la 1ère infraction au Luxembourg</div>
+</div>
 
-<h4>6 points</h4>
-<ul>
-<li>Homicide involontaire lié à infraction routière</li>
-<li>Délits Art. 12 (alcool ≥ 1,2 g/L, stupéfiants, refus contrôle)</li>
-<li>Délit de grande vitesse (récidive 36 mois)</li>
-</ul>
+<p class="sub-title">Tableau des infractions à points</p>
 
-<h4>4 points</h4>
-<ul>
-<li>Coups/blessures involontaires liés à infraction routière</li>
-<li>Conduite sans permis valable</li>
-<li>Tolérer conduite sans permis</li>
-<li>Sans assurance RC</li>
-<li>Délit de fuite</li>
-<li>Surcharge &gt; 10% masse max</li>
-<li>Excès vitesse &gt; 50% du max (≥ +40 km/h constatés)</li>
-<li>Alcool 0,8 – 1,2 g/L</li>
-<li><strong>Téléphone/appareil électronique tenu en main</strong></li>
-<li><strong>Mains-libres non conforme / GPS non fixé</strong></li>
-<li><strong>Casque moto avec équipement communication non conforme</strong></li>
-</ul>
+<div class="pts-card pts-6">
+  <div class="pts-val">6 points</div>
+  <ul>
+    <li>Homicide involontaire lié à infraction routière</li>
+    <li>Alcool ≥ 1,2 g/L · Stupéfiants · Refus contrôle</li>
+    <li>Délit de grande vitesse (récidive dans 36 mois)</li>
+  </ul>
+</div>
 
-<h4>2 points (sélection des plus fréquentes)</h4>
-<ul>
-<li>Alcool 0,5 – 0,8 g/L</li>
-<li>Signes manifestes influence alcool</li>
-<li>Excès vitesse contravention grave</li>
-<li>Non-respect priorité (feu rouge, STOP, priorité droite)</li>
-<li>Non-respect priorité piétons</li>
-<li>Dépassement interdit</li>
-<li>Infraction règles autoroutes</li>
-<li>Distance sécurité &lt; 2 sec hors agglo</li>
-<li>Non-port ceinture</li>
-<li>Non-port casque moto</li>
-</ul>
+<div class="pts-card pts-4">
+  <div class="pts-val">4 points</div>
+  <ul>
+    <li>Coups/blessures involontaires liés à infraction routière</li>
+    <li>Conduite sans permis valable · Tolérer conduite sans permis</li>
+    <li>Sans assurance RC · Délit de fuite</li>
+    <li>Excès vitesse &gt; 50% du max (≥ +40 km/h constatés)</li>
+    <li>Alcool 0,8 – 1,2 g/L</li>
+    <li><strong>Téléphone / appareil électronique tenu en main</strong></li>
+    <li><strong>Mains-libres non conforme / GPS non fixé</strong></li>
+    <li><strong>Casque moto avec équipement communication non conforme</strong></li>
+  </ul>
+</div>
 
-<h3>2.3 Perte totale</h3>
+<div class="pts-card pts-2">
+  <div class="pts-val">2 points (sélection)</div>
+  <ul>
+    <li>Alcool 0,5 – 0,8 g/L</li>
+    <li>Excès vitesse contravention grave</li>
+    <li>Non-respect priorité (feu rouge, STOP, priorité droite)</li>
+    <li>Non-respect priorité piétons</li>
+    <li>Dépassement interdit</li>
+    <li>Couloir de secours autoroute</li>
+    <li>Distance sécurité &lt; 2 sec hors agglo</li>
+    <li>Non-port ceinture · Non-port casque moto</li>
+    <li>Pneus usés (&lt; 1,6 mm)</li>
+  </ul>
+</div>
 
-<p>0 points → <strong>suspension 12 mois</strong>. Récidive dans 3 ans → <strong>24 mois</strong>.</p>
+<p class="sub-title">Perte totale & Récupération</p>
+<div class="stat-cards">
+  <div class="stat-card sc-red">
+    <div class="stat-val">0 pts</div>
+    <div class="stat-label">→ Suspension 12 mois. Récidive dans 3 ans → 24 mois.</div>
+  </div>
+  <div class="stat-card sc-green">
+    <div class="stat-val">+3 pts</div>
+    <div class="stat-label">Formation complémentaire (max 1× / 3 ans)</div>
+  </div>
+  <div class="stat-card sc-blue">
+    <div class="stat-val">12 pts</div>
+    <div class="stat-label">Récupération intégrale après 3 ans sans infraction</div>
+  </div>
+</div>
 
-<h3>2.4 Récupération de points</h3>
 
-<ul>
-<li><strong>Formation complémentaire</strong> : +3 points (max 1× par 3 ans)</li>
-<li><strong>3 ans sans infraction</strong> : récupération intégrale (12 points)</li>
-</ul>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5. TÉLÉPHONE AU VOLANT                        -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="telephone" class="section-header sh-orange">
+  <span class="icon">📱</span>
+  <h2>Téléphone & Appareil électronique au volant</h2>
+  <span class="badge">4 points</span>
+</div>
 
-<h2>3. Téléphone au volant</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#dc2626;">
+    <strong style="color:#9f1239;">INTERDIT — 4 points</strong>
+    <ul style="font-size:0.84rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Tenir, utiliser, manipuler un appareil avec écran</li>
+      <li>Même à l'arrêt au feu rouge</li>
+      <li>Mains-libres non intégré au véhicule</li>
+      <li>GPS non fixé dans support adapté</li>
+    </ul>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;border-color:#16a34a;">
+    <strong style="color:#14532d;">AUTORISÉ</strong>
+    <ul style="font-size:0.84rem;margin:0.5rem 0 0;padding-left:1.2rem;color:#374151;">
+      <li>Système mains-libres <strong>intégré</strong> au véhicule</li>
+      <li>Appareil <strong>fixé</strong> dans support conçu à cet effet</li>
+      <li>Écouteur 1 seule oreille (communication)</li>
+    </ul>
+  </div>
+</div>
 
-<h3>Interdit (4 points) :</h3>
-<ul>
-<li>Utiliser, tenir en main ou manipuler un appareil électronique mobile avec écran</li>
-<li>Véhicule en circulation (même arrêté au feu rouge)</li>
-</ul>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Téléphone = <strong>4 points</strong> (pas 2). Arrêté au feu rouge et vous touchez votre téléphone → <strong>infraction, même si vous ne roulez pas</strong>. Un écouteur à 1 oreille = autorisé. 2 oreilles = interdit (74 €).
+</div>
 
-<h3>Interdit aussi (4 points) :</h3>
-<ul>
-<li>Mains-libres non intégré au véhicule</li>
-<li>GPS/appareil non fixé dans support prévu</li>
-</ul>
 
-<h3>Autorisé :</h3>
-<ul>
-<li>Système mains-libres <strong>intégré</strong> au véhicule</li>
-<li>Appareil <strong>fixé</strong> dans support conçu à cette fin</li>
-</ul>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6. MÉMO                                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="memo" class="section-header sh-grey" style="margin-top:3rem;">
+  <span class="icon">📋</span>
+  <h2>Mémo — À retenir absolument</h2>
+</div>
 
-<p>⚠️ Même à l'arrêt au feu rouge = <strong>4 points</strong></p>
-
-<h2>4. Casque moto avec équipement de communication</h2>
-
-<p>Équipement de communication dans casque :</p>
-<ul>
-<li>Doit être <strong>intégré</strong> ou <strong>fixé conformément aux prescriptions du fabricant</strong></li>
-<li>Non-respect : <strong>4 points</strong></li>
-</ul>
-
-<h2>5. Refus d'obtempérer</h2>
-
-<p>Refus de contrôle alcool/stupéfiants → Assimilé à délit ≥ 1,2 g/L = <strong>6 points</strong></p>
-
-<h2>À retenir pour l'examen</h2>
-<ul>
-<li>0,5 g/L standard</li>
-<li>0,2 g/L novice & pro (PAS 0,0)</li>
-<li>1,2 g/L = délit pénal = 6 points</li>
-<li>12 points au départ</li>
-<li><strong>Téléphone = 4 points</strong> (pas 2)</li>
-<li><strong>Mains-libres non conforme = 4 points</strong></li>
-<li>Feu rouge + téléphone = infraction</li>
-<li>Récupération : +3 pts (formation) ou 12 pts (3 ans sans infraction)</li>
-</ul>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-top:1.25rem;">
+  <div class="regle-box"><span class="r-icon">🍺</span><span>Seuil standard = <strong>0,5 g/L</strong></span></div>
+  <div class="regle-box"><span class="r-icon">👶</span><span>Novices & pros = <strong>0,2 g/L</strong> (PAS 0,0)</span></div>
+  <div class="regle-box"><span class="r-icon">💊</span><span>Stupéfiants = <strong>tolérance zéro</strong> (moindre trace = délit)</span></div>
+  <div class="regle-box"><span class="r-icon">⭕</span><span>Permis commence à <strong>12 points</strong></span></div>
+  <div class="regle-box"><span class="r-icon">📱</span><span>Téléphone = <strong>4 points</strong> (même au feu rouge)</span></div>
+  <div class="regle-box"><span class="r-icon">🔊</span><span>Mains-libres non conforme = <strong>4 points</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🔄</span><span>+3 pts : formation (max 1×/3 ans)</span></div>
+  <div class="regle-box"><span class="r-icon">✅</span><span>Récupération intégrale = <strong>3 ans sans infraction</strong></span></div>
+</div>
 
 </section>
 
 <div class="card" style="text-align:center;">
   <a href="./" class="btn primary">Retour au quiz</a>
+  &nbsp;
+  <a href="sommaire.html" class="btn" style="background:#f1f5f9;color:#1e3a8a;">Tous les cours →</a>
 </div>
 </main>
 
@@ -220,11 +362,12 @@
       <a href="./">Quiz principal</a>
       <a href="sommaire.html">Tous les cours</a>
       <a href="vitesses-distances.html">Vitesses & Distances</a>
-      <a href="signalisation.html">Signalisation</a>
-      <a href="distances-freinage.html">Distances & Freinage</a>
-      <a href="examen-snca.html">Examen théorique</a>
-      <a href="stationnement.html">Stationnement</a>
-      <a href="pietons-cyclistes.html">Piétons & Cyclistes</a>
+      <a href="priorites-circulation.html">Priorités & Circulation</a>
+      <a href="signalisation-complete.html">Signalisation</a>
+      <a href="depassement-cyclistes.html">Dépassement & Cyclistes</a>
+      <a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a>
+      <a href="stationnement-arret.html">Stationnement & Arrêt</a>
+      <a href="equipements-securite.html">Équipements & Sécurité</a>
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
     </div>

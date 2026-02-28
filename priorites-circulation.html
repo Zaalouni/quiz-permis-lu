@@ -19,7 +19,6 @@
   <meta name="theme-color" content="#1e3a8a">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Schema.org structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,24 +31,78 @@
     "educationalLevel": "Beginner",
     "educationalUse": "self-study",
     "teaches": "Priorités, circulation, feux — Préparation examen SNCA",
-    "about": {
-      "@type": "Thing",
-      "name": "Permis de conduire Luxembourg"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "Quiz Permis Luxembourg",
-      "url": "https://zaalouni.github.io/quiz-permis-lu/"
-    }
+    "about": { "@type": "Thing", "name": "Permis de conduire Luxembourg" },
+    "provider": { "@type": "Organization", "name": "Quiz Permis Luxembourg", "url": "https://zaalouni.github.io/quiz-permis-lu/" }
   }
   </script>
+
+  <style>
+    .section-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 2rem}
+    .section-nav a{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:999px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s ease;border:2px solid transparent}
+    .section-nav a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .nav-blue{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.nav-blue:hover{background:#1d4ed8;color:#fff}
+    .nav-red{background:#fff1f2;color:#be123c;border-color:#fecdd3}.nav-red:hover{background:#be123c;color:#fff}
+    .nav-orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.nav-orange:hover{background:#c2410c;color:#fff}
+    .nav-green{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}.nav-green:hover{background:#15803d;color:#fff}
+    .nav-yellow{background:#fefce8;color:#a16207;border-color:#fef08a}.nav-yellow:hover{background:#a16207;color:#fff}
+    .nav-purple{background:#faf5ff;color:#7e22ce;border-color:#e9d5ff}.nav-purple:hover{background:#7e22ce;color:#fff}
+    .nav-grey{background:#f8fafc;color:#475569;border-color:#e2e8f0}.nav-grey:hover{background:#475569;color:#fff}
+    .section-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-radius:10px;margin:2.5rem 0 1.25rem}
+    .section-header .icon{font-size:1.8rem;line-height:1}
+    .section-header h2{margin:0;font-size:1.25rem}
+    .section-header .badge{margin-left:auto;font-size:.75rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    .sh-blue{background:#eff6ff;border-left:5px solid #2563eb}.sh-blue h2{color:#1e40af}.sh-blue .badge{background:#2563eb;color:#fff}
+    .sh-red{background:#fff1f2;border-left:5px solid #e11d48}.sh-red h2{color:#9f1239}.sh-red .badge{background:#e11d48;color:#fff}
+    .sh-orange{background:#fff7ed;border-left:5px solid #ea580c}.sh-orange h2{color:#9a3412}.sh-orange .badge{background:#ea580c;color:#fff}
+    .sh-green{background:#f0fdf4;border-left:5px solid #16a34a}.sh-green h2{color:#14532d}.sh-green .badge{background:#16a34a;color:#fff}
+    .sh-yellow{background:#fefce8;border-left:5px solid #ca8a04}.sh-yellow h2{color:#713f12}.sh-yellow .badge{background:#ca8a04;color:#fff}
+    .sh-purple{background:#faf5ff;border-left:5px solid #9333ea}.sh-purple h2{color:#581c87}.sh-purple .badge{background:#9333ea;color:#fff}
+    .sh-grey{background:#f8fafc;border-left:5px solid #64748b}.sh-grey h2{color:#1e293b}
+    .panneau-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .panneau-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;padding:1rem .75rem .85rem;text-align:center;transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:default}
+    .panneau-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,58,138,.13);border-color:#1e3a8a}
+    .panneau-card img{width:100%;max-width:110px;height:110px;object-fit:contain;border-radius:6px;margin-bottom:.7rem;background:#f8fafc}
+    .panneau-nom{font-size:.82rem;font-weight:700;color:#1e3a8a;margin-bottom:.3rem}
+    .panneau-desc{font-size:.75rem;color:#64748b;line-height:1.4}
+    .scene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;margin:1rem 0 1.5rem}
+    .scene-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;overflow:hidden;transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .scene-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,58,138,.13);border-color:#1e3a8a}
+    .scene-card img{width:100%;height:160px;object-fit:cover;display:block;background:#f1f5f9}
+    .scene-card .scene-info{padding:.75rem}
+    .scene-card .scene-nom{font-size:.83rem;font-weight:700;color:#1e3a8a;margin-bottom:.2rem}
+    .scene-card .scene-desc{font-size:.76rem;color:#64748b;line-height:1.4}
+    .regle-box{background:#fff;border-radius:10px;padding:.9rem 1.1rem;margin:.5rem 0;display:flex;align-items:flex-start;gap:.75rem;border:1.5px solid #e5e7eb;font-size:.9rem}
+    .regle-box .r-icon{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+    .regle-box strong{color:#1e3a8a}
+    .piege{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:1rem 0;font-size:.88rem;color:#78350f}
+    .piege strong{color:#b45309}
+    .sub-title{font-size:1rem;font-weight:700;color:#374151;margin:1.5rem 0 .5rem;padding-bottom:.4rem;border-bottom:2px solid #f1f5f9}
+    .stat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;margin:1rem 0 1.5rem}
+    .stat-card{border-radius:12px;padding:1.25rem 1rem;text-align:center}
+    .stat-card .stat-val{font-size:2rem;font-weight:800;line-height:1;margin-bottom:.35rem}
+    .stat-card .stat-label{font-size:.78rem;font-weight:600;opacity:.8}
+    .sc-blue{background:#eff6ff}.sc-blue .stat-val{color:#1d4ed8}
+    .sc-green{background:#f0fdf4}.sc-green .stat-val{color:#15803d}
+    .sc-orange{background:#fff7ed}.sc-orange .stat-val{color:#c2410c}
+    .sc-red{background:#fff1f2}.sc-red .stat-val{color:#be123c}
+    .sc-yellow{background:#fefce8}.sc-yellow .stat-val{color:#a16207}
+    .sc-grey{background:#f8fafc}.sc-grey .stat-val{color:#475569}
+    .feux-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin:1rem 0}
+    .feu-card{border-radius:12px;padding:1.1rem .85rem;text-align:center;border:2px solid transparent}
+    .feu-rond{width:54px;height:54px;border-radius:50%;margin:0 auto .7rem;border:3px solid rgba(0,0,0,.1)}
+    .feu-rouge .feu-rond{background:#dc2626;box-shadow:0 0 14px rgba(220,38,38,.5)}.feu-rouge{background:#fff1f2;border-color:#fecdd3}
+    .feu-orange .feu-rond{background:#f59e0b;box-shadow:0 0 14px rgba(245,158,11,.5)}.feu-orange{background:#fffbeb;border-color:#fde68a}
+    .feu-vert .feu-rond{background:#16a34a;box-shadow:0 0 14px rgba(22,163,74,.5)}.feu-vert{background:#f0fdf4;border-color:#bbf7d0}
+    .feu-label{font-size:.85rem;font-weight:700;color:#1e293b;margin-bottom:.3rem}
+    .feu-action{font-size:.76rem;color:#475569;line-height:1.4}
+  </style>
 </head>
 <body>
 
 <header class="app-header">
   <div class="brand">
     <h1>Priorités & Circulation</h1>
-    <div class="subtitle">Guide complet — Luxembourg</div>
+    <div class="subtitle">Guide visuel complet — Luxembourg</div>
   </div>
   <div>
     <a href="./" class="btn back-btn">Retour au quiz</a>
@@ -61,155 +114,350 @@
 
 <p><small>Sources : Legilux, Arrêté GD 23/11/1955, RGD 23/07/2020 (giratoires)</small></p>
 
-<h2>1. Hiérarchie des règles</h2>
+<nav class="section-nav" aria-label="Sections">
+  <a href="#hierarchie" class="nav-blue">🏛️ Hiérarchie</a>
+  <a href="#droite" class="nav-yellow">➡️ Priorité droite</a>
+  <a href="#panneaux" class="nav-red">🔴 Panneaux B</a>
+  <a href="#pietons" class="nav-green">🚶 Piétons</a>
+  <a href="#sorties" class="nav-orange">🚗 Sorties</a>
+  <a href="#giratoire" class="nav-purple">🔄 Giratoire</a>
+  <a href="#feux" class="nav-blue">🚦 Feux</a>
+  <a href="#memo" class="nav-grey">📋 Mémo</a>
+</nav>
 
-<p>Ordre absolu d'application :</p>
 
-<ol>
-<li><strong>Agent de circulation</strong></li>
-<li><strong>Feux tricolores</strong></li>
-<li><strong>Panneaux de priorité</strong></li>
-<li><strong>Priorité à droite</strong></li>
-</ol>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 1. HIÉRARCHIE                                 -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="hierarchie" class="section-header sh-blue">
+  <span class="icon">🏛️</span>
+  <h2>Hiérarchie des règles de priorité</h2>
+  <span class="badge">Ordre absolu</span>
+</div>
 
-<p>Le niveau supérieur annule toujours le niveau inférieur.</p>
+<p>Le niveau supérieur <strong>annule toujours</strong> le niveau inférieur :</p>
 
-<p><strong>Explication simple :</strong> Même si le feu est vert, un agent peut vous arrêter. Même si vous êtes sur une route prioritaire, un feu rouge vous oblige à vous arrêter.</p>
+<div class="stat-cards">
+  <div class="stat-card sc-red">
+    <div class="stat-val">①</div>
+    <div class="stat-label">Agent de circulation</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="stat-val">②</div>
+    <div class="stat-label">Feux tricolores</div>
+  </div>
+  <div class="stat-card sc-yellow">
+    <div class="stat-val">③</div>
+    <div class="stat-label">Panneaux de priorité</div>
+  </div>
+  <div class="stat-card sc-green">
+    <div class="stat-val">④</div>
+    <div class="stat-label">Priorité à droite</div>
+  </div>
+</div>
 
-<p><strong>Piège SNCA :</strong> Beaucoup d'élèves appliquent la priorité à droite alors qu'un panneau STOP est présent. Toujours vérifier la hiérarchie.</p>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Même sur une route prioritaire, un feu rouge vous oblige à vous arrêter. Même si le feu est vert, un agent peut vous stopper. Toujours respecter l'ordre ci-dessus.
+</div>
 
-<h2>2. Priorité à droite</h2>
 
-<p>En absence de panneau ou feu : Vous devez céder aux véhicules venant de la droite.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 2. PRIORITÉ À DROITE                          -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="droite" class="section-header sh-yellow">
+  <span class="icon">➡️</span>
+  <h2>Priorité à droite — Méthode des 3 véhicules</h2>
+  <span class="badge">Règle de base</span>
+</div>
 
-<p><strong>Méthode examen (3 véhicules) :</strong></p>
-<ol>
-<li>Celui qui n'a personne à sa droite passe.</li>
-<li>Recommencer mentalement.</li>
-<li>Le dernier passe en dernier.</li>
-</ol>
+<div class="regle-box">
+  <span class="r-icon">📐</span>
+  <span>En absence de panneau ou feu : <strong>céder aux véhicules venant de la droite</strong>.</span>
+</div>
 
-<p><strong>Blocage à 4 véhicules :</strong> Si chacun a un véhicule à sa droite, un conducteur doit céder volontairement à celui venant de sa gauche.</p>
+<p class="sub-title">Méthode pour 3 véhicules à un carrefour</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;">
+    <strong style="color:#a16207;">Étape 1</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">Identifiez celui qui n'a <strong>personne à sa droite</strong> — il passe.</span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;">
+    <strong style="color:#a16207;">Étape 2</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">Recommencez mentalement — cherchez le prochain sans véhicule à droite.</span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;">
+    <strong style="color:#a16207;">Étape 3</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">Le dernier passe en dernier. Si blocage à 4 : un conducteur cède volontairement.</span>
+  </div>
+</div>
 
-<h2>3. Tout droit vs Tourne à gauche</h2>
+<p class="sub-title">Photos de carrefours — exercices de priorité</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/asset_85.jpg" alt="Carrefour — B (cyclomoteur à droite) passe avant A" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Priorité à droite — 2 véhicules</div>
+      <div class="scene-desc">B vient de la droite de A → B passe en premier.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_95.jpg" alt="Cycliste prioritaire à droite" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Cycliste prioritaire à droite</div>
+      <div class="scene-desc">Le cycliste (B) vient de ma droite → je le laisse passer.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_94.jpg" alt="Ordre de passage à un carrefour — C passe, puis A, puis B" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">3 véhicules — ordre C → A → B</div>
+      <div class="scene-desc">C n'a personne à droite → passe. Puis A n'a plus personne à droite → passe. B passe en dernier.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_1306.jpg" alt="Blocage à 4 véhicules — croisement indonésien impossible" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Blocage — croisement indonésien</div>
+      <div class="scene-desc">Chacun a un véhicule à droite → un conducteur doit céder volontairement.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_88.jpg" alt="Carrefour 3 voies — ordre de passage priorité à droite" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Carrefour 3 voies</div>
+      <div class="scene-desc">Appliquer la règle de la droite à chaque véhicule individuellement.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_916_a0.jpg" alt="Sortie de zone piétonne — céder à gauche, droite et sens opposé" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Sortie zone piétonne</div>
+      <div class="scene-desc">Céder à gauche, droite <strong>ET</strong> sens opposé — pas seulement à droite.</div>
+    </div>
+  </div>
+</div>
 
-<p>En sens opposé : Celui qui va <strong>tout droit</strong> est prioritaire. Celui qui tourne à gauche cède.</p>
+<p><strong>Cas particuliers :</strong></p>
+<div class="regle-box">
+  <span class="r-icon">↕️</span>
+  <span><strong>Tout droit vs Tourne à gauche :</strong> En sens opposé, celui qui va tout droit est prioritaire. Celui qui tourne à gauche cède.</span>
+</div>
+<div class="regle-box">
+  <span class="r-icon">↗️</span>
+  <span><strong>Tourne à droite vs Tourne à gauche :</strong> En sens opposé, celui qui tourne à droite est prioritaire.</span>
+</div>
 
-<h2>4. Tourne à droite vs Tourne à gauche</h2>
 
-<p>En sens opposé : Celui qui tourne à <strong>droite</strong> est prioritaire. Celui qui tourne à gauche cède.</p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 3. PANNEAUX DE PRIORITÉ                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="panneaux" class="section-header sh-red">
+  <span class="icon">🔴</span>
+  <h2>Panneaux de priorité — Série B</h2>
+  <span class="badge">Série B</span>
+</div>
 
-<h2>5. Panneaux de priorité</h2>
+<p class="sub-title">Les 5 panneaux B à connaître parfaitement</p>
+<div class="panneau-grid">
+  <div class="panneau-card">
+    <img src="images/q_877_a0.jpg" alt="Cédez le passage — triangle inversé bord rouge" loading="lazy">
+    <div class="panneau-nom">Cédez le passage (B,1)</div>
+    <div class="panneau-desc">Triangle inversé bord rouge — ralentir, céder à tous</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_232_a0.jpg" alt="STOP — octogone rouge arrêt complet obligatoire" loading="lazy">
+    <div class="panneau-nom">STOP (B,2a)</div>
+    <div class="panneau-desc">Octogone rouge — <strong>arrêt complet obligatoire, roues immobilisées</strong></div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_924_a1.jpg" alt="Route prioritaire — losange jaune fond blanc" loading="lazy">
+    <div class="panneau-nom">Route prioritaire (B,3)</div>
+    <div class="panneau-desc">Losange jaune/blanc — vous êtes prioritaire jusqu'au B,4</div>
+  </div>
+  <div class="panneau-card">
+    <div style="width:100%;max-width:110px;height:110px;background:#1d4ed8;border-radius:6px;margin:0 auto 0.7rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+      <div style="display:flex;align-items:center;gap:4px;"><span style="color:#dc2626;font-size:1.8rem;font-weight:900;line-height:1;">←</span></div>
+      <div style="display:flex;align-items:center;gap:4px;"><span style="color:white;font-size:1rem;font-weight:900;">→</span></div>
+      <div style="color:#fff;font-size:0.6rem;font-weight:700;letter-spacing:0.5px;">B,5 céder</div>
+    </div>
+    <div class="panneau-nom">Céder sens inverse (B,5)</div>
+    <div class="panneau-desc">Flèche rouge grande = vous cédez à l'autre sens</div>
+  </div>
+  <div class="panneau-card">
+    <img src="images/q_1299.jpg" alt="Priorité par rapport à la circulation venant en sens inverse" loading="lazy">
+    <div class="panneau-nom">Prioritaire sens inverse (B,5)</div>
+    <div class="panneau-desc">Flèche blanche grande = vous êtes prioritaire</div>
+  </div>
+</div>
 
-<h3>Vous devez céder</h3>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> STOP = arrêt complet, roues immobilisées, <u>même si la route est libre et que vous ne voyez personne</u>. Un simple ralentissement est une infraction.
+</div>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> La route prioritaire (B,3) ne va pas toujours tout droit. Suivez la <strong>ligne épaisse</strong> sur le panneau de configuration pour savoir où elle tourne.
+</div>
 
-<ul>
-<li><strong>Triangle inversé</strong> (cédez le passage) - Signal B,1</li>
-<li><strong>STOP</strong> (octogone rouge) - Signal B,2a</li>
-</ul>
 
-<p><strong>STOP = immobilisation complète, même si personne.</strong></p>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 4. PIÉTONS                                    -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="pietons" class="section-header sh-green">
+  <span class="icon">🚶</span>
+  <h2>Piétons — Priorités absolues</h2>
+  <span class="badge">2 points si non-respect</span>
+</div>
 
-<h3>Vous êtes prioritaire</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;">
+    <strong style="color:#15803d;">Passage piétons (zébras)</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">Priorité absolue au piéton engagé ou manifestant l'intention de traverser.</span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;">
+    <strong style="color:#15803d;">Virage (droite ou gauche)</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">Quand vous tournez, vous devez céder aux piétons qui traversent.</span>
+  </div>
+  <div class="regle-box" style="flex-direction:column;align-items:flex-start;">
+    <strong style="color:#9a3412;">Gué pour piétons</strong>
+    <span style="font-size:0.86rem;margin-top:0.4rem;">Lignes discontinues sans zébras : le piéton doit céder (ne pas confondre avec passage piéton).</span>
+  </div>
+</div>
 
-<ul>
-<li><strong>Losange jaune</strong> (route prioritaire)</li>
-<li>Panneau configuration avec <strong>ligne épaisse</strong></li>
-</ul>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Non-respect de la priorité piétons = <strong>2 points</strong> (Art. 2bis §2 pt 19). Un piéton qui manifeste l'intention de traverser = priorité même s'il n'a pas encore posé le pied sur la route.
+</div>
 
-<p>⚠️ La route prioritaire ne va pas toujours tout droit. → Suivre la ligne épaisse sur le panneau.</p>
 
-<h2>6. Piétons</h2>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 5. SORTIES SANS PRIORITÉ / TRAM / BUS         -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="sorties" class="section-header sh-orange">
+  <span class="icon">🚗</span>
+  <h2>Sorties sans priorité — Tram — Bus</h2>
+  <span class="badge">Zéro priorité</span>
+</div>
 
-<p>Priorité obligatoire :</p>
+<p class="sub-title">Sorties sans priorité — vous cédez à TOUS</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.75rem;margin:1rem 0 1.5rem;">
+  <div class="regle-box"><span class="r-icon">🅿️</span><span>Sortie de parking</span></div>
+  <div class="regle-box"><span class="r-icon">🏠</span><span>Sortie de propriété privée ou chemin privé</span></div>
+  <div class="regle-box"><span class="r-icon">🏘️</span><span>Sortie de zone résidentielle</span></div>
+  <div class="regle-box"><span class="r-icon">⛔</span><span>Après arrêt ou stationnement</span></div>
+  <div class="regle-box"><span class="r-icon">↩️</span><span>Lors d'une marche arrière ou demi-tour</span></div>
+</div>
 
-<ul>
-<li>Passage piéton (zébras)</li>
-<li>Piéton <strong>manifestant intention de traverser</strong></li>
-<li>Lorsque vous tournez à droite ou gauche</li>
-</ul>
+<div class="regle-box">
+  <span class="r-icon">🚃</span>
+  <span><strong>Tram :</strong> Priorité <u>absolue</u> — toujours, même si vous êtes sur une route prioritaire.</span>
+</div>
+<div class="regle-box">
+  <span class="r-icon">🚌</span>
+  <span><strong>Bus en sortie d'arrêt :</strong> En agglomération, si clignotant gauche activé → vous devez <strong>faciliter</strong> sa réinsertion (obligation de faciliter, priorité non absolue).</span>
+</div>
 
-<p>Non-respect priorité piétons : <strong>2 points</strong> (Art. 2bis §2 pt 19)</p>
 
-<h3>Gué pour piétons</h3>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 6. GIRATOIRE & CROISEMENT INDONÉSIEN          -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="giratoire" class="section-header sh-purple">
+  <span class="icon">🔄</span>
+  <h2>Giratoire & Croisement à l'indonésienne</h2>
+  <span class="badge">Clignotant obligatoire</span>
+</div>
 
-<p>Lignes discontinues sans zébras : Le piéton doit céder. Ne pas confondre avec passage piéton.</p>
+<div class="regle-box">
+  <span class="r-icon">🔄</span>
+  <span><strong>Giratoire :</strong> Les véhicules <strong>dans l'anneau</strong> sont prioritaires. À l'entrée, panneau B,1 (cédez le passage).</span>
+</div>
 
-<h2>7. Sorties sans priorité</h2>
+<p class="sub-title">Clignotant au giratoire</p>
+<div class="stat-cards">
+  <div class="stat-card sc-green">
+    <div class="stat-val">✓</div>
+    <div class="stat-label">Sortie — clignotant droit obligatoire</div>
+  </div>
+  <div class="stat-card sc-yellow">
+    <div class="stat-val">≠</div>
+    <div class="stat-label">Entrée — clignotant pas obligatoire</div>
+  </div>
+  <div class="stat-card sc-orange">
+    <div class="stat-val">✓</div>
+    <div class="stat-label">Changement de voie dans l'anneau — clignotant obligatoire</div>
+  </div>
+</div>
 
-<p>Vous cédez à <strong>tous</strong> si vous sortez :</p>
+<div class="regle-box">
+  <span class="r-icon">↙️↗️</span>
+  <span><strong>Croisement à l'indonésienne :</strong> Deux véhicules tournent à gauche en sens opposé → ils se croisent <strong>par l'avant</strong>. Attention : visibilité masquée par les véhicules eux-mêmes.</span>
+</div>
 
-<ul>
-<li>D'un parking</li>
-<li>D'une propriété privée</li>
-<li>D'un chemin privé</li>
-<li>D'une zone résidentielle</li>
-<li>Après arrêt ou stationnement</li>
-<li>Lors d'une marche arrière ou demi-tour</li>
-</ul>
 
-<h2>8. Tram</h2>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 7. FEUX TRICOLORES                            -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="feux" class="section-header sh-blue">
+  <span class="icon">🚦</span>
+  <h2>Feux tricolores</h2>
+  <span class="badge">Art. 2bis §2 pt 18</span>
+</div>
 
-<p><strong>Priorité absolue.</strong> Toujours. Même si vous êtes sur une route prioritaire.</p>
+<div class="feux-grid">
+  <div class="feu-card feu-rouge">
+    <div class="feu-rond"></div>
+    <div class="feu-label">Rouge fixe</div>
+    <div class="feu-action">Arrêt obligatoire avant la ligne</div>
+  </div>
+  <div class="feu-card feu-orange">
+    <div class="feu-rond"></div>
+    <div class="feu-label">Jaune fixe</div>
+    <div class="feu-action">Arrêter si possible sans danger — sinon passer</div>
+  </div>
+  <div class="feu-card feu-vert">
+    <div class="feu-rond"></div>
+    <div class="feu-label">Vert fixe</div>
+    <div class="feu-action">Passage autorisé — céder aux piétons si vous tournez</div>
+  </div>
+  <div class="feu-card feu-orange" style="opacity:0.75;">
+    <div class="feu-rond" style="opacity:0.7;"></div>
+    <div class="feu-label">Jaune clignotant</div>
+    <div class="feu-action">Prudence — règles normales de priorité s'appliquent</div>
+  </div>
+  <div class="feu-card" style="background:#f8fafc;border-color:#e2e8f0;">
+    <div class="feu-rond" style="background:linear-gradient(135deg,#dc2626 50%,#16a34a 50%);box-shadow:none;"></div>
+    <div class="feu-label">Rouge + flèche verte</div>
+    <div class="feu-action">Passer dans la direction de la flèche, en cédant aux piétons</div>
+  </div>
+</div>
 
-<h2>9. Bus en sortie d'arrêt</h2>
+<div class="piege">
+  <strong>PIÈGE SNCA :</strong> Non-respect d'un feu rouge, d'un STOP, ou de la priorité à droite = <strong>2 points</strong> retirés (Art. 2bis §2 pt 18). Le feu jaune ne vous autorise pas à accélérer.
+</div>
 
-<p>En agglomération : Si clignotant gauche activé → vous devez <strong>faciliter</strong> sa réinsertion. La priorité n'est pas absolue, mais obligation de faciliter.</p>
 
-<h2>10. Giratoire</h2>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 8. MÉMO                                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="memo" class="section-header sh-grey" style="margin-top:3rem;">
+  <span class="icon">📋</span>
+  <h2>Mémo — À retenir absolument</h2>
+</div>
 
-<p>Carrefour à sens giratoire (avec cédez le passage) : Les véhicules <strong>dans l'anneau</strong> sont prioritaires.</p>
-
-<h3>Clignotant :</h3>
-
-<div class="seo-table"><table>
-<tr><th>Action</th><th>Clignotant</th></tr>
-<tr><td>Entrée</td><td>Pas obligatoire</td></tr>
-<tr><td>Sortie</td><td>Obligatoire (droit)</td></tr>
-<tr><td>Changement de voie dans l'anneau</td><td>Obligatoire</td></tr>
-</table></div>
-
-<h2>11. Croisement à l'indonésienne</h2>
-
-<p>Deux véhicules tournent à gauche en sens opposé : Ils se croisent <strong>par l'avant</strong>. ⚠️ Attention visibilité masquée.</p>
-
-<h2>12. Feux tricolores</h2>
-
-<div class="seo-table"><table>
-<tr><th>Signal</th><th>Action</th></tr>
-<tr><td>Feu rouge</td><td>Arrêt obligatoire</td></tr>
-<tr><td>Feu jaune fixe</td><td>Arrêt si possible sans danger</td></tr>
-<tr><td>Feu vert</td><td>Passage autorisé (céder aux piétons si vous tournez)</td></tr>
-<tr><td>Feu rouge + flèche verte</td><td>Passage autorisé dans la direction de la flèche, en cédant le passage</td></tr>
-<tr><td>Feu jaune clignotant</td><td>Prudence, priorité à droite ou panneaux s'appliquent</td></tr>
-</table></div>
-
-<h2>13. Infractions priorité</h2>
-
-<p>Non-respect priorité = <strong>2 points</strong> (Art. 2bis §2 pt 18) :</p>
-<ul>
-<li>Feu rouge</li>
-<li>Signal B,1 (cédez le passage)</li>
-<li>Signal B,2a (STOP)</li>
-<li>Priorité à droite</li>
-</ul>
-
-<h2>À retenir pour l'examen</h2>
-<ul>
-<li>Agent &gt; Feu &gt; Panneau &gt; Droite</li>
-<li>STOP = arrêt complet obligatoire (même si route libre)</li>
-<li>Piéton engagé ou manifestant intention = priorité</li>
-<li>Sortie parking = zéro priorité</li>
-<li>Tram = toujours prioritaire</li>
-<li>Giratoire = priorité à l'anneau</li>
-<li>Clignotant sortie giratoire = obligatoire</li>
-<li>Non-respect priorité = 2 points</li>
-</ul>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;margin-top:1.25rem;">
+  <div class="regle-box"><span class="r-icon">🏛️</span><span><strong>Agent > Feu > Panneau > Droite</strong> — ordre absolu, toujours</span></div>
+  <div class="regle-box"><span class="r-icon">🛑</span><span>STOP = arrêt complet, roues immobilisées, <strong>même si route libre</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🚶</span><span>Piéton engagé ou manifestant intention = priorité (<strong>2 pts si non-respect</strong>)</span></div>
+  <div class="regle-box"><span class="r-icon">🚗</span><span>Sortie parking/propriété/résidentielle = <strong>zéro priorité</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🚃</span><span>Tram = <strong>toujours prioritaire</strong> sans exception</span></div>
+  <div class="regle-box"><span class="r-icon">🔄</span><span>Giratoire = priorité à l'anneau · <strong>clignotant sortie obligatoire</strong></span></div>
+  <div class="regle-box"><span class="r-icon">🔶</span><span>Route prioritaire = suivre la <strong>ligne épaisse</strong> sur le panneau B,3</span></div>
+  <div class="regle-box"><span class="r-icon">⚖️</span><span>Non-respect priorité = <strong>2 points</strong> retirés</span></div>
+</div>
 
 </section>
 
 <div class="card" style="text-align:center;">
   <a href="./" class="btn primary">Retour au quiz</a>
+  &nbsp;
+  <a href="sommaire.html" class="btn" style="background:#f1f5f9;color:#1e3a8a;">Tous les cours →</a>
 </div>
 </main>
 
@@ -219,11 +467,12 @@
       <a href="./">Quiz principal</a>
       <a href="sommaire.html">Tous les cours</a>
       <a href="vitesses-distances.html">Vitesses & Distances</a>
-      <a href="alcool-points.html">Alcool & Permis à points</a>
-      <a href="signalisation.html">Signalisation</a>
-      <a href="examen-snca.html">Examen théorique</a>
-      <a href="stationnement.html">Stationnement</a>
-      <a href="pietons-cyclistes.html">Piétons & Cyclistes</a>
+      <a href="alcool-points.html">Alcool & Points</a>
+      <a href="signalisation-complete.html">Signalisation</a>
+      <a href="depassement-cyclistes.html">Dépassement & Cyclistes</a>
+      <a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a>
+      <a href="stationnement-arret.html">Stationnement & Arrêt</a>
+      <a href="equipements-securite.html">Équipements & Sécurité</a>
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
     </div>
