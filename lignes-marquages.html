@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Lignes & Marquages au Sol — Code de la Route Luxembourg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Guide complet des lignes et marquages au sol au Luxembourg : lignes blanches, jaunes, STOP, cédez le passage, passages piétons, flèches directionnelles. 12 pièges SNCA.">
+  <meta name="keywords" content="marquages au sol Luxembourg, lignes blanches route, ligne jaune stationnement, STOP marquage, cédez le passage sol, passage piétons, signalisation horizontale SNCA">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/lignes-marquages.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Lignes & Marquages au Sol — Code de la Route Luxembourg">
+  <meta property="og:description" content="Tout savoir sur les marquages au sol luxembourgeois : lignes blanches, jaunes, STOP, dents de scie, passages piétons. 12 pièges SNCA à ne pas rater.">
+  <meta property="og:url" content="https://zaalouni.github.io/quiz-permis-lu/lignes-marquages.html">
+  <meta property="og:image" content="https://zaalouni.github.io/quiz-permis-lu/icon-512.png">
+  <meta property="og:locale" content="fr_LU">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#1e3a8a">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Lignes & Marquages au Sol — Code de la Route Luxembourg",
+    "description": "Guide complet des lignes et marquages routiers au Luxembourg avec les 12 pièges classiques de l'examen SNCA.",
+    "url": "https://zaalouni.github.io/quiz-permis-lu/lignes-marquages.html",
+    "inLanguage": "fr",
+    "isAccessibleForFree": true,
+    "educationalLevel": "Beginner",
+    "educationalUse": "self-study",
+    "teaches": "Signalisation horizontale, lignes blanches et jaunes, marquages spéciaux au Luxembourg",
+    "about": { "@type": "Thing", "name": "Permis de conduire Luxembourg" },
+    "provider": { "@type": "Organization", "name": "Quiz Permis Luxembourg", "url": "https://zaalouni.github.io/quiz-permis-lu/" }
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Shared layout */
+    .section-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 2rem}
+    .section-nav a{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:999px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s ease;border:2px solid transparent}
+    .section-nav a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .nav-blue{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.nav-blue:hover{background:#1d4ed8;color:#fff}
+    .nav-white{background:#f8fafc;color:#374151;border-color:#e2e8f0}.nav-white:hover{background:#374151;color:#fff}
+    .nav-yellow{background:#fefce8;color:#a16207;border-color:#fef08a}.nav-yellow:hover{background:#a16207;color:#fff}
+    .nav-green{background:#f0fdf4;color:#15803d;border-color:#bbf7d0}.nav-green:hover{background:#15803d;color:#fff}
+    .nav-orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.nav-orange:hover{background:#c2410c;color:#fff}
+    .nav-grey{background:#f8fafc;color:#475569;border-color:#e2e8f0}.nav-grey:hover{background:#475569;color:#fff}
+
+    /* Section headers */
+    .section-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-radius:10px;margin:2.5rem 0 1.25rem}
+    .section-header .icon{font-size:1.8rem;line-height:1}
+    .section-header h2{margin:0;font-size:1.25rem}
+    .section-header .badge{margin-left:auto;font-size:.75rem;font-weight:700;padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    .sh-blue{background:#eff6ff;border-left:5px solid #2563eb}.sh-blue h2{color:#1e40af}.sh-blue .badge{background:#2563eb;color:#fff}
+    .sh-white{background:#f8fafc;border-left:5px solid #64748b}.sh-white h2{color:#1e293b}.sh-white .badge{background:#64748b;color:#fff}
+    .sh-yellow{background:#fefce8;border-left:5px solid #ca8a04}.sh-yellow h2{color:#713f12}.sh-yellow .badge{background:#ca8a04;color:#fff}
+    .sh-green{background:#f0fdf4;border-left:5px solid #16a34a}.sh-green h2{color:#14532d}.sh-green .badge{background:#16a34a;color:#fff}
+    .sh-orange{background:#fff7ed;border-left:5px solid #ea580c}.sh-orange h2{color:#9a3412}.sh-orange .badge{background:#ea580c;color:#fff}
+    .sh-grey{background:#f8fafc;border-left:5px solid #64748b}.sh-grey h2{color:#1e293b}
+    .sh-red{background:#fff1f2;border-left:5px solid #e11d48}.sh-red h2{color:#9f1239}.sh-red .badge{background:#e11d48;color:#fff}
+
+    /* Piège box */
+    .piege{background:#fffbeb;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:1rem 0;font-size:.88rem;color:#78350f}
+    .piege strong{color:#b45309}
+
+    /* Rule boxes */
+    .regle-box{background:#fff;border-radius:10px;padding:.9rem 1.1rem;margin:.5rem 0;display:flex;align-items:flex-start;gap:.75rem;border:1.5px solid #e5e7eb;font-size:.9rem}
+    .regle-box .r-icon{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+    .regle-box strong{color:#1e3a8a}
+
+    /* Sub-titles */
+    .sub-title{font-size:1rem;font-weight:700;color:#374151;margin:1.5rem 0 .5rem;padding-bottom:.4rem;border-bottom:2px solid #f1f5f9}
+
+    /* Scene / image cards */
+    .scene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem;margin:1rem 0 1.5rem}
+    .scene-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;overflow:hidden;transition:all .25s ease;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .scene-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(30,58,138,.13);border-color:#1e3a8a}
+    .scene-card img{width:100%;height:150px;object-fit:cover;display:block;background:#f1f5f9}
+    .scene-card .scene-info{padding:.75rem}
+    .scene-card .scene-nom{font-size:.83rem;font-weight:700;color:#1e3a8a;margin-bottom:.2rem}
+    .scene-card .scene-desc{font-size:.76rem;color:#64748b;line-height:1.4}
+
+    /* Line visual elements */
+    .ligne-demo-box{border-radius:12px;overflow:hidden;margin-bottom:1.25rem;border:1.5px solid #e5e7eb;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+    .ligne-demo-road{background:#4a5568;padding:1.5rem 2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;position:relative}
+    .ligne-demo-info{background:#fff;padding:1rem 1.25rem}
+    .ligne-demo-info .ldi-title{font-weight:700;color:#1e3a8a;font-size:.9rem;margin-bottom:.4rem}
+    .ligne-demo-info .ldi-desc{font-size:.82rem;color:#374151;line-height:1.5}
+
+    /* Line styles */
+    .line-dashed{height:4px;width:90%;background:transparent;border-top:4px dashed #fff;margin:0 auto}
+    .line-solid{height:4px;width:90%;background:#fff;margin:0 auto}
+    .line-long-dash{height:4px;width:90%;background:transparent;border-top:4px solid transparent;background-image:repeating-linear-gradient(to right,#fff 0,#fff 40px,transparent 40px,transparent 60px);margin:0 auto}
+    .line-mixed{height:4px;width:90%;background-image:repeating-linear-gradient(to right,#fff 0,#fff 50px,transparent 50px,transparent 60px,#fff 60px,#fff 70px,transparent 70px,transparent 80px,#fff 80px,#fff 90px,transparent 90px,transparent 100px);margin:0 auto}
+    .line-yellow-solid{height:6px;width:90%;background:#eab308;margin:0 auto;border-radius:3px}
+    .line-yellow-dashed{height:6px;width:90%;background:transparent;border-top:6px dashed #eab308;margin:0 auto}
+    .line-stop{height:10px;width:90%;background:#fff;margin:0 auto;border-radius:2px}
+    .line-zebra{height:40px;width:90%;background:repeating-linear-gradient(to right,#fff 0,#fff 18px,#4a5568 18px,#4a5568 30px);margin:0 auto;border-radius:2px}
+    .line-dents{height:20px;width:90%;background:none;margin:0 auto;position:relative;overflow:hidden}
+    .line-dents::before{content:'▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼';color:#fff;font-size:.8rem;letter-spacing:4px;position:absolute;width:100%;text-align:center;line-height:20px}
+    .line-hachures{height:35px;width:90%;background:repeating-linear-gradient(45deg,#fff 0,#fff 5px,transparent 5px,transparent 12px);margin:0 auto;border-radius:2px;opacity:.8}
+    .line-zigzag{height:15px;width:90%;margin:0 auto;background:none;position:relative}
+    .line-zigzag::before{content:'';display:block;height:15px;background-image:linear-gradient(135deg,transparent 33%,#eab308 33%,#eab308 50%,transparent 50%),linear-gradient(45deg,transparent 33%,#eab308 33%,#eab308 50%,transparent 50%);background-size:20px 15px;background-position:0 0,0 0}
+
+    /* Data table */
+    .data-table{width:100%;border-collapse:collapse;font-size:.85rem;margin:.75rem 0 1.5rem}
+    .data-table th{background:#1e3a8a;color:#fff;padding:.6rem .9rem;text-align:left;font-size:.78rem}
+    .data-table td{padding:.55rem .9rem;border-bottom:1px solid #e5e7eb;vertical-align:top}
+    .data-table tr:nth-child(even) td{background:#f8fafc}
+    .data-table tr:hover td{background:#eff6ff}
+
+    /* Color-coded recap table */
+    .recap-table{width:100%;border-collapse:collapse;font-size:.83rem;margin:1rem 0}
+    .recap-table th{padding:.6rem .9rem;text-align:left;font-size:.78rem}
+    .recap-table td{padding:.55rem .9rem;border-bottom:1px solid #e5e7eb;vertical-align:middle}
+    .recap-table tr:nth-child(even) td{background:rgba(255,255,255,.5)}
+    .color-chip{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:5px;vertical-align:middle;border:1px solid rgba(0,0,0,.1)}
+
+    /* Piège cards */
+    .piege-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:10px;padding:1rem 1.25rem;margin:.75rem 0}
+    .piege-card:hover{border-color:#1e3a8a;box-shadow:0 4px 12px rgba(30,58,138,.1)}
+    .piege-num{display:inline-block;background:#1e3a8a;color:#fff;font-size:.75rem;font-weight:700;padding:.15rem .5rem;border-radius:4px;margin-bottom:.5rem}
+    .piege-title{font-weight:600;color:#1e293b;font-size:.95rem;margin-bottom:.6rem}
+    .faux-cru{background:#fef2f2;border-left:3px solid #ef4444;padding:.5rem .8rem;border-radius:0 4px 4px 0;margin-bottom:.4rem;font-size:.85rem;color:#7f1d1d}
+    .faux-cru .lbl{font-weight:700;font-size:.75rem;color:#dc2626;text-transform:uppercase;letter-spacing:.5px}
+    .vrai-rep{background:#f0fdf4;border-left:3px solid #22c55e;padding:.5rem .8rem;border-radius:0 4px 4px 0;font-size:.85rem;color:#14532d}
+    .vrai-rep .lbl{font-weight:700;font-size:.75rem;color:#16a34a;text-transform:uppercase;letter-spacing:.5px}
+
+    /* Ligne grid */
+    .ligne-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;margin:1rem 0 1.5rem}
+
+    /* Badge */
+    .badge-interdit{display:inline-block;background:#fee2e2;color:#dc2626;font-weight:700;padding:.15rem .5rem;border-radius:4px;font-size:.78rem}
+    .badge-autorise{display:inline-block;background:#dcfce7;color:#15803d;font-weight:700;padding:.15rem .5rem;border-radius:4px;font-size:.78rem}
+    .badge-attention{display:inline-block;background:#ffedd5;color:#c2410c;font-weight:700;padding:.15rem .5rem;border-radius:4px;font-size:.78rem}
+  </style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <h1>Lignes & Marquages au Sol</h1>
+    <div class="subtitle">Signalisation horizontale — Luxembourg</div>
+  </div>
+  <div>
+    <a href="./" class="btn back-btn">Retour au quiz</a>
+  </div>
+</header>
+
+<main class="app-main">
+<section class="card seo-content cours-page">
+
+<p><small>Sources : transports.public.lu (Art. 110 & 112 Code de la route LU) | police.public.lu | legilux.public.lu — Dernière mise à jour : mars 2026</small></p>
+
+<nav class="section-nav" aria-label="Sections">
+  <a href="#principe" class="nav-blue">📌 Principe</a>
+  <a href="#longitudinales" class="nav-white">— Longitudinales</a>
+  <a href="#transversales" class="nav-green">⊥ Transversales</a>
+  <a href="#speciaux" class="nav-orange">🔶 Spéciaux</a>
+  <a href="#couleurs" class="nav-yellow">🎨 Couleurs</a>
+  <a href="#pieges" class="nav-orange">⚠️ 12 Pièges SNCA</a>
+  <a href="#memo" class="nav-grey">📋 Mémo</a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PRINCIPE FONDAMENTAL                    -->
+<!-- ═══════════════════════════════════════ -->
+<div id="principe" class="section-header sh-blue">
+  <span class="icon">📌</span>
+  <h2>Principe fondamental</h2>
+  <span class="badge">Art. 110 & 112 CdR LU</span>
+</div>
+
+<div style="background:#eff6ff;border:2px solid #2563eb;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;">
+  <p style="margin:0;font-style:italic;color:#1e40af;line-height:1.7;">"Le marquage sur la voie, encore appelé <strong>signalisation horizontale</strong>, s'utilise seul ou en complément des signaux routiers pour guider le conducteur ou délimiter des espaces à caractéristiques particulières. Les usagers doivent s'y conformer."</p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+  <div style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;padding:1rem;text-align:center;">
+    <div style="font-size:2.5rem;margin-bottom:.4rem;">⬜</div>
+    <div style="font-weight:800;color:#374151;font-size:1rem;">BLANC</div>
+    <div style="font-size:.82rem;color:#64748b;margin-top:.3rem;">Marquage permanent standard</div>
+  </div>
+  <div style="background:#fefce8;border:2px solid #fde047;border-radius:10px;padding:1rem;text-align:center;">
+    <div style="font-size:2.5rem;margin-bottom:.4rem;">🟨</div>
+    <div style="font-weight:800;color:#a16207;font-size:1rem;">JAUNE</div>
+    <div style="font-size:.82rem;color:#854d0e;margin-top:.3rem;">Prime toujours le blanc en cas de conflit</div>
+  </div>
+</div>
+
+<div class="piege">
+  <strong>RÈGLE D'OR :</strong> En cas de conflit entre marquage blanc et marquage jaune, le <strong>jaune prime toujours</strong>. C'est notamment le cas lors des chantiers.
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOC 1 — LIGNES LONGITUDINALES         -->
+<!-- ═══════════════════════════════════════ -->
+<div id="longitudinales" class="section-header sh-white">
+  <span class="icon">—</span>
+  <h2>Bloc 1 — Lignes Longitudinales</h2>
+  <span class="badge">Dans le sens de la route</span>
+</div>
+
+<p style="color:#64748b;margin-bottom:1.5rem;">Ces lignes séparent les voies ou délimitent les bordures. Elles s'étendent dans le sens de la circulation.</p>
+
+<p class="sub-title">Illustration visuelle des types de lignes</p>
+
+<div class="ligne-grid">
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road">
+      <div style="height:6px;"></div>
+      <div class="line-dashed"></div>
+      <div style="height:6px;"></div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Ligne axiale discontinue blanche</div>
+      <div class="ldi-desc">Séparation de 2 sens · Dépassement <span class="badge-autorise">✅ Autorisé</span> si visibilité · Stationnement en contresens <span class="badge-autorise">✅ Autorisé au LU</span></div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road">
+      <div style="height:6px;"></div>
+      <div class="line-solid"></div>
+      <div style="height:6px;"></div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Ligne de sécurité continue blanche</div>
+      <div class="ldi-desc">Zones dangereuses · Dépassement <span class="badge-interdit">❌ INTERDIT</span> · Franchissement <span class="badge-interdit">❌ INTERDIT</span> (même pour cycliste)</div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road">
+      <div style="height:6px;"></div>
+      <div class="line-mixed"></div>
+      <div style="height:6px;"></div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Ligne mixte (continue + discontinue)</div>
+      <div class="ldi-desc">Chaque conducteur respecte la ligne <strong>de son côté</strong> · Continue à gauche = dépassement <span class="badge-interdit">❌ interdit pour vous</span></div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road">
+      <div style="height:6px;"></div>
+      <div class="line-long-dash"></div>
+      <div style="height:6px;"></div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Ligne de dissuasion (traits longs)</div>
+      <div class="ldi-desc">Dépassement déconseillé mais <span class="badge-attention">⚠️ non interdit</span> · Franchissement possible avec prudence maximale</div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road" style="padding:.8rem 2rem;">
+      <div class="line-yellow-solid"></div>
+      <div style="font-size:.7rem;color:#d4d4d4;margin-top:.4rem;">— trottoir —</div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Ligne jaune continue sur bordure</div>
+      <div class="ldi-desc">Stationnement <span class="badge-interdit">❌ INTERDIT</span> · Arrêt <span class="badge-interdit">❌ INTERDIT</span> · Amende 49€ à 145€</div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road" style="padding:.8rem 2rem;">
+      <div class="line-yellow-dashed"></div>
+      <div style="font-size:.7rem;color:#d4d4d4;margin-top:.4rem;">— trottoir —</div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Ligne jaune discontinue sur bordure</div>
+      <div class="ldi-desc">Stationnement <span class="badge-interdit">❌ INTERDIT</span> · Arrêt bref <span class="badge-autorise">✅ Autorisé</span> (dépose passager, conducteur reste)</div>
+    </div>
+  </div>
+
+</div>
+
+<p class="sub-title">Photos de situations réelles</p>
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/q_1018_a0.jpg" alt="Ligne jaune discontinue au bord du trottoir — arrêt autorisé, stationnement interdit" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Ligne jaune discontinue — bordure</div>
+      <div class="scene-desc">Arrêt court autorisé (dépose) — stationnement interdit. Spécificité LU.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_1205_a0.jpg" alt="Ligne blanche continue au sol — dépassement interdit, ne pas franchir" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Ligne blanche continue — axiale</div>
+      <div class="scene-desc">Franchissement strictement interdit. Même pour dépasser un cycliste.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/asset_32.jpg" alt="Signal arrêt interdit — ligne jaune ou panneau C6" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Signal arrêt interdit</div>
+      <div class="scene-desc">Ligne jaune continue ou panneau C6 — arrêt et stationnement interdits.</div>
+    </div>
+  </div>
+</div>
+
+<div class="regle-box">
+  <span class="r-icon">🇱🇺</span>
+  <span><strong>Spécificité luxembourgeoise :</strong> Le stationnement en contresens est <strong>autorisé</strong> dans une rue à double sens si la <strong>ligne axiale est discontinue</strong>. Cette règle est absente dans la plupart des pays voisins — c'est un classique de l'examen SNCA.</span>
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA — Ligne mixte :</strong> Regardez uniquement la ligne du côté de <em>votre</em> véhicule. Si la ligne continue est à votre gauche, dépassement interdit pour vous — peu importe ce qu'il y a de l'autre côté.
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOC 2 — LIGNES TRANSVERSALES          -->
+<!-- ═══════════════════════════════════════ -->
+<div id="transversales" class="section-header sh-green">
+  <span class="icon">⊥</span>
+  <h2>Bloc 2 — Lignes Transversales</h2>
+  <span class="badge">Perpendiculaires à la route</span>
+</div>
+
+<p style="color:#64748b;margin-bottom:1.5rem;">Ces lignes indiquent des points d'arrêt ou de cession de priorité. Elles traversent la chaussée perpendiculairement.</p>
+
+<div class="ligne-grid">
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road">
+      <div style="height:12px;"></div>
+      <div class="line-stop"></div>
+      <div style="height:12px;"></div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Ligne d'arrêt blanche — STOP</div>
+      <div class="ldi-desc">Arrêt <strong>absolu obligatoire</strong> avant la ligne · Même si voie libre · Avec panneau STOP octogone rouge (B2)</div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road">
+      <div style="height:6px;"></div>
+      <div class="line-dents"></div>
+      <div style="height:6px;"></div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Dents de scie — Cédez le passage</div>
+      <div class="ldi-desc">Ralentir, <strong>s'arrêter si nécessaire</strong> · Pas d'arrêt si voie libre · Avec panneau B1 (triangle renversé)</div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road">
+      <div style="height:4px;"></div>
+      <div class="line-zebra"></div>
+      <div style="height:4px;"></div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Passage pour piétons — Zèbres</div>
+      <div class="ldi-desc">Piétons prioritaires · Stationnement interdit sur et à moins de <strong>5 m avant</strong> le passage · Amende 49€</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="scene-grid">
+  <div class="scene-card">
+    <img src="images/q_232_a0.jpg" alt="Panneau STOP — octogone rouge arrêt complet obligatoire" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">STOP — arrêt absolu</div>
+      <div class="scene-desc">Ligne large blanche au sol + panneau octogone rouge. Arrêt obligatoire même voie libre.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_877_a0.jpg" alt="Panneau cédez le passage — triangle inversé bord rouge" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Cédez le passage — dents de scie</div>
+      <div class="scene-desc">Triangle inversé au sol (dents de scie) + panneau B1. Arrêt si nécessaire seulement.</div>
+    </div>
+  </div>
+  <div class="scene-card">
+    <img src="images/q_252_a0.jpg" alt="Passage piéton et cycliste — panneau et marquage au sol" loading="lazy">
+    <div class="scene-info">
+      <div class="scene-nom">Passage piétons & cyclistes</div>
+      <div class="scene-desc">Priorité absolue aux piétons qui s'engagent ou manifestent l'intention de traverser.</div>
+    </div>
+  </div>
+</div>
+
+<div style="overflow-x:auto;">
+<table class="data-table">
+  <thead><tr><th>Marquage</th><th>Obligation</th><th>Arrêt si voie libre ?</th></tr></thead>
+  <tbody>
+    <tr><td>Ligne large blanche (STOP)</td><td>Arrêt <strong>absolu et total</strong></td><td><strong>OUI — toujours</strong></td></tr>
+    <tr><td>Dents de scie (Cédez)</td><td>Ralentir, céder le passage</td><td><strong>NON</strong> si voie libre</td></tr>
+    <tr><td>Zèbres (passage piétons)</td><td>Céder aux piétons engagés</td><td>Ralentir, prêt à s'arrêter</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="piege">
+  <strong>PIÈGE SNCA — STOP vs Cédez :</strong> Le STOP impose un arrêt <em>complet</em> même si la route est vide. Les dents de scie imposent seulement de <em>céder</em> — si la voie est libre, on peut passer sans s'arrêter.
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOC 3 — MARQUAGES SPÉCIAUX           -->
+<!-- ═══════════════════════════════════════ -->
+<div id="speciaux" class="section-header sh-orange">
+  <span class="icon">🔶</span>
+  <h2>Bloc 3 — Marquages Spéciaux & Zones</h2>
+  <span class="badge">Situations particulières</span>
+</div>
+
+<div class="ligne-grid">
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road">
+      <div class="line-hachures"></div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Hachures obliques (zébras)</div>
+      <div class="ldi-desc">Arrêt + stationnement <span class="badge-interdit">❌ interdits</span> · Circulation <span class="badge-autorise">✅ permise</span> si nécessaire (pour traverser, tourner)</div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road" style="padding:1rem 2rem;">
+      <div class="line-zigzag"></div>
+      <div style="font-size:.65rem;color:#d4d4d4;margin-top:.4rem;text-align:center;">zone arrêt de bus</div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Ligne zigzag jaune — Arrêt de bus</div>
+      <div class="ldi-desc">Zone d'arrêt bus · Autres véhicules : arrêt <span class="badge-interdit">❌ interdit</span> · La délimitation au sol <strong>prime</strong> sur la distance des 15 m</div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road" style="min-height:70px;display:flex;align-items:center;justify-content:center;">
+      <div style="width:50px;height:50px;position:relative;">
+        <div style="position:absolute;width:2px;height:100%;background:#fff;transform:rotate(45deg);left:50%;"></div>
+        <div style="position:absolute;width:2px;height:100%;background:#fff;transform:rotate(-45deg);left:50%;"></div>
+      </div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Croix diagonale (X)</div>
+      <div class="ldi-desc">Arrêt + stationnement + arrêt prolongé <span class="badge-interdit">❌ interdits</span> · Contexte livraisons ou bus · Amende 49€ à 145€</div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road" style="min-height:70px;display:flex;align-items:center;justify-content:center;">
+      <div style="font-size:2.5rem;color:#fff;letter-spacing:.3rem;">↑ ↗</div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Flèches de présélection</div>
+      <div class="ldi-desc">Direction <strong>obligatoire</strong> pour cette voie · Changement de voie possible <strong>avant</strong> la flèche, <span class="badge-interdit">❌ interdit dessus</span></div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road" style="min-height:70px;display:flex;align-items:center;justify-content:center;">
+      <div style="background:#fff;border-radius:4px;padding:.2rem .8rem;font-size:1rem;font-weight:900;color:#4a5568;letter-spacing:.2rem;">BUS</div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Marquage "BUS" au sol</div>
+      <div class="ldi-desc">Voie réservée aux bus · Cyclistes autorisés <span class="badge-attention">⚠️ uniquement si panneau</span> l'autorise</div>
+    </div>
+  </div>
+
+  <div class="ligne-demo-box">
+    <div class="ligne-demo-road" style="min-height:70px;display:flex;align-items:center;justify-content:center;">
+      <div style="border:3px solid #fff;border-radius:4px;width:80px;height:45px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:.65rem;color:#9ca3af;">emplacement</span>
+      </div>
+    </div>
+    <div class="ligne-demo-info">
+      <div class="ldi-title">Rectangle blanc — Place de stationnement</div>
+      <div class="ldi-desc">Stationnement <span class="badge-autorise">✅ autorisé</span> dans le rectangle · Restrictions additionnelles (panneau, durée) s'appliquent en plus</div>
+    </div>
+  </div>
+
+</div>
+
+<p class="sub-title">Bande d'arrêt d'urgence (BAU) — Autoroute</p>
+<div style="background:#1e293b;border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;color:#e2e8f0;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;">
+    <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.75rem;text-align:center;">
+      <div style="font-size:1rem;font-weight:700;color:#f87171;">Panne / Urgence</div>
+      <div style="font-size:.78rem;margin-top:.3rem;color:#94a3b8;">Seul usage autorisé</div>
+    </div>
+    <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.75rem;text-align:center;">
+      <div style="font-size:1rem;font-weight:700;color:#f87171;">Téléphone / Repos</div>
+      <div style="font-size:.78rem;margin-top:.3rem;color:#94a3b8;">INTERDIT sur la BAU</div>
+    </div>
+    <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.75rem;text-align:center;">
+      <div style="font-size:1rem;font-weight:700;color:#4ade80;">Couloir de secours</div>
+      <div style="font-size:.78rem;margin-top:.3rem;color:#94a3b8;">Autorisé + obligatoire en bouchon</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOC 4 — RÉCAPITULATIF COULEURS        -->
+<!-- ═══════════════════════════════════════ -->
+<div id="couleurs" class="section-header sh-yellow">
+  <span class="icon">🎨</span>
+  <h2>Bloc 4 — Récapitulatif Couleurs & Formes</h2>
+  <span class="badge">Synthèse complète</span>
+</div>
+
+<div style="overflow-x:auto;">
+<table class="recap-table" style="background:#f8fafc;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb;">
+  <thead style="background:#374151;">
+    <tr>
+      <th style="color:#fff;padding:.6rem .9rem;">Couleur</th>
+      <th style="color:#fff;padding:.6rem .9rem;">Forme</th>
+      <th style="color:#fff;padding:.6rem .9rem;">Signification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="color-chip" style="background:#fff;border-color:#ccc;"></span>Blanche</td><td>Continue axiale</td><td>Dépassement / franchissement <strong>INTERDIT</strong></td></tr>
+    <tr><td><span class="color-chip" style="background:#fff;border-color:#ccc;"></span>Blanche</td><td>Discontinue axiale</td><td>Dépassement <strong>AUTORISÉ</strong> si sécurité</td></tr>
+    <tr><td><span class="color-chip" style="background:#fff;border-color:#ccc;"></span>Blanche</td><td>Mixte</td><td>Respecter la ligne de <strong>son côté</strong></td></tr>
+    <tr><td><span class="color-chip" style="background:#fff;border-color:#ccc;"></span>Blanche</td><td>Dents de scie</td><td><strong>Céder le passage</strong> (arrêter si nécessaire)</td></tr>
+    <tr><td><span class="color-chip" style="background:#fff;border-color:#ccc;"></span>Blanche</td><td>Bande large transversale</td><td><strong>STOP</strong> — arrêt absolu obligatoire</td></tr>
+    <tr><td><span class="color-chip" style="background:#fff;border-color:#ccc;"></span>Blanche</td><td>Zèbres</td><td>Passage piétons — <strong>priorité piétons</strong></td></tr>
+    <tr><td><span class="color-chip" style="background:#fff;border-color:#ccc;"></span>Blanche</td><td>Rectangle</td><td><strong>Stationnement autorisé</strong></td></tr>
+    <tr><td><span class="color-chip" style="background:#fff;border-color:#ccc;"></span>Blanche</td><td>Hachures obliques</td><td>Arrêt + stationnement <strong>interdits</strong></td></tr>
+    <tr style="background:#fefce8;"><td><span class="color-chip" style="background:#eab308;"></span><strong>Jaune</strong></td><td>Continue bordure</td><td>Stationnement <strong>INTERDIT</strong> — arrêt interdit aussi</td></tr>
+    <tr style="background:#fefce8;"><td><span class="color-chip" style="background:#eab308;"></span><strong>Jaune</strong></td><td>Discontinue bordure</td><td>Stationnement <strong>INTERDIT</strong> — arrêt court autorisé</td></tr>
+    <tr style="background:#fefce8;"><td><span class="color-chip" style="background:#eab308;"></span><strong>Jaune</strong></td><td>Zigzag chaussée</td><td>Arrêt <strong>interdit</strong> (zone bus)</td></tr>
+    <tr style="background:#fefce8;"><td><span class="color-chip" style="background:#eab308;"></span><strong>Jaune</strong></td><td>Temporaire chantier</td><td><strong>Prime le blanc</strong> — à suivre en priorité absolue</td></tr>
+  </tbody>
+</table>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOC 5 — 12 PIÈGES SNCA               -->
+<!-- ═══════════════════════════════════════ -->
+<div id="pieges" class="section-header sh-orange">
+  <span class="icon">⚠️</span>
+  <h2>Bloc 5 — 12 Pièges SNCA — Lignes & Marquages</h2>
+  <span class="badge">À maîtriser absolument</span>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P1</div>
+  <div class="piege-title">Ligne jaune continue : arrêt autorisé ou non ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« Ligne jaune continue = stationnement interdit mais arrêt OK »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>Ligne jaune <strong>continue</strong> sur bordure = <strong>stationnement ET arrêt interdits</strong>. C'est la ligne jaune <strong>discontinue</strong> qui autorise l'arrêt bref.</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P2</div>
+  <div class="piege-title">Stationnement en contresens : légal au Luxembourg ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« Stationner en contresens est toujours interdit »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>Au Luxembourg, <strong>autorisé en rue à double sens si la ligne axiale est discontinue</strong>. C'est une spécificité luxembourgeoise absente dans la plupart des autres pays.</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P3</div>
+  <div class="piege-title">Jaune chantier vs blanc permanent : lequel respecter ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« Je suis le marquage blanc car il est permanent »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>Le marquage <strong>jaune chantier prime toujours le blanc</strong>, même si les deux sont visibles simultanément.</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P4</div>
+  <div class="piege-title">Ligne mixte : quel côté regarde-t-on ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« Si je vois une ligne continue devant moi, je peux dépasser si l'autre côté est discontinu »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>Chaque conducteur respecte uniquement la ligne <strong>de son propre côté</strong>. Ligne continue à votre gauche = dépassement <strong>interdit pour vous</strong>, peu importe l'autre côté.</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P5</div>
+  <div class="piege-title">Arrêt de bus avec marquage zigzag : distance des 15 m valable ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« Je peux stationner si je suis à plus de 15 m du panneau d'arrêt de bus »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>Si un <strong>marquage au sol zigzag jaune</strong> délimite la zone, c'est ce marquage qui fait foi, <strong>quelle que soit la distance du panneau</strong>.</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P6</div>
+  <div class="piege-title">Passage piéton : à quelle distance est-il interdit de stationner ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« Juste sur le passage lui-même »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>Interdit de stationner sur le passage <strong>ET dans un rayon de 5 m en amont</strong> (côté approche). L'arrêt y est également interdit.</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P7</div>
+  <div class="piege-title">Dents de scie = même obligation que STOP ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« Les dents de scie imposent un arrêt complet comme le STOP »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>Les dents de scie (cédez le passage) imposent de <strong>ralentir et s'arrêter si nécessaire</strong>. Si voie libre → passage sans arrêt obligatoire. Le STOP impose un <strong>arrêt absolu</strong>, voie libre ou non.</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P8</div>
+  <div class="piege-title">Voie bus : les cyclistes peuvent-ils y circuler ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« Les cyclistes sont toujours interdits sur les voies bus »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>Les cyclistes sont en principe interdits, <strong>sauf si un panneau ou marquage l'autorise explicitement</strong>.</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P9</div>
+  <div class="piege-title">Bande d'arrêt d'urgence autoroute : quand l'utiliser ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« On peut s'y arrêter pour téléphoner ou se reposer »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>La BAU est réservée aux <strong>arrêts d'urgence non planifiés</strong> (panne, malaise). Téléphone = <strong>interdit</strong>. Repos = <strong>interdit</strong>. Formation du couloir de secours = <strong>autorisé et obligatoire</strong> en bouchon.</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P10</div>
+  <div class="piege-title">Hachures obliques (zébras) : peut-on y circuler ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« On ne peut ni stationner ni circuler sur les hachures »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>L'arrêt et le stationnement y sont interdits, mais <strong>la circulation est permise</strong> si nécessaire pour traverser la zone (ex. pour tourner).</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P11</div>
+  <div class="piege-title">Flèche de présélection : peut-on changer de voie dessus ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« On peut changer de voie jusqu'au carrefour »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>Le changement de voie est <strong>possible avant la flèche</strong>, mais <strong>interdit une fois sur la flèche</strong> peinte. La flèche engage le conducteur dans la direction indiquée.</div>
+</div>
+
+<div class="piege-card">
+  <div class="piege-num">P12</div>
+  <div class="piege-title">Rectangle blanc : autorise-t-il toujours le stationnement ?</div>
+  <div class="faux-cru"><div class="lbl">❌ Faux cru</div>« Un rectangle blanc = je peux toujours stationner »</div>
+  <div class="vrai-rep"><div class="lbl">✅ Vrai</div>Le rectangle délimite un emplacement, mais si un <strong>panneau additionnel</strong> indique une restriction (durée limitée, disque requis, véhicule spécifique), ces restrictions s'appliquent <strong>en plus</strong>. Le rectangle seul n'est pas une autorisation inconditionnelle.</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- BLOC 6 — MÉMO RAPIDE                  -->
+<!-- ═══════════════════════════════════════ -->
+<div id="memo" class="section-header sh-grey">
+  <span class="icon">📋</span>
+  <h2>Bloc 6 — Résumé Mémorisation Rapide</h2>
+</div>
+
+<div style="overflow-x:auto;">
+<table class="data-table">
+  <thead><tr><th>À retenir</th><th>Règle</th></tr></thead>
+  <tbody>
+    <tr><td>Jaune continu sur bordure</td><td>Arrêt + stationnement <strong>interdits</strong></td></tr>
+    <tr><td>Jaune discontinu sur bordure</td><td>Stationnement interdit / arrêt bref <strong>OK</strong></td></tr>
+    <tr><td>Jaune zigzag chaussée</td><td>Zone d'arrêt bus — arrêt autres véhicules <strong>interdit</strong></td></tr>
+    <tr><td>Jaune chantier</td><td>Prime <strong>TOUJOURS</strong> le marquage blanc</td></tr>
+    <tr><td>Blanc continu axial</td><td>Franchissement <strong>INTERDIT</strong></td></tr>
+    <tr><td>Blanc discontinu axial</td><td>Franchissement <strong>AUTORISÉ</strong> si sécurisé</td></tr>
+    <tr><td>Blanc mixte</td><td>Respecter la ligne de <strong>SON côté</strong></td></tr>
+    <tr><td>Dents de scie</td><td>Cédez le passage (arrêt <strong>si nécessaire</strong> seulement)</td></tr>
+    <tr><td>Bande large blanche</td><td>STOP = arrêt <strong>absolu</strong> obligatoire</td></tr>
+    <tr><td>Zèbres</td><td>Passage piétons — priorité piétons</td></tr>
+    <tr><td>Stationnement en contresens LU</td><td>Autorisé si ligne axiale <strong>discontinue</strong></td></tr>
+    <tr><td>5 m avant passage piétons</td><td>Arrêt + stationnement <strong>interdits</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p style="font-size:.8rem;color:#64748b;margin-top:1rem;border-top:1px solid #e5e7eb;padding-top:.75rem;">
+  Sources : transports.public.lu — Art. 110 &amp; 112 Code de la route LU | police.public.lu — Catalogue infractions parcage | legilux.public.lu
+</p>
+
+</section>
+
+<div class="card" style="text-align:center;">
+  <p style="margin-bottom:14px;color:var(--muted);">Entraînez-vous maintenant sur ces notions !</p>
+  <a href="./" class="btn primary">Lancer un quiz</a>
+  &nbsp;
+  <a href="sommaire.html" class="btn" style="background:#f1f5f9;color:#1e3a8a;">Tous les cours →</a>
+</div>
+</main>
+
+<footer class="app-footer">
+  <nav aria-label="Navigation">
+    <div class="footer-links">
+      <a href="./">Quiz principal</a>
+      <a href="sommaire.html">Tous les cours</a>
+      <a href="vitesses-distances.html">Vitesses & Distances</a>
+      <a href="alcool-points.html">Alcool & Points</a>
+      <a href="priorites-circulation.html">Priorités & Circulation</a>
+      <a href="depassement-cyclistes.html">Dépassement & Cyclistes</a>
+      <a href="autoroutes-tunnels.html">Autoroutes & Tunnels</a>
+      <a href="stationnement-arret.html">Stationnement & Arrêt</a>
+      <a href="signalisation-complete.html">Signalisation Routière</a>
+      <a href="equipements-securite.html">Équipements & Sécurité</a>
+      <a href="permis-b.html">Permis B</a>
+      <a href="50-pieges-snca.html">50 Pièges SNCA</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-confidentialite.html">Confidentialité</a>
+    </div>
+    <small>© 2026 <a href="https://zaalouni.github.io/quiz-permis-lu/">Quiz Code de la Route Luxembourg</a> — Quiz d'entraînement indépendant.</small>
+  </nav>
+</footer>
+
+</body>
+</html>
