@@ -21,3 +21,7 @@ quiz-permis-lu/
 
 # Claude
 .claude/
+
+# Wrangler cache
+.wrangler/
+node_modules/

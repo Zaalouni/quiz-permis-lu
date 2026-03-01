@@ -1,0 +1,8 @@
+name = "quiz-permis-lu"
+main = "tools/cloudflare-worker.js"
+compatibility_date = "2024-01-01"
+
+# KV Namespace pour le leaderboard
+[[kv_namespaces]]
+binding = "LEADERBOARD"
+id = "673a16af81fa4b85bbca4c8d66982981"
