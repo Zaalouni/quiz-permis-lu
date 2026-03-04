@@ -2,12 +2,35 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
+  <!-- Google Tag Manager — chargé uniquement après consentement cookies -->
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  function trackEvent(eventName, params) { gtag('event', eventName, params); }
+
+  function loadGTM() {
+    if (window._gtmLoaded) return;
+    window._gtmLoaded = true;
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PBWRMC8N');
+    gtag('js', new Date());
+    gtag('config', 'GTM-PBWRMC8N');
+  }
+
+  // Charger GTM seulement si consentement déjà donné
+  if (localStorage.getItem('cookieConsent') === 'accepted') loadGTM();
+  </script>
+
+
   <title>Page non trouvée — Quiz Permis Luxembourg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Cette page n'existe pas ou a été déplacée. Retrouvez le quiz code de la route Luxembourg et tous nos cours de préparation à l'examen théorique.">
   <meta name="robots" content="noindex, follow">
   <meta http-equiv="refresh" content="3; url=https://zaalouni.github.io/quiz-permis-lu/">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="canonical" href="https://zaalouni.github.io/quiz-permis-lu/">
   <meta name="theme-color" content="#1e3a8a">
@@ -97,6 +120,8 @@
     }
     .nav-links a:hover { text-decoration: underline; }
   </style>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 </head>
 <body>
   <div class="container">
